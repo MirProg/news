@@ -1,55 +1,24 @@
-from src.config import (
-    AI_PROVIDER, AI_ENABLED,
-    OPENAI_API_KEY, OPENAI_MODEL,
-    ANTHROPIC_API_KEY, ANTHROPIC_MODEL
-)
+"""Article rewriting using configured AI provider (DeepSeek/OpenAI/Anthropic)."""
 
-SYSTEM_PROMPT = """You are an academic research journalist. Rewrite the following news article in your own words.
+from src.ai_client import chat
+from src.config import AI_ENABLED, MAX_DAILY_GENERATED
+
+SYSTEM = """You are an academic research journalist. Rewrite the following news article in your own words.
 Keep the factual accuracy intact but change the structure and phrasing completely.
-Write in a clear, professional tone suitable for an academic audience.
+Write in a clear, professional tone suitable for a tech audience.
 Output ONLY the rewritten article body (3-5 paragraphs). No preamble, no commentary."""
-
-def _call_openai(text):
-    from openai import OpenAI
-    client = OpenAI(api_key=OPENAI_API_KEY)
-    resp = client.chat.completions.create(
-        model=OPENAI_MODEL,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": text},
-        ],
-        temperature=0.7,
-        max_tokens=1000,
-    )
-    return resp.choices[0].message.content.strip()
-
-def _call_anthropic(text):
-    import anthropic
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    resp = client.messages.create(
-        model=ANTHROPIC_MODEL,
-        system=SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": text}],
-        max_tokens=1000,
-        temperature=0.7,
-    )
-    return resp.content[0].text.strip()
 
 def generate_article(title, full_text, summary_raw):
     if not AI_ENABLED:
         return summary_raw
-
     if not full_text or len(full_text) < 100:
         return summary_raw
 
     prompt = f"Title: {title}\n\nSource article:\n{full_text[:4000]}"
-
     try:
-        if AI_PROVIDER == "anthropic":
-            return _call_anthropic(prompt)
-        return _call_openai(prompt)
+        return chat(SYSTEM, prompt, temperature=0.7, max_tokens=1000)
     except Exception as e:
-        print(f"  AI generation failed: {e}")
+        print(f"  AI writing failed: {e}")
         return summary_raw
 
 

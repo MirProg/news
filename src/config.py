@@ -8,15 +8,26 @@ ARTICLES_PER_FEED = 5
 MAX_TOTAL_ARTICLES = 30
 MAX_DAILY_GENERATED = 15
 
-AI_PROVIDER = os.getenv("AI_PROVIDER", "openai")
+# Priority: 1) DEEPSEEK, 2) OPENAI, 3) ANTHROPIC
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
+DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-3-haiku-20240307")
-AI_ENABLED = bool(OPENAI_API_KEY or ANTHROPIC_API_KEY)
+
+AI_ENABLED = bool(DEEPSEEK_API_KEY or OPENAI_API_KEY or ANTHROPIC_API_KEY)
+
+if DEEPSEEK_API_KEY:
+    AI_PROVIDER = "deepseek"
+elif OPENAI_API_KEY:
+    AI_PROVIDER = "openai"
+elif ANTHROPIC_API_KEY:
+    AI_PROVIDER = "anthropic"
+else:
+    AI_PROVIDER = "none"
 
 RSS_FEEDS = [
-    # AI / ML / Tech news
     {"url": "https://www.artificialintelligence-news.com/feed/",          "source": "AI News"},
     {"url": "https://venturebeat.com/feed/",                             "source": "VentureBeat"},
     {"url": "https://techcrunch.com/feed/",                              "source": "TechCrunch"},
