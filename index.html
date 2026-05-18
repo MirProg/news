@@ -6,870 +6,857 @@
 <title>AIBrief — Daily AI & Tech News</title>
 <meta name="description" content="Daily AI & tech industry news, curated and rewritten by AI.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f6f8fc;--card:#fff;--text:#0b1a33;--muted:#64748b;--accent:#2563eb;--accent-light:#dbeafe;--accent-dark:#1e40af;--border:#e2e8f0;--shadow:0 1px 3px rgba(0,0,0,0.04);--shadow-hover:0 8px 30px rgba(0,0,0,0.08);--radius:16px}
-body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.container{max-width:1100px;margin:0 auto;padding:0 24px}
+:root{--bg:#ffffff;--bg-alt:#f5f5f5;--card:#fff;--text:#111;--text-secondary:#555;--text-muted:#999;--accent:#111;--accent-blue:#2563eb;--border:#e5e5e5;--border-light:#f0f0f0;--shadow:0 1px 4px rgba(0,0,0,0.04);--shadow-hover:0 12px 40px rgba(0,0,0,0.08);--radius:12px;--font-sans:'Inter',system-ui,-apple-system,sans-serif;--font-serif:'Playfair Display',Georgia,serif}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}
+.container{max-width:1120px;margin:0 auto;padding:0 28px}
 
-header{background:linear-gradient(135deg,#0b1a33,#1e3a8a);color:#fff;padding:48px 0 40px;position:relative;overflow:hidden}
-header::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(96,165,250,0.08),transparent 70%);pointer-events:none}
-header .container{position:relative;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
-header .brand h1{font-size:2rem;font-weight:800;letter-spacing:-0.04em}
-header .brand h1 span{color:#60a5fa}
-header .brand p{font-size:0.9rem;opacity:0.7;margin-top:2px}
-header .header-meta{text-align:right;font-size:0.8rem;opacity:0.6}
-header .header-meta .badge{display:inline-block;background:rgba(255,255,255,0.1);padding:4px 14px;border-radius:20px;font-size:0.7rem;font-weight:600;border:1px solid rgba(255,255,255,0.1);margin-bottom:6px}
+.topbar{background:var(--text);color:#fff;padding:12px 0;position:sticky;top:0;z-index:100}
+.topbar .container{display:flex;align-items:center;justify-content:space-between}
+.topbar .logo{font-size:1.2rem;font-weight:800;letter-spacing:-0.03em;text-decoration:none;color:#fff}
+.topbar .logo em{font-style:normal;color:#60a5fa}
+.topbar .nav-links{display:flex;gap:24px;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em}
+.topbar .nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s}
+.topbar .nav-links a:hover{color:#fff}
+.topbar .badge{font-size:0.65rem;background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:20px;color:rgba(255,255,255,0.7);letter-spacing:0.03em}
 
-nav.subnav{background:#fff;padding:0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-nav.subnav .container{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
-nav.subnav a{color:var(--muted);text-decoration:none;padding:14px 18px;font-size:0.8rem;font-weight:500;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s}
-nav.subnav a:hover{color:var(--accent);border-bottom-color:var(--accent-light)}
+.breaking{background:var(--bg-alt);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden}
+.breaking .container{display:flex;align-items:center;gap:16px}
+.breaking .label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent-blue);white-space:nowrap;background:#eff6ff;padding:3px 10px;border-radius:3px}
+.breaking .ticker{font-size:0.82rem;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-main{padding:32px 0}
+.hero{padding:36px 0 0}
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero .hero-content h1{font-size:2.4rem;font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:12px}
+.hero .hero-content h1 a{color:var(--text);text-decoration:none}
+.hero .hero-content h1 a:hover{color:var(--accent-blue)}
+.hero .hero-content .meta{font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.hero .hero-content .meta .source{font-weight:600;color:var(--accent-blue);text-transform:uppercase;font-size:0.7rem;letter-spacing:0.06em}
+.hero .hero-content .excerpt{font-size:0.95rem;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
+.hero .hero-content .readmore{font-size:0.8rem;font-weight:600;color:var(--accent-blue);text-decoration:none}
+.hero .hero-content .readmore:hover{text-decoration:underline}
+.hero .hero-image{width:100%;height:380px;object-fit:cover;border-radius:var(--radius);background:var(--bg-alt)}
+.hero .hero-placeholder{width:100%;height:380px;border-radius:var(--radius);background:linear-gradient(135deg,#f0f0f0,#e5e5e5);display:flex;align-items:center;justify-content:center;font-size:4rem;color:#ccc}
 
-.briefing{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #bfdbfe;border-radius:var(--radius);padding:28px 32px;margin-bottom:28px}
-.briefing h2{font-size:1.1rem;color:#1e40af;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.briefing h2 .badge{background:#2563eb;color:#fff;font-size:0.6rem;padding:2px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:0.05em}
-.briefing .section{margin-bottom:12px}
-.briefing .section h3{font-size:0.75rem;color:#64748b;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
-.briefing .section ul{padding-left:18px}
-.briefing .section ul li{font-size:0.88rem;color:#1e293b;margin-bottom:3px;line-height:1.5}
-.briefing .section p{font-size:0.88rem;color:#334155;line-height:1.6}
+.featured-grid{padding:32px 0;display:grid;grid-template-columns:2fr 1fr;gap:28px}
+.featured-grid .main-col{display:flex;flex-direction:column;gap:20px}
+.featured-grid .side-col{display:flex;flex-direction:column;gap:16px}
 
-.promo{background:linear-gradient(135deg,#0b1a33,#1e3a8a);border-radius:var(--radius);padding:32px;margin-bottom:28px;text-align:center;color:#e2e8f0}
-.promo h3{font-size:1.05rem;color:#fff;margin-bottom:4px;font-weight:700}
-.promo p{font-size:0.85rem;opacity:0.7}
-.promo a{color:#60a5fa;text-decoration:none;font-weight:600}
-.promo a:hover{text-decoration:underline}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.25s}
+.card:hover{box-shadow:var(--shadow-hover);border-color:transparent}
+.card-img{width:100%;height:200px;object-fit:cover;background:var(--bg-alt);display:block}
+.card-body{padding:20px 22px}
+.card .meta{font-size:0.72rem;color:var(--text-muted);margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.card .meta .src{font-weight:700;color:var(--accent-blue);text-transform:uppercase;font-size:0.6rem;letter-spacing:0.08em}
+.card .meta .tag{background:var(--bg-alt);color:var(--text-secondary);padding:1px 8px;border-radius:3px;font-size:0.6rem;font-weight:600}
+.card h3{font-size:1rem;font-weight:600;line-height:1.35;margin-bottom:6px}
+.card h3 a{color:var(--text);text-decoration:none}
+.card h3 a:hover{color:var(--accent-blue)}
+.card .excerpt{font-size:0.82rem;color:var(--text-secondary);line-height:1.6}
+.card .card-footer{margin-top:10px;font-size:0.72rem;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center}
+.card .card-footer a{color:var(--accent-blue);text-decoration:none;font-weight:600}
+.card .card-footer a:hover{text-decoration:underline}
 
-.source-section{margin-bottom:32px}
-.source-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
-.source-header h2{font-size:1rem;font-weight:700;color:var(--text)}
-.source-header h2 .count{font-weight:400;color:var(--muted);font-size:0.8rem}
-.source-header .line{flex:1;height:2px;background:var(--border);border-radius:2px}
+.card.small{display:grid;grid-template-columns:100px 1fr;gap:0;align-items:start}
+.card.small .card-img{width:100px;height:100px;border-radius:0}
+.card.small .card-body{padding:14px 16px}
+.card.small h3{font-size:0.85rem;font-weight:600}
+.card.small .meta{margin-bottom:4px}
+.card.small .excerpt{display:none}
 
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.card.side{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border-light);border-radius:0;box-shadow:none;border-left:none;border-right:none;border-top:none}
+.card.side:last-child{border-bottom:none}
+.card.side:hover{box-shadow:none;border-color:var(--border-light)}
+.card.side .card-img{width:80px;height:80px;border-radius:6px;flex-shrink:0}
+.card.side .card-body{padding:0;flex:1}
+.card.side h3{font-size:0.8rem;font-weight:600;line-height:1.4}
+.card.side .meta{margin-bottom:2px}
 
-.article-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.25s;box-shadow:var(--shadow);display:flex;flex-direction:column}
-.article-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+.source-section{padding:24px 0 8px}
+.source-section .section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.source-section .section-header h2{font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text)}
+.source-section .section-header .line{flex:1;height:1px;background:var(--border)}
+.source-section .section-header .count{font-size:0.72rem;color:var(--text-muted);font-weight:400}
 
-.article-card .card-img{width:100%;height:180px;object-fit:cover;background:#f1f5f9;display:block}
-.article-card .card-img-placeholder{width:100%;height:180px;background:linear-gradient(135deg,#e2e8f0,#f1f5f9);display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#94a3b8}
+.briefing{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:24px}
+.briefing h2{font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.briefing h2 .badge{background:var(--accent-blue);color:#fff;font-size:0.55rem;padding:2px 8px;border-radius:3px;letter-spacing:0.05em}
+.briefing .section{margin-bottom:10px}
+.briefing .section h3{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px}
+.briefing .section ul{padding-left:16px}
+.briefing .section ul li{font-size:0.85rem;color:var(--text-secondary);margin-bottom:2px}
+.briefing .section p{font-size:0.85rem;color:var(--text-secondary);line-height:1.6}
 
-.article-card .card-body{padding:20px 22px 18px;flex:1;display:flex;flex-direction:column}
-.article-card .meta{display:flex;gap:8px;font-size:0.72rem;color:var(--muted);margin-bottom:8px;flex-wrap:wrap;align-items:center}
-.article-card .meta .source{background:var(--accent-light);color:var(--accent);padding:2px 10px;border-radius:4px;font-weight:700;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.04em}
-.article-card .meta .trend{background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.6rem;font-weight:700}
-.article-card .meta .date{color:var(--muted)}
-.article-card h3{font-size:0.95rem;font-weight:700;line-height:1.4;margin-bottom:8px}
-.article-card h3 a{color:var(--text);text-decoration:none}
-.article-card h3 a:hover{color:var(--accent)}
-.article-card .excerpt{font-size:0.82rem;color:#475569;line-height:1.6;flex:1}
-.article-card .card-footer{margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;padding-top:12px;border-top:1px solid #f1f5f9}
-.article-card .card-footer a{color:var(--accent);text-decoration:none;font-weight:600}
-.article-card .card-footer a:hover{text-decoration:underline}
+.promo{margin-bottom:28px;padding:36px 32px;text-align:center;background:var(--text);border-radius:var(--radius);color:rgba(255,255,255,0.7)}
+.promo h3{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:4px}
+.promo p{font-size:0.85rem;opacity:0.6;margin-bottom:12px}
+.promo .btn{display:inline-block;background:#fff;color:var(--text);padding:8px 24px;border-radius:6px;font-size:0.8rem;font-weight:600;text-decoration:none}
+.promo .btn:hover{background:rgba(255,255,255,0.9)}
 
-.article-card .keywords{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
-.article-card .keywords .kw{background:#f1f5f9;color:#64748b;padding:1px 8px;border-radius:8px;font-size:0.65rem;font-weight:500}
-
-footer{padding:32px 0;text-align:center;font-size:0.8rem;color:var(--muted);border-top:1px solid var(--border)}
-footer a{color:var(--accent);text-decoration:none}
+footer{text-align:center;padding:40px 0;font-size:0.78rem;color:var(--text-muted);border-top:1px solid var(--border);margin-top:20px}
+footer a{color:var(--text);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
-@media(max-width:768px){
-  header{padding:32px 0 28px}
-  header .brand h1{font-size:1.5rem}
-  header .header-meta{text-align:left;width:100%}
-  .articles-grid{grid-template-columns:1fr}
-  .briefing,.promo{padding:20px}
-  .article-card .card-img,.article-card .card-img-placeholder{height:140px}
+@media(max-width:900px){
+  .hero .container{grid-template-columns:1fr;gap:20px}
+  .hero .hero-content h1{font-size:1.6rem}
+  .hero .hero-image,.hero .hero-placeholder{height:240px}
+  .featured-grid{grid-template-columns:1fr}
+  .card.small{grid-template-columns:80px 1fr}
 }
-@media(max-width:480px){
+@media(max-width:600px){
   .container{padding:0 16px}
-  .articles-grid{grid-template-columns:1fr}
+  .topbar .nav-links{display:none}
+  .featured-grid .side-col{display:none}
+  .hero .hero-content h1{font-size:1.3rem}
+  .card-body{padding:14px 16px}
 }
 @media(prefers-color-scheme:dark){
-  :root{--bg:#0b1a33;--card:#0f2440;--text:#e2e8f0;--muted:#94a3b8;--border:#1e3a5f;--accent-light:#1e3a5f;--shadow:0 1px 3px rgba(0,0,0,0.2);--shadow-hover:0 8px 30px rgba(0,0,0,0.3)}
-  .article-card .keywords .kw{background:#1e3a5f;color:#94a3b8}
-  .article-card .card-img-placeholder{background:linear-gradient(135deg,#1e3a5f,#0f2440)}
-  .subnav{background:#0f2440;border-color:#1e3a5f}
-  .briefing{background:linear-gradient(135deg,#0f2440,#1a365d);border-color:#1e3a5f}
-  .briefing h2{color:#60a5fa}
-  .briefing .section h3{color:#94a3b8}
-  .briefing .section ul li,.briefing .section p{color:#cbd5e1}
-  nav.subnav a:hover{color:#60a5fa}
+  :root{--bg:#0a0a0a;--bg-alt:#111;--card:#141414;--text:#eee;--text-secondary:#999;--text-muted:#666;--border:#222;--border-light:#1a1a1a;--shadow:0 1px 4px rgba(0,0,0,0.3);--shadow-hover:0 12px 40px rgba(0,0,0,0.5)}
+  .topbar{background:#000}
+  .breaking .label{background:#1a365d;color:#60a5fa}
+  .hero .hero-placeholder{background:linear-gradient(135deg,#1a1a1a,#222)}
+  .promo{background:#000}
+  .promo .btn{background:var(--accent-blue);color:#fff}
 }
 </style>
 </head>
 <body>
-<header>
+<div class="topbar">
   <div class="container">
-    <div class="brand">
-      <h1><span>AI</span>Brief</h1>
-      <p>Daily AI & tech industry news, curated and rewritten by AI.</p>
+    <a href="/" class="logo"><em>AI</em>Brief</a>
+    <div class="nav-links">
+      
+      <a href="#CNBC_Tech">CNBC Tech</a>
+      
+      <a href="#TechCrunch">TechCrunch</a>
+      
+      <a href="#ZDNet">ZDNet</a>
+      
+      <a href="#The_Verge">The Verge</a>
+      
+      <a href="#Ars_Technica">Ars Technica</a>
+      
+      <a href="#Hacker_News">Hacker News</a>
+      
+      <a href="#Wired">Wired</a>
+      
+      <a href="#MIT_Tech_Review">MIT Tech Review</a>
+      
     </div>
-    <div class="header-meta">
-      <div class="badge">Updated hourly</div>
-      <div style="margin-top:4px">May 18, 2026 at 19:23 UTC</div>
-    </div>
+    <span class="badge">Updated hourly</span>
   </div>
-</header>
-<nav class="subnav">
+</div>
+
+
+
+<div class="breaking">
   <div class="container">
+    <span class="label">Breaking</span>
+    <span class="ticker">Elon Musk loses court battle against Sam Altman and OpenAI after 3-week trial</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="meta">
+        <span class="source">CNBC Tech</span>
+        <span>Today</span>
+      </div>
+      <h1><a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Elon Musk loses court battle against Sam Altman and OpenAI after 3-week trial</a></h1>
+      <div class="excerpt">A jury in Oakland, California, ruled against Elon Musk in his dramatic court battle with Sam Altman and OpenAI.…</div>
+      <a class="readmore" href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Read the full story →</a>
+    </div>
     
-    <a href="#CNBC_Tech">CNBC Tech</a>
-    
-    <a href="#ZDNet">ZDNet</a>
-    
-    <a href="#The_Verge">The Verge</a>
-    
-    <a href="#Ars_Technica">Ars Technica</a>
-    
-    <a href="#Hacker_News">Hacker News</a>
-    
-    <a href="#Wired">Wired</a>
-    
-    <a href="#MIT_Tech_Review">MIT Tech Review</a>
-    
-    <a href="#VentureBeat">VentureBeat</a>
-    
-    <a href="#TechCrunch">TechCrunch</a>
+    <img class="hero-image" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.className='hero-placeholder';this.src=''">
     
   </div>
-</nav>
+</div>
+
+
 <main class="container">
   
+
   
   <div class="promo">
     <h3>Stay ahead of the AI curve</h3>
-    <p>Get AIBrief delivered to your inbox. <a href="#">Subscribe →</a></p>
+    <p>Get the day's top AI & tech stories delivered to your inbox.</p>
+    <a class="btn" href="#">Subscribe →</a>
   </div>
   
+
   
   <div class="source-section">
-    <div class="source-header">
-      <h2 id="CNBC_Tech">CNBC Tech <span class="count">(3)</span></h2>
+    <div class="section-header">
+      <h2 id="CNBC_Tech">CNBC Tech</h2>
       <div class="line"></div>
+      <span class="count">3 stories</span>
     </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
+    <div class="featured-grid">
+      <div class="main-col">
         
-        <img class="card-img" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">📈
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">CNBC Tech</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.cnbc.com/2026/05/18/berkshire-portfolio-revamp-delta-airlines-macys-unitedhealth.html" target="_blank" rel="noopener">Berkshire Hathaway has revamped its portfolio — Here's how the new stocks are trading</a></h3>
+        <article class="card">
           
-          <div class="excerpt">Berkshire Hathaway took a $2.6 billion stake in Delta Airlines and increased its shares in Alphabet by 224%.</div>
+          <img class="card-img" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.style.display='none'">
           
-          
-          <div class="keywords"><span class="kw">berkshire</span><span class="kw">hathaway</span><span class="kw">berkshire hathaway</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.cnbc.com/2026/05/18/berkshire-portfolio-revamp-delta-airlines-macys-unitedhealth.html" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">📈
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">CNBC Tech</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.cnbc.com/2026/05/18/trump-hegseth-economy-2026-election-midterms-iran-china.html" target="_blank" rel="noopener">Trump pivots to midterms, affordability after China summit as Iran war persists</a></h3>
-          
-          <div class="excerpt">Trump, at a White House event Monday, is expected to announce an expansion of the number of discounted prescription drug...</div>
-          
-          
-          <div class="keywords"><span class="kw">trump</span><span class="kw">pivots</span><span class="kw">midterms</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.cnbc.com/2026/05/18/trump-hegseth-economy-2026-election-midterms-iran-china.html" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">📈
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">CNBC Tech</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Elon Musk loses court battle against Sam Altman and OpenAI after 3-week trial</a></h3>
-          
-          <div class="excerpt">A jury in Oakland, California, ruled against Elon Musk in his dramatic court battle with Sam Altman and OpenAI.</div>
-          
-          
-          <div class="keywords"><span class="kw">elon</span><span class="kw">musk</span><span class="kw">court</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-    </div>
-  </div>
-  
-  <div class="source-section">
-    <div class="source-header">
-      <h2 id="ZDNet">ZDNet <span class="count">(4)</span></h2>
-      <div class="line"></div>
-    </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://www.zdnet.com/a/img/resize/03aa4e71fea87a73401fc78bf5a0e5725038a6a1/2026/03/27/68113730-d159-4a72-967a-1b3228a8f2da/edbott-headshot-2026.png?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">🖥️
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">ZDNet</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">How to upgrade your 'incompatible' Windows 10 PC to Windows 11 - for free</a></h3>
-          
-          <div class="excerpt">Microsoft really doesn't want customers to upgrade older PCs to Windows 11, but there are workarounds for all but the ol...</div>
-          
-          
-          <div class="keywords"><span class="kw">windows</span><span class="kw">upgrade</span><span class="kw">incompatible</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://www.zdnet.com/a/img/resize/4571704f175fccf01cd0de7a7c472308ef6e4f33/2016/08/31/74de94eb-6040-4185-941f-3396a8db41a9/ad-headshot-800x600px.jpg?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">🖥️
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">ZDNet</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.zdnet.com/article/best-early-memorial-day-walmart-deals/" target="_blank" rel="noopener">I found the best early Memorial Day Walmart deals: Apple, Dyson, and more on sale</a></h3>
-          
-          <div class="excerpt">Memorial Day is almost here, and Walmart has already slashed prices on top tech.</div>
-          
-          
-          <div class="keywords"><span class="kw">memorial</span><span class="kw">day</span><span class="kw">walmart</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.zdnet.com/article/best-early-memorial-day-walmart-deals/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">🖥️
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">ZDNet</span>
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">CNBC Tech</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Elon Musk loses court battle against Sam Altman and OpenAI after 3-week trial</a></h3>
             
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.zdnet.com/article/why-wave-just-became-my-go-to-terminal-app/" target="_blank" rel="noopener">Why Wave is my new go-to terminal app - how I use this powerful tool</a></h3>
-          
-          <div class="excerpt">The Linux, MacOS, and Windows terminal is no longer just for commands. Thanks to apps like Wave, you can have a veritabl...</div>
-          
-          
-          <div class="keywords"><span class="kw">wave</span><span class="kw">terminal</span><span class="kw">new</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.zdnet.com/article/why-wave-just-became-my-go-to-terminal-app/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">🖥️
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">ZDNet</span>
+            <div class="excerpt">A jury in Oakland, California, ruled against Elon Musk in his dramatic court battle with Sam Altman and OpenAI.</div>
             
-            <span class="date">Today</span>
+            <div class="card-footer">
+              <span>CNBC Tech</span>
+              <a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Read →</a>
+            </div>
           </div>
-          <h3><a href="https://www.zdnet.com/article/codex-to-customize-my-hyprland-desktop/" target="_blank" rel="noopener">I asked Codex AI to customize my Hyprland desktop - it worked, but beginners beware</a></h3>
-          
-          <div class="excerpt">Hyrpland is a fantastic Linux window manager, but it can be complicated to configure. I asked Codex to write a .conf fil...</div>
-          
-          
-          <div class="keywords"><span class="kw">asked</span><span class="kw">codex</span><span class="kw">asked codex</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.zdnet.com/article/codex-to-customize-my-hyprland-desktop/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-    </div>
-  </div>
-  
-  <div class="source-section">
-    <div class="source-header">
-      <h2 id="The_Verge">The Verge <span class="count">(3)</span></h2>
-      <div class="line"></div>
-    </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
+        </article>
         
-        <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25739950/247386_Elon_Musk_Open_AI_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">🔋
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">The Verge</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank" rel="noopener">Musk v. Altman proved that AI is led by the wrong people</a></h3>
+        <article class="card">
           
-          <div class="excerpt">The tech trial of the year, Musk v. Altman, was ultimately a fight for control. Elon Musk argued that Sam Altman, with w...</div>
+          <img class="card-img" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.style.display='none'">
           
-          
-          <div class="keywords"><span class="kw">musk</span><span class="kw">altman</span><span class="kw">musk altman</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/walmart-onn-7-tablet.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">🔋
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">The Verge</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.theverge.com/tech/932642/walmart-onn-new-core-pro-kids-tablets" target="_blank" rel="noopener">Walmart launches new budget-friendly Android tablets starting at $97</a></h3>
-          
-          <div class="excerpt">Walmart's Onn brand just launched a whole line of budget-friendly Android tablets that, all together, cost less in total...</div>
-          
-          
-          <div class="keywords"><span class="kw">android</span><span class="kw">tablets</span><span class="kw">walmart</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.theverge.com/tech/932642/walmart-onn-new-core-pro-kids-tablets" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/dyson_pencilwash3.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.740836125969%2C100%2C78.518327748063&amp;w=1200" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">🔋
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">The Verge</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.theverge.com/gadgets/932449/dyson-pencilwash-hard-floor-cleaner-memorial-day-2026-deal-sale" target="_blank" rel="noopener">Dyson’s super-slim PencilWash just hit its best price to date for Memorial Day</a></h3>
-          
-          <div class="excerpt">If Dyson’s PencilVac Fluffycones made you wish the company had built something similarly slim for scrubbing the hard flo...</div>
-          
-          
-          <div class="keywords"><span class="kw">dyson</span><span class="kw">slim</span><span class="kw">pencilwash</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.theverge.com/gadgets/932449/dyson-pencilwash-hard-floor-cleaner-memorial-day-2026-deal-sale" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-    </div>
-  </div>
-  
-  <div class="source-section">
-    <div class="source-header">
-      <h2 id="Ars_Technica">Ars Technica <span class="count">(5)</span></h2>
-      <div class="line"></div>
-    </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/Excavation.-Photo-BQ-1131x648.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">💻
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Ars Technica</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Australian Aboriginals cared for a dingo's grave for decades</a></h3>
-          
-          <div class="excerpt">For some ancient Aboriginal Australian communities, dingoes were part of the family.</div>
-          
-          
-          <div class="keywords"><span class="kw">australian</span><span class="kw">aboriginals</span><span class="kw">cared</span></div>
-          
-          <div class="card-footer">
-            <a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/GettyImages-2276194137-1024x648.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">💻
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Ars Technica</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Elon Musk took too long to sue OpenAI, jury unanimously agrees</a></h3>
-          
-          <div class="excerpt">Musk plans to appeal after judge immediately affirmed the jury's decision.</div>
-          
-          
-          <div class="keywords"><span class="kw">musk</span><span class="kw">jury</span><span class="kw">elon</span></div>
-          
-          <div class="card-footer">
-            <a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/pompeii1-1-1152x648.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">💻
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Ars Technica</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Pompeii victim ID'd as a likely doctor</a></h3>
-          
-          <div class="excerpt">New X-rays and CT scans showed small case with locking mechanism containing metal instruments.</div>
-          
-          
-          <div class="keywords"><span class="kw">pompeii</span><span class="kw">victim</span><span class="kw">likely</span></div>
-          
-          <div class="card-footer">
-            <a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/lanterns1-1152x648-1779121699.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">💻
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Ars Technica</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Guy Gardner makes a cameo in new Lanterns teaser</a></h3>
-          
-          <div class="excerpt">"This ring? It's the greatest weapon in the Universe. When and if to use it, that's the whole ball game."</div>
-          
-          
-          <div class="keywords"><span class="kw">guy</span><span class="kw">gardner</span><span class="kw">makes</span></div>
-          
-          <div class="card-footer">
-            <a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/unnamed-1-1-1152x648.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">💻
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Ars Technica</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">The Dory Sign is E ink, smart screen simplicity at its finest</a></h3>
-          
-          <div class="excerpt">Dory CEO claims the $149 signs won't be bricked should Dory go out of business.</div>
-          
-          
-          <div class="keywords"><span class="kw">dory</span><span class="kw">sign</span><span class="kw">ink</span></div>
-          
-          <div class="card-footer">
-            <a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-    </div>
-  </div>
-  
-  <div class="source-section">
-    <div class="source-header">
-      <h2 id="Hacker_News">Hacker News <span class="count">(3)</span></h2>
-      <div class="line"></div>
-    </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://discuss.haiku-os.org/uploads/default/optimized/2X/5/5345a61737d0cd39d8490fc19d2efc4be47d4c95_2_1024x822.jpeg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">💬
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Hacker News</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Haiku OS runs on M1 Macs now</a></h3>
-          
-          <div class="excerpt">Comments</div>
-          
-          
-          <div class="keywords"><span class="kw">haiku</span><span class="kw">runs</span><span class="kw">macs</span></div>
-          
-          <div class="card-footer">
-            <a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">💬
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Hacker News</span>
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">CNBC Tech</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.cnbc.com/2026/05/18/berkshire-portfolio-revamp-delta-airlines-macys-unitedhealth.html" target="_blank" rel="noopener">Berkshire Hathaway has revamped its portfolio — Here's how the new stocks are trading</a></h3>
             
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Anthropic acquires Stainless</a></h3>
-          
-          <div class="excerpt">Comments</div>
-          
-          
-          <div class="keywords"><span class="kw">anthropic</span><span class="kw">acquires</span><span class="kw">stainless</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">💬
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Hacker News</span>
+            <div class="excerpt">Berkshire Hathaway took a $2.6 billion stake in Delta Airlines and increased its shares in Alphabet by 224%.</div>
             
-            <span class="date">Today</span>
+            <div class="card-footer">
+              <span>CNBC Tech</span>
+              <a href="https://www.cnbc.com/2026/05/18/berkshire-portfolio-revamp-delta-airlines-macys-unitedhealth.html" target="_blank" rel="noopener">Read →</a>
+            </div>
           </div>
-          <h3><a href="https://archestra.ai/blog/only-responsible-ai" target="_blank" rel="noopener">We stopped AI bot spam in our GitHub repo using Git's –author flag</a></h3>
-          
-          <div class="excerpt">Comments</div>
-          
-          
-          <div class="keywords"><span class="kw">stopped</span><span class="kw">bot</span><span class="kw">spam</span></div>
-          
-          <div class="card-footer">
-            <a href="https://archestra.ai/blog/only-responsible-ai" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-    </div>
-  </div>
-  
-  <div class="source-section">
-    <div class="source-header">
-      <h2 id="Wired">Wired <span class="count">(1)</span></h2>
-      <div class="line"></div>
-    </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
+        </article>
         
-        <div class="card-img-placeholder">⚡
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">Wired</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">These 11 Automatic Cat Feeders Were the Best We Tested in 2026</a></h3>
+        <article class="card">
           
-          <div class="excerpt">We tested some of the most popular automatic dry- and wet-food pet feeders to see which ones are worth the money.</div>
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
           
-          
-          <div class="keywords"><span class="kw">automatic</span><span class="kw">feeders</span><span class="kw">tested</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-    </div>
-  </div>
-  
-  <div class="source-section">
-    <div class="source-header">
-      <h2 id="MIT_Tech_Review">MIT Tech Review <span class="count">(3)</span></h2>
-      <div class="line"></div>
-    </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">🔬
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">MIT Tech Review</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">What to expect from Google this week</a></h3>
-          
-          <div class="excerpt">This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox fir...</div>
-          
-          
-          <div class="keywords"><span class="kw">google</span><span class="kw">expect</span><span class="kw">week</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">🔬
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">MIT Tech Review</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">The Signals That Matter – MIT Insider’s Panel</a></h3>
-          
-          
-          <div class="keywords"><span class="kw">signals</span><span class="kw">matter</span><span class="kw">mit</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">🔬
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">MIT Tech Review</span>
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">CNBC Tech</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.cnbc.com/2026/05/18/trump-hegseth-economy-2026-election-midterms-iran-china.html" target="_blank" rel="noopener">Trump pivots to midterms, affordability after China summit as Iran war persists</a></h3>
             
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Inside Anduril and Meta’s quest to make smart glasses for warfare</a></h3>
-          
-          <div class="excerpt">The defense-tech company Anduril has shared new details about the augmented-reality headset for the military it’s protot...</div>
-          
-          
-          <div class="keywords"><span class="kw">anduril</span><span class="kw">meta</span><span class="kw">inside</span></div>
-          
-          <div class="card-footer">
-            <a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-    </div>
-  </div>
-  
-  <div class="source-section">
-    <div class="source-header">
-      <h2 id="VentureBeat">VentureBeat <span class="count">(2)</span></h2>
-      <div class="line"></div>
-    </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/1PhXKP5YpstNpQ89sknvrW/0f83c1efa4e5200bad70dae1c9f3558f/hero.png?w=300&q=30" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">📊
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">VentureBeat</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Four AI supply-chain attacks in 50 days exposed the release pipeline red teams aren't covering</a></h3>
-          
-          <div class="excerpt">Four supply-chain incidents hit OpenAI, Anthropic and Meta in 50 days: three adversary-driven attacks and one self-infli...</div>
-          
-          
-          <div class="keywords"><span class="kw">openai</span><span class="kw">2026</span><span class="kw">release</span></div>
-          
-          <div class="card-footer">
-            <a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/JbvsjhXQ0uQ9LfTtxh5wZ/2dbacae3929a9933067cdb1cae3d70a7/crimedy7_illustration_of_a_supervisor_robot_evaluating_other__35a35697-0dc1-4a73-acea-a033e99f2fac_1.png?w=300&q=30" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
-        
-        <div class="card-img-placeholder" style="display:none">📊
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">VentureBeat</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">LangSmith Engine closes the agent debugging loop automatically — but multi-model enterprises still need a neutral layer</a></h3>
-          
-          <div class="excerpt">Enterprises building and deploying agents have a problem: it’s taking their engineers too long to find out that an agent...</div>
-          
-          
-          <div class="keywords"><span class="kw">langsmith</span><span class="kw">engine</span><span class="kw">enterprises</span></div>
-          
-          <div class="card-footer">
-            <a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-    </div>
-  </div>
-  
-  <div class="source-section">
-    <div class="source-header">
-      <h2 id="TechCrunch">TechCrunch <span class="count">(2)</span></h2>
-      <div class="line"></div>
-    </div>
-    <div class="articles-grid">
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">🚀
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">TechCrunch</span>
-            <span class="trend">🔥 Hot</span>
-            <span class="date">Today</span>
-          </div>
-          <h3><a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">NYC Health and Hospitals says hackers stole medical data and fingerprints during breach affecting at least 1.8 million people</a></h3>
-          
-          <div class="excerpt">The New York public healthcare system said hackers stole personal and medical data, and scans of biometrics — including ...</div>
-          
-          
-          <div class="keywords"><span class="kw">hackers</span><span class="kw">stole</span><span class="kw">medical</span></div>
-          
-          <div class="card-footer">
-            <a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
-      <article class="article-card">
-        
-        <div class="card-img-placeholder">🚀
-        </div>
-        <div class="card-body">
-          <div class="meta">
-            <span class="source">TechCrunch</span>
+            <div class="excerpt">Trump, at a White House event Monday, is expected to announce an expansion of the number of discounted prescription drug…</div>
             
-            <span class="date">Today</span>
+            <div class="card-footer">
+              <span>CNBC Tech</span>
+              <a href="https://www.cnbc.com/2026/05/18/trump-hegseth-economy-2026-election-midterms-iran-china.html" target="_blank" rel="noopener">Read →</a>
+            </div>
           </div>
-          <h3><a href="https://techcrunch.com/2026/05/18/kin-health-raises-9m-to-build-an-ai-notetaker-for-patients/" target="_blank" rel="noopener">Kin Health raises $9M to build an AI notetaker for patients</a></h3>
-          
-          <div class="excerpt">The app is similar to a meeting notetaker: you can record doctor visits, and it will return an AI summary of the meeting...</div>
-          
-          
-          <div class="keywords"><span class="kw">notetaker</span><span class="kw">meeting</span><span class="kw">kin</span></div>
-          
-          <div class="card-footer">
-            <a href="https://techcrunch.com/2026/05/18/kin-health-raises-9m-to-build-an-ai-notetaker-for-patients/" target="_blank" rel="noopener">Read original →</a>
-          </div>
-        </div>
-      </article>
-    
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+      </div>
     </div>
   </div>
   
+  <div class="source-section">
+    <div class="section-header">
+      <h2 id="TechCrunch">TechCrunch</h2>
+      <div class="line"></div>
+      <span class="count">3 stories</span>
+    </div>
+    <div class="featured-grid">
+      <div class="main-col">
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://techcrunch.com/wp-content/uploads/2026/01/GettyImages-2252871842.jpg?w=1024" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">TechCrunch</span>
+              
+              <span>Today</span>
+            </div>
+            <h3><a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/" target="_blank" rel="noopener">Anthropic has acquired the dev tools startup used by OpenAI, Google, and Cloudflare</a></h3>
+            
+            <div class="excerpt">Stainless, a New York-based startup, will wind down all hosted products as part of the acquisition.</div>
+            
+            <div class="card-footer">
+              <span>TechCrunch</span>
+              <a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">TechCrunch</span>
+              
+              <span>Today</span>
+            </div>
+            <h3><a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">NYC Health + Hospitals says hackers stole medical data and fingerprints during breach affecting at least 1.8 million people</a></h3>
+            
+            <div class="excerpt">The New York public healthcare system said hackers stole personal and medical data, and scans of biometrics — including …</div>
+            
+            <div class="card-footer">
+              <span>TechCrunch</span>
+              <a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">TechCrunch</span>
+              
+              <span>Today</span>
+            </div>
+            <h3><a href="https://techcrunch.com/2026/05/18/kin-health-raises-9m-to-build-an-ai-notetaker-for-patients/" target="_blank" rel="noopener">Kin Health raises $9M to build an AI notetaker for patients</a></h3>
+            
+            <div class="excerpt">The app is similar to a meeting notetaker — you can record doctor visits, and it will return an AI summary of the meetin…</div>
+            
+            <div class="card-footer">
+              <span>TechCrunch</span>
+              <a href="https://techcrunch.com/2026/05/18/kin-health-raises-9m-to-build-an-ai-notetaker-for-patients/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="source-section">
+    <div class="section-header">
+      <h2 id="ZDNet">ZDNet</h2>
+      <div class="line"></div>
+      <span class="count">4 stories</span>
+    </div>
+    <div class="featured-grid">
+      <div class="main-col">
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://www.zdnet.com/a/img/resize/03aa4e71fea87a73401fc78bf5a0e5725038a6a1/2026/03/27/68113730-d159-4a72-967a-1b3228a8f2da/edbott-headshot-2026.png?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">ZDNet</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">How to upgrade your 'incompatible' Windows 10 PC to Windows 11 - for free</a></h3>
+            
+            <div class="excerpt">Microsoft really doesn't want customers to upgrade older PCs to Windows 11, but there are workarounds for all but the ol…</div>
+            
+            <div class="card-footer">
+              <span>ZDNet</span>
+              <a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://www.zdnet.com/a/img/resize/4571704f175fccf01cd0de7a7c472308ef6e4f33/2016/08/31/74de94eb-6040-4185-941f-3396a8db41a9/ad-headshot-800x600px.jpg?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">ZDNet</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.zdnet.com/article/best-early-memorial-day-walmart-deals/" target="_blank" rel="noopener">I found the best early Memorial Day Walmart deals: Apple, Dyson, and more on sale</a></h3>
+            
+            <div class="excerpt">Memorial Day is almost here, and Walmart has already slashed prices on top tech.</div>
+            
+            <div class="card-footer">
+              <span>ZDNet</span>
+              <a href="https://www.zdnet.com/article/best-early-memorial-day-walmart-deals/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">ZDNet</span>
+              
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.zdnet.com/article/why-wave-just-became-my-go-to-terminal-app/" target="_blank" rel="noopener">Why Wave is my new go-to terminal app - how I use this powerful tool</a></h3>
+            
+            <div class="excerpt">The Linux, MacOS, and Windows terminal is no longer just for commands. Thanks to apps like Wave, you can have a veritabl…</div>
+            
+            <div class="card-footer">
+              <span>ZDNet</span>
+              <a href="https://www.zdnet.com/article/why-wave-just-became-my-go-to-terminal-app/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+        <article class="card side">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">ZDNet</span>
+              
+            </div>
+            <h3><a href="https://www.zdnet.com/article/codex-to-customize-my-hyprland-desktop/" target="_blank" rel="noopener">I asked Codex AI to customize my Hyprland desktop - it worked, but beginners beware</a></h3>
+          </div>
+        </article>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="source-section">
+    <div class="section-header">
+      <h2 id="The_Verge">The Verge</h2>
+      <div class="line"></div>
+      <span class="count">3 stories</span>
+    </div>
+    <div class="featured-grid">
+      <div class="main-col">
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25739950/247386_Elon_Musk_Open_AI_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">The Verge</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank" rel="noopener">Musk v. Altman proved that AI is led by the wrong people</a></h3>
+            
+            <div class="excerpt">The tech trial of the year, Musk v. Altman, was ultimately a fight for control. Elon Musk argued that Sam Altman, with w…</div>
+            
+            <div class="card-footer">
+              <span>The Verge</span>
+              <a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/walmart-onn-7-tablet.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">The Verge</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.theverge.com/tech/932642/walmart-onn-new-core-pro-kids-tablets" target="_blank" rel="noopener">Walmart launches new budget-friendly Android tablets starting at $97</a></h3>
+            
+            <div class="excerpt">Walmart's Onn brand just launched a whole line of budget-friendly Android tablets that, all together, cost less in total…</div>
+            
+            <div class="card-footer">
+              <span>The Verge</span>
+              <a href="https://www.theverge.com/tech/932642/walmart-onn-new-core-pro-kids-tablets" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/dyson_pencilwash3.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.740836125969%2C100%2C78.518327748063&amp;w=1200" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">The Verge</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.theverge.com/gadgets/932449/dyson-pencilwash-hard-floor-cleaner-memorial-day-2026-deal-sale" target="_blank" rel="noopener">Dyson’s super-slim PencilWash just hit its best price to date for Memorial Day</a></h3>
+            
+            <div class="excerpt">If Dyson’s PencilVac Fluffycones made you wish the company had built something similarly slim for scrubbing the hard flo…</div>
+            
+            <div class="card-footer">
+              <span>The Verge</span>
+              <a href="https://www.theverge.com/gadgets/932449/dyson-pencilwash-hard-floor-cleaner-memorial-day-2026-deal-sale" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="source-section">
+    <div class="section-header">
+      <h2 id="Ars_Technica">Ars Technica</h2>
+      <div class="line"></div>
+      <span class="count">5 stories</span>
+    </div>
+    <div class="featured-grid">
+      <div class="main-col">
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/Excavation.-Photo-BQ-1131x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">Ars Technica</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Australian Aboriginals cared for a dingo's grave for decades</a></h3>
+            
+            <div class="excerpt">For some ancient Aboriginal Australian communities, dingoes were part of the family.</div>
+            
+            <div class="card-footer">
+              <span>Ars Technica</span>
+              <a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/GettyImages-2276194137-1024x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">Ars Technica</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Elon Musk took too long to sue OpenAI, jury unanimously agrees</a></h3>
+            
+            <div class="excerpt">Musk plans to appeal after judge immediately affirmed the jury's decision.</div>
+            
+            <div class="card-footer">
+              <span>Ars Technica</span>
+              <a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/pompeii1-1-1152x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">Ars Technica</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Pompeii victim ID'd as a likely doctor</a></h3>
+            
+            <div class="excerpt">New X-rays and CT scans showed small case with locking mechanism containing metal instruments.</div>
+            
+            <div class="card-footer">
+              <span>Ars Technica</span>
+              <a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+        <article class="card side">
+          
+          <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/lanterns1-1152x648-1779121699.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">Ars Technica</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥</span>
+            </div>
+            <h3><a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Guy Gardner makes a cameo in new Lanterns teaser</a></h3>
+          </div>
+        </article>
+        
+        <article class="card side">
+          
+          <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/unnamed-1-1-1152x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">Ars Technica</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥</span>
+            </div>
+            <h3><a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">The Dory Sign is E ink, smart screen simplicity at its finest</a></h3>
+          </div>
+        </article>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="source-section">
+    <div class="section-header">
+      <h2 id="Hacker_News">Hacker News</h2>
+      <div class="line"></div>
+      <span class="count">2 stories</span>
+    </div>
+    <div class="featured-grid">
+      <div class="main-col">
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://discuss.haiku-os.org/uploads/default/optimized/2X/5/5345a61737d0cd39d8490fc19d2efc4be47d4c95_2_1024x822.jpeg" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">Hacker News</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Haiku OS runs on M1 Macs now</a></h3>
+            
+            <div class="excerpt">Comments</div>
+            
+            <div class="card-footer">
+              <span>Hacker News</span>
+              <a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">Hacker News</span>
+              
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Anthropic acquires Stainless</a></h3>
+            
+            <div class="excerpt">Comments</div>
+            
+            <div class="card-footer">
+              <span>Hacker News</span>
+              <a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="source-section">
+    <div class="section-header">
+      <h2 id="Wired">Wired</h2>
+      <div class="line"></div>
+      <span class="count">1 stories</span>
+    </div>
+    <div class="featured-grid">
+      <div class="main-col">
+        
+        <article class="card">
+          
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">Wired</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">These 11 Automatic Cat Feeders Were the Best We Tested in 2026</a></h3>
+            
+            <div class="excerpt">We tested some of the most popular automatic dry- and wet-food pet feeders to see which ones are worth the money.</div>
+            
+            <div class="card-footer">
+              <span>Wired</span>
+              <a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="source-section">
+    <div class="section-header">
+      <h2 id="MIT_Tech_Review">MIT Tech Review</h2>
+      <div class="line"></div>
+      <span class="count">3 stories</span>
+    </div>
+    <div class="featured-grid">
+      <div class="main-col">
+        
+        <article class="card">
+          
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">MIT Tech Review</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">What to expect from Google this week</a></h3>
+            
+            <div class="excerpt">This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox fir…</div>
+            
+            <div class="card-footer">
+              <span>MIT Tech Review</span>
+              <a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">MIT Tech Review</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">The Signals That Matter – MIT Insider’s Panel</a></h3>
+            
+            <div class="card-footer">
+              <span>MIT Tech Review</span>
+              <a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">MIT Tech Review</span>
+              
+              <span>Today</span>
+            </div>
+            <h3><a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Inside Anduril and Meta’s quest to make smart glasses for warfare</a></h3>
+            
+            <div class="excerpt">The defense-tech company Anduril has shared new details about the augmented-reality headset for the military it’s protot…</div>
+            
+            <div class="card-footer">
+              <span>MIT Tech Review</span>
+              <a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="source-section">
+    <div class="section-header">
+      <h2 id="VentureBeat">VentureBeat</h2>
+      <div class="line"></div>
+      <span class="count">2 stories</span>
+    </div>
+    <div class="featured-grid">
+      <div class="main-col">
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/1PhXKP5YpstNpQ89sknvrW/0f83c1efa4e5200bad70dae1c9f3558f/hero.png?w=300&q=30" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">VentureBeat</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Four AI supply-chain attacks in 50 days exposed the release pipeline red teams aren't covering</a></h3>
+            
+            <div class="excerpt">Four supply-chain incidents hit OpenAI, Anthropic and Meta in 50 days: three adversary-driven attacks and one self-infli…</div>
+            
+            <div class="card-footer">
+              <span>VentureBeat</span>
+              <a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+        <article class="card">
+          
+          <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/JbvsjhXQ0uQ9LfTtxh5wZ/2dbacae3929a9933067cdb1cae3d70a7/crimedy7_illustration_of_a_supervisor_robot_evaluating_other__35a35697-0dc1-4a73-acea-a033e99f2fac_1.png?w=300&q=30" alt="" loading="lazy" onerror="this.style.display='none'">
+          
+          <div class="card-body">
+            <div class="meta">
+              <span class="src">VentureBeat</span>
+              <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
+              <span>Today</span>
+            </div>
+            <h3><a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">LangSmith Engine closes the agent debugging loop automatically — but multi-model enterprises still need a neutral layer</a></h3>
+            
+            <div class="excerpt">Enterprises building and deploying agents have a problem: it’s taking their engineers too long to find out that an agent…</div>
+            
+            <div class="card-footer">
+              <span>VentureBeat</span>
+              <a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">Read →</a>
+            </div>
+          </div>
+        </article>
+        
+      </div>
+      <div class="side-col">
+        
+      </div>
+    </div>
+  </div>
   
 </main>
+
 <footer>
   <div class="container">
-    <p>AIBrief — AI-curated tech news, updated hourly.</p>
-    <p><a href="https://github.com/MirProg/news" target="_blank" rel="noopener">GitHub</a></p>
+    <p><strong style="color:var(--text)"><span style="color:#60a5fa">AI</span>Brief</strong> — AI-curated tech & AI news, updated hourly.</p>
+    <p style="margin-top:4px"><a href="https://github.com/MirProg/news" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
 </body>
