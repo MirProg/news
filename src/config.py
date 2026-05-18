@@ -16,7 +16,10 @@ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-3-haiku-20240307")
 
-AI_ENABLED = bool(DEEPSEEK_API_KEY or OPENAI_API_KEY or ANTHROPIC_API_KEY)
+# Free open-source model via Hugging Face (requires transformers + torch)
+LOCAL_AI_ENABLED = os.getenv("LOCAL_AI", "").lower() in ("1", "true", "yes")
+
+AI_ENABLED = bool(DEEPSEEK_API_KEY or OPENAI_API_KEY or ANTHROPIC_API_KEY or LOCAL_AI_ENABLED)
 
 if DEEPSEEK_API_KEY:
     AI_PROVIDER = "deepseek"
@@ -24,6 +27,8 @@ elif OPENAI_API_KEY:
     AI_PROVIDER = "openai"
 elif ANTHROPIC_API_KEY:
     AI_PROVIDER = "anthropic"
+elif LOCAL_AI_ENABLED:
+    AI_PROVIDER = "local"
 else:
     AI_PROVIDER = "none"
 

@@ -25,6 +25,7 @@ from src.content_fetcher import fetch_all_texts
 from src.dedup import deduplicate
 from src.ai_writer import generate_all
 from src.local_ai import summarize as local_summarize
+from src.config import LOCAL_AI_ENABLED
 from src.reasoning import analyze_all
 from src.keywords import extract_keywords
 from src.briefing import generate_briefing
@@ -58,13 +59,17 @@ def main():
     print(f"  {len(articles)} unique articles remaining")
 
     print(f"\n[4/9] Rewriting articles...")
-    if AI_ENABLED:
+    if LOCAL_AI_ENABLED:
+        print(f"  Using local AI (transformers)...")
+        for a in articles:
+            a["ai_content"] = local_summarize(a.get("full_text", "")) or a.get("summary_raw", "")
+    elif AI_ENABLED:
         print(f"  Using cloud AI ({MAX_DAILY_GENERATED} max)...")
         articles = generate_all(articles[:MAX_DAILY_GENERATED])
     else:
-        print(f"  Using local/fallback...")
+        print(f"  No AI — fetching full text for site content...")
         for a in articles:
-            a["ai_content"] = local_summarize(a.get("full_text", "")) or a.get("summary_raw", "")
+            a["ai_content"] = a.get("full_text", "") or a.get("summary_raw", "")
 
     print(f"\n[5/9] Multi-perspective reasoning (analyst/strategist/contrarian/prediction)...")
     articles = analyze_all(articles)
