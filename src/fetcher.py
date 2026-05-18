@@ -7,6 +7,25 @@ from src.config import RSS_FEEDS, ARTICLES_PER_FEED, NEWSAPI_ENABLED, NEWSAPI_KE
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) NewsBrief/1.0"
 
+def _extract_image(entry):
+    img = ""
+    if hasattr(entry, "media_content") and entry.media_content:
+        for m in entry.media_content:
+            if m.get("url") and "image" in m.get("type", ""):
+                img = m["url"]
+                break
+    if not img and hasattr(entry, "links"):
+        for link in entry.links:
+            if link.get("rel") == "enclosure" and "image" in link.get("type", ""):
+                img = link.get("href", "")
+                break
+    if not img:
+        summary = entry.get("summary", entry.get("description", ""))
+        match = re.search(r'<img[^>]+src=["\'](https?://[^"\']+)["\']', summary)
+        if match:
+            img = match.group(1)
+    return img
+
 def fetch_rss(url):
     try:
         feed = feedparser.parse(url)
@@ -24,6 +43,7 @@ def fetch_rss(url):
                 "title": entry.get("title", "Untitled"),
                 "url": entry.get("link", ""),
                 "summary_raw": clean,
+                "image_url": _extract_image(entry),
                 "published": published or datetime.now(timezone.utc),
             })
         return entries
@@ -52,6 +72,7 @@ def fetch_newsapi():
                 "title": article.get("title", "Untitled"),
                 "url": article.get("url", ""),
                 "summary_raw": article.get("description", ""),
+                "image_url": article.get("urlToImage", ""),
                 "published": published or datetime.now(timezone.utc),
                 "source": article.get("source", {}).get("name", "NewsAPI"),
             })

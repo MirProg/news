@@ -5,87 +5,115 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIBrief — Daily AI & Tech News</title>
 <meta name="description" content="Daily AI & tech industry news, curated and rewritten by AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --bg: #f4f6f9; --card: #ffffff; --text: #1a1a2e; --muted: #6c757d; --accent: #2563eb; --accent-dark: #1d4ed8; --border: #e2e8f0; --font: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.7; }
-.container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
-header { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: #fff; padding: 40px 0 32px; text-align: center; }
-header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; }
-header h1 span { color: #60a5fa; }
-header p { font-size: 1rem; opacity: 0.85; margin-top: 6px; }
-header .updated { font-size: 0.8rem; opacity: 0.6; margin-top: 10px; display: block; }
-header .badge { display: inline-block; background: rgba(255,255,255,0.12); padding: 3px 14px; border-radius: 20px; font-size: 0.75rem; margin-top: 8px; border: 1px solid rgba(255,255,255,0.15); }
-nav.subnav { background: #0f172a; padding: 12px 0; text-align: center; position: sticky; top: 0; z-index: 10; border-bottom: 1px solid #1e293b; }
-nav.subnav a { color: #93b4d4; text-decoration: none; margin: 0 10px; font-size: 0.8rem; font-weight: 500; }
-nav.subnav a:hover { color: #60a5fa; }
-main { padding: 32px 0; }
-.source-section { margin-bottom: 36px; }
-.source-section h2 { font-size: 1.1rem; color: var(--accent); border-bottom: 3px solid var(--accent); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-.source-section h2 .count { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f6f8fc;--card:#fff;--text:#0b1a33;--muted:#64748b;--accent:#2563eb;--accent-light:#dbeafe;--accent-dark:#1e40af;--border:#e2e8f0;--shadow:0 1px 3px rgba(0,0,0,0.04);--shadow-hover:0 8px 30px rgba(0,0,0,0.08);--radius:16px}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
 
-.article { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.article:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-.article .meta { display: flex; gap: 10px; font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; flex-wrap: wrap; align-items: center; }
-.article .meta .source { background: #dbeafe; color: var(--accent); padding: 2px 10px; border-radius: 4px; font-weight: 600; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; }
-.article .meta .ai-label { background: #f0fdf4; color: #15803d; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600; }
-.article h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
-.article h2 a { color: var(--text); text-decoration: none; }
-.article h2 a:hover { color: var(--accent); }
-.article .content { font-size: 0.92rem; color: #2d3748; }
-.article .content p { margin-bottom: 10px; }
-.article .footer-meta { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; padding-top: 12px; border-top: 1px solid #f1f5f9; }
-.article .footer-meta .original { color: var(--muted); }
-.article .footer-meta .original a { color: var(--accent); text-decoration: none; font-weight: 500; }
-.article .footer-meta .original a:hover { text-decoration: underline; }
+header{background:linear-gradient(135deg,#0b1a33,#1e3a8a);color:#fff;padding:48px 0 40px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(96,165,250,0.08),transparent 70%);pointer-events:none}
+header .container{position:relative;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+header .brand h1{font-size:2rem;font-weight:800;letter-spacing:-0.04em}
+header .brand h1 span{color:#60a5fa}
+header .brand p{font-size:0.9rem;opacity:0.7;margin-top:2px}
+header .header-meta{text-align:right;font-size:0.8rem;opacity:0.6}
+header .header-meta .badge{display:inline-block;background:rgba(255,255,255,0.1);padding:4px 14px;border-radius:20px;font-size:0.7rem;font-weight:600;border:1px solid rgba(255,255,255,0.1);margin-bottom:6px}
 
-.reasoning-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 10px; }
-.reasoning-card { border-radius: 8px; padding: 12px 14px; border: 1px solid var(--border); font-size: 0.82rem; line-height: 1.5; }
-.reasoning-card .label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
-.reasoning-card .label .icon { font-size: 0.85rem; }
-.reasoning-card.analyst { background: #f0f9ff; border-color: #bae6fd; }
-.reasoning-card.analyst .label { color: #0284c7; }
-.reasoning-card.strategist { background: #f5f3ff; border-color: #ddd6fe; }
-.reasoning-card.strategist .label { color: #7c3aed; }
-.reasoning-card.contrarian { background: #fefce8; border-color: #fef08a; }
-.reasoning-card.contrarian .label { color: #a16207; }
-.reasoning-card.prediction { background: #fef2f2; border-color: #fecaca; }
-.reasoning-card.prediction .label { color: #dc2626; }
+nav.subnav{background:#fff;padding:0;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav.subnav .container{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+nav.subnav a{color:var(--muted);text-decoration:none;padding:14px 18px;font-size:0.8rem;font-weight:500;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s}
+nav.subnav a:hover{color:var(--accent);border-bottom-color:var(--accent-light)}
 
-.keywords { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 0; }
-.keyword { background: #f1f5f9; color: #475569; padding: 2px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 500; }
+main{padding:32px 0}
 
-.briefing { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border: 1px solid #bae6fd; border-radius: 10px; padding: 24px 28px; margin-bottom: 28px; }
-.briefing h2 { font-size: 1.1rem; color: #0369a1; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.briefing h2 .badge { background: #0284c7; color: #fff; font-size: 0.65rem; padding: 1px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
-.briefing .section { margin-bottom: 14px; }
-.briefing .section h3 { font-size: 0.85rem; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-.briefing .section ul { margin: 0; padding-left: 20px; }
-.briefing .section ul li { font-size: 0.9rem; color: #1e293b; margin-bottom: 4px; line-height: 1.5; }
-.briefing .section p { font-size: 0.9rem; color: #334155; line-height: 1.6; }
-.promo { background: linear-gradient(135deg, #1e293b, #334155); color: #e2e8f0; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; text-align: center; }
-.promo h3 { font-size: 1rem; color: #fff; margin-bottom: 6px; }
-.promo p { font-size: 0.85rem; opacity: 0.8; }
-.promo a { color: #60a5fa; text-decoration: none; font-weight: 600; }
-.promo a:hover { text-decoration: underline; }
-footer { text-align: center; padding: 28px 0; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); }
-footer a { color: var(--accent); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
-@media (max-width: 600px) {
-  header h1 { font-size: 1.6rem; }
-  .article { padding: 16px 18px; }
-  .article h2 { font-size: 1.05rem; }
-  .reasoning-grid { grid-template-columns: 1fr; }
+.briefing{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1px solid #bfdbfe;border-radius:var(--radius);padding:28px 32px;margin-bottom:28px}
+.briefing h2{font-size:1.1rem;color:#1e40af;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.briefing h2 .badge{background:#2563eb;color:#fff;font-size:0.6rem;padding:2px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:0.05em}
+.briefing .section{margin-bottom:12px}
+.briefing .section h3{font-size:0.75rem;color:#64748b;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.briefing .section ul{padding-left:18px}
+.briefing .section ul li{font-size:0.88rem;color:#1e293b;margin-bottom:3px;line-height:1.5}
+.briefing .section p{font-size:0.88rem;color:#334155;line-height:1.6}
+
+.promo{background:linear-gradient(135deg,#0b1a33,#1e3a8a);border-radius:var(--radius);padding:32px;margin-bottom:28px;text-align:center;color:#e2e8f0}
+.promo h3{font-size:1.05rem;color:#fff;margin-bottom:4px;font-weight:700}
+.promo p{font-size:0.85rem;opacity:0.7}
+.promo a{color:#60a5fa;text-decoration:none;font-weight:600}
+.promo a:hover{text-decoration:underline}
+
+.source-section{margin-bottom:32px}
+.source-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.source-header h2{font-size:1rem;font-weight:700;color:var(--text)}
+.source-header h2 .count{font-weight:400;color:var(--muted);font-size:0.8rem}
+.source-header .line{flex:1;height:2px;background:var(--border);border-radius:2px}
+
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+
+.article-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.25s;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.article-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px)}
+
+.article-card .card-img{width:100%;height:180px;object-fit:cover;background:#f1f5f9;display:block}
+.article-card .card-img-placeholder{width:100%;height:180px;background:linear-gradient(135deg,#e2e8f0,#f1f5f9);display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#94a3b8}
+
+.article-card .card-body{padding:20px 22px 18px;flex:1;display:flex;flex-direction:column}
+.article-card .meta{display:flex;gap:8px;font-size:0.72rem;color:var(--muted);margin-bottom:8px;flex-wrap:wrap;align-items:center}
+.article-card .meta .source{background:var(--accent-light);color:var(--accent);padding:2px 10px;border-radius:4px;font-weight:700;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.04em}
+.article-card .meta .trend{background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.6rem;font-weight:700}
+.article-card .meta .date{color:var(--muted)}
+.article-card h3{font-size:0.95rem;font-weight:700;line-height:1.4;margin-bottom:8px}
+.article-card h3 a{color:var(--text);text-decoration:none}
+.article-card h3 a:hover{color:var(--accent)}
+.article-card .excerpt{font-size:0.82rem;color:#475569;line-height:1.6;flex:1}
+.article-card .card-footer{margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;padding-top:12px;border-top:1px solid #f1f5f9}
+.article-card .card-footer a{color:var(--accent);text-decoration:none;font-weight:600}
+.article-card .card-footer a:hover{text-decoration:underline}
+
+.article-card .keywords{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+.article-card .keywords .kw{background:#f1f5f9;color:#64748b;padding:1px 8px;border-radius:8px;font-size:0.65rem;font-weight:500}
+
+footer{padding:32px 0;text-align:center;font-size:0.8rem;color:var(--muted);border-top:1px solid var(--border)}
+footer a{color:var(--accent);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:768px){
+  header{padding:32px 0 28px}
+  header .brand h1{font-size:1.5rem}
+  header .header-meta{text-align:left;width:100%}
+  .articles-grid{grid-template-columns:1fr}
+  .briefing,.promo{padding:20px}
+  .article-card .card-img,.article-card .card-img-placeholder{height:140px}
+}
+@media(max-width:480px){
+  .container{padding:0 16px}
+  .articles-grid{grid-template-columns:1fr}
+}
+@media(prefers-color-scheme:dark){
+  :root{--bg:#0b1a33;--card:#0f2440;--text:#e2e8f0;--muted:#94a3b8;--border:#1e3a5f;--accent-light:#1e3a5f;--shadow:0 1px 3px rgba(0,0,0,0.2);--shadow-hover:0 8px 30px rgba(0,0,0,0.3)}
+  .article-card .keywords .kw{background:#1e3a5f;color:#94a3b8}
+  .article-card .card-img-placeholder{background:linear-gradient(135deg,#1e3a5f,#0f2440)}
+  .subnav{background:#0f2440;border-color:#1e3a5f}
+  .briefing{background:linear-gradient(135deg,#0f2440,#1a365d);border-color:#1e3a5f}
+  .briefing h2{color:#60a5fa}
+  .briefing .section h3{color:#94a3b8}
+  .briefing .section ul li,.briefing .section p{color:#cbd5e1}
+  nav.subnav a:hover{color:#60a5fa}
 }
 </style>
 </head>
 <body>
 <header>
   <div class="container">
-    <h1><span>AI</span>Brief</h1>
-    <p>Daily AI & tech industry news, curated and rewritten by AI.</p>
-    <span class="badge">Multi-perspective AI • Updated hourly</span>
-    <span class="updated">Last updated: May 18, 2026 at 18:27 UTC</span>
+    <div class="brand">
+      <h1><span>AI</span>Brief</h1>
+      <p>Daily AI & tech industry news, curated and rewritten by AI.</p>
+    </div>
+    <div class="header-meta">
+      <div class="badge">Updated hourly</div>
+      <div style="margin-top:4px">May 18, 2026 at 19:22 UTC</div>
+    </div>
   </div>
 </header>
 <nav class="subnav">
@@ -93,7 +121,13 @@ footer a:hover { text-decoration: underline; }
     
     <a href="#CNBC_Tech">CNBC Tech</a>
     
+    <a href="#ZDNet">ZDNet</a>
+    
+    <a href="#The_Verge">The Verge</a>
+    
     <a href="#Ars_Technica">Ars Technica</a>
+    
+    <a href="#Hacker_News">Hacker News</a>
     
     <a href="#Wired">Wired</a>
     
@@ -101,11 +135,7 @@ footer a:hover { text-decoration: underline; }
     
     <a href="#VentureBeat">VentureBeat</a>
     
-    <a href="#Hacker_News">Hacker News</a>
-    
     <a href="#TechCrunch">TechCrunch</a>
-    
-    <a href="#The_Verge">The Verge</a>
     
   </div>
 </nav>
@@ -113,851 +143,733 @@ footer a:hover { text-decoration: underline; }
   
   
   <div class="promo">
-    <h3>🚀 Stay ahead of the AI curve</h3>
+    <h3>Stay ahead of the AI curve</h3>
     <p>Get AIBrief delivered to your inbox. <a href="#">Subscribe →</a></p>
   </div>
   
   
   <div class="source-section">
-    <h2 id="CNBC_Tech">CNBC Tech <span class="count">(2)</span></h2>
+    <div class="source-header">
+      <h2 id="CNBC_Tech">CNBC Tech <span class="count">(3)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">CNBC Tech</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://www.cnbc.com/2026/05/18/trump-hegseth-economy-2026-election-midterms-iran-china.html" target="_blank" rel="noopener">Trump pivots to midterms, affordability after China summit as Iran war persists</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>Trump, at a White House event Monday, is expected to announce an expansion of the number of discounted prescription drugs offered through TrumpRX.</p>
+        <img class="card-img" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          Trump, at a White House event Monday, is expected to announce an expansion of the number of discounted prescription drugs offered through TrumpRX.
+        <div class="card-img-placeholder" style="display:none">📈
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">CNBC Tech</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.cnbc.com/2026/05/18/berkshire-portfolio-revamp-delta-airlines-macys-unitedhealth.html" target="_blank" rel="noopener">Berkshire Hathaway has revamped its portfolio — Here's how the new stocks are trading</a></h3>
+          
+          <div class="excerpt">Berkshire Hathaway took a $2.6 billion stake in Delta Airlines and increased its shares in Alphabet by 224%.</div>
+          
+          
+          <div class="keywords"><span class="kw">berkshire</span><span class="kw">hathaway</span><span class="kw">berkshire hathaway</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.cnbc.com/2026/05/18/berkshire-portfolio-revamp-delta-airlines-macys-unitedhealth.html" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">trump</span>
-        
-        <span class="keyword">pivots</span>
-        
-        <span class="keyword">midterms</span>
-        
-        <span class="keyword">affordability</span>
-        
-        <span class="keyword">china</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://www.cnbc.com/2026/05/18/trump-hegseth-economy-2026-election-midterms-iran-china.html" target="_blank" rel="noopener">CNBC Tech →</a></span>
-      </div>
-    </article>
+      </article>
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">CNBC Tech</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Elon Musk loses court battle against Sam Altman and OpenAI after 3-week trial</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>A jury in Oakland, California, ruled against Elon Musk in his dramatic court battle with Sam Altman and OpenAI.</p>
+        <img class="card-img" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          A jury in Oakland, California, ruled against Elon Musk in his dramatic court battle with Sam Altman and OpenAI.
+        <div class="card-img-placeholder" style="display:none">📈
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">CNBC Tech</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.cnbc.com/2026/05/18/trump-hegseth-economy-2026-election-midterms-iran-china.html" target="_blank" rel="noopener">Trump pivots to midterms, affordability after China summit as Iran war persists</a></h3>
+          
+          <div class="excerpt">Trump, at a White House event Monday, is expected to announce an expansion of the number of discounted prescription drug...</div>
+          
+          
+          <div class="keywords"><span class="kw">trump</span><span class="kw">pivots</span><span class="kw">midterms</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.cnbc.com/2026/05/18/trump-hegseth-economy-2026-election-midterms-iran-china.html" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">elon</span>
-        
-        <span class="keyword">musk</span>
-        
-        <span class="keyword">court</span>
-        
-        <span class="keyword">battle</span>
-        
-        <span class="keyword">sam</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">CNBC Tech →</a></span>
-      </div>
-    </article>
+      </article>
     
+      <article class="article-card">
+        
+        <div class="card-img-placeholder">📈
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">CNBC Tech</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Elon Musk loses court battle against Sam Altman and OpenAI after 3-week trial</a></h3>
+          
+          <div class="excerpt">A jury in Oakland, California, ruled against Elon Musk in his dramatic court battle with Sam Altman and OpenAI.</div>
+          
+          
+          <div class="keywords"><span class="kw">elon</span><span class="kw">musk</span><span class="kw">court</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+    </div>
   </div>
   
   <div class="source-section">
-    <h2 id="Ars_Technica">Ars Technica <span class="count">(4)</span></h2>
+    <div class="source-header">
+      <h2 id="ZDNet">ZDNet <span class="count">(4)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">Ars Technica</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Elon Musk took too long to sue OpenAI, jury unanimously agrees</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>Musk plans to appeal after judge immediately affirmed the jury's decision.</p>
+        <img class="card-img" src="https://www.zdnet.com/a/img/resize/03aa4e71fea87a73401fc78bf5a0e5725038a6a1/2026/03/27/68113730-d159-4a72-967a-1b3228a8f2da/edbott-headshot-2026.png?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          Musk plans to appeal after judge immediately affirmed the jury's decision.
+        <div class="card-img-placeholder" style="display:none">🖥️
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">ZDNet</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">How to upgrade your 'incompatible' Windows 10 PC to Windows 11 - for free</a></h3>
+          
+          <div class="excerpt">Microsoft really doesn't want customers to upgrade older PCs to Windows 11, but there are workarounds for all but the ol...</div>
+          
+          
+          <div class="keywords"><span class="kw">windows</span><span class="kw">upgrade</span><span class="kw">incompatible</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">musk</span>
-        
-        <span class="keyword">jury</span>
-        
-        <span class="keyword">elon</span>
-        
-        <span class="keyword">took</span>
-        
-        <span class="keyword">long</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Ars Technica →</a></span>
-      </div>
-    </article>
+      </article>
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">Ars Technica</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Pompeii victim ID'd as a likely doctor</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>New X-rays and CT scans showed small case with locking mechanism containing metal instruments.</p>
-        
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          New X-rays and CT scans showed small case with locking mechanism containing metal instruments.
+        <div class="card-img-placeholder">🖥️
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">ZDNet</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.zdnet.com/article/best-early-memorial-day-walmart-deals/" target="_blank" rel="noopener">I found the best early Memorial Day Walmart deals: Apple, Dyson, and more on sale</a></h3>
+          
+          <div class="excerpt">Memorial Day is almost here, and Walmart has already slashed prices on top tech.</div>
+          
+          
+          <div class="keywords"><span class="kw">memorial</span><span class="kw">day</span><span class="kw">walmart</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.zdnet.com/article/best-early-memorial-day-walmart-deals/" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">pompeii</span>
-        
-        <span class="keyword">victim</span>
-        
-        <span class="keyword">likely</span>
-        
-        <span class="keyword">doctor</span>
-        
-        <span class="keyword">new</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Ars Technica →</a></span>
-      </div>
-    </article>
+      </article>
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">Ars Technica</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Guy Gardner makes a cameo in new Lanterns teaser</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>"This ring? It's the greatest weapon in the Universe. When and if to use it, that's the whole ball game."</p>
+        <img class="card-img" src="https://www.zdnet.com/a/img/resize/80afa2cf818051230f8f8ab53658034e8b30fe4a/2022/08/05/f03bef9a-858a-451d-bc30-8c603c2ba899/jack-wallen.jpg?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          "This ring? It's the greatest weapon in the Universe. When and if to use it, that's the whole ball game."
+        <div class="card-img-placeholder" style="display:none">🖥️
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">ZDNet</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.zdnet.com/article/why-wave-just-became-my-go-to-terminal-app/" target="_blank" rel="noopener">Why Wave is my new go-to terminal app - how I use this powerful tool</a></h3>
+          
+          <div class="excerpt">The Linux, MacOS, and Windows terminal is no longer just for commands. Thanks to apps like Wave, you can have a veritabl...</div>
+          
+          
+          <div class="keywords"><span class="kw">wave</span><span class="kw">terminal</span><span class="kw">new</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.zdnet.com/article/why-wave-just-became-my-go-to-terminal-app/" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">guy</span>
-        
-        <span class="keyword">gardner</span>
-        
-        <span class="keyword">makes</span>
-        
-        <span class="keyword">cameo</span>
-        
-        <span class="keyword">new</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Ars Technica →</a></span>
-      </div>
-    </article>
+      </article>
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">Ars Technica</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">The Dory Sign is E ink, smart screen simplicity at its finest</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>Dory CEO claims the $149 signs won't be bricked should Dory go out of business.</p>
-        
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          Dory CEO claims the $149 signs won't be bricked should Dory go out of business.
+        <div class="card-img-placeholder">🖥️
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">ZDNet</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.zdnet.com/article/codex-to-customize-my-hyprland-desktop/" target="_blank" rel="noopener">I asked Codex AI to customize my Hyprland desktop - it worked, but beginners beware</a></h3>
+          
+          <div class="excerpt">Hyrpland is a fantastic Linux window manager, but it can be complicated to configure. I asked Codex to write a .conf fil...</div>
+          
+          
+          <div class="keywords"><span class="kw">asked</span><span class="kw">codex</span><span class="kw">asked codex</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.zdnet.com/article/codex-to-customize-my-hyprland-desktop/" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">dory</span>
-        
-        <span class="keyword">sign</span>
-        
-        <span class="keyword">ink</span>
-        
-        <span class="keyword">smart</span>
-        
-        <span class="keyword">screen</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">Ars Technica →</a></span>
-      </div>
-    </article>
+      </article>
     
+    </div>
   </div>
   
   <div class="source-section">
-    <h2 id="Wired">Wired <span class="count">(1)</span></h2>
+    <div class="source-header">
+      <h2 id="The_Verge">The Verge <span class="count">(3)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">Wired</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">These 11 Automatic Cat Feeders Were the Best We Tested in 2026</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>We tested some of the most popular automatic dry- and wet-food pet feeders to see which ones are worth the money.</p>
+        <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25739950/247386_Elon_Musk_Open_AI_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          We tested some of the most popular automatic dry- and wet-food pet feeders to see which ones are worth the money.
+        <div class="card-img-placeholder" style="display:none">🔋
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">The Verge</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank" rel="noopener">Musk v. Altman proved that AI is led by the wrong people</a></h3>
+          
+          <div class="excerpt">The tech trial of the year, Musk v. Altman, was ultimately a fight for control. Elon Musk argued that Sam Altman, with w...</div>
+          
+          
+          <div class="keywords"><span class="kw">musk</span><span class="kw">altman</span><span class="kw">musk altman</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">automatic</span>
-        
-        <span class="keyword">feeders</span>
-        
-        <span class="keyword">tested</span>
-        
-        <span class="keyword">cat</span>
-        
-        <span class="keyword">best</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">Wired →</a></span>
-      </div>
-    </article>
+      </article>
     
+      <article class="article-card">
+        
+        <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/walmart-onn-7-tablet.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
+        
+        <div class="card-img-placeholder" style="display:none">🔋
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">The Verge</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.theverge.com/tech/932642/walmart-onn-new-core-pro-kids-tablets" target="_blank" rel="noopener">Walmart launches new budget-friendly Android tablets starting at $97</a></h3>
+          
+          <div class="excerpt">Walmart's Onn brand just launched a whole line of budget-friendly Android tablets that, all together, cost less in total...</div>
+          
+          
+          <div class="keywords"><span class="kw">android</span><span class="kw">tablets</span><span class="kw">walmart</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.theverge.com/tech/932642/walmart-onn-new-core-pro-kids-tablets" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="article-card">
+        
+        <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/dyson_pencilwash3.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.740836125969%2C100%2C78.518327748063&amp;w=1200" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
+        
+        <div class="card-img-placeholder" style="display:none">🔋
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">The Verge</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.theverge.com/gadgets/932449/dyson-pencilwash-hard-floor-cleaner-memorial-day-2026-deal-sale" target="_blank" rel="noopener">Dyson’s super-slim PencilWash just hit its best price to date for Memorial Day</a></h3>
+          
+          <div class="excerpt">If Dyson’s PencilVac Fluffycones made you wish the company had built something similarly slim for scrubbing the hard flo...</div>
+          
+          
+          <div class="keywords"><span class="kw">dyson</span><span class="kw">slim</span><span class="kw">pencilwash</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.theverge.com/gadgets/932449/dyson-pencilwash-hard-floor-cleaner-memorial-day-2026-deal-sale" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+    </div>
   </div>
   
   <div class="source-section">
-    <h2 id="MIT_Tech_Review">MIT Tech Review <span class="count">(2)</span></h2>
+    <div class="source-header">
+      <h2 id="Ars_Technica">Ars Technica <span class="count">(5)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">MIT Tech Review</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">What to expect from Google this week</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. When Google opens its doors tomorrow for its annual developer conference, I/O, it will do so as a clear third place in the foundation model race. A year ago, at Google I/O&#8230;</p>
+        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/Excavation.-Photo-BQ-1131x648.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. When Google opens its doors tomorrow for its annual developer ...
+        <div class="card-img-placeholder" style="display:none">💻
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Ars Technica</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Australian Aboriginals cared for a dingo's grave for decades</a></h3>
+          
+          <div class="excerpt">For some ancient Aboriginal Australian communities, dingoes were part of the family.</div>
+          
+          
+          <div class="keywords"><span class="kw">australian</span><span class="kw">aboriginals</span><span class="kw">cared</span></div>
+          
+          <div class="card-footer">
+            <a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">google</span>
-        
-        <span class="keyword">expect</span>
-        
-        <span class="keyword">week</span>
-        
-        <span class="keyword">story</span>
-        
-        <span class="keyword">originally</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">MIT Tech Review →</a></span>
-      </div>
-    </article>
+      </article>
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">MIT Tech Review</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">The Signals That Matter – MIT Insider’s Panel</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          The Signals That Matter – MIT Insider’s Panel
-Go behind the curtain with MIT Technology Review’s editorial team as they reveal the trends, tensions, and technological shifts shaping AI’s next chapter....
+        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/GettyImages-2276194137-1024x648.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
+        
+        <div class="card-img-placeholder" style="display:none">💻
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Ars Technica</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Elon Musk took too long to sue OpenAI, jury unanimously agrees</a></h3>
+          
+          <div class="excerpt">Musk plans to appeal after judge immediately affirmed the jury's decision.</div>
+          
+          
+          <div class="keywords"><span class="kw">musk</span><span class="kw">jury</span><span class="kw">elon</span></div>
+          
+          <div class="card-footer">
+            <a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">signals</span>
-        
-        <span class="keyword">matter</span>
-        
-        <span class="keyword">mit</span>
-        
-        <span class="keyword">insider</span>
-        
-        <span class="keyword">panel</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">MIT Tech Review →</a></span>
-      </div>
-    </article>
+      </article>
     
+      <article class="article-card">
+        
+        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/pompeii1-1-1152x648.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
+        
+        <div class="card-img-placeholder" style="display:none">💻
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Ars Technica</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Pompeii victim ID'd as a likely doctor</a></h3>
+          
+          <div class="excerpt">New X-rays and CT scans showed small case with locking mechanism containing metal instruments.</div>
+          
+          
+          <div class="keywords"><span class="kw">pompeii</span><span class="kw">victim</span><span class="kw">likely</span></div>
+          
+          <div class="card-footer">
+            <a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="article-card">
+        
+        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/lanterns1-1152x648-1779121699.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
+        
+        <div class="card-img-placeholder" style="display:none">💻
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Ars Technica</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Guy Gardner makes a cameo in new Lanterns teaser</a></h3>
+          
+          <div class="excerpt">"This ring? It's the greatest weapon in the Universe. When and if to use it, that's the whole ball game."</div>
+          
+          
+          <div class="keywords"><span class="kw">guy</span><span class="kw">gardner</span><span class="kw">makes</span></div>
+          
+          <div class="card-footer">
+            <a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="article-card">
+        
+        <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/unnamed-1-1-1152x648.jpg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
+        
+        <div class="card-img-placeholder" style="display:none">💻
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Ars Technica</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">The Dory Sign is E ink, smart screen simplicity at its finest</a></h3>
+          
+          <div class="excerpt">Dory CEO claims the $149 signs won't be bricked should Dory go out of business.</div>
+          
+          
+          <div class="keywords"><span class="kw">dory</span><span class="kw">sign</span><span class="kw">ink</span></div>
+          
+          <div class="card-footer">
+            <a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+    </div>
   </div>
   
   <div class="source-section">
-    <h2 id="VentureBeat">VentureBeat <span class="count">(2)</span></h2>
+    <div class="source-header">
+      <h2 id="Hacker_News">Hacker News <span class="count">(3)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">VentureBeat</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Four AI supply-chain attacks in 50 days exposed the release pipeline red teams aren't covering</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>Four supply-chain incidents hit OpenAI, Anthropic and Meta in 50 days: three adversary-driven attacks and one self-inflicted packaging failure. None targeted the model, and all four exposed the same gap: release pipelines, dependency hooks, CI runners, and packaging gates that no system card, AISI evaluation, or Gray Swan red-team exercise has ever scoped.On May 11, 2026, a self-propagating worm called Mini Shai-Hulud published 84 malicious package versions across 42 @tanstack/* npm packages in six minutes flat. The worm rode in on release.yml, chaining a pull_request_target misconfiguration, GitHub Actions cache poisoning, and OIDC token extraction from runner memory to hijack TanStack’s own trusted release pipeline. The packages carried valid SLSA Build Level 3 provenance because they were published from the correct repository, by the correct workflow, using a legitimately minted OIDC token. No maintainer password was phished. No 2FA prompt was intercepted.The trust model worked exactly as designed and still produced 84 malicious artifacts.Two days later, OpenAI confirmed that two employee devices were compromised and credential material was exfiltrated from internal code repositories. OpenAI is now revoking its macOS security certificates and forcing all desktop users to update by June 12, 2026. OpenAI noted that it had already been hardening its CI/CD pipeline after an earlier supply-chain incident, but the two affected devices had not yet received the updated configurations. That is the response profile of a build-pipeline breach, not a model-safety incident.Four incidents, one findingModel red teams do not cover release pipelines. The four incidents below are evidence for a single architectural finding that belongs in every AI vendor questionnaire.OpenAI Codex command injection (disclosed March 30, 2026). BeyondTrust Phantom Labs researcher Tyler Jespersen found that OpenAI Codex passed GitHub branch names directly into shell commands with zero sanitization. An attacker could inject a semicolon and a backtick subshell into a branch name, and the Codex container would execute it, returning the victim’s GitHub OAuth token in cleartext. The flaw affected the ChatGPT website, Codex CLI, Codex SDK, and the IDE Extension. OpenAI classified it Critical Priority 1 and completed remediation by February 2026. The Phantom Labs team used Unicode characters to make a malicious branch name visually identical to &quot;main&quot; in the Codex UI. One branch name. That is where the attack started.LiteLLM supply-chain poisoning and Mercor breach (March 24–27, 2026). The threat group TeamPCP used credentials stolen in a prior compromise of Aqua Security’s Trivy vulnerability scanner to publish two poisoned versions of the LiteLLM Python package to PyPI. LiteLLM is a widely adopted open-source LLM proxy gateway used across major AI infrastructure teams. The malicious versions were live for roughly 40 minutes and received nearly 47,000 downloads before PyPI quarantined them.That was enough.The attack cascaded downstream into Mercor, the $10 billion AI data startup that supplies training data to Meta, OpenAI, and Anthropic. Four terabytes exfiltrated, including proprietary training methodology references from Meta. Meta froze the partnership indefinitely. A class action followed within five days. One compromised open-source dependency sitting 40 minutes on PyPI created a cross-industry blast radius that no single vendor’s model red team would have caught.Anthropic Claude Code source map leak (March 31, 2026). This incident was not adversary-driven. Anthropic shipped Claude Code version 2.1.88 to the npm registry with a 59.8 MB source map file that should never have been included. The map file pointed to a zip archive on Anthropic’s own Cloudflare R2 bucket containing 513,000 lines of unobfuscated TypeScript across 1,906 files. Agent orchestration logic. 44 feature flags. System prompts. Multi-agent coordination architecture. All public. All downloadable. No authentication required. Security researcher Chaofan Shou flagged the exposure within hours, and Anthropic pulled the package. Anthropic confirmed it was a “release packaging issue caused by human error.” This was the second such leak in 13 months. The root cause was a missing line in .npmignore. No attacker was involved, but the release-surface gap is identical. No human review gate existed between the build artifact and the registry publish step.TanStack worm and downstream propagation (May 11–14, 2026). Wiz Research attributed the Mini Shai-Hulud attack to TeamPCP with high confidence. StepSecurity detected the compromise within 20 minutes. The worm spread beyond TanStack to Mistral AI, UiPath, and 160-plus packages within hours. Mini Shai-Hulud even impersonated the Anthropic Claude GitHub App identity by authoring commits under the fabricated identity “claude &lt;claude@users.noreply.github.com&gt;” to bypass code review.Four incidents. Three frontier labs. One finding. The red-team scope stops at the model boundary, and the build pipeline sits on the other side of it.The timing no system card can explainOn May 10, 2026, OpenAI launched Daybreak, a cybersecurity initiative built on GPT-5.5 and a new permissive model called GPT-5.5-Cyber designed for authorized red teaming, penetration testing, and vulnerability discovery. Daybreak pairs Codex Security with partners, including Cisco, CrowdStrike, Akamai, Cloudflare, and Zscaler. OpenAI positioned the launch as proof that frontier AI can tilt the balance toward defenders.The next day, the TanStack worm compromised two OpenAI employee devices.OpenAI’s own incident disclosure acknowledged the gap directly. The company had already been hardening its CI/CD pipeline after the earlier Axios supply-chain attack, but the two affected devices “did not have the updated configurations that would have prevented the download.” The controls existed. The deployment was in progress. The worm arrived first.The security community saw the same gap: Security researcher @EnTr0pY_88 noted on X that the real signal was the certificate rotation, not the exfiltrated code. &quot;The cert rotation…is what you do when the blast radius reached signing trust, not just source access.&quot; @OpenMatter_ put the SLSA provenance failure in one sentence. &quot;If an attacker controls your CI runner, they control your attestations. Policy-based security is failing at scale.&quot; And @The_Calda compressed the disclosure&#x27;s internal contradiction into seven words. &quot;&#x27;Limited impact&#x27; but the next sentence is &#x27;we&#x27;re rotating signing certs.&#x27;&quot;A company that launched a cyber defense platform on Sunday and disclosed a build-pipeline breach on Tuesday is not failing at model safety. OpenAI is demonstrating the exact gap this audit grid exists to close. The model red team and the release-pipeline red team are two different disciplines; four incidents in 50 days suggest only one of them is being funded consistently.The VentureBeat Prescriptive MatrixThe matrix below maps the seven release-surface classes missing from AI vendor questionnaires, with vendor hit, failure mechanism, detection gap, technical mitigation, and priority tier a security team can execute before Q2 renewals close.For teams that need to map these rows into existing GRC tooling, rows 2, 3, and 5 align with NIST SSDF PS.1.1 (protect all forms of code from unauthorized access and tampering). Row 4 maps to SSDF PS.2.1 (provide mechanisms for verifying software release integrity). Row 6 maps partially to SLSA Source Track requirements for verified contributor identity, though no published framework directly addresses upstream dependency maintainer credential provenance. Row 7 is not yet addressed by any published framework, which is itself the finding.Release-surface classVendor hitFailure mechanismDetection gapTechnical mitigationPriorityModel capability evals (jailbreak, misuse, exfiltration)All three (ongoing)Covered. System cards, AISI Expert suite, Gray Swan scope this today.None. This row is the baseline.Continue requiring the system card at every renewal.BaselineCI runner trust boundary (pull_request_target)TanStack; OpenAI downstream (May 11–14, 2026)TanStack pwn-request ran fork code in base-repo context. Poisoned pnpm cache. Extracted OIDC token from runner memory. Two OpenAI employee devices compromised.No system card covers CI runner isolation. No AISI eval tests fork-to-base trust boundaries.Audit every repo for pull_request_target + fork SHA checkout. Block fork code from base-repo context. Pin cache keys to commit SHA.Do this weekOIDC trusted-publisher + SLSA provenanceTanStack; OpenAI downstream (May 11, 2026)TanStack minted valid SLSA Build Level 3 provenance for all 84 malicious packages. First known npm worm with valid cryptographic attestation.SLSA attestation confirms build origin, not build intent. No vendor questionnaire distinguishes the two.Pin trusted publisher to branch + workflow, not just repository. Add behavioral analysis at install time.Do this weekRelease packaging review (human gate before publish)Anthropic (Mar 31, 2026)Missing .npmignore shipped 59.8 MB source map in Claude Code npm package. 513K lines exposed including agent logic, 44 feature flags, system prompts. Second leak in 13 months. Self-inflicted, not adversary-driven.No red-team exercise checks artifact contents before registry publish.Human review between build artifact and registry publish. Enforce .npmignore in CI. Fail build on unexpected artifact size.Before renewalDependency lifecycle hooks (prepare, postinstall)TanStack; OpenAI + downstream (May 11, 2026)router_init.js executes on import. tanstack_runner.js self-propagates via optionalDependencies prepare hook. Spread to Mistral AI, UiPath, 160+ packages in hours.Lifecycle hooks execute before any scanner runs. Model evals never test package install behavior.Disable lifecycle scripts in CI by default. Explicit allowlist for production. Flag new optionalDependencies in PR review. Set minimumReleaseAge.Do this weekVendor maintainer credential hygieneMeta via Mercor (Mar 24–27, 2026)TeamPCP stole LiteLLM maintainer credential via prior Trivy compromise. Two poisoned PyPI versions live 40 min. Mercor cache held Meta training methodology references. 4 TB exfiltrated. Meta froze the partnership.Vendor questionnaires ask about encryption and access control, not maintainer credential provenance for upstream dependencies.Require hardware-key auth from every maintainer before onboarding. Add package-manager cooldown. Audit transitive dependency tree quarterly.Add to vendor contractAgent container input sanitizationOpenAI Codex (disclosed Mar 30, 2026)BeyondTrust Phantom Labs injected shell commands through GitHub branch-name parameter. Stole OAuth tokens from Codex container. Scalable across shared repos. Rated Critical P1, patched Feb 2026.Agent red teams test prompt injection, not input-parameter injection at the container level.Sanitize all external input before shell execution. Audit OAuth token scope and lifetime per agent session. Enforce least-privilege on every container.Do this weekSecurity director action planThe matrix tells your team what to fix. Three actions tell security directors how to move it forward.Add one question to every AI vendor questionnaire. &quot;Does your organization red-team its release pipeline, including CI runner trust boundaries, OIDC token scoping, dependency lifecycle hooks, and registry publish gates? Provide the last assessment date and scope.&quot; No date and no scope document is the finding.Run rows 2 through 7 against your own CI pipelines this week. StepSecurity and Snyk both published detection and remediation steps for the TanStack worm patterns. Dev teams pull OpenAI SDKs, Anthropic packages, and Llama weights through npm, PyPI, and HuggingFace every week. The same patterns that got exploited are in your CI right now.Brief the board on the provenance gap. The TanStack worm proved that valid cryptographic provenance can sit on top of a malicious package. Attestation tells the board where a package was built. Behavioral analysis tells the board what it does after install. Q2 renewal requires both. Snyk&#x27;s analysis recommends pinning trusted publisher configurations to specific branches and workflows, not just repositories. That is the language the board presentation needs.The worm already knows where your AI credentials liveMini Shai-Hulud does not stop at CI secrets. Datadog Security Labs documented that the payload reads ~/.claude.json and exfiltrates it. It scans for 1Password and Bitwarden vaults, Kubernetes service accounts, cloud provider tokens, and shell history files where developers paste API keys. StepSecurity&#x27;s deobfuscation confirmed that Mini Shai-Hulud harvests Claude and Kiro MCP server configurations, which store API keys and auth tokens for external services. For developers using AI coding agents, the worm already knows where their credentials live.OpenAI, Anthropic, and Meta will keep publishing system cards. They will keep funding red-team competitions. They will keep passing model evaluations. None of that stops the next worm from riding in on release.yml.The TanStack postmortem team said it directly. Modern supply-chain defenses are important but not sufficient on their own. Teams must proactively identify and close workflow gaps rather than relying solely on the security features of their tools.</p>
+        <img class="card-img" src="https://discuss.haiku-os.org/uploads/default/optimized/2X/5/5345a61737d0cd39d8490fc19d2efc4be47d4c95_2_1024x822.jpeg" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          Four supply-chain incidents hit OpenAI, Anthropic and Meta in 50 days: three adversary-driven attacks and one self-inflicted packaging failure. None targeted the model, and all four exposed the same g...
+        <div class="card-img-placeholder" style="display:none">💬
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Hacker News</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Haiku OS runs on M1 Macs now</a></h3>
+          
+          <div class="excerpt">Comments</div>
+          
+          
+          <div class="keywords"><span class="kw">haiku</span><span class="kw">runs</span><span class="kw">macs</span></div>
+          
+          <div class="card-footer">
+            <a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">openai</span>
-        
-        <span class="keyword">2026</span>
-        
-        <span class="keyword">release</span>
-        
-        <span class="keyword">tanstack</span>
-        
-        <span class="keyword">red</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">VentureBeat →</a></span>
-      </div>
-    </article>
+      </article>
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">VentureBeat</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">LangSmith Engine closes the agent debugging loop automatically — but multi-model enterprises still need a neutral layer</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>Enterprises building and deploying agents have a problem: it’s taking their engineers too long to find out that an agent made a mistake, and the loop has continued to perpetuate, especially without a human at every step. LangSmith, the monitoring and evaluation platform from LangChain, launched a new capability in public beta that could make that issue more manageable. LangSmith Engine automates the entire chain by detecting production failures, diagnosing root causes against the live codebase, drafting a fix and preventing regression. It does this in a single automated pass. LangSmith Engine gives AI engineers a faster path to triage, but it launches into a crowded field: Anthropic, OpenAI and Google are all pulling observability and evaluation into their own platforms.LangSmith Engine looks at failuresLangChain said in a blog post that the typical agent development cycle starts by tracing the agent to understand what it’s doing, followed by identifying gaps, making changes to the prompts and tools, and creating ground-truth datasets. Developers then run experiments and check for regressions before shipping the agent. The problem is that customers often run into issues when the trace review doesn’t surface faulty patterns, error repetition gets difficult to see, and there’s no targeted evaluator to catch the same problem when it repeats in production.LangSmith Engine works by monitoring production traces for several signal types, “explicit errors, online evaluator failures, trace anomalies, negative user feedback and unusual behaviors like user asking questions the agent wasn’t built to answer,” according to the blog post.Engine will then read the live codebase, find the culprit and draft a pull request before proposing a custom evaluator for that specific failure pattern. The human comes in at the approval step. It’s built on top of LangSmith’s existing tracing and evaluation infrastructure and also works with an enterprise’s evaluator results. Unlike observability tools such as Weights &amp; Biases, Arize Phoenix and Honeyhive, LangSmith Engine takes the entire chain automatically — detecting the failure, diagnosing root cause, drafting a fix — and brings the human in only at the approval step.Model providers bringing evaluators in platformWhile LangSmith identified this evaluation loop as a need for many enterprises, Engine comes at a time where the larger providers are beginning to offer observability tools within their platform. This means enterprises may choose to use an end-to-end platform rather than add LangSmith Engine onto their existing workflows. Anthropic&#x27;s Claude Managed Agents brings together agentic deployment, evaluation and orchestration into a single suite. OpenAI&#x27;s Frontier offers a similar end-to-end platform for building, governing and evaluating enterprise agents — though both have faced questions from enterprises wary of committing to a single vendor.However, practitioners point out that not everyone wants to bring evaluations and observability fully into one platform.Leigh Coney, founder and principal consultant at Workwise Solutions, told VentureBeat that third-party observability is the default for many enterprises. “One fund I work with runs Claude for analysis and GPT for a separate workflow. If observability lives inside each provider&#x27;s tooling, you now have two systems that can&#x27;t talk to each other. Your compliance team can&#x27;t produce a unified audit trail,” he said. “So third-party observability is surviving because multi-model is already the default in enterprise, and somebody has to sit across providers.”Jessica Arredondo Murphy, CEO and co-founder of True Fit, said independent platforms like LangSmith have to prove to enterprises that they can &quot;answer the long-term question of whether they become the cross-model operating layer for quality and reliability.”“Enterprises are not consolidating onto the first-party model provider tooling as quickly as the model providers would prefer. What I see is a pragmatic split: teams will use first-party tooling for fast onboarding and early-stage debugging, but as soon as they care about production reliability, governance, and long-term flexibility, they tend to introduce a more neutral layer for observability and evaluation,” she said. LangSmith Engine is available now in public beta. Teams can connect a tracing project, optionally connect their repo, and Engine will begin surfacing issues from production traces automatically.</p>
-        
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          Enterprises building and deploying agents have a problem: it’s taking their engineers too long to find out that an agent made a mistake, and the loop has continued to perpetuate, especially without a ...
+        <div class="card-img-placeholder">💬
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Hacker News</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Anthropic acquires Stainless</a></h3>
+          
+          <div class="excerpt">Comments</div>
+          
+          
+          <div class="keywords"><span class="kw">anthropic</span><span class="kw">acquires</span><span class="kw">stainless</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">langsmith</span>
-        
-        <span class="keyword">engine</span>
-        
-        <span class="keyword">enterprises</span>
-        
-        <span class="keyword">observability</span>
-        
-        <span class="keyword">langsmith engine</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">VentureBeat →</a></span>
-      </div>
-    </article>
+      </article>
     
+      <article class="article-card">
+        
+        <div class="card-img-placeholder">💬
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Hacker News</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://archestra.ai/blog/only-responsible-ai" target="_blank" rel="noopener">We stopped AI bot spam in our GitHub repo using Git's –author flag</a></h3>
+          
+          <div class="excerpt">Comments</div>
+          
+          
+          <div class="keywords"><span class="kw">stopped</span><span class="kw">bot</span><span class="kw">spam</span></div>
+          
+          <div class="card-footer">
+            <a href="https://archestra.ai/blog/only-responsible-ai" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+    </div>
   </div>
   
   <div class="source-section">
-    <h2 id="Hacker_News">Hacker News <span class="count">(1)</span></h2>
+    <div class="source-header">
+      <h2 id="Wired">Wired <span class="count">(1)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">Hacker News</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Anthropic Acquires Stainless</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>Comments</p>
-        
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          Comments
+        <div class="card-img-placeholder">⚡
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">Wired</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">These 11 Automatic Cat Feeders Were the Best We Tested in 2026</a></h3>
+          
+          <div class="excerpt">We tested some of the most popular automatic dry- and wet-food pet feeders to see which ones are worth the money.</div>
+          
+          
+          <div class="keywords"><span class="kw">automatic</span><span class="kw">feeders</span><span class="kw">tested</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">anthropic</span>
-        
-        <span class="keyword">acquires</span>
-        
-        <span class="keyword">stainless</span>
-        
-        <span class="keyword">comments</span>
-        
-        <span class="keyword">anthropic acquires</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Hacker News →</a></span>
-      </div>
-    </article>
+      </article>
     
+    </div>
   </div>
   
   <div class="source-section">
-    <h2 id="TechCrunch">TechCrunch <span class="count">(1)</span></h2>
+    <div class="source-header">
+      <h2 id="MIT_Tech_Review">MIT Tech Review <span class="count">(3)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">TechCrunch</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">NYC Health and Hospitals says hackers stole medical data and fingerprints during breach affecting at least 1.8 million people</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>The New York public healthcare system said hackers stole personal and medical data, and scans of biometrics — including fingerprints — in one of the largest recorded breaches of 2026.</p>
-        
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          The New York public healthcare system said hackers stole personal and medical data, and scans of biometrics — including fingerprints — in one of the largest recorded breaches of 2026.
+        <div class="card-img-placeholder">🔬
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">MIT Tech Review</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">What to expect from Google this week</a></h3>
+          
+          <div class="excerpt">This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox fir...</div>
+          
+          
+          <div class="keywords"><span class="kw">google</span><span class="kw">expect</span><span class="kw">week</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">hackers</span>
-        
-        <span class="keyword">stole</span>
-        
-        <span class="keyword">medical</span>
-        
-        <span class="keyword">data</span>
-        
-        <span class="keyword">fingerprints</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">TechCrunch →</a></span>
-      </div>
-    </article>
+      </article>
     
+      <article class="article-card">
+        
+        <div class="card-img-placeholder">🔬
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">MIT Tech Review</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">The Signals That Matter – MIT Insider’s Panel</a></h3>
+          
+          
+          <div class="keywords"><span class="kw">signals</span><span class="kw">matter</span><span class="kw">mit</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="article-card">
+        
+        <div class="card-img-placeholder">🔬
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">MIT Tech Review</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Inside Anduril and Meta’s quest to make smart glasses for warfare</a></h3>
+          
+          <div class="excerpt">The defense-tech company Anduril has shared new details about the augmented-reality headset for the military it’s protot...</div>
+          
+          
+          <div class="keywords"><span class="kw">anduril</span><span class="kw">meta</span><span class="kw">inside</span></div>
+          
+          <div class="card-footer">
+            <a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+    </div>
   </div>
   
   <div class="source-section">
-    <h2 id="The_Verge">The Verge <span class="count">(2)</span></h2>
+    <div class="source-header">
+      <h2 id="VentureBeat">VentureBeat <span class="count">(2)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">The Verge</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://www.theverge.com/tech/932417/google-gmail-docs-cal-sheets-workspace-icon-redesign" target="_blank" rel="noopener">Google is rolling out its redesigned Workspace app icons</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>It's not just you - the Google Workspace apps are getting a new look. The redesigned app icons, leaked last month, are now rolling out widely, as we started noticing this morning. Users with the redesigned icons will notice they now have a gradient look that fades from lighter to darker shades, rather than being [&#8230;]</p>
+        <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/1PhXKP5YpstNpQ89sknvrW/0f83c1efa4e5200bad70dae1c9f3558f/hero.png?w=300&q=30" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          It's not just you - the Google Workspace apps are getting a new look. The redesigned app icons, leaked last month, are now rolling out widely, as we started noticing this morning. Users with the redes...
+        <div class="card-img-placeholder" style="display:none">📊
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">VentureBeat</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Four AI supply-chain attacks in 50 days exposed the release pipeline red teams aren't covering</a></h3>
+          
+          <div class="excerpt">Four supply-chain incidents hit OpenAI, Anthropic and Meta in 50 days: three adversary-driven attacks and one self-infli...</div>
+          
+          
+          <div class="keywords"><span class="kw">openai</span><span class="kw">2026</span><span class="kw">release</span></div>
+          
+          <div class="card-footer">
+            <a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">redesigned</span>
-        
-        <span class="keyword">icons</span>
-        
-        <span class="keyword">google</span>
-        
-        <span class="keyword">rolling</span>
-        
-        <span class="keyword">workspace</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://www.theverge.com/tech/932417/google-gmail-docs-cal-sheets-workspace-icon-redesign" target="_blank" rel="noopener">The Verge →</a></span>
-      </div>
-    </article>
+      </article>
     
-    <article class="article">
-      <div class="meta">
-        <span class="source">The Verge</span>
-        <span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>
-        <span class="ai-label">AI Generated</span>
-        <span>Today</span>
-      </div>
-      <h2><a href="https://www.theverge.com/games/932430/sony-playstation-plus-subscription-price-raise" target="_blank" rel="noopener">Sony is raising short-subscription prices for PlayStation Plus</a></h2>
-      <div class="content">
+      <article class="article-card">
         
-        <p>Sony is hiking the starting price of one-month and three-month PlayStation Plus subscriptions in "select regions," blaming "ongoing market conditions." Beginning May 20th, 1-month subscriptions will start at $10.99 USD / &#8364;9.99 EUR / &#163;7.99 GBP, while 3-month subscriptions will start at $27.99 USD / &#8364;27.99 EUR / &#163;21.99 GBP. In the US, the changes [&#8230;]</p>
+        <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/JbvsjhXQ0uQ9LfTtxh5wZ/2dbacae3929a9933067cdb1cae3d70a7/crimedy7_illustration_of_a_supervisor_robot_evaluating_other__35a35697-0dc1-4a73-acea-a033e99f2fac_1.png?w=300&q=30" alt="" loading="lazy" onerror="this.parentNode.querySelector('.card-img-placeholder').style.display='flex';this.style.display='none'">
         
-      </div>
-      
-      <div class="reasoning-grid">
-        <div class="reasoning-card analyst">
-          <div class="label"><span class="icon">🔍</span> Analyst</div>
-          Sony is hiking the starting price of one-month and three-month PlayStation Plus subscriptions in "select regions," blaming "ongoing market conditions." Beginning May 20th, 1-month subscriptions will s...
+        <div class="card-img-placeholder" style="display:none">📊
         </div>
-        <div class="reasoning-card strategist">
-          <div class="label"><span class="icon">📈</span> Strategist</div>
-          Industry analysis requires an API key (OpenAI or Anthropic).
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">VentureBeat</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">LangSmith Engine closes the agent debugging loop automatically — but multi-model enterprises still need a neutral layer</a></h3>
+          
+          <div class="excerpt">Enterprises building and deploying agents have a problem: it’s taking their engineers too long to find out that an agent...</div>
+          
+          
+          <div class="keywords"><span class="kw">langsmith</span><span class="kw">engine</span><span class="kw">enterprises</span></div>
+          
+          <div class="card-footer">
+            <a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">Read original →</a>
+          </div>
         </div>
-        <div class="reasoning-card contrarian">
-          <div class="label"><span class="icon">⚡</span> Contrarian</div>
-          Enable AI in config to get multi-perspective analysis.
-        </div>
-        <div class="reasoning-card prediction">
-          <div class="label"><span class="icon">🔮</span> Prediction</div>
-          Prediction requires AI. Set OPENAI_API_KEY or ANTHROPIC_API_KEY.
-        </div>
-      </div>
-      
-      
-      <div class="keywords">
-        
-        <span class="keyword">month</span>
-        
-        <span class="keyword">subscriptions</span>
-        
-        <span class="keyword">sony</span>
-        
-        <span class="keyword">playstation</span>
-        
-        <span class="keyword">plus</span>
-        
-      </div>
-      
-      <div class="footer-meta">
-        <span class="original">Read original: <a href="https://www.theverge.com/games/932430/sony-playstation-plus-subscription-price-raise" target="_blank" rel="noopener">The Verge →</a></span>
-      </div>
-    </article>
+      </article>
     
+    </div>
+  </div>
+  
+  <div class="source-section">
+    <div class="source-header">
+      <h2 id="TechCrunch">TechCrunch <span class="count">(2)</span></h2>
+      <div class="line"></div>
+    </div>
+    <div class="articles-grid">
+    
+      <article class="article-card">
+        
+        <div class="card-img-placeholder">🚀
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">TechCrunch</span>
+            <span class="trend">🔥 Hot</span>
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">NYC Health and Hospitals says hackers stole medical data and fingerprints during breach affecting at least 1.8 million people</a></h3>
+          
+          <div class="excerpt">The New York public healthcare system said hackers stole personal and medical data, and scans of biometrics — including ...</div>
+          
+          
+          <div class="keywords"><span class="kw">hackers</span><span class="kw">stole</span><span class="kw">medical</span></div>
+          
+          <div class="card-footer">
+            <a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+      <article class="article-card">
+        
+        <div class="card-img-placeholder">🚀
+        </div>
+        <div class="card-body">
+          <div class="meta">
+            <span class="source">TechCrunch</span>
+            
+            <span class="date">Today</span>
+          </div>
+          <h3><a href="https://techcrunch.com/2026/05/18/kin-health-raises-9m-to-build-an-ai-notetaker-for-patients/" target="_blank" rel="noopener">Kin Health raises $9M to build an AI notetaker for patients</a></h3>
+          
+          <div class="excerpt">The app is similar to a meeting notetaker: you can record doctor visits, and it will return an AI summary of the meeting...</div>
+          
+          
+          <div class="keywords"><span class="kw">notetaker</span><span class="kw">meeting</span><span class="kw">kin</span></div>
+          
+          <div class="card-footer">
+            <a href="https://techcrunch.com/2026/05/18/kin-health-raises-9m-to-build-an-ai-notetaker-for-patients/" target="_blank" rel="noopener">Read original →</a>
+          </div>
+        </div>
+      </article>
+    
+    </div>
   </div>
   
   
 </main>
 <footer>
   <div class="container">
-    <p>AIBrief — Multi-perspective AI news, updated hourly. Built with open-source tools.</p>
-    <p><a href="https://github.com/YOUR_USER/ai-brief" target="_blank" rel="noopener">GitHub</a> &middot; <a href="#">Privacy</a></p>
+    <p>AIBrief — AI-curated tech news, updated hourly.</p>
+    <p><a href="https://github.com/MirProg/news" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
 </body>

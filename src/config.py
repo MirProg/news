@@ -9,14 +9,18 @@ MAX_TOTAL_ARTICLES = 30
 MAX_DAILY_GENERATED = 15
 
 # Priority: 1) DEEPSEEK, 2) OPENAI, 3) ANTHROPIC
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
+_raw_deepseek = os.getenv("DEEPSEEK_API_KEY", "")
+_raw_openai = os.getenv("OPENAI_API_KEY", "")
+_raw_anthropic = os.getenv("ANTHROPIC_API_KEY", "")
+
+DEEPSEEK_API_KEY = _raw_deepseek if _raw_deepseek.startswith("sk-") else ""
+OPENAI_API_KEY = _raw_openai if _raw_openai.startswith("sk-") else ""
+ANTHROPIC_API_KEY = _raw_anthropic if _raw_anthropic.startswith("sk-ant-") else ""
+
 DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-3-haiku-20240307")
 
-# Free open-source model via Hugging Face (requires transformers + torch)
 LOCAL_AI_ENABLED = os.getenv("LOCAL_AI", "").lower() in ("1", "true", "yes")
 
 AI_ENABLED = bool(DEEPSEEK_API_KEY or OPENAI_API_KEY or ANTHROPIC_API_KEY or LOCAL_AI_ENABLED)

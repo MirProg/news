@@ -49,10 +49,10 @@ def main():
         print("  No articles found. Skipping.")
         return
 
-    print(f"\n[2/9] Downloading full article text...")
-    articles = fetch_all_texts(articles)
-    text_count = sum(1 for a in articles if a.get("full_text"))
-    print(f"  Extracted text from {text_count}/{len(articles)} articles")
+    print(f"\n[2/9] Fetching article images (top {MAX_DAILY_GENERATED})...")
+    articles = fetch_all_texts(articles, max_articles=10)
+    img_count = sum(1 for a in articles if a.get("image_url"))
+    print(f"  Found {img_count} images")
 
     print(f"\n[3/9] Deduplicating semantically...")
     articles = deduplicate(articles)
