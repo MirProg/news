@@ -6,162 +6,162 @@
 <title>{{ site_name }} — Daily AI & Tech News</title>
 <meta name="description" content="{{ site_desc }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Prata&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#ffffff;--bg-alt:#f5f5f5;--card:#fff;--text:#111;--text-secondary:#555;--text-muted:#999;--accent:#111;--accent-blue:#2563eb;--border:#e5e5e5;--border-light:#f0f0f0;--shadow:0 1px 4px rgba(0,0,0,0.04);--shadow-hover:0 12px 40px rgba(0,0,0,0.08);--radius:12px;--font-sans:'Inter',system-ui,-apple-system,sans-serif;--font-serif:'Playfair Display',Georgia,serif}
-body{background:var(--bg);color:var(--text);font-family:var(--font-sans);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}
-.container{max-width:1120px;margin:0 auto;padding:0 28px}
+:root{--bg:#fafaf9;--card:#fff;--text:#1a1a1a;--text-muted:#a3a3a3;--text-secondary:#737373;--accent:#dc2626;--accent-hover:#b91c1c;--border:#e7e5e4;--border-light:#f0f0f0;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-serif:'Prata',Georgia,serif;--font-body:'Inter',system-ui,sans-serif}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.7;-webkit-font-smoothing:antialiased;font-size:14.5px}
+.container{max-width:1080px;margin:0 auto;padding:0 32px}
 
-.topbar{background:var(--text);color:#fff;padding:12px 0;position:sticky;top:0;z-index:100}
-.topbar .container{display:flex;align-items:center;justify-content:space-between}
-.topbar .logo{font-size:1.2rem;font-weight:800;letter-spacing:-0.03em;text-decoration:none;color:#fff}
-.topbar .logo em{font-style:normal;color:#60a5fa}
-.topbar .nav-links{display:flex;gap:24px;font-size:0.75rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em}
-.topbar .nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s}
-.topbar .nav-links a:hover{color:#fff}
-.topbar .badge{font-size:0.65rem;background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:20px;color:rgba(255,255,255,0.7);letter-spacing:0.03em}
+.masthead{padding:24px 0 16px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.masthead .container{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.masthead .logo{font-family:var(--font-serif);font-size:1.6rem;font-weight:400;letter-spacing:-0.02em;text-decoration:none;color:var(--text);line-height:1}
+.masthead .logo em{font-style:normal;color:var(--accent)}
+.masthead .tagline{font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;font-weight:500}
+.masthead .right{text-align:right;font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em}
 
-.breaking{background:var(--bg-alt);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden}
-.breaking .container{display:flex;align-items:center;gap:16px}
-.breaking .label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent-blue);white-space:nowrap;background:#eff6ff;padding:3px 10px;border-radius:3px}
-.breaking .ticker{font-size:0.82rem;color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-split{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;margin-bottom:48px;align-items:center}
+.hero-split .hero-text .kicker{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--accent);margin-bottom:12px}
+.hero-split .hero-text h1{font-family:var(--font-serif);font-size:2.6rem;font-weight:400;line-height:1.15;letter-spacing:-0.03em;margin-bottom:14px}
+.hero-split .hero-text h1 a{color:var(--text);text-decoration:none}
+.hero-split .hero-text h1 a:hover{color:var(--accent)}
+.hero-split .hero-text .meta{font-size:0.72rem;color:var(--text-muted);margin-bottom:10px}
+.hero-split .hero-text .meta em{font-style:normal;color:var(--text-secondary);font-weight:600}
+.hero-split .hero-text .excerpt{font-family:var(--font-body);font-size:0.88rem;color:var(--text-secondary);line-height:1.8;margin-bottom:16px}
+.hero-split .hero-text .readmore{font-size:0.72rem;font-weight:600;color:var(--accent);text-decoration:none;text-transform:uppercase;letter-spacing:0.08em}
+.hero-split .hero-text .readmore:hover{text-decoration:underline}
+.hero-split .hero-visual{position:relative}
+.hero-split .hero-visual img{width:100%;height:420px;object-fit:cover;background:var(--border)}
+.hero-split .hero-visual .img-label{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:0.6rem;padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:0.08em}
 
-.hero{padding:36px 0 0}
-.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.hero .hero-content h1{font-size:2.4rem;font-weight:600;line-height:1.2;letter-spacing:-0.03em;margin-bottom:12px}
-.hero .hero-content h1 a{color:var(--text);text-decoration:none}
-.hero .hero-content h1 a:hover{color:var(--accent-blue)}
-.hero .hero-content .meta{font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;display:flex;gap:10px;align-items:center}
-.hero .hero-content .meta .source{font-weight:600;color:var(--accent-blue);text-transform:uppercase;font-size:0.7rem;letter-spacing:0.06em}
-.hero .hero-content .excerpt{font-size:0.95rem;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
-.hero .hero-content .readmore{font-size:0.8rem;font-weight:600;color:var(--accent-blue);text-decoration:none}
-.hero .hero-content .readmore:hover{text-decoration:underline}
-.hero .hero-image{width:100%;height:380px;object-fit:cover;border-radius:var(--radius);background:var(--bg-alt)}
-.hero .hero-placeholder{width:100%;height:380px;border-radius:var(--radius);background:linear-gradient(135deg,#f0f0f0,#e5e5e5);display:flex;align-items:center;justify-content:center;font-size:4rem;color:#ccc}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px}
+.gallery .gallery-item{position:relative;overflow:hidden}
+.gallery .gallery-item img{width:100%;height:200px;object-fit:cover;background:var(--border);display:block;transition:transform 0.4s}
+.gallery .gallery-item:hover img{transform:scale(1.03)}
+.gallery .gallery-item .overlay{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,0.7))}
+.gallery .gallery-item .overlay .src{font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.6)}
+.gallery .gallery-item .overlay h3{font-size:0.82rem;font-weight:600;color:#fff;line-height:1.3;margin-top:2px}
+.gallery .gallery-item .overlay h3 a{color:#fff;text-decoration:none}
+.gallery .gallery-item .overlay h3 a:hover{text-decoration:underline}
 
-.featured-grid{padding:32px 0;display:grid;grid-template-columns:2fr 1fr;gap:28px}
-.featured-grid .main-col{display:flex;flex-direction:column;gap:20px}
-.featured-grid .side-col{display:flex;flex-direction:column;gap:16px}
+.divider{display:flex;align-items:center;gap:16px;margin:32px 0 24px}
+.divider .label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);white-space:nowrap}
+.divider .line{flex:1;height:1px;background:var(--border)}
 
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 0.25s}
-.card:hover{box-shadow:var(--shadow-hover);border-color:transparent}
-.card-img{width:100%;height:200px;object-fit:cover;background:var(--bg-alt);display:block}
-.card-body{padding:20px 22px}
-.card .meta{font-size:0.72rem;color:var(--text-muted);margin-bottom:6px;display:flex;gap:8px;align-items:center}
-.card .meta .src{font-weight:700;color:var(--accent-blue);text-transform:uppercase;font-size:0.6rem;letter-spacing:0.08em}
-.card .meta .tag{background:var(--bg-alt);color:var(--text-secondary);padding:1px 8px;border-radius:3px;font-size:0.6rem;font-weight:600}
-.card h3{font-size:1rem;font-weight:600;line-height:1.35;margin-bottom:6px}
-.card h3 a{color:var(--text);text-decoration:none}
-.card h3 a:hover{color:var(--accent-blue)}
-.card .excerpt{font-size:0.82rem;color:var(--text-secondary);line-height:1.6}
-.card .card-footer{margin-top:10px;font-size:0.72rem;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center}
-.card .card-footer a{color:var(--accent-blue);text-decoration:none;font-weight:600}
-.card .card-footer a:hover{text-decoration:underline}
+.grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:32px}
+.grid-2col .col{display:flex;flex-direction:column;gap:24px}
 
-.card.small{display:grid;grid-template-columns:100px 1fr;gap:0;align-items:start}
-.card.small .card-img{width:100px;height:100px;border-radius:0}
-.card.small .card-body{padding:14px 16px}
-.card.small h3{font-size:0.85rem;font-weight:600}
-.card.small .meta{margin-bottom:4px}
-.card.small .excerpt{display:none}
+.article-card{display:grid;grid-template-columns:180px 1fr;gap:0;border-bottom:1px solid var(--border-light);padding-bottom:20px}
+.article-card:last-child{border-bottom:none;padding-bottom:0}
+.article-card .card-img{width:180px;height:130px;object-fit:cover;background:var(--border);border-radius:4px}
+.article-card .card-body{padding:0 0 0 20px}
+.article-card .meta{font-size:0.65rem;color:var(--text-muted);margin-bottom:4px;display:flex;gap:8px;align-items:center}
+.article-card .meta .src{font-weight:700;color:var(--accent);text-transform:uppercase;font-size:0.55rem;letter-spacing:0.1em}
+.article-card .meta .tag{background:var(--border);color:var(--text-secondary);padding:1px 7px;border-radius:2px;font-size:0.55rem;font-weight:600}
+.article-card h3{font-family:var(--font-serif);font-size:1rem;font-weight:400;line-height:1.35;margin-bottom:4px}
+.article-card h3 a{color:var(--text);text-decoration:none}
+.article-card h3 a:hover{color:var(--accent)}
+.article-card .excerpt{font-size:0.78rem;color:var(--text-secondary);line-height:1.7}
+.article-card .card-footer{margin-top:6px;font-size:0.68rem;color:var(--text-muted)}
+.article-card .card-footer a{color:var(--accent);text-decoration:none;font-weight:500}
+.article-card .card-footer a:hover{text-decoration:underline}
 
-.card.side{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border-light);border-radius:0;box-shadow:none;border-left:none;border-right:none;border-top:none}
-.card.side:last-child{border-bottom:none}
-.card.side:hover{box-shadow:none;border-color:var(--border-light)}
-.card.side .card-img{width:80px;height:80px;border-radius:6px;flex-shrink:0}
-.card.side .card-body{padding:0;flex:1}
-.card.side h3{font-size:0.8rem;font-weight:600;line-height:1.4}
-.card.side .meta{margin-bottom:2px}
-
-.source-section{padding:24px 0 8px}
-.source-section .section-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.source-section .section-header h2{font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text)}
-.source-section .section-header .line{flex:1;height:1px;background:var(--border)}
-.source-section .section-header .count{font-size:0.72rem;color:var(--text-muted);font-weight:400}
-
-.briefing{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:24px}
-.briefing h2{font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.briefing h2 .badge{background:var(--accent-blue);color:#fff;font-size:0.55rem;padding:2px 8px;border-radius:3px;letter-spacing:0.05em}
+.briefing{background:var(--card);border:1px solid var(--border);padding:28px 32px;margin-bottom:32px}
+.briefing h2{font-family:var(--font-serif);font-size:1.2rem;font-weight:400;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.briefing h2 .badge{font-family:var(--font-sans);font-size:0.55rem;font-weight:700;background:var(--accent);color:#fff;padding:2px 8px;border-radius:2px;letter-spacing:0.05em;text-transform:uppercase}
 .briefing .section{margin-bottom:10px}
-.briefing .section h3{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px}
+.briefing .section h3{font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px}
 .briefing .section ul{padding-left:16px}
-.briefing .section ul li{font-size:0.85rem;color:var(--text-secondary);margin-bottom:2px}
-.briefing .section p{font-size:0.85rem;color:var(--text-secondary);line-height:1.6}
+.briefing .section ul li{font-size:0.82rem;color:var(--text-secondary);margin-bottom:2px}
+.briefing .section p{font-size:0.82rem;color:var(--text-secondary);line-height:1.7}
 
-.promo{margin-bottom:28px;padding:36px 32px;text-align:center;background:var(--text);border-radius:var(--radius);color:rgba(255,255,255,0.7)}
-.promo h3{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:4px}
-.promo p{font-size:0.85rem;opacity:0.6;margin-bottom:12px}
-.promo .btn{display:inline-block;background:#fff;color:var(--text);padding:8px 24px;border-radius:6px;font-size:0.8rem;font-weight:600;text-decoration:none}
-.promo .btn:hover{background:rgba(255,255,255,0.9)}
+.promo{margin-bottom:32px;padding:40px 32px;text-align:center;background:var(--card);border:1px solid var(--border)}
+.promo h3{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;margin-bottom:4px}
+.promo p{font-size:0.82rem;color:var(--text-muted);margin-bottom:14px}
+.promo .btn{display:inline-block;background:var(--text);color:#fff;padding:10px 28px;font-size:0.72rem;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s}
+.promo .btn:hover{background:var(--accent)}
 
-footer{text-align:center;padding:40px 0;font-size:0.78rem;color:var(--text-muted);border-top:1px solid var(--border);margin-top:20px}
+footer{text-align:center;padding:40px 0;font-size:0.72rem;color:var(--text-muted);border-top:1px solid var(--border);margin-top:10px}
 footer a{color:var(--text);text-decoration:none}
-footer a:hover{text-decoration:underline}
+footer a:hover{color:var(--accent)}
 
-@media(max-width:900px){
-  .hero .container{grid-template-columns:1fr;gap:20px}
-  .hero .hero-content h1{font-size:1.6rem}
-  .hero .hero-image,.hero .hero-placeholder{height:240px}
-  .featured-grid{grid-template-columns:1fr}
-  .card.small{grid-template-columns:80px 1fr}
+@media(max-width:860px){
+  .hero-split{grid-template-columns:1fr;gap:20px}
+  .hero-split .hero-text h1{font-size:1.8rem}
+  .hero-split .hero-visual img{height:260px}
+  .gallery{grid-template-columns:1fr 1fr}
+  .grid-2col{grid-template-columns:1fr}
+  .article-card{grid-template-columns:120px 1fr}
+  .article-card .card-img{width:120px;height:90px}
 }
 @media(max-width:600px){
-  .container{padding:0 16px}
-  .topbar .nav-links{display:none}
-  .featured-grid .side-col{display:none}
-  .hero .hero-content h1{font-size:1.3rem}
-  .card-body{padding:14px 16px}
+  .container{padding:0 20px}
+  .gallery{grid-template-columns:1fr}
+  .article-card{grid-template-columns:100px 1fr}
+  .article-card .card-img{width:100px;height:80px}
+  .masthead .tagline,.masthead .right{display:none}
 }
 @media(prefers-color-scheme:dark){
-  :root{--bg:#0a0a0a;--bg-alt:#111;--card:#141414;--text:#eee;--text-secondary:#999;--text-muted:#666;--border:#222;--border-light:#1a1a1a;--shadow:0 1px 4px rgba(0,0,0,0.3);--shadow-hover:0 12px 40px rgba(0,0,0,0.5)}
-  .topbar{background:#000}
-  .breaking .label{background:#1a365d;color:#60a5fa}
-  .hero .hero-placeholder{background:linear-gradient(135deg,#1a1a1a,#222)}
-  .promo{background:#000}
-  .promo .btn{background:var(--accent-blue);color:#fff}
+  :root{--bg:#0a0a0a;--card:#111;--text:#e5e5e5;--text-muted:#555;--text-secondary:#888;--border:#1f1f1f;--border-light:#1a1a1a}
+  .hero-split .hero-visual .img-label{background:rgba(0,0,0,0.85)}
 }
 </style>
 </head>
 <body>
-<div class="topbar">
+
+<div class="masthead">
   <div class="container">
-    <a href="/" class="logo"><em>AI</em>Brief</a>
-    <div class="nav-links">
-      {% for src in sources[:8] %}
-      <a href="#{{ src|replace(' ','_') }}">{{ src }}</a>
-      {% endfor %}
+    <div>
+      <a href="/" class="logo"><em>AI</em>Brief</a>
+      <div class="tagline">Daily intelligence</div>
     </div>
-    <span class="badge">Updated hourly</span>
+    <div class="right">{{ updated }}</div>
   </div>
 </div>
 
 {% if grouped and grouped[0][1] %}
-{% set top = grouped[0][1][0] %}
-<div class="breaking">
-  <div class="container">
-    <span class="label">Breaking</span>
-    <span class="ticker">{{ top.title }}</span>
+{% set lead = grouped[0][1][0] %}
+<div class="container">
+<div class="hero-split">
+  <div class="hero-text">
+    <div class="kicker">{{ lead.source }}</div>
+    <h1><a href="{{ lead.url }}" target="_blank" rel="noopener">{{ lead.title }}</a></h1>
+    <div class="meta"><em>{{ lead.source }}</em> · {{ lead.date }}</div>
+    <div class="excerpt">{{ (lead.summary_raw or lead.content)[:200] }}…</div>
+    <a class="readmore" href="{{ lead.url }}" target="_blank" rel="noopener">Read article →</a>
+  </div>
+  <div class="hero-visual">
+    {% if lead.image_url %}
+    <img src="{{ lead.image_url }}" alt="" loading="lazy" onerror="this.outerHTML='<div style=\'width:100%;height:420px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--text-muted)\'>📰</div>'">
+    {% else %}
+    <div style="width:100%;height:420px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--text-muted)">📰</div>
+    {% endif %}
+    <div class="img-label">{{ lead.source }}</div>
   </div>
 </div>
+</div>
+{% endif %}
 
-<div class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="meta">
-        <span class="source">{{ top.source }}</span>
-        <span>{{ top.date }}</span>
-      </div>
-      <h1><a href="{{ top.url }}" target="_blank" rel="noopener">{{ top.title }}</a></h1>
-      <div class="excerpt">{{ (top.summary_raw or top.content)[:180] }}…</div>
-      <a class="readmore" href="{{ top.url }}" target="_blank" rel="noopener">Read the full story →</a>
-    </div>
-    {% if top.image_url %}
-    <img class="hero-image" src="{{ top.image_url }}" alt="" loading="lazy" onerror="this.className='hero-placeholder';this.src=''">
-    {% else %}
-    <div class="hero-placeholder">📰</div>
-    {% endif %}
+{% if grouped %}
+<div class="container">
+<div class="gallery">
+{% for src, items in grouped[:6] %}
+{% if items %}
+{% set a = items[0] %}
+<div class="gallery-item">
+  {% if a.image_url %}
+  <img src="{{ a.image_url }}" alt="" loading="lazy" onerror="this.style.display='none'">
+  {% else %}
+  <div style="width:100%;height:200px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--text-muted)">📰</div>
+  {% endif %}
+  <div class="overlay">
+    <div class="src">{{ a.source }}</div>
+    <h3><a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title[:60] }}{% if a.title|length > 60 %}…{% endif %}</a></h3>
   </div>
+</div>
+{% endif %}
+{% endfor %}
+</div>
 </div>
 {% endif %}
 
@@ -179,73 +179,44 @@ footer a:hover{text-decoration:underline}
   </div>
   {% endif %}
 
-  {% if grouped %}
+  {% for src, items in grouped %}
+  <div class="divider">
+    <span class="label" id="{{ src|replace(' ','_') }}">{{ src }}</span>
+    <div class="line"></div>
+    <span style="font-size:0.6rem;color:var(--text-muted)">{{ items|length }}</span>
+  </div>
+  {% for a in items %}
+  <article class="article-card"{% if a.image_url %} style="grid-template-columns:180px 1fr"{% endif %}>
+    {% if a.image_url %}
+    <img class="card-img" src="{{ a.image_url }}" alt="" loading="lazy" onerror="this.style.display='none'">
+    {% endif %}
+    <div class="card-body">
+      <div class="meta">
+        <span class="src">{{ a.source }}</span>
+        {% if a.trend == 'hot' %}<span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>{% endif %}
+        <span>{{ a.date }}</span>
+      </div>
+      <h3><a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title }}</a></h3>
+      {% if a.summary_raw %}
+      <div class="excerpt">{{ a.summary_raw[:100] }}{% if a.summary_raw|length > 100 %}…{% endif %}</div>
+      {% endif %}
+      <div class="card-footer"><a href="{{ a.url }}" target="_blank" rel="noopener">Read →</a></div>
+    </div>
+  </article>
+  {% endfor %}
+  {% endfor %}
+
   <div class="promo">
-    <h3>Stay ahead of the AI curve</h3>
-    <p>Get the day's top AI & tech stories delivered to your inbox.</p>
+    <h3>The intelligence brief</h3>
+    <p>Daily AI & tech news, curated and delivered.</p>
     <a class="btn" href="#">Subscribe →</a>
   </div>
-  {% endif %}
-
-  {% for src, items in grouped %}
-  <div class="source-section">
-    <div class="section-header">
-      <h2 id="{{ src|replace(' ','_') }}">{{ src }}</h2>
-      <div class="line"></div>
-      <span class="count">{{ items|length }} stories</span>
-    </div>
-    <div class="featured-grid">
-      <div class="main-col">
-        {% for a in items[:3] %}
-        <article class="card">
-          {% if a.image_url %}
-          <img class="card-img" src="{{ a.image_url }}" alt="" loading="lazy" onerror="this.style.display='none'">
-          {% else %}
-          <div style="height:100px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--text-muted)">📰</div>
-          {% endif %}
-          <div class="card-body">
-            <div class="meta">
-              <span class="src">{{ a.source }}</span>
-              {% if a.trend == 'hot' %}<span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>{% endif %}
-              <span>{{ a.date }}</span>
-            </div>
-            <h3><a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title }}</a></h3>
-            {% if a.summary_raw %}
-            <div class="excerpt">{{ a.summary_raw[:120] }}{% if a.summary_raw|length > 120 %}…{% endif %}</div>
-            {% endif %}
-            <div class="card-footer">
-              <span>{{ a.source }}</span>
-              <a href="{{ a.url }}" target="_blank" rel="noopener">Read →</a>
-            </div>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-      <div class="side-col">
-        {% for a in items[3:8] %}
-        <article class="card side">
-          {% if a.image_url %}
-          <img class="card-img" src="{{ a.image_url }}" alt="" loading="lazy" onerror="this.style.display='none'">
-          {% endif %}
-          <div class="card-body">
-            <div class="meta">
-              <span class="src">{{ a.source }}</span>
-              {% if a.trend == 'hot' %}<span class="tag" style="background:#fef2f2;color:#dc2626">🔥</span>{% endif %}
-            </div>
-            <h3><a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title }}</a></h3>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-  {% endfor %}
 </main>
 
 <footer>
   <div class="container">
-    <p><strong style="color:var(--text)"><span style="color:#60a5fa">AI</span>Brief</strong> — AI-curated tech & AI news, updated hourly.</p>
-    <p style="margin-top:4px"><a href="https://github.com/MirProg/news" target="_blank" rel="noopener">GitHub</a></p>
+    <p><span style="font-family:var(--font-serif)"><span style="color:var(--accent)">AI</span>Brief</span> — daily intelligence. Updated hourly.</p>
+    <p style="margin-top:2px"><a href="https://github.com/MirProg/news" target="_blank" rel="noopener">Source</a></p>
   </div>
 </footer>
 </body>
