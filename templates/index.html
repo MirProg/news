@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ site_name }} — Daily AI & Tech News</title>
+<meta name="description" content="{{ site_desc }}">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg: #f4f6f9; --card: #ffffff; --text: #1a1a2e; --muted: #6c757d; --accent: #2563eb; --accent-dark: #1d4ed8; --border: #e2e8f0; --font: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+body { background: var(--bg); color: var(--text); font-family: var(--font); line-height: 1.7; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+header { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: #fff; padding: 40px 0 32px; text-align: center; }
+header h1 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; }
+header h1 span { color: #60a5fa; }
+header p { font-size: 1rem; opacity: 0.85; margin-top: 6px; }
+header .updated { font-size: 0.8rem; opacity: 0.6; margin-top: 10px; display: block; }
+header .badge { display: inline-block; background: rgba(255,255,255,0.12); padding: 3px 14px; border-radius: 20px; font-size: 0.75rem; margin-top: 8px; border: 1px solid rgba(255,255,255,0.15); }
+nav.subnav { background: #0f172a; padding: 12px 0; text-align: center; position: sticky; top: 0; z-index: 10; border-bottom: 1px solid #1e293b; }
+nav.subnav a { color: #93b4d4; text-decoration: none; margin: 0 10px; font-size: 0.8rem; font-weight: 500; }
+nav.subnav a:hover { color: #60a5fa; }
+main { padding: 32px 0; }
+.source-section { margin-bottom: 36px; }
+.source-section h2 { font-size: 1.1rem; color: var(--accent); border-bottom: 3px solid var(--accent); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.source-section h2 .count { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+
+.article { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.article:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.article .meta { display: flex; gap: 10px; font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; flex-wrap: wrap; align-items: center; }
+.article .meta .source { background: #dbeafe; color: var(--accent); padding: 2px 10px; border-radius: 4px; font-weight: 600; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.article .meta .ai-label { background: #f0fdf4; color: #15803d; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 600; }
+.article h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
+.article h2 a { color: var(--text); text-decoration: none; }
+.article h2 a:hover { color: var(--accent); }
+.article .content { font-size: 0.92rem; color: #2d3748; }
+.article .content p { margin-bottom: 10px; }
+.article .footer-meta { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; padding-top: 12px; border-top: 1px solid #f1f5f9; }
+.article .footer-meta .original { color: var(--muted); }
+.article .footer-meta .original a { color: var(--accent); text-decoration: none; font-weight: 500; }
+.article .footer-meta .original a:hover { text-decoration: underline; }
+
+.reasoning-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0 10px; }
+.reasoning-card { border-radius: 8px; padding: 12px 14px; border: 1px solid var(--border); font-size: 0.82rem; line-height: 1.5; }
+.reasoning-card .label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+.reasoning-card .label .icon { font-size: 0.85rem; }
+.reasoning-card.analyst { background: #f0f9ff; border-color: #bae6fd; }
+.reasoning-card.analyst .label { color: #0284c7; }
+.reasoning-card.strategist { background: #f5f3ff; border-color: #ddd6fe; }
+.reasoning-card.strategist .label { color: #7c3aed; }
+.reasoning-card.contrarian { background: #fefce8; border-color: #fef08a; }
+.reasoning-card.contrarian .label { color: #a16207; }
+.reasoning-card.prediction { background: #fef2f2; border-color: #fecaca; }
+.reasoning-card.prediction .label { color: #dc2626; }
+
+.keywords { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 0; }
+.keyword { background: #f1f5f9; color: #475569; padding: 2px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 500; }
+
+.briefing { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border: 1px solid #bae6fd; border-radius: 10px; padding: 24px 28px; margin-bottom: 28px; }
+.briefing h2 { font-size: 1.1rem; color: #0369a1; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.briefing h2 .badge { background: #0284c7; color: #fff; font-size: 0.65rem; padding: 1px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.briefing .section { margin-bottom: 14px; }
+.briefing .section h3 { font-size: 0.85rem; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+.briefing .section ul { margin: 0; padding-left: 20px; }
+.briefing .section ul li { font-size: 0.9rem; color: #1e293b; margin-bottom: 4px; line-height: 1.5; }
+.briefing .section p { font-size: 0.9rem; color: #334155; line-height: 1.6; }
+.promo { background: linear-gradient(135deg, #1e293b, #334155); color: #e2e8f0; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; text-align: center; }
+.promo h3 { font-size: 1rem; color: #fff; margin-bottom: 6px; }
+.promo p { font-size: 0.85rem; opacity: 0.8; }
+.promo a { color: #60a5fa; text-decoration: none; font-weight: 600; }
+.promo a:hover { text-decoration: underline; }
+footer { text-align: center; padding: 28px 0; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); }
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  header h1 { font-size: 1.6rem; }
+  .article { padding: 16px 18px; }
+  .article h2 { font-size: 1.05rem; }
+  .reasoning-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1><span>AI</span>Brief</h1>
+    <p>{{ site_desc }}</p>
+    <span class="badge">Multi-perspective AI • Updated hourly</span>
+    <span class="updated">Last updated: {{ updated }}</span>
+  </div>
+</header>
+<nav class="subnav">
+  <div class="container">
+    {% for src in sources %}
+    <a href="#{{ src|replace(' ', '_') }}">{{ src }}</a>
+    {% endfor %}
+  </div>
+</nav>
+<main class="container">
+  {% if briefing %}
+  <div class="briefing">
+    <h2>📋 Executive Briefing <span class="badge">AI Analysis</span></h2>
+    {% for section in briefing %}
+    <div class="section">
+      <h3>{{ section.title }}</h3>
+      {% if section.items %}
+      <ul>
+        {% for item in section.items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if section.text %}
+      <p>{{ section.text }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if grouped %}
+  <div class="promo">
+    <h3>🚀 Stay ahead of the AI curve</h3>
+    <p>Get AIBrief delivered to your inbox. <a href="#">Subscribe →</a></p>
+  </div>
+  {% endif %}
+  {% for src, items in grouped %}
+  <div class="source-section">
+    <h2 id="{{ src|replace(' ', '_') }}">{{ src }} <span class="count">({{ items|length }})</span></h2>
+    {% for a in items %}
+    <article class="article">
+      <div class="meta">
+        <span class="source">{{ a.source }}</span>
+        {% if a.trend == 'hot' %}<span style="background:#fef2f2;color:#dc2626;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-weight:700;">🔥 Hot</span>{% endif %}
+        <span class="ai-label">AI Generated</span>
+        <span>{{ a.date }}</span>
+      </div>
+      <h2><a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title }}</a></h2>
+      <div class="content">
+        {% for p in a.content.split('\n') if p.strip() %}
+        <p>{{ p }}</p>
+        {% endfor %}
+      </div>
+      {% if a.reasoning %}
+      <div class="reasoning-grid">
+        <div class="reasoning-card analyst">
+          <div class="label"><span class="icon">🔍</span> Analyst</div>
+          {{ a.reasoning.analyst }}
+        </div>
+        <div class="reasoning-card strategist">
+          <div class="label"><span class="icon">📈</span> Strategist</div>
+          {{ a.reasoning.strategist }}
+        </div>
+        <div class="reasoning-card contrarian">
+          <div class="label"><span class="icon">⚡</span> Contrarian</div>
+          {{ a.reasoning.contrarian }}
+        </div>
+        <div class="reasoning-card prediction">
+          <div class="label"><span class="icon">🔮</span> Prediction</div>
+          {{ a.reasoning.prediction }}
+        </div>
+      </div>
+      {% endif %}
+      {% if a.keywords %}
+      <div class="keywords">
+        {% for kw in a.keywords %}
+        <span class="keyword">{{ kw }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="footer-meta">
+        <span class="original">Read original: <a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.source }} →</a></span>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% endfor %}
+  {% if not grouped %}
+  <div style="text-align:center;padding:60px 0;color:var(--muted);">
+    <p>No articles yet. The pipeline will fetch and generate content shortly.</p>
+  </div>
+  {% endif %}
+</main>
+<footer>
+  <div class="container">
+    <p>AIBrief — Multi-perspective AI news, updated hourly. Built with open-source tools.</p>
+    <p><a href="https://github.com/YOUR_USER/ai-brief" target="_blank" rel="noopener">GitHub</a> &middot; <a href="#">Privacy</a></p>
+  </div>
+</footer>
+</body>
+</html>
