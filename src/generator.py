@@ -107,7 +107,7 @@ def _render_players(players):
     </table>"""
 
 
-def generate_dashboard(results, engine=None):
+def generate_dashboard(results, engine=None, ipl_results=None, ipl_backtest=None):
     """Generate self-contained HTML dashboard with embedded JSON data."""
 
     cal = results.get("calibration", {})
@@ -283,6 +283,8 @@ body{{background:var(--bg);color:var(--text);font-family:var(--font);font-size:1
     </div>
   </div>
 
+  <!--IPL_BACKTEST_PLACEHOLDER-->
+
   <div class="card full-width">
     <h2>Calibration &amp; Model Health</h2>
     <div class="cal-header">
@@ -309,6 +311,14 @@ body{{background:var(--bg);color:var(--text);font-family:var(--font);font-size:1
 <script id="engine-data" type="application/json">{json.dumps(results, ensure_ascii=False)}</script>
 </body>
 </html>"""
+
+    # Inject IPL backtest HTML if available
+    if ipl_backtest:
+        ipl_html = ipl_backtest.scorecard_html()
+        ipl_section = f'<div class="card full-width">{ipl_html}</div>'
+        html = html.replace("<!--IPL_BACKTEST_PLACEHOLDER-->", ipl_section)
+    else:
+        html = html.replace("<!--IPL_BACKTEST_PLACEHOLDER-->", "")
 
     out_dir = os.path.join(HERE, "output")
     os.makedirs(out_dir, exist_ok=True)

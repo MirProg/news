@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
 Infinite Engine Pipeline:
-1. Run PyTorch Monte Carlo simulations across NBA/NFL/EPL/MLB
-2. Generate synthetic seasons with Elo ratings, standings, player stats
-3. Ensemble predictions (Elo + Poisson + MC + Bayesian)
-4. Self-calibration tracking
-5. Generate analytics dashboard
+1. PyTorch Monte Carlo simulations across NBA/NFL/EPL/MLB
+2. Multi-model ensemble predictions (Elo + Poisson + MC + Bayesian)
+3. IPL backtest: train on 2008-2024, predict last year's tournament
+4. Side-by-side scorecard comparison
+5. Analytics dashboard
 
 Runs 24/7 via GitHub Actions cron.
 """
@@ -17,18 +17,19 @@ HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
 
 from src.engine import InfiniteEngine
+from src.cricket import IPLBacktest
 
 
 def main():
     print("=" * 60)
     print("  INFINITE ENGINE — Unprecedented Sports Prediction Framework")
-    print("  PyTorch Multi-Model Ensemble | Elo | Monte Carlo | Poisson | Bayesian")
+    print("  PyTorch | Elo | Monte Carlo | Poisson | Bayesian | IPL Backtest")
     print("=" * 60)
 
     os.makedirs(os.path.join(HERE, "output"), exist_ok=True)
     os.makedirs(os.path.join(HERE, "data"), exist_ok=True)
 
-    print("\n[1/2] Running Infinite Engine simulations...")
+    print("\n[1/3] Running Infinite Engine simulations...")
     engine = InfiniteEngine()
     results = engine.run(n_season_rounds=10, n_sims=100000)
 
@@ -42,9 +43,18 @@ def main():
     print(f"  Brier score: {results['calibration']['brier_score']}")
     print(f"  Avg prediction error: {results['calibration']['avg_error']}")
 
-    print("\n[2/2] Generating analytics dashboard...")
+    print("\n[2/3] Running IPL backtest...")
+    bt = IPLBacktest(seed=42)
+    ipl_results = bt.run()
+    s = ipl_results['summary']
+    print(f"  Trained on {ipl_results['history']['n_matches']} historical matches ({ipl_results['history']['years'][0]}-{ipl_results['history']['years'][-1]})")
+    print(f"  Predicted {s['total_matches']} matches: {s['correct_predictions']}/{s['total_matches']} correct ({s['accuracy']}%)")
+    print(f"  MAE Score: {s['mean_abs_error_runs']} runs")
+    print(f"  Brier Score: {s['brier_score']}")
+
+    print("\n[3/3] Generating analytics dashboard...")
     from src.generator import generate_dashboard
-    out_path = generate_dashboard(results, engine)
+    out_path = generate_dashboard(results, engine, ipl_results, bt)
 
     print(f"\n  Dashboard generated: {out_path}")
 
