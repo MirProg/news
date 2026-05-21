@@ -49,7 +49,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 
 /* ===== READ ===== */
 .hero{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
-.hero-content .kicker{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);margin-bottom:8px}
+.hero-content .kicker{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.hero-content .kicker .featured-badge{background:var(--accent);color:#fff;font-size:0.5rem;padding:1px 6px;border-radius:3px;letter-spacing:0.06em}
 .hero-content h1{font-family:var(--font-display);font-size:2.2rem;font-weight:400;line-height:1.2;letter-spacing:-0.02em;margin-bottom:12px}
 .hero-content h1 a{color:var(--text);text-decoration:none;transition:color 0.15s}
 .hero-content h1 a:hover{color:var(--accent)}
@@ -83,6 +84,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 .divider .count{font-size:0.65rem;color:var(--text-muted);font-family:var(--font-mono)}
 
 .article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:32px;transition:all 0.3s}
+.article-card{opacity:0;transform:translateY(12px);animation:cardIn 0.4s ease forwards}
+@keyframes cardIn{to{opacity:1;transform:translateY(0)}}
+.article-card:nth-child(1){animation-delay:0s}
+.article-card:nth-child(2){animation-delay:0.05s}
+.article-card:nth-child(3){animation-delay:0.1s}
+.article-card:nth-child(4){animation-delay:0.15s}
+.article-card:nth-child(5){animation-delay:0.2s}
+.article-card:nth-child(6){animation-delay:0.25s}
+.article-card:nth-child(7){animation-delay:0.3s}
+.article-card:nth-child(8){animation-delay:0.35s}
+.article-card:nth-child(9){animation-delay:0.4s}
+.article-card:nth-child(10){animation-delay:0.45s}
+.article-card:nth-child(11){animation-delay:0.5s}
+.article-card:nth-child(12){animation-delay:0.55s}
 .article-grid.list-view{grid-template-columns:1fr}
 .article-grid.list-view .article-card{flex-direction:row}
 .article-grid.list-view .card-img,.article-grid.list-view .card-img-placeholder{width:200px;height:140px;flex-shrink:0}
@@ -93,7 +108,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 .article-card .card-img-wrap{overflow:hidden;line-height:0}
 .article-card .card-img{width:100%;height:160px;object-fit:cover;background:var(--bg-alt);display:block;transition:transform 0.4s}
 .article-card:hover .card-img{transform:scale(1.05)}
-.article-card .card-img-placeholder{width:100%;height:160px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.65rem;font-family:var(--font-mono)}
+.article-card .card-img-placeholder{width:100%;height:160px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-family:var(--font-mono);color:rgba(255,255,255,0.7)}
+.ph-grad-0{background:linear-gradient(135deg,#1a5cff,#6c3aff)}
+.ph-grad-1{background:linear-gradient(135deg,#e05050,#ff8a50)}
+.ph-grad-2{background:linear-gradient(135deg,#00aa6a,#00d4aa)}
+.ph-grad-3{background:linear-gradient(135deg,#7c5cbf,#c45cbf)}
+.ph-grad-4{background:linear-gradient(135deg,#f5a623,#f5d623)}
+.ph-grad-5{background:linear-gradient(135deg,#1a5cff,#00aa6a)}
+.ph-grad-6{background:linear-gradient(135deg,#e05050,#7c5cbf)}
+.ph-grad-7{background:linear-gradient(135deg,#333,#666)}
 .article-card .card-body{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column}
 .article-card .meta{font-size:0.6rem;color:var(--text-muted);margin-bottom:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .article-card .meta .src{font-weight:600;color:var(--accent)}
@@ -201,7 +224,7 @@ footer .github-link:hover{color:var(--accent)}
     </div>
     <div class="right">
       <span class="hal-badge"><span class="hal-eye"></span> HAL</span>
-      <span>May 21, 2026 at 03:46 UTC</span>
+      <span>May 21, 2026 at 03:49 UTC</span>
     </div>
   </div>
 </header>
@@ -223,7 +246,10 @@ footer .github-link:hover{color:var(--accent)}
 
   
   
-  <div class="mood-bar">
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;font-size:0.72rem;color:var(--text-secondary);align-items:center">
+    <span style="font-weight:600;color:var(--text);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em">At a glance</span>
+    <span>24 stories</span>
+    <span>13 with images</span>
     <span class="mood-item mood-pos"><span class="mood-dot"></span> 3 positive</span>
     <span class="mood-item mood-neg"><span class="mood-dot"></span> 1 negative</span>
     <span class="mood-item mood-neu"><span class="mood-dot"></span> 20 neutral</span>
@@ -354,7 +380,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-1">T</div>
       
       <div class="card-body">
         <div class="meta">
@@ -383,7 +409,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-2">T</div>
       
       <div class="card-body">
         <div class="meta">
@@ -536,7 +562,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-7">C</div>
       
       <div class="card-body">
         <div class="meta">
@@ -596,7 +622,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-1">H</div>
       
       <div class="card-body">
         <div class="meta">
@@ -625,7 +651,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-2">H</div>
       
       <div class="card-body">
         <div class="meta">
@@ -654,7 +680,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-3">H</div>
       
       <div class="card-body">
         <div class="meta">
@@ -683,7 +709,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-4">W</div>
       
       <div class="card-body">
         <div class="meta">
@@ -712,7 +738,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-5">W</div>
       
       <div class="card-body">
         <div class="meta">
@@ -741,7 +767,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-6">W</div>
       
       <div class="card-body">
         <div class="meta">
@@ -894,7 +920,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-3">T</div>
       
       <div class="card-body">
         <div class="meta">
@@ -923,7 +949,7 @@ footer .github-link:hover{color:var(--accent)}
   
     <article class="article-card">
       
-      <div class="card-img-placeholder">no image</div>
+      <div class="card-img-placeholder ph-grad-4">T</div>
       
       <div class="card-body">
         <div class="meta">
@@ -1430,6 +1456,24 @@ footer .github-link:hover{color:var(--accent)}
     if (t2) { slotBData = t2; fillSlot(slotB, t2); }
   }
   document.getElementById('random-mash-btn').addEventListener('click', randomMash);
+
+  // Source filter (click source badge to filter)
+  let activeSource = null;
+  document.querySelectorAll('.article-card .src').forEach(badge => {
+    badge.style.cursor = 'pointer';
+    badge.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const src = this.textContent;
+      if (activeSource === src) { activeSource = null; }
+      else { activeSource = src; }
+      document.querySelectorAll('.article-card').forEach(card => {
+        const match = !activeSource || card.querySelector('.src')?.textContent === activeSource;
+        card.style.display = match ? '' : 'none';
+      });
+      // Update search input placeholder
+      if (searchInput) searchInput.placeholder = activeSource ? 'Search in ' + activeSource + '...' : 'Search stories...';
+    });
+  });
 
   // Search filter
   const searchInput = document.getElementById('search-input');
