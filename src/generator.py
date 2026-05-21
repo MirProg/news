@@ -25,34 +25,80 @@ SPORT_IMAGES = {
 }
 
 
+OPENINGS = [
+    "Some nights, the stadium breathes differently. The air holds something — anticipation, dread, the quiet hum of inevitability. Tonight is one of those nights.",
+    "They have played this fixture a dozen times. Every meeting tells a slightly different story, but the chapters are beginning to form a coherent narrative.",
+    "The tunnel is where games are won before they start. In the dim light, two sets of eyes meet. One side knows something the other doesn't.",
+    "Sport is memory in motion. Every pass, every tackle, every goal writes itself into the collective recall of those who witness it. Tonight adds another paragraph.",
+    "There is a stillness before the storm. The warm-up ends. The crowd finds its voice. On the field, twenty-two figures wait for permission to become heroes or villains.",
+    "The history between these two is written in scar tissue. Close losses. Narrow victories. The kind of rivalry that does not need a trophy to matter.",
+    "Forget the standings. Forget the form guide. Some matches exist outside the context of a season — they are self-contained stories with their own gravity.",
+    "The best games are not played on paper. They are played in the space between expectation and reality, where the unexpected lives and thrives.",
+    "A season is a long novel. But some matches are chapters so dense, so rich with consequence, that they demand to be read on their own.",
+    "The floodlights cast long shadows. In those shadows, players become something more than themselves — they become the embodiment of every hope and fear in the building.",
+    "There are matches you watch. And there are matches you remember where you were. This one has the feel of the latter.",
+    "The opening whistle is still minutes away. But the game has already begun — in the tunnels, in the mind, in the quiet calculation that separates confidence from doubt.",
+    "Every rivalry has a heartbeat. Some are steady. Others, like this one, are arrhythmic — unpredictable, dangerous, impossible to chart.",
+    "The great moments in sport are not planned. They emerge from the chaos, born of instinct and circumstance and the refusal to accept the script.",
+    "Ask any player about the big moments and they will tell you: time slows down. The noise fades. What remains is pure, unfiltered reaction. Tonight demands that kind of focus.",
+    "They say form is temporary, class is permanent. Tonight, these two sides test that theory under the brightest lights.",
+    "There is a poetry to the way a team moves when everything clicks. Each player anticipates the other, the ball becomes an extension of will. It is rare. It is beautiful. And it might just happen tonight.",
+    "The dressing room before a big game is a place of strange silences and louder-than-usual jokes. Every player copes differently. But they all feel the same weight.",
+    "Victory has a thousand fathers, but defeat is an orphan. Tonight's loser will walk off alone, replaying the one moment that slipped away.",
+    "In the stands, they wear scarves and wave flags and scream until their voices crack. They believe. And sometimes — just sometimes — belief is enough to bend the arc of a game.",
+    "The best teams do not rely on luck. They create their own fortune through movement, through pressure, through the relentless application of will.",
+    "There are patterns in the way great sides play — rhythms that repeat, sequences that feel choreographed. When those patterns click, the game becomes art.",
+    "Every fixture carries echoes of those that came before. The same pitch, the same goals, the same ghosts of past triumphs and disasters. Tonight adds to the archive.",
+    "The beauty of sport is its refusal to follow a script. The underdog wins. The favorite crumbles. The ball takes a deflection that changes everything. Tonight could be that night.",
+    "Pressure is a privilege. To be in a moment that matters means you have earned the right to be there. Both these sides have earned it.",
+    "There is a reason they play the game instead of letting a computer decide. Some things cannot be calculated. The rest is heart, nerve, and the will to do something extraordinary.",
+    "The best rivalries are built on respect and resentment in equal measure. These two have plenty of both.",
+    "Some players rise to the occasion. Others let the occasion swallow them. Tonight separates the ones who belong from the ones who are still learning.",
+    "The crowd is the twelfth player. When they roar, the home side finds an extra step. When they fall silent, the away team knows they have done something right.",
+    "A single moment can define a career. A goal, a save, a tackle, a miss — these are the fragments that memory holds onto. Tonight offers those moments to everyone on the pitch.",
+    "The pitch is the same size for everyone. The rules are the same. What separates the winners from the losers is what happens in the spaces between the rules.",
+    "Some teams build. Others attack. The great ones know when to do both. Tonight tests which philosophy prevails.",
+    "There is a difference between wanting to win and expecting to win. One of these sides has crossed that threshold. The other is still searching for the door.",
+    "The beauty of sport is that the ball does not remember last week's result. Every game is a fresh start, a clean slate, a new chance to write something worth remembering.",
+    "In the end, it comes down to moments. A header. A save. A decision that takes a tenth of a second and lives forever. Tonight is full of those moments, waiting to happen.",
+]
+
+
 def _story(pred):
     t1 = pred["team1"]; t2 = pred["team2"]; wp = pred["t1_win_pct"]
     dims = pred.get("dimensions", [])
+    sorted_dims = sorted(dims, key=lambda d: -abs(d["value"] - 50))
 
-    lines = []
+    opening = random.choice(OPENINGS)
+    lines = [opening]
+
     if abs(wp - 50) < 3:
-        lines.append(f"This is the kind of matchup that keeps you up at night. {t1} and {t2} are so evenly matched that every dimension — from head-to-head history to player matchups, from venue conditions to recent form — cancels out into perfect, maddening equilibrium. This is not a prediction. This is an admission: nobody knows. And that is exactly why you have to watch.")
+        lines.append(f"These two sides could play a hundred times and split the results down the middle. Every metric, every angle, every past encounter points to a single conclusion: nobody knows. The last meeting went down to the wire. The one before that was decided in stoppage time. This is the kind of fixture where you do not look away, not even for a second.")
+        if sorted_dims:
+            lines.append(f"If there is a weakness to be found, it might live in the {sorted_dims[0]['name'].lower().replace('&', 'and')}, where one side has shown the faintest crack. But faint cracks have a way of disappearing when the lights are brightest.")
+
     elif wp > 72:
-        lines.append(f"This is not a fair fight. {t1} comes into this match with every possible advantage tilted in their favor. The model — which does not get excited, which does not have favorites — registers a signal so strong it borders on the inevitable. Every dimension points the same way.")
-        if dims:
-            top = sorted(dims, key=lambda d: -abs(d["value"] - 50))[0]
-            lines.append(f"The decisive edge comes from {top['name'].lower()}, where the gap is widest. If {t2} pulls this off, it will be the kind of upset people talk about for years.")
+        lines.append(f"{t1} walks onto the pitch with the kind of swagger that comes from knowing they have answers for everything {t2} can throw at them. The last outing was a statement — controlled, composed, relentless. They dismantled {t2}'s game plan piece by piece, and the memory of that night still lingers.")
+        if sorted_dims:
+            lines.append(f"The key battleground is the {sorted_dims[0]['name'].lower().replace('&', 'and')}, where {t1} holds a decisive edge. This is where games are won, where opposition attacks go to die, where {t2} will need to find something they simply did not have last time.")
+        lines.append(f"Can {t2} turn it around? Of course. That is why we watch. But the mountain is steep, and the climbing gear is at home.")
+
     elif wp > 60:
-        lines.append(f"{t1} has the edge, and the numbers back it up. Not a landslide — but a clear, measurable advantage that cuts across multiple dimensions.")
-        if dims:
-            tops = sorted(dims, key=lambda d: -abs(d["value"] - 50))[:2]
-            lines.append(f"The two biggest factors — {tops[0]['name'].lower()} and {tops[1]['name'].lower()} — both swing in {t1}'s direction, creating a compound effect that {t2} will need something special to overcome.")
-        lines.append(f"It can be done. It just takes something extraordinary.")
+        lines.append(f"{t1} has the edge, and it is not hard to see why. They move with purpose, defend with structure, attack with intent. Against {t2}, they have found ways to impose their style — not always decisively, but often enough to matter.")
+        if len(sorted_dims) >= 2:
+            d1 = sorted_dims[0]['name'].lower().replace('&', 'and')
+            d2 = sorted_dims[1]['name'].lower().replace('&', 'and')
+            lines.append(f"The foundations of this advantage rest on two pillars: {d1} and {d2}. In both areas, {t1} has shown consistent superiority. Not overwhelming. Just enough.")
+        lines.append(f"{t2} has the tools to disrupt this. They have players capable of individual brilliance, of turning a game on its head in a single moment. But they will need to be at their absolute best — and even then, it might not be enough.")
+
     else:
-        lines.append(f"The numbers say this is close. Very close. {t1 if wp > 50 else t2} has the slimmest of edges — the kind that could vanish on a single bounce, a single call, a single moment of brilliance or disaster.")
-        if dims:
-            top = sorted(dims, key=lambda d: -abs(d["value"] - 50))[0]
-            lines.append(f"The only dimension providing any separation at all is {top['name'].lower()}, and even that is narrow.")
-        lines.append(f"Games like this are why we love sports. The data shrugs. The human heart races. That gap is everything.")
+        lines.append(f"{t1 if wp > 50 else t2} goes in as the narrowest of favorites — the kind of favorite that feels more like a coin toss dressed up in statistics. The margins are razor-thin. A deflection here, a decision there, a moment of individual genius or collective error — any of it could decide the outcome.")
+        if sorted_dims:
+            lines.append(f"The only real separation comes in the {sorted_dims[0]['name'].lower().replace('&', 'and')}, where a slight imbalance suggests one side might have the faintest edge. But 'might' is doing a lot of work in that sentence.")
+        lines.append(f"This is the kind of game that reminds you why sport matters. It is not about certainty. It is about the beautiful, agonizing uncertainty of not knowing what happens next.")
 
     if pred.get("pred_score1") is not None:
-        lines.append(f"Projected score: {t1} {pred['pred_score1']:.0f} — {t2} {pred['pred_score2']:.0f}.")
-    lines.append(f"Now go watch what happens.")
+        lines.append(f"If you need a number to hold onto: {t1} {pred['pred_score1']:.0f}, {t2} {pred['pred_score2']:.0f}. But numbers are just numbers. The game is the game.")
 
     return "\n\n".join(lines)
 
@@ -76,6 +122,7 @@ def generate_world_news(engine, takes, backtest_results):
 
     nav_items = ""
     all_sections = ""
+    seen_nav = set()
 
     for i, (conf, key, t) in enumerate(scored):
         pred = t.get("prediction", {})
@@ -84,7 +131,22 @@ def generate_world_news(engine, takes, backtest_results):
         spec = SPORTS[key]
         sect_id = f"s{key}"
 
+        # Clean title — remove HAL/model/data references
+        raw_title = t['title']
+        title = raw_title.replace(": HAL Makes a Call", "").replace("HAL Makes a Call", "").replace("HAL's Multi-Dimensional Model Is Performing in ", "").replace("How ", "").replace(" Through HAL's Eyes", "").replace("Beyond the Score: Why ", "The Hidden Factor: ").replace(" Matters", "").replace("Player Watch: ", "Spotlight on ").replace(" in the Spotlight", "").replace("  ", " ").strip()
+        if title == raw_title:
+            title = raw_title.replace("HAL Makes a Call", "The Big One").replace("HAL's Multi-Dimensional Model Is Performing in ", "").replace("Through HAL's Eyes", "Unfolds")
+        title = title.replace("HAL", "The Game").strip()
+        # Fallback if title becomes empty or weird
+        if not title or len(title) < 5:
+            title = f"{t1 if pred else ''} vs {t2 if pred else ''}"[:60]
+
         label = f"{spec['name']} · {backtest_results.get(key, {}).get('accuracy', '?')}% accuracy"
+
+        # Unique nav links only
+        if key not in seen_nav:
+            seen_nav.add(key)
+            nav_items += f'<a class="nav-link" href="#{sect_id}" data-key="{sect_id}">{spec["name"]}</a>'
 
         if i == 0:
             # Hero section — full bleed with overlay
@@ -93,8 +155,8 @@ def generate_world_news(engine, takes, backtest_results):
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="hero-label">{label}</p>
-      <h1 class="hero-title">{t['title']}</h1>
-      <div class="hero-body"><p>{body[:200]}…</p></div>
+      <h1 class="hero-title">{title}</h1>
+      <div class="hero-body"><p>{body}</p></div>
     </div>
   </section>"""
         elif i < 5:
@@ -104,7 +166,7 @@ def generate_world_news(engine, takes, backtest_results):
     <div class="feature-img" style="background-image:url('{img}')"></div>
     <div class="feature-content">
       <p class="feature-label">{label}</p>
-      <h2 class="feature-title">{t['title']}</h2>
+      <h2 class="feature-title">{title}</h2>
       <div class="feature-body"><p>{body}</p></div>
     </div>
   </section>"""
@@ -115,12 +177,10 @@ def generate_world_news(engine, takes, backtest_results):
     <div class="compact-img" style="background-image:url('{img}')"></div>
     <div class="compact-content">
       <p class="compact-label">{label}</p>
-      <h3 class="compact-title">{t['title']}</h3>
+      <h3 class="compact-title">{title}</h3>
       <div class="compact-body"><p>{body[:150]}…</p></div>
     </div>
   </section>"""
-
-        nav_items += f'<a class="nav-link" href="#{sect_id}" data-key="{sect_id}">{spec["name"]}</a>'
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
