@@ -3,648 +3,446 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Sports Predictions — Multi-Dimensional Intelligence</title>
+<title>World Sports Predictions — May 21, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #f5f3ef;
-  --card: #fff;
-  --card2: #faf9f6;
-  --border: #e8e5df;
-  --text: #1a1a18;
-  --text2: #6b6a66;
-  --text3: #9e9d99;
-  --font: 'Inter', -apple-system, sans-serif;
-  --display: 'Playfair Display', Georgia, serif;
-  --mono: 'SF Mono', 'SFMono-Regular', 'Consolas', monospace;
-}
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  font-size: 15px;
-  line-height: 1.7;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 16px; line-height: 1.6;
+  color: #222; background: #fafafa;
   -webkit-font-smoothing: antialiased;
 }
-.container { max-width: 880px; margin: 0 auto; padding: 0 24px 60px; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 20px 40px; }
 
-/* Masthead */
+/* Header */
+.top-bar {
+  background: #222; color: #fff; padding: 8px 0;
+  font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+  text-align: center;
+}
 .masthead {
-  padding: 36px 0 20px;
-  margin-bottom: 24px;
-  border-bottom: 2px solid var(--text);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  border-bottom: 1px solid #ddd; padding: 18px 0 14px; margin-bottom: 24px;
+  display: flex; justify-content: space-between; align-items: flex-end;
 }
-.masthead .logo {
-  font-family: var(--display);
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-}
+.masthead .logo { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 700; }
 .masthead .logo em { font-style: italic; color: #c0392b; }
-.masthead .tagline { font-size: 0.7rem; color: var(--text3); font-family: var(--mono); margin-top: 2px; letter-spacing: 0.02em; }
-.masthead .ts { font-size: 0.6rem; color: var(--text3); font-family: var(--mono); text-align: right; }
+.masthead .ts { font-size: 0.7rem; color: #999; text-align: right; }
 
-/* Filter */
-.filter { display: flex; gap: 5px; flex-wrap: wrap; padding: 14px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
-.sb {
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--text2);
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  padding: 5px 14px;
-  cursor: pointer;
-  transition: all 0.15s;
-  border-radius: 4px;
+/* Nav */
+.sport-nav {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  padding-bottom: 18px; margin-bottom: 24px; border-bottom: 1px solid #eee;
 }
-.sb:hover { background: var(--sc, #eee); color: #fff; border-color: var(--sc, #eee); }
+.nav-link {
+  font-size: 0.7rem; font-weight: 500; color: #666; letter-spacing: 0.02em;
+  padding: 4px 12px; border-radius: 3px; transition: all 0.15s;
+}
+.nav-link:hover { background: var(--nav-c, #eee); color: #fff; }
 
-/* Overview */
+/* Hero */
+.hero {
+  margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #eee;
+}
+.hero-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.hero-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.01em; }
+.hero-body { font-size: 0.9rem; color: #555; line-height: 1.7; max-width: 700px; }
+.hero-meta { font-size: 0.65rem; color: #aaa; margin-top: 8px; font-family: 'Inter', monospace; }
+
+/* Overview grid */
 .overview {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 8px;
-  margin-bottom: 32px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 6px; margin-bottom: 28px;
 }
 .ov-item {
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 10px 6px;
-  text-align: center;
-  border-radius: 6px;
-  position: relative;
-  overflow: hidden;
+  background: #fff; border: 1px solid #eee; border-radius: 4px;
+  padding: 8px 4px; text-align: center; font-size: 0.6rem;
+  border-top: 3px solid var(--ov-c, #ddd);
 }
-.ov-item::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--ov-c, #ddd);
-}
-.ov-name { font-size: 0.55rem; color: var(--text2); font-family: var(--mono); letter-spacing: 0.03em; margin-bottom: 3px; }
-.ov-acc { font-size: 1rem; font-weight: 700; font-family: var(--mono); }
+.ov-name { color: #888; display: block; margin-bottom: 2px; }
+.ov-acc { font-weight: 700; font-size: 0.8rem; }
 
 /* Sport section */
-.sport { margin-bottom: 36px; }
-.sport-hdr {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 14px; padding-bottom: 8px;
-  border-bottom: 2px solid var(--sc, var(--border));
+.sport-section { margin-bottom: 28px; }
+.section-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #eee;
 }
-.sport-name { font-family: var(--display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
-.sport-acc { font-size: 0.6rem; color: var(--text3); font-family: var(--mono); margin-top: 2px; }
-.sport-badge {
-  background: var(--sc, #eee);
-  color: #fff;
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 4px;
+.section-name {
+  font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem;
+  font-weight: 700; padding-left: 10px; border-left: 3px solid #333;
 }
+.section-acc { font-size: 0.65rem; color: #aaa; }
 
-/* Grid */
-.grid { display: flex; flex-direction: column; gap: 14px; }
-
-/* Card */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 22px 24px;
-  transition: box-shadow 0.2s;
+/* Story list */
+.story-list { display: flex; flex-direction: column; gap: 0; }
+.story {
+  padding: 14px 0; border-bottom: 1px solid #f0f0f0;
 }
-.card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
-.card-meta { font-size: 0.6rem; color: var(--text3); font-family: var(--mono); margin-bottom: 4px; }
-.card-cat { letter-spacing: 0.06em; }
-.card-title { font-size: 1.05rem; font-weight: 600; line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.01em; }
-.card-body { font-size: 0.82rem; color: var(--text2); line-height: 1.75; }
-.card-body br { display: block; margin-bottom: 6px; content: ''; }
+.story:last-child { border-bottom: none; }
+.story-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+.story-body { font-size: 0.75rem; color: #666; line-height: 1.6; }
 
-/* Dims */
-.dims { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px 16px; }
-.dim-h { grid-column: 1 / -1; font-size: 0.55rem; font-weight: 600; letter-spacing: 0.04em; color: var(--text3); margin-bottom: 4px; font-family: var(--mono); }
-.dim { display: flex; align-items: center; gap: 6px; padding: 2px 0; }
-.dim-l { font-size: 0.6rem; color: var(--text2); width: 90px; flex-shrink: 0; }
-.dim-t { flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
-.dim-f { height: 100%; background: #c0392b; border-radius: 3px; }
-.dim-r { font-size: 0.55rem; font-family: var(--mono); color: var(--text2); width: 24px; text-align: right; }
+/* Dimensional analysis */
+.dims { margin-top: 8px; padding-top: 6px; border-top: 1px solid #f0f0f0; display: flex; flex-wrap: wrap; gap: 2px 20px; }
+.dim-h { width: 100%; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #bbb; margin-bottom: 2px; }
+.dim { display: inline-flex; align-items: center; gap: 5px; font-size: 0.6rem; }
+.dim-l { color: #999; width: 70px; }
+.dim-t { width: 60px; height: 4px; background: #eee; border-radius: 2px; overflow: hidden; }
+.dim-f { height: 100%; background: #c0392b; border-radius: 2px; }
+.dim-r { color: #999; font-family: monospace; width: 20px; text-align: right; }
 
 /* Footer */
 .footer {
-  margin-top: 48px; padding: 24px 0 40px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 0.6rem; color: var(--text3); font-family: var(--mono);
+  border-top: 1px solid #ddd; padding: 20px 0; margin-top: 12px;
+  text-align: center; font-size: 0.65rem; color: #aaa; line-height: 2;
 }
-.footer em { font-style: italic; color: var(--text2); }
 
 @media(max-width:600px) {
   .masthead { flex-direction: column; align-items: flex-start; gap: 4px; }
-  .masthead .ts { text-align: left; }
-  .overview { grid-template-columns: repeat(3, 1fr); }
+  .overview { grid-template-columns: repeat(4, 1fr); }
+  .dims { flex-direction: column; gap: 1px; }
 }
 </style>
 </head>
 <body>
+
+<div class="top-bar">Multi-Dimensional Sports Prediction Engine &middot; 7 Factors &middot; 11 Sports</div>
+
 <div class="container">
 
 <header class="masthead">
-  <div>
-    <div class="logo">World Sports <em>Predictions</em></div>
-    <div class="tagline">7-dimensional deep intelligence — PyTorch powered</div>
-  </div>
-  <div class="ts">May 21, 2026 · 12:18 UTC<br>44 stories · 11 sports</div>
+  <div class="logo">World Sports <em>Predictions</em></div>
+  <div class="ts">May 21, 2026<br>44 stories across 11 sports</div>
 </header>
 
-<nav class="filter"><button class="sb" data-target="Cricket_T20" style="--sc: #e67e22">T20 Cricket</button><button class="sb" data-target="EPL" style="--sc: #2ecc71">English Premier League</button><button class="sb" data-target="NBA" style="--sc: #e74c3c">NBA Basketball</button><button class="sb" data-target="NFL" style="--sc: #3498db">NFL Football</button><button class="sb" data-target="MLB" style="--sc: #9b59b6">MLB Baseball</button><button class="sb" data-target="NHL" style="--sc: #1abc9c">NHL Hockey</button><button class="sb" data-target="TENNIS" style="--sc: #f1c40f">Tennis (ATP)</button><button class="sb" data-target="Rugby" style="--sc: #e74c3c">Rugby Union</button><button class="sb" data-target="F1" style="--sc: #e67e22">Formula 1</button><button class="sb" data-target="MMA" style="--sc: #c0392b">MMA (UFC)</button><button class="sb" data-target="Boxing" style="--sc: #2980b9">Professional Boxing</button></nav>
-
-<div class="overview">
-  <div class="ov-item" style="--ov-c: #e67e22"><div class="ov-name">T20 Cricket</div><div class="ov-acc">55.0%</div></div><div class="ov-item" style="--ov-c: #2ecc71"><div class="ov-name">English Premier League</div><div class="ov-acc">53.0%</div></div><div class="ov-item" style="--ov-c: #e74c3c"><div class="ov-name">NBA Basketball</div><div class="ov-acc">70.0%</div></div><div class="ov-item" style="--ov-c: #3498db"><div class="ov-name">NFL Football</div><div class="ov-acc">51.0%</div></div><div class="ov-item" style="--ov-c: #9b59b6"><div class="ov-name">MLB Baseball</div><div class="ov-acc">79.0%</div></div><div class="ov-item" style="--ov-c: #1abc9c"><div class="ov-name">NHL Hockey</div><div class="ov-acc">70.0%</div></div><div class="ov-item" style="--ov-c: #f1c40f"><div class="ov-name">Tennis (ATP)</div><div class="ov-acc">72.0%</div></div><div class="ov-item" style="--ov-c: #e74c3c"><div class="ov-name">Rugby Union</div><div class="ov-acc">49.0%</div></div><div class="ov-item" style="--ov-c: #e67e22"><div class="ov-name">Formula 1</div><div class="ov-acc">0%</div></div><div class="ov-item" style="--ov-c: #c0392b"><div class="ov-name">MMA (UFC)</div><div class="ov-acc">51.0%</div></div><div class="ov-item" style="--ov-c: #2980b9"><div class="ov-name">Professional Boxing</div><div class="ov-acc">57.0%</div></div>
-</div>
+<nav class="sport-nav"><a class="nav-link" href="#Cricket_T20" style="--nav-c:#c0392b">T20 Cricket</a><a class="nav-link" href="#EPL" style="--nav-c:#27ae60">English Premier League</a><a class="nav-link" href="#NBA" style="--nav-c:#e74c3c">NBA Basketball</a><a class="nav-link" href="#NFL" style="--nav-c:#2980b9">NFL Football</a><a class="nav-link" href="#MLB" style="--nav-c:#8e44ad">MLB Baseball</a><a class="nav-link" href="#NHL" style="--nav-c:#16a085">NHL Hockey</a><a class="nav-link" href="#TENNIS" style="--nav-c:#d4a017">Tennis (ATP)</a><a class="nav-link" href="#Rugby" style="--nav-c:#c0392b">Rugby Union</a><a class="nav-link" href="#F1" style="--nav-c:#d35400">Formula 1</a><a class="nav-link" href="#MMA" style="--nav-c:#2c3e50">MMA (UFC)</a><a class="nav-link" href="#Boxing" style="--nav-c:#2c3e50">Professional Boxing</a></nav>
 
 
-      <section class="sport" id="Cricket_T20">
-        <div class="sport-hdr" style="--sc: #e67e22">
-          <div>
-            <div class="sport-name">T20 Cricket</div>
-            <div class="sport-acc">55.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">55.0%</span>
+    <div class="hero">
+      <div class="hero-text">
+        <p class="hero-cat" style="color:#c0392b">T20 Cricket</p>
+        <h1 class="hero-title">KKR vs DC: A Genuine Toss-Up</h1>
+        <p class="hero-body">A slight lean toward DC (53%). Expect this one to be decided by isolated moments rather than systemic advantage.</p>
+        <p class="hero-meta">Backtest accuracy: 56.0% &middot; T20 Cricket &middot; 7 dimensions</p>
+      </div>
+    </div>
+
+<div class="overview"><div class="ov-item" style="--ov-c:#c0392b"><span class="ov-name">T20 Cricket</span><span class="ov-acc">56.0%</span></div><div class="ov-item" style="--ov-c:#27ae60"><span class="ov-name">English Premier League</span><span class="ov-acc">48.0%</span></div><div class="ov-item" style="--ov-c:#e74c3c"><span class="ov-name">NBA Basketball</span><span class="ov-acc">64.0%</span></div><div class="ov-item" style="--ov-c:#2980b9"><span class="ov-name">NFL Football</span><span class="ov-acc">54.0%</span></div><div class="ov-item" style="--ov-c:#8e44ad"><span class="ov-name">MLB Baseball</span><span class="ov-acc">64.0%</span></div><div class="ov-item" style="--ov-c:#16a085"><span class="ov-name">NHL Hockey</span><span class="ov-acc">76.0%</span></div><div class="ov-item" style="--ov-c:#d4a017"><span class="ov-name">Tennis (ATP)</span><span class="ov-acc">71.0%</span></div><div class="ov-item" style="--ov-c:#c0392b"><span class="ov-name">Rugby Union</span><span class="ov-acc">45.0%</span></div><div class="ov-item" style="--ov-c:#d35400"><span class="ov-name">Formula 1</span><span class="ov-acc">0%</span></div><div class="ov-item" style="--ov-c:#2c3e50"><span class="ov-name">MMA (UFC)</span><span class="ov-acc">62.0%</span></div><div class="ov-item" style="--ov-c:#2c3e50"><span class="ov-name">Professional Boxing</span><span class="ov-acc">46.0%</span></div></div>
+
+
+      <section class="sport-section" id="Cricket_T20">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#c0392b">T20 Cricket</h2>
+          <span class="section-acc">56.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #e67e22">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in T20 Cricket</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 55.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e67e22">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">RR vs CSK: HAL Makes a Call</h3>
-          <div class="card-body">HAL has examined this matchup through seven different analytical lenses, and the picture that emerges is nuanced.<br><br>Breaking down the key factors:<br><br>  • Head-to-Head History (weight: 18%): 83% — 6 meetings: 1 wins vs 5 — favors<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>HAL gives a slight edge to RR, but the margin is within the noise inherent to the sport.<br><br>Projected score: RR 173.7-170.3 CSK.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:83.3%"></div></div><span class="dim-r">83</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #e67e22">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Player Matchups Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Player Matchups dimension goes deeper. In T20 Cricket specifically, this factor accounts for 22% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e67e22">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; season</span>
-          </div>
-          <h3 class="card-title">The T20 Cricket Season Through HAL's Eyes</h3>
-          <div class="card-body">Over 350 simulated matches across 5 synthetic seasons, HAL has tracked how each dimension's predictive power shifts. In high-stakes matches (playoffs, finals), tournament context becomes the dominant factor, overtaking even head-to-head history. Early in the season, recent form carries more weight as team identities are still forming. HAL's model adapts these weights dynamically — a feature no conventional sports analytics platform offers.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">KKR vs DC: A Genuine Toss-Up</a></h2>
+            <p class="story-body">A slight lean toward DC (53%). Expect this one to be decided by isolated moments rather than systemic advantage.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:28.6%"></div></div><span class="dim-r">29</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Tournament Context Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Tournament Context dimension goes deeper. In T20 Cricket specifically, this factor accounts for 10% of the prediction </p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">The T20 Cricket Season Through HAL's Eyes</a></h2>
+            <p class="story-body">Over 350 simulated matches across 5 synthetic seasons, HAL has tracked how each dimension's predictive power shifts. In high-stakes matches (playoffs, finals), tournament context becomes the dominant </p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in T20 Cricket</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article></div>
       </section>
-      <section class="sport" id="EPL">
-        <div class="sport-hdr" style="--sc: #2ecc71">
-          <div>
-            <div class="sport-name">English Premier League</div>
-            <div class="sport-acc">53.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">53.0%</span>
+      <section class="sport-section" id="EPL">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#27ae60">English Premier League</h2>
+          <span class="section-acc">48.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #2ecc71">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Leicester vs Man City: A Genuine Toss-Up</h3>
-          <div class="card-body">This is the kind of match that defies easy prediction.<br><br>Breaking down the key factors:<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.<br><br>Projected score: Leicester 2.5-2.5 Man City.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #2ecc71">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in English Premier League</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 53.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #2ecc71">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Team News Sentiment Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Team News Sentiment dimension goes deeper. In English Premier League specifically, this factor accounts for 10% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #2ecc71">
-          <div class="card-meta">
-            <span class="card-cat">&#127939; player</span>
-          </div>
-          <h3 class="card-title">Player Watch: De Bruyne in the Spotlight</h3>
-          <div class="card-body">HAL's player tracking system monitors De Bruyne through multiple dimensions: recent form (-27), health status (+18), and news sentiment. The system cross-references this player's matchup history against upcoming opposition to identify where they hold an advantage or vulnerability. In the current cycle, their projected impact on upcoming matches is significant — the model adjusts team win probability by up to 8% based on this player's availability and form alone.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">Wolves vs Brighton: A Genuine Toss-Up</a></h2>
+            <p class="story-body">This one's too close to call. Wolves and Brighton are evenly matched across all seven analytical dimensions.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Player Watch: Rice in the Spotlight</a></h2>
+            <p class="story-body">HAL's player tracking system monitors Rice through multiple dimensions: recent form (+0), health status (+0), and news sentiment. The system cross-references this player's matchup history against upco</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in English Premier League</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Venue & Conditions Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Venue & Conditions dimension goes deeper. In English Premier League specifically, this factor accounts for 15% of the </p>
+            
+          </article></div>
       </section>
-      <section class="sport" id="NBA">
-        <div class="sport-hdr" style="--sc: #e74c3c">
-          <div>
-            <div class="sport-name">NBA Basketball</div>
-            <div class="sport-acc">70.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">70.0%</span>
+      <section class="sport-section" id="NBA">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#e74c3c">NBA Basketball</h2>
+          <span class="section-acc">64.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #e74c3c">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Tournament Context Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Tournament Context dimension goes deeper. In NBA Basketball specifically, this factor accounts for 10% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e74c3c">
-          <div class="card-meta">
-            <span class="card-cat">&#127939; player</span>
-          </div>
-          <h3 class="card-title">Player Watch: Jokic in the Spotlight</h3>
-          <div class="card-body">HAL's player tracking system monitors Jokic through multiple dimensions: recent form (-13), health status (+16), and news sentiment. The system cross-references this player's matchup history against upcoming opposition to identify where they hold an advantage or vulnerability. In the current cycle, their projected impact on upcoming matches is significant — the model adjusts team win probability by up to 8% based on this player's availability and form alone.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e74c3c">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Lakers vs Jazz: A Genuine Toss-Up</h3>
-          <div class="card-body">This is the kind of match that defies easy prediction.<br><br>Breaking down the key factors:<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.<br><br>Projected score: Lakers 111.1-110.9 Jazz.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #e74c3c">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in NBA Basketball</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 70.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">Cavaliers vs Spurs: A Genuine Toss-Up</a></h2>
+            <p class="story-body">This one's too close to call. Cavaliers and Spurs are evenly matched across all seven analytical dimensions.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Player Matchups Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Player Matchups dimension goes deeper. In NBA Basketball specifically, this factor accounts for 22% of the prediction </p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Player Watch: Giannis in the Spotlight</a></h2>
+            <p class="story-body">HAL's player tracking system monitors Giannis through multiple dimensions: recent form (+2), health status (+9), and news sentiment. The system cross-references this player's matchup history against u</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in NBA Basketball</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article></div>
       </section>
-      <section class="sport" id="NFL">
-        <div class="sport-hdr" style="--sc: #3498db">
-          <div>
-            <div class="sport-name">NFL Football</div>
-            <div class="sport-acc">51.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">51.0%</span>
+      <section class="sport-section" id="NFL">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#2980b9">NFL Football</h2>
+          <span class="section-acc">54.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #3498db">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in NFL Football</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 51.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #3498db">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Head-to-Head History Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Head-to-Head History dimension goes deeper. In NFL Football specifically, this factor accounts for 18% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #3498db">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Dolphins vs Eagles: A Genuine Toss-Up</h3>
-          <div class="card-body">This is the kind of match that defies easy prediction.<br><br>Breaking down the key factors:<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.<br><br>Projected score: Dolphins 22.0-22.0 Eagles.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #3498db">
-          <div class="card-meta">
-            <span class="card-cat">&#127939; player</span>
-          </div>
-          <h3 class="card-title">Player Watch: Jackson in the Spotlight</h3>
-          <div class="card-body">HAL's player tracking system monitors Jackson through multiple dimensions: recent form (+32), health status (+9), and news sentiment. The system cross-references this player's matchup history against upcoming opposition to identify where they hold an advantage or vulnerability. In the current cycle, their projected impact on upcoming matches is significant — the model adjusts team win probability by up to 8% based on this player's availability and form alone.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">Player Watch: Burrow in the Spotlight</a></h2>
+            <p class="story-body">HAL's player tracking system monitors Burrow through multiple dimensions: recent form (+0), health status (+0), and news sentiment. The system cross-references this player's matchup history against up</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in NFL Football</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Tournament Context Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Tournament Context dimension goes deeper. In NFL Football specifically, this factor accounts for 10% of the prediction</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Jaguars vs Texans: A Genuine Toss-Up</a></h2>
+            <p class="story-body">This one's too close to call. Jaguars and Texans are evenly matched across all seven analytical dimensions.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article></div>
       </section>
-      <section class="sport" id="MLB">
-        <div class="sport-hdr" style="--sc: #9b59b6">
-          <div>
-            <div class="sport-name">MLB Baseball</div>
-            <div class="sport-acc">79.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">79.0%</span>
+      <section class="sport-section" id="MLB">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#8e44ad">MLB Baseball</h2>
+          <span class="section-acc">64.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #9b59b6">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; season</span>
-          </div>
-          <h3 class="card-title">The MLB Baseball Season Through HAL's Eyes</h3>
-          <div class="card-body">Over 675 simulated matches across 5 synthetic seasons, HAL has tracked how each dimension's predictive power shifts. In high-stakes matches (playoffs, finals), tournament context becomes the dominant factor, overtaking even head-to-head history. Early in the season, recent form carries more weight as team identities are still forming. HAL's model adapts these weights dynamically — a feature no conventional sports analytics platform offers.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #9b59b6">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in MLB Baseball</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 79.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #9b59b6">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Orioles vs Guardians: A Genuine Toss-Up</h3>
-          <div class="card-body">This is the kind of match that defies easy prediction.<br><br>Breaking down the key factors:<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.<br><br>Projected score: Orioles 4.5-4.5 Guardians.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #9b59b6">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Player Health Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Player Health dimension goes deeper. In MLB Baseball specifically, this factor accounts for 10% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Team News Sentiment Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Team News Sentiment dimension goes deeper. In MLB Baseball specifically, this factor accounts for 10% of the predictio</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Tigers vs Braves: A Genuine Toss-Up</a></h2>
+            <p class="story-body">This one's too close to call. Tigers and Braves are evenly matched across all seven analytical dimensions.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:33.3%"></div></div><span class="dim-r">33</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">The MLB Baseball Season Through HAL's Eyes</a></h2>
+            <p class="story-body">Over 675 simulated matches across 5 synthetic seasons, HAL has tracked how each dimension's predictive power shifts. In high-stakes matches (playoffs, finals), tournament context becomes the dominant </p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in MLB Baseball</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article></div>
       </section>
-      <section class="sport" id="NHL">
-        <div class="sport-hdr" style="--sc: #1abc9c">
-          <div>
-            <div class="sport-name">NHL Hockey</div>
-            <div class="sport-acc">70.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">70.0%</span>
+      <section class="sport-section" id="NHL">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#16a085">NHL Hockey</h2>
+          <span class="section-acc">76.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #1abc9c">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Stars vs Ducks: A Genuine Toss-Up</h3>
-          <div class="card-body">This is the kind of match that defies easy prediction.<br><br>Breaking down the key factors:<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.<br><br>Projected score: Stars 3.0-3.0 Ducks.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #1abc9c">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in NHL Hockey</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 70.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #1abc9c">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; season</span>
-          </div>
-          <h3 class="card-title">The NHL Hockey Season Through HAL's Eyes</h3>
-          <div class="card-body">Over 230 simulated matches across 5 synthetic seasons, HAL has tracked how each dimension's predictive power shifts. In high-stakes matches (playoffs, finals), tournament context becomes the dominant factor, overtaking even head-to-head history. Early in the season, recent form carries more weight as team identities are still forming. HAL's model adapts these weights dynamically — a feature no conventional sports analytics platform offers.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #1abc9c">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Tournament Context Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Tournament Context dimension goes deeper. In NHL Hockey specifically, this factor accounts for 10% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Tournament Context Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Tournament Context dimension goes deeper. In NHL Hockey specifically, this factor accounts for 10% of the prediction w</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">The NHL Hockey Season Through HAL's Eyes</a></h2>
+            <p class="story-body">Over 230 simulated matches across 5 synthetic seasons, HAL has tracked how each dimension's predictive power shifts. In high-stakes matches (playoffs, finals), tournament context becomes the dominant </p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Penguins vs Capitals: A Genuine Toss-Up</a></h2>
+            <p class="story-body">This one's too close to call. Penguins and Capitals are evenly matched across all seven analytical dimensions.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in NHL Hockey</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article></div>
       </section>
-      <section class="sport" id="TENNIS">
-        <div class="sport-hdr" style="--sc: #f1c40f">
-          <div>
-            <div class="sport-name">Tennis (ATP)</div>
-            <div class="sport-acc">72.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">72.0%</span>
+      <section class="sport-section" id="TENNIS">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#d4a017">Tennis (ATP)</h2>
+          <span class="section-acc">71.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #f1c40f">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in Tennis (ATP)</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 72.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #f1c40f">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Zverev vs Alcaraz: A Genuine Toss-Up</h3>
-          <div class="card-body">This is the kind of match that defies easy prediction.<br><br>Breaking down the key factors:<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #f1c40f">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Player Matchups Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Player Matchups dimension goes deeper. In Tennis (ATP) specifically, this factor accounts for 22% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #f1c40f">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; season</span>
-          </div>
-          <h3 class="card-title">The Tennis (ATP) Season Through HAL's Eyes</h3>
-          <div class="card-body">Over 120 simulated matches across 5 synthetic seasons, HAL has tracked how each dimension's predictive power shifts. In high-stakes matches (playoffs, finals), tournament context becomes the dominant factor, overtaking even head-to-head history. Early in the season, recent form carries more weight as team identities are still forming. HAL's model adapts these weights dynamically — a feature no conventional sports analytics platform offers.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">The Tennis (ATP) Season Through HAL's Eyes</a></h2>
+            <p class="story-body">Over 120 simulated matches across 5 synthetic seasons, HAL has tracked how each dimension's predictive power shifts. In high-stakes matches (playoffs, finals), tournament context becomes the dominant </p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Player Matchups Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Player Matchups dimension goes deeper. In Tennis (ATP) specifically, this factor accounts for 22% of the prediction we</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in Tennis (ATP)</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Alcaraz vs Bublik: A Genuine Toss-Up</a></h2>
+            <p class="story-body">This one's too close to call. Alcaraz and Bublik are evenly matched across all seven analytical dimensions.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article></div>
       </section>
-      <section class="sport" id="Rugby">
-        <div class="sport-hdr" style="--sc: #e74c3c">
-          <div>
-            <div class="sport-name">Rugby Union</div>
-            <div class="sport-acc">49.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">49.0%</span>
+      <section class="sport-section" id="Rugby">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#c0392b">Rugby Union</h2>
+          <span class="section-acc">45.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #e74c3c">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Ireland vs Argentina: HAL Makes a Call</h3>
-          <div class="card-body">After processing this match through seven analytical dimensions — from individual player matchups to tournament context — HAL's ensemble model has reached a clear conclusion.<br><br>Breaking down the key factors:<br><br>  • Head-to-Head History (weight: 18%): 100% — 5 meetings: 0 wins vs 5 — favors<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>HAL sees Ireland as having a meaningful edge, driven primarily by favorable matchup dynamics and recent form.<br><br>Projected score: Ireland 27.3-26.7 Argentina.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:100.0%"></div></div><span class="dim-r">100</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #e74c3c">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Team News Sentiment Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Team News Sentiment dimension goes deeper. In Rugby Union specifically, this factor accounts for 10% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e74c3c">
-          <div class="card-meta">
-            <span class="card-cat">&#127939; player</span>
-          </div>
-          <h3 class="card-title">Player Watch: Barrett in the Spotlight</h3>
-          <div class="card-body">HAL's player tracking system monitors Barrett through multiple dimensions: recent form (-3), health status (-9), and news sentiment. The system cross-references this player's matchup history against upcoming opposition to identify where they hold an advantage or vulnerability. In the current cycle, their projected impact on upcoming matches is significant — the model adjusts team win probability by up to 8% based on this player's availability and form alone.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e74c3c">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in Rugby Union</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 49.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">Player Watch: Kolisi in the Spotlight</a></h2>
+            <p class="story-body">HAL's player tracking system monitors Kolisi through multiple dimensions: recent form (+0), health status (+0), and news sentiment. The system cross-references this player's matchup history against up</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Head-to-Head History Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Head-to-Head History dimension goes deeper. In Rugby Union specifically, this factor accounts for 18% of the predictio</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Tonga vs Australia: A Genuine Toss-Up</a></h2>
+            <p class="story-body">A slight lean toward Australia (54%). Expect this one to be decided by isolated moments rather than systemic advantage.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:25.0%"></div></div><span class="dim-r">25</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in Rugby Union</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article></div>
       </section>
-      <section class="sport" id="F1">
-        <div class="sport-hdr" style="--sc: #e67e22">
-          <div>
-            <div class="sport-name">Formula 1</div>
-            <div class="sport-acc">0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">0%</span>
+      <section class="sport-section" id="F1">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#d35400">Formula 1</h2>
+          <span class="section-acc">0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #e67e22">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Player Health Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Player Health dimension goes deeper. In Formula 1 specifically, this factor accounts for 10% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e67e22">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in Formula 1</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 0% accuracy across the last 0 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e67e22">
-          <div class="card-meta">
-            <span class="card-cat">&#127939; player</span>
-          </div>
-          <h3 class="card-title">Player Watch: Leclerc in the Spotlight</h3>
-          <div class="card-body">HAL's player tracking system monitors Leclerc through multiple dimensions: recent form (-15), health status (+0), and news sentiment. The system cross-references this player's matchup history against upcoming opposition to identify where they hold an advantage or vulnerability. In the current cycle, their projected impact on upcoming matches is significant — the model adjusts team win probability by up to 8% based on this player's availability and form alone.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #e67e22">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Magnussen vs Russell: A Genuine Toss-Up</h3>
-          <div class="card-body">HAL has examined this matchup through seven different analytical lenses, and the picture that emerges is nuanced.<br><br>Breaking down the key factors:<br><br>  • Recent Form (Last 5) (weight: 15%): 66% — Recent form: Magnussen (+40) vs Russell (-25) — favors<br><br>  • Team News & Sentiment (weight: 10%): 55% — News sentiment: Magnussen (+14) vs Russell (-15) — favors<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:65.6%"></div></div><span class="dim-r">66</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:54.7%"></div></div><span class="dim-r">55</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in Formula 1</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Bottas vs Piastri: A Genuine Toss-Up</a></h2>
+            <p class="story-body">This one's too close to call. Bottas and Piastri are evenly matched across all seven analytical dimensions.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:54.8%"></div></div><span class="dim-r">55</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:49.4%"></div></div><span class="dim-r">49</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Player Watch: Hamilton in the Spotlight</a></h2>
+            <p class="story-body">HAL's player tracking system monitors Hamilton through multiple dimensions: recent form (-35), health status (+0), and news sentiment. The system cross-references this player's matchup history against</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Team News Sentiment Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Team News Sentiment dimension goes deeper. In Formula 1 specifically, this factor accounts for 10% of the prediction w</p>
+            
+          </article></div>
       </section>
-      <section class="sport" id="MMA">
-        <div class="sport-hdr" style="--sc: #c0392b">
-          <div>
-            <div class="sport-name">MMA (UFC)</div>
-            <div class="sport-acc">51.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">51.0%</span>
+      <section class="sport-section" id="MMA">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#2c3e50">MMA (UFC)</h2>
+          <span class="section-acc">62.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #c0392b">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Recent Form Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Recent Form dimension goes deeper. In MMA (UFC) specifically, this factor accounts for 15% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #c0392b">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in MMA (UFC)</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 51.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #c0392b">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Oliveira vs Poirier: A Genuine Toss-Up</h3>
-          <div class="card-body">This is the kind of match that defies easy prediction.<br><br>Breaking down the key factors:<br><br>  • Team News & Sentiment (weight: 10%): 45% — News sentiment: Oliveira (-10) vs Poirier (+23) — works against<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:52.6%"></div></div><span class="dim-r">53</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:44.7%"></div></div><span class="dim-r">45</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div>
-        <div class="card" style="border-top: 3px solid #c0392b">
-          <div class="card-meta">
-            <span class="card-cat">&#127939; player</span>
-          </div>
-          <h3 class="card-title">Player Watch: Topuria in the Spotlight</h3>
-          <div class="card-body">HAL's player tracking system monitors Topuria through multiple dimensions: recent form (+7), health status (+5), and news sentiment. The system cross-references this player's matchup history against upcoming opposition to identify where they hold an advantage or vulnerability. In the current cycle, their projected impact on upcoming matches is significant — the model adjusts team win probability by up to 8% based on this player's availability and form alone.</div>
-          
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Head-to-Head History Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Head-to-Head History dimension goes deeper. In MMA (UFC) specifically, this factor accounts for 18% of the prediction </p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Player Watch: Jones in the Spotlight</a></h2>
+            <p class="story-body">HAL's player tracking system monitors Jones through multiple dimensions: recent form (+0), health status (-10), and news sentiment. The system cross-references this player's matchup history against up</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in MMA (UFC)</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Grasso vs O'Malley: A Genuine Toss-Up</a></h2>
+            <p class="story-body">This one's too close to call. Grasso and O'Malley are evenly matched across all seven analytical dimensions.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:43.4%"></div></div><span class="dim-r">43</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:45.4%"></div></div><span class="dim-r">45</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article></div>
       </section>
-      <section class="sport" id="Boxing">
-        <div class="sport-hdr" style="--sc: #2980b9">
-          <div>
-            <div class="sport-name">Professional Boxing</div>
-            <div class="sport-acc">57.0% backtest accuracy — 4 stories</div>
-          </div>
-          <span class="sport-badge">57.0%</span>
+      <section class="sport-section" id="Boxing">
+        <div class="section-head">
+          <h2 class="section-name" style="border-left-color:#2c3e50">Professional Boxing</h2>
+          <span class="section-acc">46.0% accuracy &middot; 4 stories</span>
         </div>
-        <div class="grid">
-        <div class="card" style="border-top: 3px solid #2980b9">
-          <div class="card-meta">
-            <span class="card-cat">&#128214; deep_dive</span>
-          </div>
-          <h3 class="card-title">Beyond the Score: Why Head-to-Head History Matters</h3>
-          <div class="card-body">Most sports predictions fail because they only look at team-level averages. HAL's Head-to-Head History dimension goes deeper. In Professional Boxing specifically, this factor accounts for 18% of the prediction weight. Unlike conventional models that treat every match as a independent event, this dimension captures patterns that repeat across seasons — the same player matchups, venue biases, and pressure responses that human analysts intuitively recognize but struggle to quantify.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #2980b9">
-          <div class="card-meta">
-            <span class="card-cat">&#128200; analysis</span>
-          </div>
-          <h3 class="card-title">How HAL's Multi-Dimensional Model Is Performing in Professional Boxing</h3>
-          <div class="card-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player health — is currently tracking at 57.0% accuracy across the last 100 simulated matches. The model's strongest signal comes from player matchups (22% weight) and head-to-head history (18% weight), while the weakest is player health where data is often incomplete.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #2980b9">
-          <div class="card-meta">
-            <span class="card-cat">&#127939; player</span>
-          </div>
-          <h3 class="card-title">Player Watch: Usyk in the Spotlight</h3>
-          <div class="card-body">HAL's player tracking system monitors Usyk through multiple dimensions: recent form (-1), health status (+7), and news sentiment. The system cross-references this player's matchup history against upcoming opposition to identify where they hold an advantage or vulnerability. In the current cycle, their projected impact on upcoming matches is significant — the model adjusts team win probability by up to 8% based on this player's availability and form alone.</div>
-          
-        </div>
-        <div class="card" style="border-top: 3px solid #2980b9">
-          <div class="card-meta">
-            <span class="card-cat">&#128752; preview</span>
-          </div>
-          <h3 class="card-title">Joshua vs Lomachenko: A Genuine Toss-Up</h3>
-          <div class="card-body">HAL has examined this matchup through seven different analytical lenses, and the picture that emerges is nuanced.<br><br>Breaking down the key factors:<br><br>  • Head-to-Head History (weight: 18%): 67% — 3 meetings: 2 wins vs 1 — favors<br><br>  • Venue & Conditions (weight: 15%): 54% — Neutral venue; home crowd factor — favors<br><br>  • Team News & Sentiment (weight: 10%): 46% — News sentiment: Joshua (-8) vs Lomachenko (+17) — works against<br><br>With no single dimension providing a decisive signal, this match is best understood as a genuine toss-up.</div>
-          <div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:66.7%"></div></div><span class="dim-r">67</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.2%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:46.0%"></div></div><span class="dim-r">46</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
-        </div></div>
+        <div class="story-list">
+          <article class="story">
+            <h2 class="story-title"><a href="#">Davis vs Wilder: A Genuine Toss-Up</a></h2>
+            <p class="story-body">A slight lean toward Davis (54%). Expect this one to be decided by isolated moments rather than systemic advantage.</p>
+            <div class="dims"><h4 class="dim-h">Factor Analysis</h4><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:66.7%"></div></div><span class="dim-r">67</span></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div><span class="dim-r">54</span></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:55.4%"></div></div><span class="dim-r">55</span></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:45.2%"></div></div><span class="dim-r">45</span></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div><span class="dim-r">50</span></div></div>
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">How HAL's Multi-Dimensional Model Is Performing in Professional Boxing</a></h2>
+            <p class="story-body">HAL's seven-dimensional prediction engine — which factors in head-to-head history, individual player matchups, venue conditions, recent form, tournament pressure, team news sentiment, and player healt</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Player Watch: Fury in the Spotlight</a></h2>
+            <p class="story-body">HAL's player tracking system monitors Fury through multiple dimensions: recent form (-27), health status (+8), and news sentiment. The system cross-references this player's matchup history against upc</p>
+            
+          </article>
+          <article class="story">
+            <h2 class="story-title"><a href="#">Beyond the Score: Why Venue & Conditions Matters</a></h2>
+            <p class="story-body">Most sports predictions fail because they only look at team-level averages. HAL's Venue & Conditions dimension goes deeper. In Professional Boxing specifically, this factor accounts for 15% of the pre</p>
+            
+          </article></div>
       </section>
 
 <footer class="footer">
-  Predictions use 7 dimensions: Head-to-Head History (18%), Player Matchups (22%), Venue &amp; Conditions (15%),
-  Recent Form (15%), Tournament Context (10%), Team Sentiment (10%), Player Health (10%).<br>
-  <em>Numbers stay in the engine. Stories go on the page.</em>
+  Predictions based on 7 dimensions: Head-to-Head History (18%), Player Matchups (22%), Venue &amp; Conditions (15%),
+  Recent Form (15%), Tournament Context (10%), Sentiment (10%), Player Health (10%)
+  <br>Data: synthetic historical models &middot; PyTorch Monte Carlo engine
 </footer>
 
 </div>
 <script>
-document.querySelectorAll('.sb').forEach(b => {
-  b.addEventListener('click', () => {
-    const el = document.getElementById(b.dataset.target);
+document.querySelectorAll('.nav-link').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const el = document.querySelector(a.getAttribute('href'));
     if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
   });
 });
