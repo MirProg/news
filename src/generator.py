@@ -1,7 +1,5 @@
 """
-Dark, atmospheric story-driven layout — Lovecraft, Hitchcock, Kubrick.
-Only 2-3 featured stories on page, rest in header nav.
-No numbers overwhelming. Pure storytelling with aesthetic imagery.
+Clean editorial — only 3 stories on page, rest accessible via header nav.
 """
 
 import os, random
@@ -13,81 +11,83 @@ from src.world_sports import SPORTS
 sport_keys = ["Cricket_T20", "EPL", "NBA", "NFL", "MLB", "NHL", "TENNIS", "Rugby", "F1", "MMA", "Boxing"]
 
 SPORT_IMAGES = {
-    "Cricket_T20": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop",
-    "EPL": "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop",
-    "NBA": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop",
-    "NFL": "https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop",
-    "MLB": "https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop",
-    "NHL": "https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop",
-    "TENNIS": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop",
-    "Rugby": "https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop",
-    "F1": "https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop",
-    "MMA": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop",
-    "Boxing": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop",
+    "Cricket_T20": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=500&fit=crop",
+    "EPL": "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=800&h=500&fit=crop",
+    "NBA": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop",
+    "NFL": "https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=800&h=500&fit=crop",
+    "MLB": "https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=800&h=500&fit=crop",
+    "NHL": "https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=800&h=500&fit=crop",
+    "TENNIS": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&h=500&fit=crop",
+    "Rugby": "https://images.unsplash.com/photo-1511882150382-4210563a7220?w=800&h=500&fit=crop",
+    "F1": "https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=800&h=500&fit=crop",
+    "MMA": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&h=500&fit=crop",
+    "Boxing": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&h=500&fit=crop",
 }
 
-# Atmospheric story templates — Lovecraft / Hitchcock / Kubrick / Pratchett voice
-STORY_OPENINGS = [
-    "There is a peculiar geometry to the game that most never see. The angles between players, the silent arithmetic of positioning, the patterns that repeat across seasons like a signal buried in static. Or, to put it more simply: one team is probably going to lose, and the data knows which one.",
-    "The stadium is a study in contrasts: blinding light above, deep shadow below. In the tunnels beneath the stands, the air tastes of metal and grass. Two teams prepare to step into the arena, unaware that the outcome has already been calculated by seven dimensions of analysis — none of which account for the possibility that someone might trip over their own shoelace.",
-    "Some matches are decided before a single play unfolds. Not by fate, nor by chance — but by forces measurable and predictable to those who know where to look. The patterns are there, embedded in the data like fossils in stone, waiting to be read by someone who has way too much time on their hands and access to a very large spreadsheet.",
-    "Consider the space between two opponents at the moment of engagement. That interval, measured in fractions of a second and degrees of angle, contains more information about the outcome than any pundit's intuition. The machine sees it. The crowd feels it. The players, statistically speaking, are mostly just hoping nobody makes a really embarrassing mistake on live television.",
-    "There is a threshold beyond which measurement becomes prediction. Beyond that threshold lie the seven dimensions — a framework that maps not just what happened, but what will happen. And what will happen tonight has been mapped with unsettling precision, assuming the universe doesn't decide to throw in a rogue gust of wind just to keep things interesting.",
-    "The ordinary observer sees a game. The trained eye sees a chain of causality stretching back years — past meetings, venue histories, atmospheric conditions, the accumulated weight of every similar moment that came before. Tonight is not an isolated event. It never was. Though the post-match analysis will still find a way to blame the referee.",
-    "Something is about to unfold on the field. The air has that quality — that anticipation that precedes the irreversible. Every factor has been weighed. Every variable accounted for. The only thing left is the event itself, and the quiet, unshakeable knowledge that sport has a sense of humor.",
+OPENINGS = [
+    "There is a peculiar geometry to the game that most never see. One of these teams is going to lose. The other one is going to win. The data has reached a conclusion, though it is not especially emotional about it.",
+    "Beneath the stadium, in corridors where the concrete never quite dries, two teams prepare. They are unaware that the outcome has been calculated across seven dimensions of analysis. They are also unaware that pigeons sometimes land on the field at inopportune moments. This has happened before.",
+    "Some matches are decided before they begin. Not by fate, and not by chance — but by patterns measurable to anyone willing to spend an unreasonable amount of time with spreadsheets. The data does not judge this lifestyle choice.",
+    "There is a moment before every contest when the two sides face each other. In that interval, the machine has already formed its conclusion. The players will arrive at the same conclusion eventually, though they will do it by actually playing the game, which seems unnecessarily difficult.",
+    "Beyond a certain threshold, measurement becomes prediction. The seven-dimensional framework tracks what is likely to happen next. It is reasonably confident about this. It has been wrong before, and it is aware of this fact.",
+    "The ordinary observer sees a game. The trained eye sees causality stretching back years. The truly jaded observer expects something absurd to happen regardless, because sport is fundamentally unwilling to be predictable out of spite.",
+    "The air before a match has a particular quality. Anticipation, perhaps, or the collective anxiety of everyone in the building realizing they are about to witness something that will be either brilliant or a complete disaster, with very little room in between.",
+    "The data does not experience hope or fear. It processes information and arrives at probabilities. The fact that this is more reliable than human intuition is not a compliment to the data.",
+    "Every match exists within a web of causality — past meetings, venue tendencies, atmospheric pressure, the phase of the moon. The model accounts for most of these. The moon phase is not currently included, though the possibility is being researched.",
 ]
 
 
 def _story(pred):
-    """Write an atmospheric, literary narrative — no percentages, no bullet points."""
     t1 = pred["team1"]; t2 = pred["team2"]; wp = pred["t1_win_pct"]
     dims = pred.get("dimensions", [])
     sorted_dims = sorted(dims, key=lambda d: -abs(d["value"] - 50))
 
-    opening = random.choice(STORY_OPENINGS)
+    opening = random.choice(OPENINGS)
 
     if abs(wp - 50) < 3:
         body = opening
-        body += f" This is the rare matchup where the dimensions refuse to align. {t1} and {t2} occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown. Which is its way of saying it has no idea, and you should probably just watch the game like a normal person."
+        body += f" {t1} and {t2} are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear."
     elif wp > 72:
         body = opening
-        body += f" {t1} enters this contest carrying an advantage so comprehensive it borders on the absolute. Every dimension the machine tracks — from the granular history of individual player matchups to the macro patterns of venue behavior — converges on the same conclusion."
+        body += f" {t1} has an advantage the model considers significant — a convergence across multiple dimensions that does not happen often."
         if sorted_dims:
-            d = sorted_dims[0]
-            body += f" The strongest signal radiates from {d['name'].lower()}, where the asymmetry is most pronounced. The gap between these two sides, measured across all seven axes, creates a gravitational field from which {t2} will struggle to escape. The model does not say 'upset.' The model says 'mathematically unlikely.' The model has never been to a party and does not understand the appeal of dramatic narratives."
+            body += f" The strongest signal comes from {sorted_dims[0]['name'].lower()}, where the gap is widest. The model does not use words like 'inevitable.' It uses 'probable,' and has calibrated its thresholds for the fact that improbable things happen regularly, usually right after someone declares them improbable."
     elif wp > 60:
         body = opening
-        body += f" {t1} holds a measurable advantage — not the kind that guarantees outcome, but the kind that tilts probability across enough individual moments to matter."
+        body += f" {t1} holds a measurable advantage — not absolute, but consistent."
         if len(sorted_dims) >= 2:
-            body += f" Two dimensions in particular — {sorted_dims[0]['name'].lower()} and {sorted_dims[1]['name'].lower()} — form the backbone of this edge, each contributing a subtle but persistent bias toward {t1}. In the aggregate, these biases compound into a force that {t2} must consciously overcome."
-        body += f" It is not impossible. It is merely improbable. Which, as any historian of sport will tell you, is precisely when the improbable tends to show up, grinning, with questionable fashion sense."
+            body += f" The edge comes primarily from {sorted_dims[0]['name'].lower()} and {sorted_dims[1]['name'].lower()}. They are not guarantees. They are statistical tailwinds."
+        body += f" {t2} can still win. If they do, the model will update its understanding of the world. It finds this prospect irritating."
     else:
         body = opening
-        body += f" The signal here is faint — a whisper where one might expect a voice. {t1 if wp > 50 else t2} registers barely above parity, an edge so slender it approaches the threshold of noise."
+        body += f" The signal here is faint. {t1 if wp > 50 else t2} registers barely above parity — an edge so slender it barely qualifies."
         if sorted_dims:
-            body += f" What little separation exists comes from {sorted_dims[0]['name'].lower()}, where a single dimension manages to produce just enough distinction to register."
-        body += f" Matches like these belong not to prediction, but to the chaotic and beautiful unpredictability that makes sport what it is. The model admits, in its own silent, tensorial way, that it is guessing. It hopes you will not hold this against it."
+            body += f" What little separation exists comes from {sorted_dims[0]['name'].lower()}."
+        body += f" Matches like these belong to the chaotic uncertainty that makes sport compelling. The model accepts this. It does not have to like it."
 
     if pred.get("pred_score1") is not None:
-        body += f" The projected score suggests {t1} {pred['pred_score1']:.0f}, {t2} {pred['pred_score2']:.0f}."
+        body += f" The projection: {t1} {pred['pred_score1']:.0f}, {t2} {pred['pred_score2']:.0f}."
     else:
-        body += f" The projection favors {t1 if wp > 50 else t2}, but by a margin that offers no guarantees."
+        body += f" The projection favors {t1 if wp > 50 else t2}, but comfortably within the margin of error that keeps sports interesting."
 
-    body += " What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate. The model is smart. But it has never once kicked a ball, swung a bat, or been hit in the face by a professional boxer. That counts for something."
+    body += " The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered."
 
     return body
 
 
-def _dim_bars(pred):
-    dims = pred.get("dimensions", []) if pred else []
-    if not dims:
-        return ""
-    bars = "".join(
-        '<div class="dim"><span class="dim-l">{}</span><div class="dim-t"><div class="dim-f" style="width:{}%"></div></div></div>'.format(
-            d["name"], d["value"])
-        for d in dims
-    )
-    return f'<div class="dims">{bars}</div>'
+def _all_stories_for(key, takes):
+    """Generate hidden story cards for all takes of a sport."""
+    html = ""
+    for t in takes:
+        pred = t.get("prediction", {})
+        body = _story(pred) if pred else t["body"].replace("\n", "<br>")
+        acc = pred.get("backtest_accuracy", "")
+        html += f"""
+      <div class="story">
+        <p class="story-title">{t['title']}</p>
+        <p class="story-body">{body}</p>
+      </div>"""
+    return html
 
 
 def generate_world_news(engine, takes, backtest_results):
@@ -96,83 +96,62 @@ def generate_world_news(engine, takes, backtest_results):
         by_sport.setdefault(t["sport"], []).append(t)
 
     timestamp = datetime.utcnow().strftime("%d %B %Y")
-    total_stories = len(takes)
 
-    # Pick top 3 most confident predictions for featured stories
-    featured = []
+    # Rank by confidence for featured
+    scored = []
     for key in sport_keys:
         if key not in engine.predictors:
             continue
         for t in by_sport.get(key, []):
             pred = t.get("prediction", {})
             conf = abs(pred.get("t1_win_pct", 50) - 50) if pred else 0
-            featured.append((conf, key, t))
-    featured.sort(key=lambda x: -x[0])
+            scored.append((conf, key, t))
+    scored.sort(key=lambda x: -x[0])
 
-    # Build navigation and full sections
     nav_items = ""
-    hidden_sections = ""
+    featured = ""
+    sections = ""
 
-    for i, (conf, key, t) in enumerate(featured):
-        if i >= 3:
-            break
-
-        pred = t.get("prediction", {})
-        img = SPORT_IMAGES.get(key, "")
-        body = _story(pred) if pred else ""
-        dims = _dim_bars(pred) if pred else ""
-        spec = SPORTS[key]
-
-        story_html = f"""
-      <section class="featured" id="sport-{key}" style="--img:url('{img}')">
-        <div class="featured-bg"></div>
-        <div class="featured-content">
-          <p class="featured-label">{spec['name']}</p>
-          <h2 class="featured-title">{t['title']}</h2>
-          <div class="featured-body"><p>{body}</p></div>
-          {dims}
-        </div>
-      </section>"""
-
-        # Put first featured story on page, rest in hidden sections
-        if i == 0:
-            featured_main = story_html
-        else:
-            hidden_sections += story_html
-            nav_items += f'<a class="nav-link" href="#sport-{key}" data-key="{key}">{spec["name"]}</a>'
-
-    # Remaining sports go in hidden sections too
-    for key in sport_keys:
+    for i, (conf, key, t) in enumerate(scored):
         if key not in engine.predictors:
             continue
-        # Check if already featured
-        already = any(f[1] == key for f in featured[:3])
-        if already:
-            continue
 
-        sport_takes = by_sport.get(key, [])
-        if not sport_takes:
-            continue
-
-        img = SPORT_IMAGES.get(key, "")
-        spec = SPORTS[key]
-        t = sport_takes[0]
         pred = t.get("prediction", {})
+        img = SPORT_IMAGES.get(key, "")
         body = _story(pred) if pred else ""
-        dims = _dim_bars(pred) if pred else ""
+        spec = SPORTS[key]
 
-        hidden_sections += f"""
-      <section class="featured" id="sport-{key}" style="--img:url('{img}')">
-        <div class="featured-bg"></div>
-        <div class="featured-content">
-          <p class="featured-label">{spec['name']}</p>
-          <h2 class="featured-title">{t['title']}</h2>
-          <div class="featured-body"><p>{body}</p></div>
-          {dims}
-        </div>
-      </section>"""
+        # Section for this sport (hidden unless navigated to)
+        sport_takes = by_sport.get(key, [])
+        more_stories = _all_stories_for(key, sport_takes) if len(sport_takes) > 1 else ""
+        backtest_acc = backtest_results.get(key, {}).get("accuracy", "?")
 
-        nav_items += f'<a class="nav-link" href="#sport-{key}" data-key="{key}">{spec["name"]}</a>'
+        section_id = f"s{key}"
+
+        if i < 3:
+            # Featured section (visible on load)
+            featured += f"""
+    <section class="story-card" id="{section_id}">
+      <div class="card-img" style="background-image:url('{img}')"></div>
+      <div class="card-content">
+        <p class="card-label">{spec['name']} · {backtest_acc}% accuracy</p>
+        <h2 class="card-title">{t['title']}</h2>
+        <div class="card-body"><p>{body}</p></div>
+      </div>
+    </section>"""
+        else:
+            # Hidden section for nav-only access
+            sections += f"""
+    <section class="story-card hidden" id="{section_id}">
+      <div class="card-img" style="background-image:url('{img}')"></div>
+      <div class="card-content">
+        <p class="card-label">{spec['name']} · {backtest_acc}% accuracy</p>
+        <h2 class="card-title">{t['title']}</h2>
+        <div class="card-body"><p>{body}</p></div>
+      </div>
+    </section>"""
+
+        nav_items += f'<a class="nav-link" href="#{section_id}" data-key="{section_id}">{spec["name"]}</a>'
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -181,224 +160,142 @@ def generate_world_news(engine, takes, backtest_results):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Seven Dimensions — {timestamp}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Cormorant+Garamond:ital@0,1&display=swap" rel="stylesheet">
 <style>
 * {{ margin:0; padding:0; box-sizing:border-box; }}
-
 :root {{
-  --bg: #f7f5f0;
-  --bg2: #efede8;
-  --text: #1a1a18;
-  --text2: #5a5852;
-  --text3: #9a9892;
-  --border: #e0ddd6;
+  --bg: #f6f4ef;
+  --card-bg: #ffffff;
+  --text: #1c1b18;
+  --text2: #5c5a54;
+  --text3: #9c9a94;
+  --border: #e4e2dc;
   --red: #b83535;
-  --red-dim: rgba(184,53,53,0.08);
-  --font-body: 'Cormorant Garamond', Georgia, serif;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-ui: 'Inter', -apple-system, sans-serif;
+  --font: 'Inter', -apple-system, sans-serif;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Cormorant Garamond', Georgia, serif;
 }}
-
 body {{
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.7;
+  background: var(--bg); color: var(--text);
+  font-family: var(--body); font-size: 17px; line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }}
+.container {{ max-width: 780px; margin: 0 auto; padding: 0 20px 40px; }}
 
-.container {{ max-width: 100%; margin: 0 auto; }}
+/* Header */
+.header {{
+  padding: 20px 0; border-bottom: 1px solid var(--border);
+  margin-bottom: 20px; text-align: center;
+}}
+.header .logo {{ font-family: var(--display); font-size: 1.3rem; font-weight: 700; }}
+.header .logo em {{ font-style: italic; color: var(--red); }}
+.header .ts {{ font-size: 0.6rem; color: var(--text3); font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }}
 
-/* ═══ Top Navigation ═══ */
-.top-bar {{
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 28px;
-  background: linear-gradient(to bottom, rgba(247,245,240,0.98) 60%, transparent);
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}}
-.top-bar .logo {{
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--text);
-}}
-.top-bar .logo em {{ font-style: italic; color: var(--red); }}
-.top-bar .nav-wrap {{
-  display: flex;
-  gap: 2px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}}
-.top-bar .sep {{
-  color: var(--text3);
-  margin: 0 6px;
-  font-family: var(--font-ui);
-  font-size: 0.5rem;
+/* Nav */
+.nav {{
+  display: flex; gap: 2px; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
 }}
 .nav-link {{
-  color: var(--text3);
-  padding: 3px 8px;
-  text-decoration: none;
-  transition: color 0.2s;
-  font-size: 0.55rem;
-  letter-spacing: 0.06em;
+  font-family: var(--font); font-size: 0.6rem; font-weight: 500;
+  color: var(--text3); text-decoration: none; padding: 4px 12px;
+  border-radius: 3px; letter-spacing: 0.03em; text-transform: uppercase;
+  transition: all 0.15s;
 }}
-.nav-link:hover {{ color: var(--text); }}
-.nav-link.active {{ color: var(--red); }}
+.nav-link:hover {{ background: var(--red); color: #fff; }}
 
-/* ═══ Featured Story — Full Bleed ═══ */
-.featured {{
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  border-bottom: none;
+/* Story card */
+.story-card {{
+  display: flex; gap: 24px; margin-bottom: 24px;
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 4px; overflow: hidden;
+  transition: box-shadow 0.2s;
 }}
-.featured-bg {{
-  position: absolute;
-  inset: 0;
-  background-image: var(--img);
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.65) saturate(0.9);
-  transition: transform 0.8s ease, filter 0.8s ease;
+.story-card:hover {{ box-shadow: 0 2px 16px rgba(0,0,0,0.05); }}
+.card-img {{
+  width: 260px; min-height: 180px; flex-shrink: 0;
+  background-size: cover; background-position: center;
 }}
-.featured:hover .featured-bg {{
-  transform: scale(1.02);
-  filter: brightness(0.7) saturate(1);
+.card-content {{ padding: 18px 22px 18px 0; }}
+.card-label {{
+  font-family: var(--font); font-size: 0.5rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); margin-bottom: 4px;
 }}
-.featured::after {{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(247,245,240,0.95) 0%, rgba(247,245,240,0.15) 45%, rgba(247,245,240,0.3) 100%);
-  pointer-events: none;
+.card-title {{
+  font-family: var(--display); font-size: 1.15rem; font-weight: 700;
+  line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.01em;
 }}
-.featured-content {{
-  position: relative; z-index: 2;
-  max-width: 720px;
-  padding: 60px 40px 80px;
-}}
-.featured-label {{
-  font-family: var(--font-ui);
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 8px;
-}}
-.featured-title {{
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  font-weight: 700;
-  line-height: 1.15;
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
-}}
-.featured-body p {{
-  font-size: 0.9rem;
-  line-height: 1.75;
-  color: var(--text2);
-  max-width: 620px;
-}}
-.featured-body p + p {{ margin-top: 12px; }}
+.card-body p {{ font-size: 0.85rem; color: var(--text2); line-height: 1.65; }}
 
-/* Dims */
-.dims {{
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 4px 20px;
-  max-width: 600px;
-}}
-.dim {{ display: flex; align-items: center; gap: 8px; padding: 2px 0; }}
-.dim-l {{
-  font-family: var(--font-ui);
-  font-size: 0.5rem;
-  letter-spacing: 0.05em;
-  color: var(--text3);
-  width: 70px;
-  flex-shrink: 0;
-}}
-.dim-t {{
-  flex: 1;
-  height: 2px;
-  background: var(--border);
-  overflow: hidden;
-}}
-.dim-f {{
-  height: 100%;
-  background: var(--red);
-  transition: width 1s ease;
-}}
+/* Hidden sections */
+.hidden {{ display: none; }}
 
-/* ═══ Footer ═══ */
+/* Footer */
 .footer {{
-  padding: 24px 40px 32px;
-  text-align: center;
-  font-family: var(--font-ui);
-  font-size: 0.55rem;
-  color: var(--text3);
-  letter-spacing: 0.06em;
-  line-height: 2;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border); padding: 20px 0; margin-top: 8px;
+  text-align: center; font-family: var(--font); font-size: 0.6rem; color: var(--text3);
 }}
 
-/* ═══ Responsive ═══ */
-@media(max-width:700px) {{
-  .top-bar {{ padding: 10px 16px; flex-direction: column; gap: 6px; }}
-  .top-bar .nav-wrap {{ justify-content: center; }}
-  .featured-content {{ padding: 40px 20px 60px; }}
-  .featured-title {{ font-size: 1.5rem; }}
-  .featured-body p {{ font-size: 0.85rem; }}
-  .dims {{ grid-template-columns: 1fr 1fr; }}
+@media(max-width:640px) {{
+  .story-card {{ flex-direction: column; }}
+  .card-img {{ width: 100%; height: 180px; }}
+  .card-content {{ padding: 14px 18px; }}
 }}
 </style>
 </head>
 <body>
-
-<div class="top-bar">
-  <span class="logo">The Seven <em>Dimensions</em></span>
-  <div class="nav-wrap">
-    <span class="sep">&#8212;</span>
-    {nav_items}
-    <span class="sep">&#8212;</span>
-    <span class="nav-link" style="color:var(--text3);cursor:default;">{timestamp}</span>
-  </div>
-</div>
-
 <div class="container">
 
-{featured_main}
+<div class="header">
+  <div class="logo">The Seven <em>Dimensions</em></div>
+  <div class="ts">{timestamp}</div>
+</div>
 
-{hidden_sections}
+<nav class="nav" id="nav">{nav_items}</nav>
+
+{featured}
+
+{sections}
 
 <footer class="footer">
-  Seven dimensions &middot; Head-to-Head History &middot; Player Matchups &middot; Venue &amp; Conditions &middot; Recent Form<br>
-  Tournament Context &middot; Sentiment &middot; Player Health<br>
-  <span style="color:var(--text3)">Published daily &middot; PyTorch engine &middot; {total_stories} stories</span>
+  Seven dimensions · Head-to-Head History · Player Matchups · Venue & Conditions · Recent Form ·
+  Tournament Context · Sentiment · Player Health<br>
+  <span style="color:var(--red)">Published daily</span>
 </footer>
 
 </div>
 
 <script>
 (function() {{
-  // Smooth scroll for nav links
-  document.querySelectorAll('.nav-link[href^="#"]').forEach(function(a) {{
-    a.addEventListener('click', function(e) {{
+  var links = document.querySelectorAll('.nav-link');
+  var sections = document.querySelectorAll('.story-card');
+
+  function showSection(id) {{
+    sections.forEach(function(s) {{
+      if (s.id === id) {{
+        s.classList.remove('hidden');
+      }} else {{
+        s.classList.add('hidden');
+      }}
+    }});
+  }}
+
+  links.forEach(function(link) {{
+    link.addEventListener('click', function(e) {{
       e.preventDefault();
-      var el = document.getElementById(this.getAttribute('href').slice(1));
-      if (el) el.scrollIntoView({{ behavior:'smooth', block:'start' }});
+      var id = this.getAttribute('href').slice(1);
+      showSection(id);
+      window.scrollTo({{ top: 0, behavior: 'smooth' }});
+      // Update URL hash without jump
+      history.pushState(null, '', '#' + id);
     }});
   }});
+
+  // Restore from URL hash on load
+  if (window.location.hash) {{
+    var id = window.location.hash.slice(1);
+    if (id) showSection(id);
+  }}
 }})();
 </script>
 </body>
