@@ -10,14 +10,14 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 :root {
-  --bg: #0c0c0b;
-  --bg2: #141412;
-  --text: #e8e6e0;
-  --text2: #9a9690;
-  --text3: #5a5854;
-  --border: #22211e;
-  --red: #9a2a2a;
-  --red-dim: rgba(154,42,42,0.15);
+  --bg: #f7f5f0;
+  --bg2: #efede8;
+  --text: #1a1a18;
+  --text2: #5a5852;
+  --text3: #9a9892;
+  --border: #e0ddd6;
+  --red: #b83535;
+  --red-dim: rgba(184,53,53,0.08);
   --font-body: 'Cormorant Garamond', Georgia, serif;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-ui: 'Inter', -apple-system, sans-serif;
@@ -40,7 +40,7 @@ body {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 12px 28px;
-  background: linear-gradient(to bottom, rgba(12,12,11,0.98) 60%, transparent);
+  background: linear-gradient(to bottom, rgba(247,245,240,0.98) 60%, transparent);
   font-family: var(--font-ui);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
@@ -84,7 +84,7 @@ body {
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
 }
 .featured-bg {
   position: absolute;
@@ -92,18 +92,18 @@ body {
   background-image: var(--img);
   background-size: cover;
   background-position: center;
-  filter: brightness(0.35) saturate(0.7);
+  filter: brightness(0.65) saturate(0.9);
   transition: transform 0.8s ease, filter 0.8s ease;
 }
 .featured:hover .featured-bg {
   transform: scale(1.02);
-  filter: brightness(0.4) saturate(0.8);
+  filter: brightness(0.7) saturate(1);
 }
 .featured::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(12,12,11,0.92) 0%, rgba(12,12,11,0.2) 50%, rgba(12,12,11,0.4) 100%);
+  background: linear-gradient(to top, rgba(247,245,240,0.95) 0%, rgba(247,245,240,0.15) 45%, rgba(247,245,240,0.3) 100%);
   pointer-events: none;
 }
 .featured-content {
@@ -193,7 +193,7 @@ body {
   <span class="logo">The Seven <em>Dimensions</em></span>
   <div class="nav-wrap">
     <span class="sep">&#8212;</span>
-    <a class="nav-link" href="#sport-Cricket_T20" data-key="Cricket_T20">T20 Cricket</a><a class="nav-link" href="#sport-Rugby" data-key="Rugby">Rugby Union</a><a class="nav-link" href="#sport-EPL" data-key="EPL">English Premier League</a><a class="nav-link" href="#sport-NBA" data-key="NBA">NBA Basketball</a><a class="nav-link" href="#sport-NFL" data-key="NFL">NFL Football</a><a class="nav-link" href="#sport-MLB" data-key="MLB">MLB Baseball</a><a class="nav-link" href="#sport-NHL" data-key="NHL">NHL Hockey</a><a class="nav-link" href="#sport-TENNIS" data-key="TENNIS">Tennis (ATP)</a><a class="nav-link" href="#sport-MMA" data-key="MMA">MMA (UFC)</a><a class="nav-link" href="#sport-Boxing" data-key="Boxing">Professional Boxing</a>
+    <a class="nav-link" href="#sport-MMA" data-key="MMA">MMA (UFC)</a><a class="nav-link" href="#sport-F1" data-key="F1">Formula 1</a><a class="nav-link" href="#sport-Cricket_T20" data-key="Cricket_T20">T20 Cricket</a><a class="nav-link" href="#sport-EPL" data-key="EPL">English Premier League</a><a class="nav-link" href="#sport-NBA" data-key="NBA">NBA Basketball</a><a class="nav-link" href="#sport-NFL" data-key="NFL">NFL Football</a><a class="nav-link" href="#sport-MLB" data-key="MLB">MLB Baseball</a><a class="nav-link" href="#sport-NHL" data-key="NHL">NHL Hockey</a><a class="nav-link" href="#sport-TENNIS" data-key="TENNIS">Tennis (ATP)</a><a class="nav-link" href="#sport-Boxing" data-key="Boxing">Professional Boxing</a>
     <span class="sep">&#8212;</span>
     <span class="nav-link" style="color:var(--text3);cursor:default;">21 May 2026</span>
   </div>
@@ -202,40 +202,49 @@ body {
 <div class="container">
 
 
-      <section class="featured" id="sport-F1" style="--img:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')">
-        <div class="featured-bg"></div>
-        <div class="featured-content">
-          <p class="featured-label">Formula 1</p>
-          <h2 class="featured-title">Norris vs Bottas: A Genuine Toss-Up</h2>
-          <div class="featured-body"><p>Consider the space between two opponents at the moment of engagement. That interval, measured in fractions of a second and degrees of angle, contains more information about the outcome than any pundit's intuition. The machine sees it. The crowd feels it. The players simply live it. The signal here is faint — a whisper where one might expect a voice. Norris registers barely above parity, an edge so slender it approaches the threshold of noise. What little separation exists comes from recent form (last 5), where a single dimension manages to produce just enough distinction to register. Matches like these belong not to prediction, but to the chaotic and beautiful unpredictability that makes sport what it is. The projection favors Norris, but by a margin that offers no guarantees. What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate.</p></div>
-          <div class="dims"><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:68.0%"></div></div></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:56.2%"></div></div></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div></div>
-        </div>
-      </section>
-
-
-      <section class="featured" id="sport-Cricket_T20" style="--img:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')">
-        <div class="featured-bg"></div>
-        <div class="featured-content">
-          <p class="featured-label">T20 Cricket</p>
-          <h2 class="featured-title">RR vs KKR: A Genuine Toss-Up</h2>
-          <div class="featured-body"><p>Consider the space between two opponents at the moment of engagement. That interval, measured in fractions of a second and degrees of angle, contains more information about the outcome than any pundit's intuition. The machine sees it. The crowd feels it. The players simply live it. This is the rare matchup where the dimensions refuse to align. RR and KKR occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown. The projected score suggests RR 173, KKR 171. What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate.</p></div>
-          <div class="dims"><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:62.5%"></div></div></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div></div>
-        </div>
-      </section>
       <section class="featured" id="sport-Rugby" style="--img:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')">
         <div class="featured-bg"></div>
         <div class="featured-content">
           <p class="featured-label">Rugby Union</p>
-          <h2 class="featured-title">Fiji vs Argentina: A Genuine Toss-Up</h2>
-          <div class="featured-body"><p>The ordinary observer sees a game. The trained eye sees a chain of causality stretching back years — past meetings, venue histories, atmospheric conditions, the accumulated weight of every similar moment that came before. Tonight is not an isolated event. It never was. This is the rare matchup where the dimensions refuse to align. Fiji and Argentina occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown. The projected score suggests Fiji 27, Argentina 27. What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate.</p></div>
-          <div class="dims"><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:60.0%"></div></div></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div></div>
+          <h2 class="featured-title">Scotland vs France: HAL Makes a Call</h2>
+          <div class="featured-body"><p>Something is about to unfold on the field. The air has that quality — that anticipation that precedes the irreversible. Every factor has been weighed. Every variable accounted for. The only thing left is the event itself. The signal here is faint — a whisper where one might expect a voice. France registers barely above parity, an edge so slender it approaches the threshold of noise. What little separation exists comes from head-to-head history, where a single dimension manages to produce just enough distinction to register. Matches like these belong not to prediction, but to the chaotic and beautiful unpredictability that makes sport what it is. The projected score suggests Scotland 27, France 27. What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate.</p></div>
+          <div class="dims"><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:0.0%"></div></div></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div></div>
+        </div>
+      </section>
+
+
+      <section class="featured" id="sport-MMA" style="--img:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')">
+        <div class="featured-bg"></div>
+        <div class="featured-content">
+          <p class="featured-label">MMA (UFC)</p>
+          <h2 class="featured-title">O'Malley vs Adesanya: A Genuine Toss-Up</h2>
+          <div class="featured-body"><p>There is a threshold beyond which measurement becomes prediction. Beyond that threshold lie the seven dimensions — a framework that maps not just what happened, but what will happen. And what will happen tonight has been mapped with unsettling precision. The signal here is faint — a whisper where one might expect a voice. Adesanya registers barely above parity, an edge so slender it approaches the threshold of noise. What little separation exists comes from head-to-head history, where a single dimension manages to produce just enough distinction to register. Matches like these belong not to prediction, but to the chaotic and beautiful unpredictability that makes sport what it is. The projection favors Adesanya, but by a margin that offers no guarantees. What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate.</p></div>
+          <div class="dims"><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:33.3%"></div></div></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:44.7%"></div></div></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:48.9%"></div></div></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div></div>
+        </div>
+      </section>
+      <section class="featured" id="sport-F1" style="--img:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')">
+        <div class="featured-bg"></div>
+        <div class="featured-content">
+          <p class="featured-label">Formula 1</p>
+          <h2 class="featured-title">Leclerc vs Albon: A Genuine Toss-Up</h2>
+          <div class="featured-body"><p>There is a threshold beyond which measurement becomes prediction. Beyond that threshold lie the seven dimensions — a framework that maps not just what happened, but what will happen. And what will happen tonight has been mapped with unsettling precision. This is the rare matchup where the dimensions refuse to align. Leclerc and Albon occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown. The projection favors Leclerc, but by a margin that offers no guarantees. What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate.</p></div>
+          <div class="dims"><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:59.6%"></div></div></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.4%"></div></div></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div></div>
+        </div>
+      </section>
+      <section class="featured" id="sport-Cricket_T20" style="--img:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')">
+        <div class="featured-bg"></div>
+        <div class="featured-content">
+          <p class="featured-label">T20 Cricket</p>
+          <h2 class="featured-title">How HAL's Multi-Dimensional Model Is Performing in T20 Cricket</h2>
+          <div class="featured-body"><p></p></div>
+          
         </div>
       </section>
       <section class="featured" id="sport-EPL" style="--img:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')">
         <div class="featured-bg"></div>
         <div class="featured-content">
           <p class="featured-label">English Premier League</p>
-          <h2 class="featured-title">Beyond the Score: Why Recent Form Matters</h2>
+          <h2 class="featured-title">Player Watch: De Bruyne in the Spotlight</h2>
           <div class="featured-body"><p></p></div>
           
         </div>
@@ -244,7 +253,7 @@ body {
         <div class="featured-bg"></div>
         <div class="featured-content">
           <p class="featured-label">NBA Basketball</p>
-          <h2 class="featured-title">How HAL's Multi-Dimensional Model Is Performing in NBA Basketball</h2>
+          <h2 class="featured-title">Player Watch: Giannis in the Spotlight</h2>
           <div class="featured-body"><p></p></div>
           
         </div>
@@ -253,7 +262,7 @@ body {
         <div class="featured-bg"></div>
         <div class="featured-content">
           <p class="featured-label">NFL Football</p>
-          <h2 class="featured-title">Beyond the Score: Why Recent Form Matters</h2>
+          <h2 class="featured-title">Player Watch: Allen in the Spotlight</h2>
           <div class="featured-body"><p></p></div>
           
         </div>
@@ -262,16 +271,16 @@ body {
         <div class="featured-bg"></div>
         <div class="featured-content">
           <p class="featured-label">MLB Baseball</p>
-          <h2 class="featured-title">Beyond the Score: Why Tournament Context Matters</h2>
-          <div class="featured-body"><p></p></div>
-          
+          <h2 class="featured-title">Brewers vs Twins: A Genuine Toss-Up</h2>
+          <div class="featured-body"><p>There is a peculiar geometry to the game that most never see. The angles between players, the silent arithmetic of positioning, the patterns that repeat across seasons like a signal buried in static. Tonight, that signal points toward something inevitable. This is the rare matchup where the dimensions refuse to align. Brewers and Twins occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown. The projected score suggests Brewers 4, Twins 4. What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate.</p></div>
+          <div class="dims"><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div></div>
         </div>
       </section>
       <section class="featured" id="sport-NHL" style="--img:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')">
         <div class="featured-bg"></div>
         <div class="featured-content">
           <p class="featured-label">NHL Hockey</p>
-          <h2 class="featured-title">How HAL's Multi-Dimensional Model Is Performing in NHL Hockey</h2>
+          <h2 class="featured-title">Beyond the Score: Why Recent Form Matters</h2>
           <div class="featured-body"><p></p></div>
           
         </div>
@@ -280,25 +289,16 @@ body {
         <div class="featured-bg"></div>
         <div class="featured-content">
           <p class="featured-label">Tennis (ATP)</p>
-          <h2 class="featured-title">The Tennis (ATP) Season Through HAL's Eyes</h2>
+          <h2 class="featured-title">How HAL's Multi-Dimensional Model Is Performing in Tennis (ATP)</h2>
           <div class="featured-body"><p></p></div>
           
-        </div>
-      </section>
-      <section class="featured" id="sport-MMA" style="--img:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')">
-        <div class="featured-bg"></div>
-        <div class="featured-content">
-          <p class="featured-label">MMA (UFC)</p>
-          <h2 class="featured-title">Grasso vs Aspinall: A Genuine Toss-Up</h2>
-          <div class="featured-body"><p>There is a threshold beyond which measurement becomes prediction. Beyond that threshold lie the seven dimensions — a framework that maps not just what happened, but what will happen. And what will happen tonight has been mapped with unsettling precision. This is the rare matchup where the dimensions refuse to align. Grasso and Aspinall occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown. The projection favors Aspinall, but by a margin that offers no guarantees. What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate.</p></div>
-          <div class="dims"><div class="dim"><span class="dim-l">Head-to-Head History</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Player Matchups</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Venue & Conditions</span><div class="dim-t"><div class="dim-f" style="width:54.0%"></div></div></div><div class="dim"><span class="dim-l">Recent Form (Last 5)</span><div class="dim-t"><div class="dim-f" style="width:43.7%"></div></div></div><div class="dim"><span class="dim-l">Tournament Context & Pressure</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div><div class="dim"><span class="dim-l">Team News & Sentiment</span><div class="dim-t"><div class="dim-f" style="width:50.2%"></div></div></div><div class="dim"><span class="dim-l">Player Health & Availability</span><div class="dim-t"><div class="dim-f" style="width:50.0%"></div></div></div></div>
         </div>
       </section>
       <section class="featured" id="sport-Boxing" style="--img:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')">
         <div class="featured-bg"></div>
         <div class="featured-content">
           <p class="featured-label">Professional Boxing</p>
-          <h2 class="featured-title">Beyond the Score: Why Venue & Conditions Matters</h2>
+          <h2 class="featured-title">Beyond the Score: Why Player Matchups Matters</h2>
           <div class="featured-body"><p></p></div>
           
         </div>

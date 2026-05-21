@@ -186,14 +186,14 @@ def generate_world_news(engine, takes, backtest_results):
 * {{ margin:0; padding:0; box-sizing:border-box; }}
 
 :root {{
-  --bg: #0c0c0b;
-  --bg2: #141412;
-  --text: #e8e6e0;
-  --text2: #9a9690;
-  --text3: #5a5854;
-  --border: #22211e;
-  --red: #9a2a2a;
-  --red-dim: rgba(154,42,42,0.15);
+  --bg: #f7f5f0;
+  --bg2: #efede8;
+  --text: #1a1a18;
+  --text2: #5a5852;
+  --text3: #9a9892;
+  --border: #e0ddd6;
+  --red: #b83535;
+  --red-dim: rgba(184,53,53,0.08);
   --font-body: 'Cormorant Garamond', Georgia, serif;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-ui: 'Inter', -apple-system, sans-serif;
@@ -216,7 +216,7 @@ body {{
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 12px 28px;
-  background: linear-gradient(to bottom, rgba(12,12,11,0.98) 60%, transparent);
+  background: linear-gradient(to bottom, rgba(247,245,240,0.98) 60%, transparent);
   font-family: var(--font-ui);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
@@ -260,7 +260,7 @@ body {{
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
 }}
 .featured-bg {{
   position: absolute;
@@ -268,18 +268,18 @@ body {{
   background-image: var(--img);
   background-size: cover;
   background-position: center;
-  filter: brightness(0.35) saturate(0.7);
+  filter: brightness(0.65) saturate(0.9);
   transition: transform 0.8s ease, filter 0.8s ease;
 }}
 .featured:hover .featured-bg {{
   transform: scale(1.02);
-  filter: brightness(0.4) saturate(0.8);
+  filter: brightness(0.7) saturate(1);
 }}
 .featured::after {{
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(12,12,11,0.92) 0%, rgba(12,12,11,0.2) 50%, rgba(12,12,11,0.4) 100%);
+  background: linear-gradient(to top, rgba(247,245,240,0.95) 0%, rgba(247,245,240,0.15) 45%, rgba(247,245,240,0.3) 100%);
   pointer-events: none;
 }}
 .featured-content {{
