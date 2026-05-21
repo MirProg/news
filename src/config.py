@@ -1,12 +1,11 @@
 import os
 
-SITE_NAME = "Infinite Brief"
+SITE_NAME = "Infinite Engine"
 SITE_URL = "https://your-site.com"
-SITE_DESC = "the news, but we mixed it together — AI-powered news mashups and scrollytelling briefings."
+SITE_DESC = "unprecedented sports prediction framework — PyTorch multi-model ensemble with Monte Carlo, Elo, Poisson, and Bayesian inference."
 
-ARTICLES_PER_FEED = 5
-MAX_TOTAL_ARTICLES = 30
-MAX_DAILY_GENERATED = 15
+N_SIMS = 100000
+N_SEASON_ROUNDS = 10
 
 # Priority: 1) DEEPSEEK, 2) OPENAI, 3) ANTHROPIC, 4) GOOGLE, 5) LOCAL
 _raw_deepseek = os.getenv("DEEPSEEK_API_KEY", "")
@@ -41,22 +40,4 @@ elif LOCAL_AI_ENABLED:
 else:
     AI_PROVIDER = "none"
 
-RSS_FEEDS = [
-    {"url": "https://www.artificialintelligence-news.com/feed/",          "source": "AI News"},
-    {"url": "https://venturebeat.com/feed/",                             "source": "VentureBeat"},
-    {"url": "https://techcrunch.com/feed/",                              "source": "TechCrunch"},
-    {"url": "https://www.theverge.com/rss/index.xml",                    "source": "The Verge"},
-    {"url": "https://www.wired.com/feed/rss",                            "source": "Wired"},
-    {"url": "https://arstechnica.com/feed/",                             "source": "Ars Technica"},
-    {"url": "https://www.technologyreview.com/feed/",                   "source": "MIT Tech Review"},
-    {"url": "https://feeds.feedburner.com/oreilly/radar/feed",           "source": "O'Reilly Radar"},
-    {"url": "https://blog.google/technology/ai/rss/",                   "source": "Google AI"},
-    {"url": "https://openai.com/blog/rss/",                              "source": "OpenAI"},
-    {"url": "https://news.ycombinator.com/rss",                          "source": "Hacker News"},
-    {"url": "https://www.zdnet.com/news/rss.xml",                        "source": "ZDNet"},
-    {"url": "https://www.cnbc.com/id/100727362/device/rss/rss.html",     "source": "CNBC Tech"},
-    {"url": "https://www.reuters.com/technology/arc/outboundfeeds/rss/", "source": "Reuters Tech"},
-]
 
-NEWSAPI_KEY = os.getenv("NEWSAPI_KEY", "")
-NEWSAPI_ENABLED = bool(NEWSAPI_KEY)

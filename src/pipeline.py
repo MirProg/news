@@ -1,18 +1,13 @@
 #!/usr/bin/env python3
 """
-Infinite Brief pipeline:
-1. Fetch articles from RSS feeds
-2. Download full article text
-3. Deduplicate (same stories from different sources)
-4. Rewrite with AI (OpenAI/Anthropic) or local AI (transformers)
-5. Multi-perspective reasoning (analyst / strategist / contrarian / prediction)
-6. Extract keywords for SEO
-7. Trend tracking across hourly runs
-8. Generate executive briefing + trend analysis
-9. Mash stories together (HAL-powered crossovers)
-10. Generate interactive static HTML site
+Infinite Engine Pipeline:
+1. Run PyTorch Monte Carlo simulations across NBA/NFL/EPL/MLB
+2. Generate synthetic seasons with Elo ratings, standings, player stats
+3. Ensemble predictions (Elo + Poisson + MC + Bayesian)
+4. Self-calibration tracking
+5. Generate analytics dashboard
 
-Runs 24/7 via GitHub Actions cron (every hour).
+Runs 24/7 via GitHub Actions cron.
 """
 
 import os
@@ -21,87 +16,48 @@ import sys
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
 
-from src.fetcher import fetch_all
-from src.content_fetcher import fetch_all_texts
-from src.dedup import deduplicate
-from src.ai_writer import generate_all
-from src.local_ai import summarize as local_summarize
-from src.config import LOCAL_AI_ENABLED
-from src.reasoning import analyze_all
-from src.keywords import extract_keywords
-from src.briefing import generate_briefing
-from src.trends import tag_articles
-from src.mashup import generate_mashups
-from src.generator import generate
-from src.config import MAX_DAILY_GENERATED, AI_ENABLED, MAX_TOTAL_ARTICLES
+from src.engine import InfiniteEngine
+
 
 def main():
     print("=" * 60)
-    print("Infinite Brief — HAL-powered news mashups & scrollytelling")
+    print("  INFINITE ENGINE — Unprecedented Sports Prediction Framework")
+    print("  PyTorch Multi-Model Ensemble | Elo | Monte Carlo | Poisson | Bayesian")
     print("=" * 60)
 
     os.makedirs(os.path.join(HERE, "output"), exist_ok=True)
     os.makedirs(os.path.join(HERE, "data"), exist_ok=True)
 
-    print("\n[1/10] Fetching RSS feeds...")
-    articles = fetch_all()
-    print(f"  Found {len(articles)} articles")
+    print("\n[1/2] Running Infinite Engine simulations...")
+    engine = InfiniteEngine()
+    results = engine.run(n_season_rounds=10, n_sims=100000)
 
-    if not articles:
-        print("  No articles found. Skipping.")
-        return
+    total_sims = results.get('total_simulations', 0)
+    total_preds = len(engine.calibration.history)
+    n_leagues = len(results.get('leagues', {}))
 
-    print(f"\n[2/10] Fetching article images (top {MAX_DAILY_GENERATED})...")
-    articles = fetch_all_texts(articles, max_articles=10)
-    img_count = sum(1 for a in articles if a.get("image_url"))
-    print(f"  Found {img_count} images")
+    print(f"  {n_leagues} leagues simulated")
+    print(f"  {total_sims:,} Monte Carlo trials")
+    print(f"  {total_preds} ensemble predictions")
+    print(f"  Brier score: {results['calibration']['brier_score']}")
+    print(f"  Avg prediction error: {results['calibration']['avg_error']}")
 
-    print(f"\n[3/10] Deduplicating semantically...")
-    articles = deduplicate(articles)
-    print(f"  {len(articles)} unique articles remaining")
+    print("\n[2/2] Generating analytics dashboard...")
+    from src.generator import generate_dashboard
+    out_path = generate_dashboard(results, engine)
 
-    print(f"\n[4/10] Rewriting articles...")
-    if LOCAL_AI_ENABLED:
-        print(f"  Using local AI (transformers)...")
-        for a in articles:
-            a["ai_content"] = local_summarize(a.get("full_text", "")) or a.get("summary_raw", "")
-    elif AI_ENABLED:
-        print(f"  Using cloud AI ({MAX_DAILY_GENERATED} max)...")
-        articles = generate_all(articles[:MAX_DAILY_GENERATED])
-    else:
-        print(f"  No AI — fetching full text for site content...")
-        for a in articles:
-            a["ai_content"] = a.get("full_text", "") or a.get("summary_raw", "")
+    print(f"\n  Dashboard generated: {out_path}")
 
-    print(f"\n[5/10] Multi-perspective reasoning (analyst/strategist/contrarian/prediction)...")
-    articles = analyze_all(articles)
-
-    print(f"\n[6/10] Extracting keywords...")
-    for a in articles:
-        a["keywords"] = extract_keywords(f"{a['title']} {a.get('summary_raw', '')}", top_n=5)
-
-    print(f"\n[7/10] Trend tracking across hourly runs...")
-    articles = tag_articles(articles)
-    hot_count = sum(1 for a in articles if a.get("trend") == "hot")
-    print(f"  {hot_count} hot/trending stories identified")
-
-    print(f"\n[8/10] Generating executive briefing & trend analysis...")
-    briefing = generate_briefing(articles)
-    if briefing:
-        print("  Briefing generated")
-    else:
-        print("  Briefing skipped (no AI)")
-
-    print(f"\n[9/10] Mashing stories together...")
-    mashups = generate_mashups(articles, max_mashups=15)
-    print(f"  HAL cooked up {len(mashups)} mashups")
-
-    print(f"\n[10/10] Generating static site...")
-    generate(articles, briefing_raw=briefing, mashups=mashups)
+    # Print top predictions
+    print("\n  Top Predictions:")
+    for league, data in results['leagues'].items():
+        for g in data['upcoming'][:2]:
+            print(f"    {g['home']} vs {g['away']}: {g['ensemble_win_pct']}% (conf: {g['confidence']}%)")
 
     print("\n" + "=" * 60)
-    print(f"Done. {len(articles)} articles published.")
+    print("  Engine running. Predictions online.")
     print("=" * 60)
+
 
 if __name__ == "__main__":
     main()
