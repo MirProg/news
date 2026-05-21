@@ -8,6 +8,7 @@ openai>=1.0.0
 anthropic>=0.30.0
 scikit-learn>=1.3.0
 nltk>=3.8.0
+google-generativeai>=0.8.0
 # Optional: uncomment for local AI (no API key needed)
 # transformers>=4.36.0
 # torch>=2.1.0

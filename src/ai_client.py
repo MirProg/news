@@ -1,4 +1,4 @@
-"""Shared AI client — lazy imports, fast failures when no API key."""
+"""Shared AI client — Google, DeepSeek, OpenAI, Anthropic."""
 
 import os
 from src.config import (
@@ -6,6 +6,7 @@ from src.config import (
     DEEPSEEK_API_KEY, DEEPSEEK_MODEL,
     OPENAI_API_KEY, OPENAI_MODEL,
     ANTHROPIC_API_KEY, ANTHROPIC_MODEL,
+    GOOGLE_API_KEY, GOOGLE_MODEL,
 )
 
 
@@ -14,6 +15,20 @@ def chat(system, user, temperature=0.7, max_tokens=1000, timeout=15, **kwargs):
         return ""
     if AI_PROVIDER == "none":
         return ""
+
+    if AI_PROVIDER == "google":
+        import google.generativeai as genai
+        genai.configure(api_key=GOOGLE_API_KEY)
+        model = genai.GenerativeModel(
+            GOOGLE_MODEL,
+            system_instruction=system,
+            generation_config=genai.GenerationConfig(
+                temperature=temperature,
+                max_output_tokens=max_tokens,
+            ),
+        )
+        resp = model.generate_content(user, request_options={"timeout": timeout})
+        return resp.text.strip()
 
     if AI_PROVIDER == "anthropic":
         import anthropic

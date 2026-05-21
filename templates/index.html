@@ -5,129 +5,135 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ site_name }} — the news, but we mixed it together</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prata&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0c0c0c;--card:#161616;--card-hover:#1e1e1e;--text:#e8e0d3;--text-dim:#6b6358;--accent:#ff6b35;--accent-glow:#ff6b3540;--teal:#00d4aa;--border:#2a2a2a;--font-mono:'DM Mono','Courier New',monospace;--font-display:'VT323','Courier New',monospace;--font-body:'Space Grotesk',system-ui,sans-serif;}
-::selection{background:var(--accent);color:#0c0c0c}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.7;-webkit-font-smoothing:antialiased;font-size:15px;min-height:100vh}
+:root{--bg:#fff;--bg-alt:#f8f8f8;--card:#fff;--card-hover:#fafafa;--text:#181818;--text-secondary:#6b6b6b;--text-muted:#a8a8a8;--accent:#1a5cff;--accent-subtle:#eef3ff;--border:#e8e8e8;--border-light:#f0f0f0;--shadow:0 1px 3px rgba(0,0,0,0.04);--shadow-hover:0 8px 24px rgba(0,0,0,0.06);--radius:8px;--font-display:'Prata',Georgia,serif;--font-sans:'Inter',-apple-system,system-ui,sans-serif;--font-mono:'DM Mono','SF Mono',monospace}
+::selection{background:var(--accent);color:#fff}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh}
 
-.container{max-width:960px;margin:0 auto;padding:0 20px}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
 
-.masthead{padding:28px 0 16px;border-bottom:2px solid var(--border);margin-bottom:24px;position:relative}
-.masthead .inner{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.logo{font-family:var(--font-display);font-size:2rem;letter-spacing:0.08em;text-decoration:none;color:var(--text);line-height:1;position:relative}
-.logo .accent{color:var(--accent)}.logo .cursor{animation:blink 1s step-end infinite}
-@keyframes blink{50%{opacity:0}}
-.masthead .tagline{font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono);margin-top:2px}
-.masthead .right{text-align:right;font-size:0.65rem;color:var(--text-dim);font-family:var(--font-mono)}
-.masthead .hal-badge{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);padding:4px 12px 4px 8px;border-radius:20px;font-size:0.7rem;color:var(--teal);font-family:var(--font-mono);margin-top:8px}
-.hal-eye{width:12px;height:12px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:0.6}50%{opacity:1}}
+.masthead{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:28px}
+.masthead .inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.logo{font-family:var(--font-display);font-size:1.4rem;text-decoration:none;color:var(--text);letter-spacing:-0.02em;line-height:1}
+.logo .accent{color:var(--accent)}
+.masthead .tagline{font-size:0.72rem;color:var(--text-muted);font-family:var(--font-mono);margin-top:2px}
+.masthead .right{display:flex;align-items:center;gap:12px;font-size:0.72rem;color:var(--text-secondary)}
+.masthead .hal-badge{display:inline-flex;align-items:center;gap:5px;background:var(--accent-subtle);color:var(--accent);padding:4px 10px;border-radius:20px;font-size:0.65rem;font-weight:500;font-family:var(--font-mono)}
+.hal-eye{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
 
-.mode-toggle{display:flex;gap:4px;margin-bottom:28px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:4px;width:fit-content}
-.mode-toggle button{background:none;border:none;color:var(--text-dim);font-family:var(--font-mono);font-size:0.8rem;padding:8px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s}
-.mode-toggle button.active{background:var(--accent);color:#0c0c0c;font-weight:700}
-.mode-toggle button:not(.active):hover{color:var(--text)}
+.mode-toggle{display:flex;gap:24px;margin-bottom:32px;border-bottom:1px solid var(--border);padding-bottom:0}
+.mode-toggle button{background:none;border:none;color:var(--text-muted);font-family:var(--font-sans);font-size:0.82rem;font-weight:500;padding:10px 0 12px;cursor:pointer;transition:all 0.15s;position:relative}
+.mode-toggle button::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform 0.2s}
+.mode-toggle button.active{color:var(--text)}.mode-toggle button.active::after{transform:scaleX(1)}
+.mode-toggle button:not(.active):hover{color:var(--text-secondary)}
 .mode{display:none}.mode.active{display:block}
 
 /* ===== READ MODE ===== */
-.narrative-hero{border-bottom:2px solid var(--border);padding-bottom:24px;margin-bottom:24px}
-.narrative-hero .kicker{font-family:var(--font-mono);font-size:0.6rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px}
-.narrative-hero h1{font-family:var(--font-display);font-size:2.8rem;font-weight:400;line-height:1.1;letter-spacing:-0.02em;margin-bottom:10px;color:var(--text)}
-.narrative-hero .meta{font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:14px}
-.narrative-hero .excerpt{font-size:0.95rem;color:var(--text);line-height:1.8;max-width:700px}
+.hero{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.hero-content .kicker{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);margin-bottom:8px}
+.hero-content h1{font-family:var(--font-display);font-size:2.2rem;font-weight:400;line-height:1.2;letter-spacing:-0.02em;margin-bottom:12px;color:var(--text)}
+.hero-content h1 a{color:var(--text);text-decoration:none}
+.hero-content h1 a:hover{color:var(--accent)}
+.hero-content .meta{font-size:0.72rem;color:var(--text-secondary);margin-bottom:12px}
+.hero-content .excerpt{font-size:0.88rem;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
+.hero-content .readmore{font-size:0.72rem;font-weight:600;color:var(--accent);text-decoration:none}
+.hero-content .readmore:hover{text-decoration:underline}
+.hero-visual{position:relative}
+.hero-visual img{width:100%;height:380px;object-fit:cover;border-radius:var(--radius);background:var(--border)}
+.hero-visual .img-label{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.75);color:#fff;font-size:0.6rem;padding:3px 10px;border-radius:4px;font-family:var(--font-mono);letter-spacing:0.06em}
 
-.reveal-section{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;margin-bottom:32px;min-height:100px}
+.reveal-section{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;margin-bottom:20px}
 .reveal-section.visible{opacity:1;transform:translateY(0)}
-.reveal-section .perspective-label{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-dim);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.reveal-section .perspective-label{font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:8px}
 .reveal-section .perspective-label .line{flex:1;height:1px;background:var(--border)}
-.reveal-section .perspective-label .icon{font-size:0.9rem}
-.reveal-section .perspective-content{font-size:0.88rem;color:var(--text);line-height:1.8;padding:16px 20px;background:var(--card);border-left:3px solid var(--accent);border-radius:0 6px 6px 0}
-.reveal-section.perspective-strategist .perspective-content{border-left-color:var(--teal)}
-.reveal-section.perspective-contrarian .perspective-content{border-left-color:#ffd23f}
+.reveal-section .perspective-content{font-size:0.88rem;color:var(--text-secondary);line-height:1.7;padding:16px 20px;background:var(--bg-alt);border-radius:var(--radius);border-left:3px solid var(--accent)}
+.reveal-section.perspective-strategist .perspective-content{border-left-color:#00aa6a}
+.reveal-section.perspective-contrarian .perspective-content{border-left-color:#f5a623}
 .reveal-section.perspective-prediction .perspective-content{border-left-color:#7c5cbf}
 
-.divider{display:flex;align-items:center;gap:12px;margin:32px 0 24px}
-.divider .label{font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-dim);white-space:nowrap}
+.divider{display:flex;align-items:center;gap:12px;margin:28px 0 20px}
+.divider .label{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--text);white-space:nowrap}
 .divider .line{flex:1;height:1px;background:var(--border)}
-.divider .count{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-dim)}
+.divider .count{font-size:0.65rem;color:var(--text-muted);font-family:var(--font-mono)}
 
-.grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
+.article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:32px}
 
-.article-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:16px;transition:all 0.2s}
-.article-card:hover{border-color:var(--accent-glow);background:var(--card-hover)}
-.article-card .meta{font-size:0.62rem;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:6px;display:flex;gap:8px;align-items:center}
-.article-card .meta .src{color:var(--accent);font-weight:700}
-.article-card .meta .tag{background:var(--accent);color:#0c0c0c;padding:1px 7px;border-radius:2px;font-size:0.55rem;font-weight:700;font-family:var(--font-body);}
-.article-card h3{font-size:0.95rem;font-weight:500;line-height:1.35;margin-bottom:6px}
+.article-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:all 0.2s}
+.article-card:hover{border-color:var(--accent);box-shadow:var(--shadow-hover)}
+.article-card .meta{font-size:0.62rem;color:var(--text-muted);margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.article-card .meta .src{font-weight:600;color:var(--accent)}
+.article-card .meta .tag{background:var(--accent);color:#fff;padding:1px 7px;border-radius:3px;font-size:0.55rem;font-weight:600}
+.article-card h3{font-size:0.92rem;font-weight:600;line-height:1.35;margin-bottom:6px}
 .article-card h3 a{color:var(--text);text-decoration:none}
 .article-card h3 a:hover{color:var(--accent)}
-.article-card .excerpt{font-size:0.78rem;color:var(--text-dim);line-height:1.6}
+.article-card .excerpt{font-size:0.78rem;color:var(--text-secondary);line-height:1.6}
 .article-card .footer{margin-top:8px;font-size:0.68rem}
-.article-card .footer a{color:var(--accent);text-decoration:none;font-family:var(--font-mono)}
+.article-card .footer a{color:var(--accent);text-decoration:none;font-weight:500}
 .article-card .footer a:hover{text-decoration:underline}
 
-.briefing-section{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:24px;margin-bottom:32px}
-.briefing-section h2{font-family:var(--font-display);font-size:1.4rem;font-weight:400;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.briefing-section h2 .badge{font-family:var(--font-mono);font-size:0.55rem;background:var(--teal);color:#0c0c0c;padding:2px 8px;border-radius:3px}
-.briefing-section .bsection{margin-bottom:12px}
-.briefing-section .bsection h3{font-family:var(--font-mono);font-size:0.62rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
-.briefing-section .bsection ul{padding-left:18px}
-.briefing-section .bsection ul li{font-size:0.82rem;color:var(--text);margin-bottom:3px}
-.briefing-section .bsection p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.briefing-card{background:var(--accent-subtle);border:1px solid var(--accent);border-radius:var(--radius);padding:24px 28px;margin-bottom:28px}
+.briefing-card h2{font-family:var(--font-display);font-size:1.1rem;font-weight:400;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.briefing-card h2 .badge{font-family:var(--font-sans);font-size:0.55rem;font-weight:600;background:var(--accent);color:#fff;padding:2px 8px;border-radius:4px;letter-spacing:0.04em}
+.briefing-card .bsection{margin-bottom:10px}
+.briefing-card .bsection h3{font-size:0.65rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px}
+.briefing-card .bsection ul{padding-left:16px}
+.briefing-card .bsection ul li{font-size:0.82rem;color:var(--text);margin-bottom:2px}
+.briefing-card .bsection p{font-size:0.82rem;color:var(--text-secondary);line-height:1.7}
 
 /* ===== PLAY MODE ===== */
-.play-intro{text-align:center;padding:20px 0 24px;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim)}
-.play-intro strong{color:var(--accent);font-weight:400}
+.play-intro{text-align:center;padding:24px 0;font-size:0.85rem;color:var(--text-secondary)}
+.play-intro strong{color:var(--accent);font-weight:600}
 
-.mash-zone{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px;padding:20px;background:var(--card);border:2px dashed var(--border);border-radius:10px;min-height:120px;transition:all 0.3s}
-.mash-zone.drag-over{border-color:var(--accent);background:var(--card-hover)}
-.slot{width:160px;min-height:70px;border:1px solid var(--border);border-radius:6px;padding:10px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono);transition:all 0.3s;cursor:default;word-break:break-word}
+.mash-zone{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px;padding:24px;background:var(--bg-alt);border:2px dashed var(--border);border-radius:var(--radius);min-height:100px;transition:all 0.2s}
+.mash-zone.drag-over{border-color:var(--accent);background:var(--accent-subtle)}
+.slot{width:180px;min-height:60px;border:1px solid var(--border);border-radius:6px;padding:10px 12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.72rem;color:var(--text-muted);font-family:var(--font-mono);transition:all 0.2s;cursor:default;word-break:break-word}
 .slot.filled{background:var(--card);border-color:var(--accent);color:var(--text)}
-.slot.filled .slot-source{font-size:0.55rem;color:var(--accent);display:block;margin-bottom:2px}
+.slot.filled .slot-source{font-size:0.55rem;color:var(--accent);font-weight:600;display:block;margin-bottom:2px}
 .slot.filled .slot-title{font-size:0.68rem;line-height:1.3}
-.operator{font-size:1.4rem;color:var(--text-dim);font-family:var(--font-display)}
-.mash-result{flex:1;min-width:180px;max-width:320px;min-height:70px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.75rem;color:var(--text-dim);font-family:var(--font-mono);background:var(--card);border:1px solid var(--border);border-radius:6px;padding:12px;transition:all 0.5s;cursor:default}
-.mash-result.populated{border-color:var(--teal);color:var(--teal);font-family:var(--font-body);font-size:0.82rem;text-align:left;color:var(--text);flex-direction:column;gap:6px;align-items:flex-start}
-.mash-result.populated .result-label{font-family:var(--font-mono);font-size:0.55rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em}
-.mash-result.populated .result-text{line-height:1.6}
-.mash-result .share-btn{margin-top:8px;font-size:0.62rem;background:var(--teal);color:#0c0c0c;border:none;padding:4px 12px;border-radius:4px;cursor:pointer;font-family:var(--font-mono);transition:opacity 0.2s;align-self:flex-start}
-.mash-result .share-btn:hover{opacity:0.8}
-.mash-result .share-btn.copied{background:var(--accent)}
+.operator{font-size:1.2rem;color:var(--text-muted)}
+.mash-result{flex:1;min-width:200px;max-width:340px;min-height:60px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.72rem;color:var(--text-muted);font-family:var(--font-mono);background:var(--card);border:1px solid var(--border);border-radius:6px;padding:12px;transition:all 0.3s;cursor:default}
+.mash-result.populated{border-color:var(--accent);color:var(--text);font-family:var(--font-sans);font-size:0.82rem;text-align:left;flex-direction:column;gap:6px;align-items:flex-start}
+.mash-result.populated .result-label{font-family:var(--font-mono);font-size:0.55rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.1em}
+.mash-result.populated .result-text{line-height:1.6;color:var(--text-secondary)}
+.mash-result .share-btn{margin-top:6px;font-size:0.62rem;background:var(--accent);color:#fff;border:none;padding:4px 12px;border-radius:4px;cursor:pointer;font-family:var(--font-mono);transition:all 0.15s}
+.mash-result .share-btn:hover{background:#0044cc}
+.mash-result .share-btn.copied{background:#00aa6a}
 
-.tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:40px}
-.tile{padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:6px;cursor:grab;transition:all 0.2s;user-select:none;position:relative}
-.tile:hover{border-color:var(--accent-glow);background:var(--card-hover);transform:translateY(-2px)}
-.tile:active{cursor:grabbing}
-.tile.dragging{opacity:0.4;border-style:dashed}
-.tile .tile-source{font-family:var(--font-mono);font-size:0.55rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px}
-.tile .tile-title{font-size:0.78rem;line-height:1.4;color:var(--text)}
-.tile .tile-hot{position:absolute;top:8px;right:8px;font-size:0.7rem}
+.tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-bottom:40px}
+.tile{padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:6px;cursor:grab;transition:all 0.15s;user-select:none;position:relative}
+.tile:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+.tile:active{cursor:grabbing;background:var(--accent-subtle)}
+.tile.dragging{opacity:0.3;border-style:dashed}
+.tile .tile-source{font-size:0.55rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px}
+.tile .tile-title{font-size:0.75rem;line-height:1.35;color:var(--text)}
+.tile .tile-hot{position:absolute;top:6px;right:6px;font-size:0.6rem}
 
-footer{padding:40px 0 60px;border-top:1px solid var(--border);text-align:center}
-footer p{font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono)}
-footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
+footer{padding:32px 0 48px;border-top:1px solid var(--border);text-align:center}
+footer p{font-size:0.72rem;color:var(--text-muted)}
+footer .hal-signature{color:var(--accent);margin-top:4px;font-size:0.65rem;font-family:var(--font-mono)}
 
-@media(max-width:700px){
-  .masthead .inner{flex-direction:column;align-items:flex-start;gap:4px}
-  .narrative-hero h1{font-size:1.8rem}
-  .grid-2col{grid-template-columns:1fr}
+@media(max-width:800px){
+  .hero{grid-template-columns:1fr;gap:20px}
+  .hero-content h1{font-size:1.6rem}
+  .hero-visual img{height:240px}
   .mash-zone{flex-direction:column;padding:16px}
-  .slot{width:100%;max-width:280px;min-height:50px}
+  .slot{width:100%;max-width:300px;min-height:44px}
   .operator{transform:rotate(90deg)}
-  .mash-result{max-width:100%;width:100%;min-height:50px}
+  .mash-result{max-width:100%;width:100%}
   .tile-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
 
-@media(prefers-color-scheme:light){
-  :root{--bg:#f5f0eb;--card:#fff;--card-hover:#fafafa;--text:#1a1a1a;--text-dim:#8a7a6a;--border:#ddd6cf;--accent:#e05a20;--accent-glow:#e05a2020;--teal:#0a9a80}
-  .masthead .hal-badge{background:var(--card);border-color:var(--border)}
-  .reveal-section .perspective-content{background:var(--card)}
-  .briefing-section{background:var(--card)}
-  .tile{background:var(--card)}
-  .mash-zone{background:var(--card)}
-  .slot.filled{background:var(--card)}
+@media(max-width:500px){
+  .container{padding:0 16px}
+  .article-grid{grid-template-columns:1fr}
+  .masthead .right .tagline{display:none}
+}
+
+@media(prefers-color-scheme:dark){
+  :root{--bg:#0a0a0a;--bg-alt:#111;--card:#161616;--card-hover:#1e1e1e;--text:#e5e5e5;--text-secondary:#888;--text-muted:#555;--accent:#4a8aff;--accent-subtle:#0d1a33;--border:#1f1f1f;--border-light:#1a1a1a;--shadow:0 1px 3px rgba(0,0,0,0.2);--shadow-hover:0 8px 24px rgba(0,0,0,0.3)}
+  .hero-visual .img-label{background:rgba(0,0,0,0.85)}
 }
 </style>
 </head>
@@ -138,20 +144,19 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
 <header class="masthead">
   <div class="inner">
     <div>
-      <a href="/" class="logo"><span class="accent">Infinite</span>Brief<span class="cursor">_</span></a>
+      <a href="/" class="logo"><span class="accent">Infinite</span> Brief</a>
       <div class="tagline">the news, but we mixed it together</div>
     </div>
-    <div class="right">{{ updated }}</div>
-  </div>
-  <div class="hal-badge">
-    <span class="hal-eye"></span>
-    editor-in-chief: HAL
+    <div class="right">
+      <span class="hal-badge"><span class="hal-eye"></span> HAL</span>
+      <span>{{ updated }}</span>
+    </div>
   </div>
 </header>
 
 <nav class="mode-toggle">
-  <button class="active" data-mode="read">📖&nbsp; Read</button>
-  <button data-mode="play">🎲&nbsp; Play</button>
+  <button class="active" data-mode="read">Read</button>
+  <button data-mode="play">Play</button>
 </nav>
 
 <!-- ===== DATA ===== -->
@@ -164,47 +169,53 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
   {% if articles %}
 
   {% set top = articles[0] %}
-  <article>
-    <div class="narrative-hero">
+  <article class="hero">
+    <div class="hero-content">
       <div class="kicker">{{ top.source }}</div>
-      <h1>{{ top.title }}</h1>
+      <h1><a href="{{ top.url }}" target="_blank" rel="noopener">{{ top.title }}</a></h1>
       <div class="meta">{{ top.date }}</div>
-      <div class="excerpt">{{ top.summary }}</div>
+      <div class="excerpt">{{ top.summary[:200] }}…</div>
+      <a class="readmore" href="{{ top.url }}" target="_blank" rel="noopener">Read original →</a>
     </div>
-
-    {% set reason = top.get('reasoning', {}) %}
-    {% if reason.get('analyst') %}
-    <div class="reveal-section perspective-analyst" data-reveal>
-      <div class="perspective-label"><span class="icon">📊</span> analyst <span class="line"></span></div>
-      <div class="perspective-content">{{ reason.analyst }}</div>
+    <div class="hero-visual">
+      {% if top.image_url %}
+      <img src="{{ top.image_url }}" alt="" loading="lazy" onerror="this.outerHTML='<div style=\'width:100%;height:380px;background:var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.7rem;font-family:var(--font-mono)\'>no image</div>'">
+      <div class="img-label">{{ top.source }}</div>
+      {% else %}
+      <div style="width:100%;height:380px;background:var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.7rem;font-family:var(--font-mono)">no image</div>
+      {% endif %}
     </div>
-    {% endif %}
-
-    {% if reason.get('strategist') %}
-    <div class="reveal-section perspective-strategist" data-reveal>
-      <div class="perspective-label"><span class="icon">🎯</span> strategist <span class="line"></span></div>
-      <div class="perspective-content">{{ reason.strategist }}</div>
-    </div>
-    {% endif %}
-
-    {% if reason.get('contrarian') %}
-    <div class="reveal-section perspective-contrarian" data-reveal>
-      <div class="perspective-label"><span class="icon">⚡</span> contrarian <span class="line"></span></div>
-      <div class="perspective-content">{{ reason.contrarian }}</div>
-    </div>
-    {% endif %}
-
-    {% if reason.get('prediction') %}
-    <div class="reveal-section perspective-prediction" data-reveal>
-      <div class="perspective-label"><span class="icon">🔮</span> prediction <span class="line"></span></div>
-      <div class="perspective-content">{{ reason.prediction }}</div>
-    </div>
-    {% endif %}
   </article>
 
+  {% set reason = top.get('reasoning', {}) %}
+  {% if reason.get('analyst') %}
+  <div class="reveal-section perspective-analyst" data-reveal>
+    <div class="perspective-label"><span>📊 Analyst</span><span class="line"></span></div>
+    <div class="perspective-content">{{ reason.analyst }}</div>
+  </div>
+  {% endif %}
+  {% if reason.get('strategist') %}
+  <div class="reveal-section perspective-strategist" data-reveal>
+    <div class="perspective-label"><span>🎯 Strategist</span><span class="line"></span></div>
+    <div class="perspective-content">{{ reason.strategist }}</div>
+  </div>
+  {% endif %}
+  {% if reason.get('contrarian') %}
+  <div class="reveal-section perspective-contrarian" data-reveal>
+    <div class="perspective-label"><span>⚡ Contrarian</span><span class="line"></span></div>
+    <div class="perspective-content">{{ reason.contrarian }}</div>
+  </div>
+  {% endif %}
+  {% if reason.get('prediction') %}
+  <div class="reveal-section perspective-prediction" data-reveal>
+    <div class="perspective-label"><span>🔮 Prediction</span><span class="line"></span></div>
+    <div class="perspective-content">{{ reason.prediction }}</div>
+  </div>
+  {% endif %}
+
   {% if briefing %}
-  <div class="briefing-section">
-    <h2>Today's Briefing <span class="badge">by HAL</span></h2>
+  <div class="briefing-card">
+    <h2><span class="badge">Briefing</span> by HAL</h2>
     {% for s in briefing %}
     <div class="bsection">
       <h3>{{ s.title }}</h3>
@@ -216,28 +227,28 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
   {% endif %}
 
   <div class="divider">
-    <span class="label">all stories</span>
+    <span class="label">All stories</span>
     <div class="line"></div>
     <span class="count">{{ articles|length }}</span>
   </div>
 
-  <div class="grid-2col">
+  <div class="article-grid">
   {% for a in articles %}
     <article class="article-card">
       <div class="meta">
         <span class="src">{{ a.source }}</span>
-        {% if a.trend == 'hot' %}<span class="tag">🔥 hot</span>{% endif %}
+        {% if a.trend == 'hot' %}<span class="tag">🔥 Hot</span>{% endif %}
         <span>{{ a.date }}</span>
       </div>
       <h3><a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.title }}</a></h3>
       <div class="excerpt">{{ a.summary[:120] }}{% if a.summary|length > 120 %}…{% endif %}</div>
-      <div class="footer"><a href="{{ a.url }}" target="_blank" rel="noopener">read original →</a></div>
+      <div class="footer"><a href="{{ a.url }}" target="_blank" rel="noopener">Read →</a></div>
     </article>
   {% endfor %}
   </div>
 
   {% else %}
-  <p style="color:var(--text-dim);font-family:var(--font-mono);text-align:center;padding:60px 0">no stories this cycle. HAL is napping.</p>
+  <p style="text-align:center;padding:80px 0;color:var(--text-muted)">No stories this cycle.</p>
   {% endif %}
 
 </section>
@@ -246,19 +257,19 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
 <section id="mode-play" class="mode">
 
   <div class="play-intro">
-    <strong>drag</strong> two stories together → see what <strong>HAL</strong> makes of the collision
+    <strong>Drag</strong> two stories together → see what <strong>HAL</strong> makes of the collision
   </div>
 
   <div class="mash-zone" id="mash-zone">
-    <div class="slot" id="slot-a" data-slot="a">drag story here</div>
+    <div class="slot" id="slot-a" data-slot="a">Drag story here</div>
     <div class="operator">+</div>
-    <div class="slot" id="slot-b" data-slot="b">drag story here</div>
+    <div class="slot" id="slot-b" data-slot="b">Drag story here</div>
     <div class="operator">=</div>
     <div class="mash-result" id="mash-result">?</div>
   </div>
 
   <div class="divider">
-    <span class="label">story tiles</span>
+    <span class="label">Story tiles</span>
     <div class="line"></div>
   </div>
 
@@ -272,17 +283,11 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
   {% endfor %}
   </div>
 
-  <footer style="border-top:none;padding-top:0">
-    <p style="font-size:0.7rem;color:var(--text-dim)">
-      only combos HAL has already imagined will work. new mashups every hour.
-    </p>
-  </footer>
-
 </section>
 
 <footer>
-  <p><span style="font-family:var(--font-display);font-size:1rem"><span style="color:var(--accent)">Infinite</span>Brief</span> — the news, but we mixed it together</p>
-  <p class="hal-signature">⋆⫸ edited by HAL ⋅ updated hourly ⫷⋆</p>
+  <p><span style="font-family:var(--font-display);font-size:0.9rem"><span style="color:var(--accent)">Infinite</span> Brief</span> — the news, but we mixed it together</p>
+  <p class="hal-signature">Updated hourly · edited by HAL</p>
 </footer>
 
 </div>
@@ -292,7 +297,6 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
   const articles = JSON.parse(document.getElementById('articles-data').textContent || '[]');
   const mashups = JSON.parse(document.getElementById('mashups-data').textContent || '[]');
 
-  // mode toggle
   const modeBtns = document.querySelectorAll('[data-mode]');
   const modes = {
     read: document.getElementById('mode-read'),
@@ -306,7 +310,6 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
     });
   });
 
-  // scrollytelling reveal
   const revealEls = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver((entries) => {
@@ -319,7 +322,6 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
     revealEls.forEach(el => el.classList.add('visible'));
   }
 
-  // ===== PLAY MODE =====
   const slotA = document.getElementById('slot-a');
   const slotB = document.getElementById('slot-b');
   const resultEl = document.getElementById('mash-result');
@@ -327,13 +329,13 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
   let slotAData = null;
   let slotBData = null;
 
-  function clearSlot(slot) {
-    slot.innerHTML = 'drag story here';
+  function clearSlot(slot, dataVar) {
+    slot.innerHTML = 'Drag story here';
     slot.classList.remove('filled');
     return null;
   }
 
-  function fillSlot(slot, article) {
+  function fillSlot(slot, article, dataVar) {
     slot.innerHTML = '<span class="slot-source">' + article.source + '</span><span class="slot-title">' + article.title + '</span>';
     slot.classList.add('filled');
     return article;
@@ -347,13 +349,13 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
     }
     const aId = parseInt(slotAData.dataset.id);
     const bId = parseInt(slotBData.dataset.id);
-    const found = mashups.find(m =>
-      (m.a_id === aId && m.b_id === bId) || (m.a_id === bId && m.b_id === aId)
-    );
+
+    const swap = mashups.find(m => (m.a_id === aId && m.b_id === bId));
+    const found = swap || mashups.find(m => (m.a_id === bId && m.b_id === aId));
+
     if (found) {
-      // track discovery
       let seen = JSON.parse(localStorage.getItem('ib_seen') || '[]');
-      const key = found.a_id + '-' + found.b_id;
+      const key = Math.min(found.a_id, found.b_id) + '-' + Math.max(found.a_id, found.b_id);
       const isNew = !seen.includes(key);
       if (isNew) {
         seen.push(key);
@@ -361,36 +363,26 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
       }
       resultEl.classList.add('populated');
       resultEl.innerHTML =
-        '<div class="result-label">' + (isNew ? '✨ first discovery!' : '⇢ HAL says') + '</div>' +
+        '<div class="result-label">' + (isNew ? 'First discovery' : 'HAL says') + '</div>' +
         '<div class="result-text">' + found.content + '</div>' +
-        '<button class="share-btn" onclick="copyMashup(this,\'' + found.content.replace(/'/g,"\\'") + '\')">share this mashup →</button>';
+        '<button class="share-btn" onclick="copyMashup(this,\'' + found.content.replace(/'/g, "\\'") + '\')">Share →</button>';
     } else {
       resultEl.classList.add('populated');
       resultEl.innerHTML =
-        '<div class="result-label">🤔 HAL hasn\'t connected these yet</div>' +
-        '<div class="result-text" style="color:var(--text-dim);font-size:0.72rem">come back after the next hourly briefing — new combos appear every cycle</div>';
+        '<div class="result-label">Not yet combined</div>' +
+        '<div class="result-text" style="color:var(--text-muted);font-size:0.72rem">New mashups appear every hour — check back soon</div>';
     }
   }
 
   function setSlot(slot, tile) {
     const art = articles[parseInt(tile.dataset.id)];
     if (!art) return;
-    fillSlot(slot, art);
     slot.dataset.id = tile.dataset.id;
-    if (slot === slotA) slotAData = tile;
-    else slotBData = tile;
+    if (slot === slotA) { slotAData = tile; fillSlot(slotA, art); }
+    else { slotBData = tile; fillSlot(slotB, art); }
     showResult();
   }
 
-  function clearBoth() {
-    slotAData = null;
-    slotBData = null;
-    clearSlot(slotA);
-    clearSlot(slotB);
-    showResult();
-  }
-
-  // Drag and drop
   const tiles = document.querySelectorAll('.tile');
   tiles.forEach(t => {
     t.addEventListener('dragstart', e => {
@@ -414,48 +406,39 @@ footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
     if (target) {
       setSlot(target, tile);
     } else {
-      // put in the first empty slot
       if (!slotAData) setSlot(slotA, tile);
       else if (!slotBData) setSlot(slotB, tile);
       else {
-        // both filled — replace slot A
-        clearSlot(slotA); slotAData = null;
-        clearSlot(slotB); slotBData = null;
+        slotAData = null; slotBData = null;
+        clearSlot(slotA); clearSlot(slotB);
         setSlot(slotA, tile);
       }
     }
   });
 
-  // click to clear a slot
-  slotA.addEventListener('click', () => { if (slotAData) { clearSlot(slotA); slotAData = null; showResult(); } });
-  slotB.addEventListener('click', () => { if (slotBData) { clearSlot(slotB); slotBData = null; showResult(); } });
+  slotA.addEventListener('click', () => { if (slotAData) { slotAData = null; clearSlot(slotA); showResult(); } });
+  slotB.addEventListener('click', () => { if (slotBData) { slotBData = null; clearSlot(slotB); showResult(); } });
 
-  // Touch support for tiles
   let draggedTile = null;
   tiles.forEach(t => {
-    t.addEventListener('touchstart', e => {
-      draggedTile = t;
-    }, { passive: true });
+    t.addEventListener('touchstart', e => { draggedTile = t; }, { passive: true });
   });
-
   document.addEventListener('touchend', e => {
     if (!draggedTile) return;
     const touch = e.changedTouches[0];
     const target = document.elementFromPoint(touch.clientX, touch.clientY);
     const slot = target && target.closest('.slot');
-    if (slot) {
-      setSlot(slot, draggedTile);
-    }
+    if (slot) setSlot(slot, draggedTile);
     draggedTile = null;
   });
 
   window.copyMashup = function(btn, text) {
-    const shareText = '🔮 Infinite Brief mashup:\n\n' + text + '\n\n— made at infinitebrief.com';
+    const shareText = 'Infinite Brief mashup:\n\n' + text.replace(/<br\s*\/?>/g, '\n') + '\n\n— infinitebrief.com';
     if (navigator.clipboard) {
       navigator.clipboard.writeText(shareText).then(() => {
-        btn.textContent = 'copied!';
+        btn.textContent = 'Copied!';
         btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'share this mashup →'; btn.classList.remove('copied'); }, 2000);
+        setTimeout(() => { btn.textContent = 'Share →'; btn.classList.remove('copied'); }, 2000);
       }).catch(() => {});
     }
   };
