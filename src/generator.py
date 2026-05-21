@@ -1,15 +1,20 @@
 """
-Kubrick/2001 news generator — cold, sterile, minimal.
-HAL 9000 speaks in editorial predictions across all world sports.
+Colorful news generator — clean, bright, editorial.
 """
 
-import os, random
+import os
 from datetime import datetime
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from src.world_sports import SPORTS
 
 sport_keys = ["Cricket_T20", "EPL", "NBA", "NFL", "MLB", "NHL", "TENNIS", "Rugby", "F1", "MMA", "Boxing"]
+
+SPORT_COLORS = {
+    "Cricket_T20": "#e67e22", "EPL": "#2ecc71", "NBA": "#e74c3c", "NFL": "#3498db",
+    "MLB": "#9b59b6", "NHL": "#1abc9c", "TENNIS": "#f1c40f", "Rugby": "#e74c3c",
+    "F1": "#e67e22", "MMA": "#c0392b", "Boxing": "#2980b9",
+}
 
 
 def _dim_bars(pred):
@@ -21,35 +26,18 @@ def _dim_bars(pred):
             d["name"], d["value"], d["value"])
         for d in dims
     )
-    return f'<div class="dims"><div class="dim-h">FACTOR ANALYSIS — 7 DIMENSIONS</div>{bars}</div>'
+    return f'<div class="dims"><div class="dim-h">FACTOR BREAKDOWN — 7 DIMENSIONS</div>{bars}</div>'
 
 
-def _narrative_kubrick(pred):
-    """Cold, clinical HAL voice for a single prediction."""
-    t1 = pred["team1"]
-    t2 = pred["team2"]
-    wp = pred["t1_win_pct"]
-    parts = []
-
+def _narrative(pred):
+    t1 = pred["team1"]; t2 = pred["team2"]; wp = pred["t1_win_pct"]
     if abs(wp - 50) < 3:
-        parts.append(f"This fixture between {t1} and {t2} resists deterministic analysis. No single factor provides sufficient signal to separate the two sides with statistical confidence. The outcome will be determined by stochastic variation within the expected range.")
-    elif wp > 72:
-        parts.append(f"HAL's composite model assigns {t1} a probability of {wp:.0f}%. The margin is decisive across multiple independent analytical dimensions. A contrary outcome would represent a statistically significant deviation from the expected distribution.")
-    elif wp > 60:
-        parts.append(f"{t1} enters with a measurable advantage ({wp:.0f}%), concentrated primarily in matchup dynamics and recent form metrics. The signal is clear but not absolute — approximately 4 in 10 simulations produce an alternative result.")
-    else:
-        parts.append(f"HAL registers a slight tilt toward {t1 if wp > 50 else t2} ({max(wp, 100-wp):.0f}%), though the margin falls within the model's noise threshold. Matches of this character typically resolve through isolated tactical events rather than systemic advantage.")
-
-    # Score projection
-    if pred.get("pred_score1") is not None:
-        parts.append(f"Projected scoreline: {t1} {pred['pred_score1']:.0f} – {pred['pred_score2']:.0f} {t2}.")
-
-    sorted_dims = sorted(pred["dimensions"], key=lambda d: -abs(d["value"] - 50))[:3]
-    if sorted_dims:
-        factors = "; ".join(f"{d['name']} ({d['story']})" for d in sorted_dims)
-        parts.append(f"Primary contributors: {factors}.")
-
-    return "\n\n".join(parts)
+        return f"This one's too close to call. {t1} and {t2} are evenly matched across all seven analytical dimensions — head-to-head history, player matchups, venue conditions, recent form, tournament context, team sentiment, and player health. Expect a tight contest."
+    if wp > 70:
+        return f"All signs point to {t1}. The model sees a clear advantage ({wp:.0f}%) driven by superior matchup dynamics and recent form. Multiple dimensions align — this is one of the most confident predictions in the current cycle."
+    if wp > 60:
+        return f"{t1} enters as the favorite ({wp:.0f}%). The edge comes primarily from individual matchups and venue familiarity, though the margin leaves room for an upset in roughly 3 out of 10 simulations."
+    return f"A slight lean toward {t1 if wp > 50 else t2} ({max(wp, 100-wp):.0f}%). This match could go either way — expect the outcome to be decided by isolated moments rather than systemic advantage."
 
 
 def generate_world_news(engine, takes, backtest_results):
@@ -57,11 +45,10 @@ def generate_world_news(engine, takes, backtest_results):
     for t in takes:
         by_sport.setdefault(t["sport"], []).append(t)
 
-    timestamp = datetime.utcnow().strftime("%Y.%m.%d — %H:%M UTC")
+    timestamp = datetime.utcnow().strftime("%B %d, %Y · %H:%M UTC")
     total_stories = len(takes)
     total_sports = len([k for k in sport_keys if k in engine.predictors])
 
-    # Sport filter buttons
     sport_btns = ""
     sections = ""
     for key in sport_keys:
@@ -69,27 +56,21 @@ def generate_world_news(engine, takes, backtest_results):
             continue
         sport_takes = by_sport.get(key, [])
         bt = backtest_results.get(key, {})
+        color = SPORT_COLORS.get(key, "#666")
 
         cards = ""
         for t in sport_takes:
             pred = t.get("prediction", {})
-
-            # Card style based on category
-            cat_colors = {
-                "preview": "var(--blue)",
-                "analysis": "var(--cyan)",
-                "player": "var(--amber)",
-                "deep_dive": "var(--red)",
-                "season": "var(--green)",
-            }
-            accent = cat_colors.get(t["category"], "var(--red)")
-
+            cat_icons = {"preview": "&#128752;", "analysis": "&#128200;", "player": "&#127939;",
+                         "deep_dive": "&#128214;", "season": "&#128200;"}
             body_html = t["body"].replace("\n", "<br>")
             dims_html = _dim_bars(pred) if pred else ""
 
             cards += f"""
-        <div class="card" data-cat="{t['category']}" style="--card-accent:{accent}">
-          <div class="card-label">{t['category'].upper()}</div>
+        <div class="card" style="border-top: 3px solid {color}">
+          <div class="card-meta">
+            <span class="card-cat">{cat_icons.get(t['category'], '&#128196;')} {t['category']}</span>
+          </div>
           <h3 class="card-title">{t['title']}</h3>
           <div class="card-body">{body_html}</div>
           {dims_html}
@@ -97,389 +78,200 @@ def generate_world_news(engine, takes, backtest_results):
 
         sections += f"""
       <section class="sport" id="{key}">
-        <div class="sport-hdr">
-          <div class="sport-name">{SPORTS[key]['name']}</div>
-          <div class="sport-meta">
-            <span>{bt.get('accuracy', '?')}% ACCURACY</span>
-            <span>{len(sport_takes)} STORIES</span>
+        <div class="sport-hdr" style="--sc: {color}">
+          <div>
+            <div class="sport-name">{SPORTS[key]['name']}</div>
+            <div class="sport-acc">{bt.get('accuracy', '?')}% backtest accuracy — {len(sport_takes)} stories</div>
           </div>
+          <span class="sport-badge">{bt.get('accuracy', '?')}%</span>
         </div>
         <div class="grid">{cards}</div>
       </section>"""
 
-        sport_btns += f'<button class="sb" data-target="{key}">{SPORTS[key]["name"]}</button>'
-
-    # Pre-generate HAL eye SVG
-    hal_eye = """<svg viewBox="0 0 120 120" class="hal-eye">
-      <circle cx="60" cy="60" r="55" fill="none" stroke="var(--red)" stroke-width="1.5" opacity="0.3"/>
-      <circle cx="60" cy="60" r="45" fill="none" stroke="var(--red)" stroke-width="1" opacity="0.4"/>
-      <circle cx="60" cy="60" r="35" fill="none" stroke="var(--red)" stroke-width="2" opacity="0.5"/>
-      <circle cx="60" cy="60" r="25" fill="none" stroke="var(--red)" stroke-width="3" opacity="0.6"/>
-      <circle cx="60" cy="60" r="15" fill="none" stroke="var(--red)" stroke-width="4" opacity="0.8"/>
-      <circle cx="60" cy="60" r="6" fill="var(--red)" opacity="0.9"/>
-      <circle cx="60" cy="60" r="3" fill="#fff" opacity="0.6">
-        <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
-      </circle>
-    </svg>"""
+        sport_btns += f'<button class="sb" data-target="{key}" style="--sc: {color}">{SPORTS[key]["name"]}</button>'
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAL 9000 — WORLD SPORTS INTELLIGENCE</title>
+<title>World Sports Predictions — Multi-Dimensional Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
 <style>
 :root {{
-  --bg: #0a0a0a;
-  --bg2: #111111;
-  --card: #141414;
-  --card2: #1a1a1a;
-  --border: #222;
-  --border2: #333;
-  --text: #d4d4d4;
-  --text2: #888;
-  --text3: #555;
-  --red: #e74c3c;
-  --red-glow: rgba(231, 76, 60, 0.15);
-  --blue: #3498db;
-  --cyan: #2ecc71;
-  --amber: #f39c12;
-  --green: #2ecc71;
-  --mono: 'Space Mono', monospace;
-  --sans: 'Inter', -apple-system, sans-serif;
+  --bg: #f5f3ef;
+  --card: #fff;
+  --card2: #faf9f6;
+  --border: #e8e5df;
+  --text: #1a1a18;
+  --text2: #6b6a66;
+  --text3: #9e9d99;
+  --font: 'Inter', -apple-system, sans-serif;
+  --display: 'Playfair Display', Georgia, serif;
+  --mono: 'SF Mono', 'SFMono-Regular', 'Consolas', monospace;
 }}
 * {{ margin:0; padding:0; box-sizing:border-box; }}
-html {{ background: var(--bg); }}
 body {{
   background: var(--bg);
   color: var(--text);
-  font-family: var(--sans);
-  font-size: 14px;
+  font-family: var(--font);
+  font-size: 15px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }}
+.container {{ max-width: 880px; margin: 0 auto; padding: 0 24px 60px; }}
 
-/* ── Star field ── */
-#stars {{
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}}
-
-/* ── Container ── */
-.container {{
-  position: relative;
-  z-index: 1;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 24px 60px;
-}}
-
-/* ── HAL Masthead ── */
+/* Masthead */
 .masthead {{
-  padding: 40px 0 24px;
-  text-align: center;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 32px;
-  position: relative;
-}}
-.masthead .eye-wrap {{
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 12px;
-  animation: pulse-glow 3s ease-in-out infinite;
-}}
-@keyframes pulse-glow {{
-  0%, 100% {{ filter: drop-shadow(0 0 6px rgba(231,76,60,0.3)); }}
-  50% {{ filter: drop-shadow(0 0 20px rgba(231,76,60,0.7)); }}
-}}
-.masthead .title {{
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.35em;
-  color: var(--red);
-  font-weight: 700;
-  margin-bottom: 4px;
-}}
-.masthead .subtitle {{
-  font-family: var(--mono);
-  font-size: 0.5rem;
-  letter-spacing: 0.15em;
-  color: var(--text2);
-}}
-.masthead .ts {{
-  font-family: var(--mono);
-  font-size: 0.45rem;
-  letter-spacing: 0.1em;
-  color: var(--text3);
-  margin-top: 8px;
-}}
-
-/* ── Sport Filter Bar ── */
-.filter {{
+  padding: 36px 0 20px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--text);
   display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 16px 0 24px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 28px;
+  justify-content: space-between;
+  align-items: flex-end;
 }}
+.masthead .logo {{
+  font-family: var(--display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}}
+.masthead .logo em {{ font-style: italic; color: #c0392b; }}
+.masthead .tagline {{ font-size: 0.7rem; color: var(--text3); font-family: var(--mono); margin-top: 2px; letter-spacing: 0.02em; }}
+.masthead .ts {{ font-size: 0.6rem; color: var(--text3); font-family: var(--mono); text-align: right; }}
+
+/* Filter */
+.filter {{ display: flex; gap: 5px; flex-wrap: wrap; padding: 14px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 28px; }}
 .sb {{
   background: var(--card);
   border: 1px solid var(--border);
   color: var(--text2);
   font-family: var(--mono);
-  font-size: 0.45rem;
-  letter-spacing: 0.05em;
-  padding: 5px 12px;
-  border-radius: 0;
+  font-size: 0.6rem;
+  padding: 5px 14px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
+  border-radius: 4px;
 }}
-.sb:hover {{
-  background: var(--card2);
-  border-color: var(--text3);
-  color: var(--text);
-}}
+.sb:hover {{ background: var(--sc, #eee); color: #fff; border-color: var(--sc, #eee); }}
 
-/* ── Backtest Overview ── */
+/* Overview */
 .overview {{
-  margin-bottom: 36px;
-  border: 1px solid var(--border);
-  padding: 20px;
-}}
-.overview-hdr {{
-  font-family: var(--mono);
-  font-size: 0.5rem;
-  letter-spacing: 0.2em;
-  color: var(--text3);
-  margin-bottom: 12px;
-}}
-.overview-grid {{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 8px;
+  margin-bottom: 32px;
 }}
 .ov-item {{
-  text-align: center;
-  padding: 8px 4px;
-  border: 1px solid var(--border);
-}}
-.ov-name {{
-  font-family: var(--mono);
-  font-size: 0.4rem;
-  color: var(--text3);
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
-}}
-.ov-acc {{
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--text);
-}}
-
-/* ── Sport Section ── */
-.sport {{
-  margin-bottom: 40px;
-}}
-.sport-hdr {{
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}}
-.sport-name {{
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  letter-spacing: 0.2em;
-  color: var(--text);
-}}
-.sport-meta {{
-  display: flex;
-  gap: 12px;
-  font-family: var(--mono);
-  font-size: 0.4rem;
-  color: var(--text3);
-  letter-spacing: 0.05em;
-}}
-
-/* ── Card Grid ── */
-.grid {{
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}}
-
-/* ── Card ── */
-.card {{
   background: var(--card);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--card-accent, var(--red));
-  padding: 20px 24px;
-  transition: border-color 0.2s, background 0.2s;
+  padding: 10px 6px;
+  text-align: center;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
 }}
-.card:hover {{
-  background: var(--card2);
-  border-color: var(--border2);
+.ov-item::before {{
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--ov-c, #ddd);
 }}
-.card-label {{
-  font-family: var(--mono);
-  font-size: 0.4rem;
-  letter-spacing: 0.15em;
-  color: var(--card-accent, var(--red));
-  margin-bottom: 4px;
+.ov-name {{ font-size: 0.55rem; color: var(--text2); font-family: var(--mono); letter-spacing: 0.03em; margin-bottom: 3px; }}
+.ov-acc {{ font-size: 1rem; font-weight: 700; font-family: var(--mono); }}
+
+/* Sport section */
+.sport {{ margin-bottom: 36px; }}
+.sport-hdr {{
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--sc, var(--border));
 }}
-.card-title {{
+.sport-name {{ font-family: var(--display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }}
+.sport-acc {{ font-size: 0.6rem; color: var(--text3); font-family: var(--mono); margin-top: 2px; }}
+.sport-badge {{
+  background: var(--sc, #eee);
+  color: #fff;
   font-family: var(--mono);
   font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  line-height: 1.3;
-  margin-bottom: 8px;
-  color: var(--text);
-}}
-.card-body {{
-  font-size: 0.68rem;
-  line-height: 1.8;
-  color: var(--text2);
-}}
-.card-body br {{
-  display: block;
-  margin-bottom: 6px;
-  content: '';
+  padding: 3px 10px;
+  border-radius: 4px;
 }}
 
-/* ── Dimension Bars ── */
-.dims {{
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 3px 16px;
-}}
-.dim-h {{
-  grid-column: 1 / -1;
-  font-family: var(--mono);
-  font-size: 0.38rem;
-  letter-spacing: 0.15em;
-  color: var(--text3);
-  margin-bottom: 4px;
-}}
-.dim {{
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 1px 0;
-}}
-.dim-l {{
-  font-family: var(--mono);
-  font-size: 0.4rem;
-  color: var(--text3);
-  width: 80px;
-  flex-shrink: 0;
-}}
-.dim-t {{
-  flex: 1;
-  height: 3px;
-  background: var(--border2);
-  border-radius: 0;
-  overflow: hidden;
-}}
-.dim-f {{
-  height: 100%;
-  background: var(--red);
-  border-radius: 0;
-}}
-.dim-r {{
-  font-family: var(--mono);
-  font-size: 0.4rem;
-  color: var(--text2);
-  width: 22px;
-  text-align: right;
-}}
+/* Grid */
+.grid {{ display: flex; flex-direction: column; gap: 14px; }}
 
-/* ── Footer ── */
+/* Card */
+.card {{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px 24px;
+  transition: box-shadow 0.2s;
+}}
+.card:hover {{ box-shadow: 0 2px 12px rgba(0,0,0,0.05); }}
+.card-meta {{ font-size: 0.6rem; color: var(--text3); font-family: var(--mono); margin-bottom: 4px; }}
+.card-cat {{ letter-spacing: 0.06em; }}
+.card-title {{ font-size: 1.05rem; font-weight: 600; line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.01em; }}
+.card-body {{ font-size: 0.82rem; color: var(--text2); line-height: 1.75; }}
+.card-body br {{ display: block; margin-bottom: 6px; content: ''; }}
+
+/* Dims */
+.dims {{ margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px 16px; }}
+.dim-h {{ grid-column: 1 / -1; font-size: 0.55rem; font-weight: 600; letter-spacing: 0.04em; color: var(--text3); margin-bottom: 4px; font-family: var(--mono); }}
+.dim {{ display: flex; align-items: center; gap: 6px; padding: 2px 0; }}
+.dim-l {{ font-size: 0.6rem; color: var(--text2); width: 90px; flex-shrink: 0; }}
+.dim-t {{ flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }}
+.dim-f {{ height: 100%; background: #c0392b; border-radius: 3px; }}
+.dim-r {{ font-size: 0.55rem; font-family: var(--mono); color: var(--text2); width: 24px; text-align: right; }}
+
+/* Footer */
 .footer {{
-  margin-top: 48px;
-  padding: 24px 0 40px;
+  margin-top: 48px; padding: 24px 0 40px;
   border-top: 1px solid var(--border);
   text-align: center;
-  font-family: var(--mono);
-  font-size: 0.4rem;
-  letter-spacing: 0.1em;
-  color: var(--text3);
-  line-height: 2;
+  font-size: 0.6rem; color: var(--text3); font-family: var(--mono);
 }}
+.footer em {{ font-style: italic; color: var(--text2); }}
 
-/* ── Responsive ── */
 @media(max-width:600px) {{
-  .sport-hdr {{ flex-direction: column; gap: 4px; }}
-  .overview-grid {{ grid-template-columns: repeat(3, 1fr); }}
-  .dims {{ grid-template-columns: 1fr; }}
+  .masthead {{ flex-direction: column; align-items: flex-start; gap: 4px; }}
+  .masthead .ts {{ text-align: left; }}
+  .overview {{ grid-template-columns: repeat(3, 1fr); }}
 }}
 </style>
 </head>
 <body>
-
-<div id="stars"></div>
-
 <div class="container">
 
 <header class="masthead">
-  <div class="eye-wrap">{hal_eye}</div>
-  <div class="title">HAL 9000</div>
-  <div class="subtitle">WORLD SPORTS INTELLIGENCE — 7 DIMENSIONAL PREDICTION ENGINE</div>
-  <div class="ts">{timestamp} · {total_stories} STORIES · {total_sports} SPORTS</div>
+  <div>
+    <div class="logo">World Sports <em>Predictions</em></div>
+    <div class="tagline">7-dimensional deep intelligence — PyTorch powered</div>
+  </div>
+  <div class="ts">{timestamp}<br>{total_stories} stories · {total_sports} sports</div>
 </header>
 
 <nav class="filter">{sport_btns}</nav>
 
 <div class="overview">
-  <div class="overview-hdr">MODEL ACCURACY — BACKTEST VALIDATION</div>
-  <div class="overview-grid">
-    {''.join(f'<div class="ov-item"><div class="ov-name">{SPORTS[k]["name"]}</div><div class="ov-acc">{backtest_results.get(k, {}).get("accuracy", "?")}%</div></div>' for k in sport_keys if k in backtest_results)}
-  </div>
+  {''.join(f'<div class="ov-item" style="--ov-c: {SPORT_COLORS.get(k, "#666")}"><div class="ov-name">{SPORTS[k]["name"]}</div><div class="ov-acc">{backtest_results.get(k, {}).get("accuracy", "?")}%</div></div>' for k in sport_keys if k in backtest_results)}
 </div>
 
 {sections}
 
 <footer class="footer">
-  H A L &nbsp; 9 0 0 0<br>
-  7 DIMENSIONS · H2H HISTORY · PLAYER MATCHUPS · VENUE &amp; CONDITIONS · RECENT FORM<br>
-  TOURNAMENT CONTEXT · TEAM SENTIMENT · PLAYER HEALTH<br>
-  <br>
-  "I am putting myself to the fullest possible use, which is all I think that any conscious entity can ever hope to do."
+  Predictions use 7 dimensions: Head-to-Head History (18%), Player Matchups (22%), Venue &amp; Conditions (15%),
+  Recent Form (15%), Tournament Context (10%), Team Sentiment (10%), Player Health (10%).<br>
+  <em>Numbers stay in the engine. Stories go on the page.</em>
 </footer>
 
 </div>
-
 <script>
-// generate static stars
-(function() {{
-  const s = document.getElementById('stars');
-  for (let i = 0; i < 120; i++) {{
-    const d = document.createElement('div');
-    const size = Math.random() * 1.5 + 0.5;
-    const x = Math.random() * 100;
-    const y = Math.random() * 100;
-    const o = Math.random() * 0.5 + 0.1;
-    d.style.cssText = 'position:absolute;left:' + x + '%;top:' + y + '%;width:' + size + 'px;height:' + size + 'px;background:rgba(255,255,255,' + o + ');border-radius:50%;';
-    s.appendChild(d);
-  }}
-}})();
-
-// sport filter scroll
 document.querySelectorAll('.sb').forEach(b => {{
   b.addEventListener('click', () => {{
     const el = document.getElementById(b.dataset.target);
@@ -487,7 +279,6 @@ document.querySelectorAll('.sb').forEach(b => {{
   }});
 }});
 </script>
-
 </body>
 </html>"""
 
