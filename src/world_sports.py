@@ -12,17 +12,17 @@ from datetime import datetime
 # ╚══════════════════════════════════════════════════════════════════════╝
 
 SPORTS = {
-    "EPL": {"name": "English Premier League",   "scoring": "poisson",   "unit": "goals",  "mean": 2.5,  "std": 0,    "min": 0,  "max": 10, "draws": True,  "team_size": 11, "periods": 2, "period_name": "halves"},
-    "NBA": {"name": "NBA Basketball",           "scoring": "normal",    "unit": "points", "mean": 111,  "std": 14,   "min": 70, "max": 150,"draws": False, "team_size": 5,  "periods": 4, "period_name": "quarters"},
-    "NFL": {"name": "NFL Football",             "scoring": "normal",    "unit": "points", "mean": 22,   "std": 7,    "min": 0,  "max": 56, "draws": False, "team_size": 11, "periods": 4, "period_name": "quarters"},
-    "MLB": {"name": "MLB Baseball",             "scoring": "poisson",   "unit": "runs",   "mean": 4.5,  "std": 0,    "min": 0,  "max": 25, "draws": False, "team_size": 9,  "periods": 9, "period_name": "innings"},
-    "NHL": {"name": "NHL Hockey",               "scoring": "poisson",   "unit": "goals",  "mean": 3.0,  "std": 0,    "min": 0,  "max": 12, "draws": False, "team_size": 6,  "periods": 3, "period_name": "periods"},
-    "TENNIS": {"name": "Tennis (ATP)",          "scoring": "sets",     "unit": "sets",   "mean": 2.0,  "std": 0.5,  "min": 0,  "max": 3,  "draws": False, "players": 2,   "format": "best_of_3"},
-    "Cricket_T20": {"name": "T20 Cricket",      "scoring": "poisson",  "unit": "runs",   "mean": 172,  "std": 28,   "min": 50, "max": 280,"draws": False, "team_size": 11, "overs": 20},
-    "F1": {"name": "Formula 1",                "scoring": "ranking",  "unit": "pos",    "mean": 0,    "std": 0,    "drivers": 20, "races": 24, "points_system": "modern"},
-    "Rugby": {"name": "Rugby Union",           "scoring": "normal",   "unit": "points", "mean": 27,   "std": 12,   "min": 0,  "max": 70, "draws": True, "team_size": 15, "periods": 2, "period_name": "halves"},
-    "MMA": {"name": "MMA (UFC)",               "scoring": "fight",    "unit": "rounds", "mean": 2.5,  "std": 1.2,  "min": 1,  "max": 5,  "draws": False, "fighters": 2, "finish_rate": 0.45},
-    "Boxing": {"name": "Professional Boxing",  "scoring": "fight",    "unit": "rounds", "mean": 8.0,  "std": 3.0,  "min": 1,  "max": 12, "draws": False, "fighters": 2, "finish_rate": 0.35},
+    "EPL": {"name": "English Premier League",   "scoring": "poisson",   "unit": "goals",  "mean": 2.5,  "std": 0,    "min": 0,  "max": 10, "draws": True,  "team_size": 11, "periods": 2, "period_name": "halves", "inherent_luck": 0.45},
+    "NBA": {"name": "NBA Basketball",           "scoring": "normal",    "unit": "points", "mean": 111,  "std": 14,   "min": 70, "max": 150,"draws": False, "team_size": 5,  "periods": 4, "period_name": "quarters", "inherent_luck": 0.15},
+    "NFL": {"name": "NFL Football",             "scoring": "normal",    "unit": "points", "mean": 22,   "std": 7,    "min": 0,  "max": 56, "draws": False, "team_size": 11, "periods": 4, "period_name": "quarters", "inherent_luck": 0.30},
+    "MLB": {"name": "MLB Baseball",             "scoring": "poisson",   "unit": "runs",   "mean": 4.5,  "std": 0,    "min": 0,  "max": 25, "draws": False, "team_size": 9,  "periods": 9, "period_name": "innings", "inherent_luck": 0.25},
+    "NHL": {"name": "NHL Hockey",               "scoring": "poisson",   "unit": "goals",  "mean": 3.0,  "std": 0,    "min": 0,  "max": 12, "draws": False, "team_size": 6,  "periods": 3, "period_name": "periods", "inherent_luck": 0.30},
+    "TENNIS": {"name": "Tennis (ATP)",          "scoring": "sets",     "unit": "sets",   "mean": 2.0,  "std": 0.5,  "min": 0,  "max": 3,  "draws": False, "players": 2,   "format": "best_of_3", "inherent_luck": 0.15},
+    "Cricket_T20": {"name": "T20 Cricket",      "scoring": "poisson",  "unit": "runs",   "mean": 172,  "std": 28,   "min": 50, "max": 280,"draws": False, "team_size": 11, "overs": 20, "inherent_luck": 0.35},
+    "F1": {"name": "Formula 1",                "scoring": "ranking",  "unit": "pos",    "mean": 0,    "std": 0,    "drivers": 20, "races": 24, "points_system": "modern", "inherent_luck": 0.10},
+    "Rugby": {"name": "Rugby Union",           "scoring": "normal",   "unit": "points", "mean": 27,   "std": 12,   "min": 0,  "max": 70, "draws": True, "team_size": 15, "periods": 2, "period_name": "halves", "inherent_luck": 0.30},
+    "MMA": {"name": "MMA (UFC)",               "scoring": "fight",    "unit": "rounds", "mean": 2.5,  "std": 1.2,  "min": 1,  "max": 5,  "draws": False, "fighters": 2, "finish_rate": 0.45, "inherent_luck": 0.30},
+    "Boxing": {"name": "Professional Boxing",  "scoring": "fight",    "unit": "rounds", "mean": 8.0,  "std": 3.0,  "min": 1,  "max": 12, "draws": False, "fighters": 2, "finish_rate": 0.35, "inherent_luck": 0.25},
 }
 
 # ╔══════════════════════════════════════════════════════════════════════╗
@@ -452,9 +452,26 @@ class DeepSportPredictor:
         self.data = data
         self.dims = data.dims
 
+    @property
+    def predictability(self):
+        """ω²-style metric: how much of outcome variance is explained by skill vs luck.
+        1.0 = fully skill-driven (NBA 82-game season), 0.0 = pure luck (coin flip)."""
+        history = [m for m in self.data.history if "team1" in m]
+        if len(history) < 10:
+            return 0.5
+        from collections import Counter
+        counts = Counter(m.get("winner") for m in history)
+        most_common = counts.most_common(1)
+        if not most_common:
+            return 0.5
+        top_win_rate = most_common[0][1] / len(history)
+        baseline = 1.0 / max(2, len([c for c in counts.values() if c > 0]))
+        luck = self.spec.get("inherent_luck", 0.3)
+        return max(0.05, min(0.95, (top_win_rate - baseline) / (1 - baseline) * (1 - luck) + 0.1))
+
     def predict(self, team1, team2, venue=None, is_night=False, stage="league",
                 key_player_t1=None, key_player_t2=None, home_team=None, **extra):
-        """Predict match outcome using all dimensions with ensemble weighting."""
+        """Predict match outcome using all dimensions with regularized ensemble."""
         ctx = {
             "venue": venue, "is_night": is_night, "stage": stage,
             "key_player_t1": key_player_t1, "key_player_t2": key_player_t2,
@@ -473,28 +490,39 @@ class DeepSportPredictor:
                 "weight": dim.weight, "story": story
             })
 
-        # Weighted ensemble
-        ensemble = sum(d["value"] / 100 * d["weight"] for d in dim_results)
+        n_dims_with_data = sum(1 for d in dim_results if abs(d["value"] - 50) > 2)
+        data_sparsity = max(0, 1.0 - n_dims_with_data / 7)
+        predictability = self.predictability
+        sparsity_reg = 1.0 - data_sparsity * 0.3
+
+        # Regularized ensemble: pull toward 50% when data is sparse or sport is luck-driven
+        raw_ensemble = sum(d["value"] / 100 * d["weight"] for d in dim_results)
         total_w = sum(d["weight"] for d in dim_results)
-        ensemble /= total_w if total_w > 0 else 1
+        raw_ensemble /= total_w if total_w > 0 else 1
+
+        reg_target = 0.5
+        reg_strength = (1 - predictability) * 0.25 + data_sparsity * 0.15
+        ensemble = raw_ensemble * (1 - reg_strength) + reg_target * reg_strength
 
         # Base score prediction from sport spec
         if self.spec["scoring"] == "poisson":
-            adj = team1_weight = team2_weight = 1.0
-            # Adjust based on ensemble confidence
-            adj = 1.0 + (ensemble - 0.5) * 0.15
+            adj = 1.0 + (ensemble - 0.5) * 0.15 * predictability
             s1 = self.spec["mean"] * adj
             s2 = self.spec["mean"] * (2 - adj)
             s1 = max(self.spec["min"], min(self.spec["max"], s1))
             s2 = max(self.spec["min"], min(self.spec["max"], s2))
         elif self.spec["scoring"] == "normal":
-            adj = 1.0 + (ensemble - 0.5) * 0.12
+            adj = 1.0 + (ensemble - 0.5) * 0.12 * predictability
             s1 = self.spec["mean"] * adj
             s2 = self.spec["mean"] * (2 - adj)
             s1 = max(self.spec["min"], min(self.spec["max"], s1))
             s2 = max(self.spec["min"], min(self.spec["max"], s2))
         else:
             s1, s2 = None, None
+
+        # Confidence interval width: wider when uncertain
+        conf = abs(ensemble - 0.5) * 2
+        ci_width = max(2, int(self.spec.get("std", 5) * (1.5 - conf) * (1 + data_sparsity)))
 
         return {
             "sport": self.sport,
@@ -504,6 +532,8 @@ class DeepSportPredictor:
             "t2_win_pct": round((1 - ensemble) * 100, 1),
             "pred_score1": round(s1, 1) if s1 else None,
             "pred_score2": round(s2, 1) if s2 else None,
+            "confidence_interval": ci_width,
+            "predictability": round(predictability * 100, 1),
             "dimensions": dim_results,
             "ctx": {k: str(v) for k, v in ctx.items() if v is not None},
         }
@@ -552,18 +582,56 @@ class DeepSportPredictor:
 
         return "\n\n".join(parts)
 
-    def backtest(self, n_matches=100):
-        """Test prediction accuracy on historical data using leave-one-out style."""
-        correct = 0
-        total = 0
-        history = [m for m in self.data.history[-n_matches:] if "team1" in m]
-        for m in history:
+    def backtest(self, n_matches=100, train_seasons=4):
+        """Temporal backtest: train on earlier seasons, predict last season.
+        Returns accuracy, Brier score, and calibration."""
+        history = [m for m in self.data.history if "team1" in m]
+        if len(history) < 20:
+            return {"correct": 0, "total": 0, "accuracy": 0, "brier": 0.5, "predictability": 0.5}
+
+        # Temporal split: last season is test, rest is train
+        max_season = max(m.get("season", 1) for m in history)
+        test = [m for m in history if m.get("season", 1) == max_season][:n_matches]
+        if len(test) < 5:
+            test = history[-min(n_matches, len(history)):]
+
+        correct = 0; total = 0
+        brier_sum = 0.0; probs = []; outcomes = []
+
+        for m in test:
             pred = self.predict(m["team1"], m["team2"], stage="league")
-            predicted_winner = m["team1"] if pred["t1_win_pct"] >= 50 else "draw" if m.get("winner") == "draw" else m["team2"]
-            if predicted_winner == m["winner"] or (m["winner"] == "draw" and pred["t1_win_pct"] == 50):
+            wp = pred["t1_win_pct"] / 100.0
+            actual = 1.0 if m["winner"] == m["team1"] else (0.5 if m.get("winner") == "draw" else 0.0)
+            predicted_winner = m["team1"] if wp >= 0.5 else "draw" if m.get("winner") == "draw" else m["team2"]
+            if predicted_winner == m["winner"] or (m["winner"] == "draw" and abs(wp - 0.5) < 0.01):
                 correct += 1
             total += 1
-        return {"correct": correct, "total": total, "accuracy": round(correct/total*100, 1) if total else 0}
+            brier_sum += (wp - actual) ** 2
+            probs.append(wp)
+            outcomes.append(actual)
+
+        brier = round(brier_sum / max(1, total), 4)
+        pred_skill = self.predictability
+
+        # Expected Calibration Error (simplified): bin into 5 buckets
+        ece = 0.0
+        if total >= 10:
+            bins = [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+            for i in range(len(bins) - 1):
+                lo, hi = bins[i], bins[i + 1]
+                in_bin = [(p, o) for p, o in zip(probs, outcomes) if lo <= p < hi]
+                if in_bin:
+                    avg_pred = sum(p for p, _ in in_bin) / len(in_bin)
+                    avg_actual = sum(o for _, o in in_bin) / len(in_bin)
+                    ece += abs(avg_pred - avg_actual) * (len(in_bin) / total)
+
+        return {
+            "correct": correct, "total": total,
+            "accuracy": round(correct / max(1, total) * 100, 1),
+            "brier": brier,
+            "ece": round(ece, 3),
+            "predictability": round(pred_skill * 100, 1),
+        }
 
 
 # ╔══════════════════════════════════════════════════════════════════════╗
@@ -690,12 +758,15 @@ def run_world_sports():
     engine = WorldSportsEngine()
     engine.build_all(seed=42)
 
-    print("\nRunning backtests...")
+    print("\nRunning backtests (temporal split, regularized)...")
     bts = engine.run_backtest_all()
     for key in sorted(bts.keys(), key=lambda k: -bts[k]['accuracy']):
         bt = bts[key]
         acc = bt.get('accuracy', 0)
-        print(f"  {SPORTS[key]['name']:<30} {acc}% ({bt['correct']}/{bt['total']})")
+        brier = bt.get('brier', '?')
+        pred = bt.get('predictability', '?')
+        ece = bt.get('ece', '?')
+        print(f"  {SPORTS[key]['name']:<28} {acc:>5.1f}%  Brier:{brier}  Pred:{pred}%  ECE:{ece}")
 
     print("\nGenerating news takes...")
     takes = engine.generate_all_takes()

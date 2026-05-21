@@ -28,8 +28,9 @@ def main():
 
     print("\n[2/3] Running backtest validation...")
     bts = engine.run_backtest_all()
-    for key, bt in bts.items():
-        print(f"  {SPORTS[key]['name']:<28} {bt['accuracy']:>5.1f}% ({bt['correct']}/{bt['total']})")
+    for key in sorted(bts.keys(), key=lambda k: -bts[k]['accuracy']):
+        bt = bts[key]
+        print(f"  {SPORTS[key]['name']:<28} {bt['accuracy']:>5.1f}%  Brier:{bt.get('brier', '?'):<6}  Pred:{bt.get('predictability', '?'):>4}%  ECE:{bt.get('ece', '?')}")
 
     print("\n[3/3] Generating news site...")
     takes = engine.generate_all_takes()
