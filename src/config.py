@@ -1,8 +1,8 @@
 import os
 
-SITE_NAME = "AIBrief"
+SITE_NAME = "Infinite Brief"
 SITE_URL = "https://your-site.com"
-SITE_DESC = "Daily AI & tech industry news, curated and rewritten by AI."
+SITE_DESC = "the news, but we mixed it together — AI-powered news mashups and scrollytelling briefings."
 
 ARTICLES_PER_FEED = 5
 MAX_TOTAL_ARTICLES = 30

@@ -3,771 +3,876 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIBrief — Daily AI & Tech News</title>
-<meta name="description" content="Daily AI & tech industry news, curated and rewritten by AI.">
+<title>Infinite Brief — the news, but we mixed it together</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Prata&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#fafaf9;--card:#fff;--text:#1a1a1a;--text-muted:#a3a3a3;--text-secondary:#737373;--accent:#dc2626;--accent-hover:#b91c1c;--border:#e7e5e4;--border-light:#f0f0f0;--font-sans:'Space Grotesk',system-ui,sans-serif;--font-serif:'Prata',Georgia,serif;--font-body:'Inter',system-ui,sans-serif}
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.7;-webkit-font-smoothing:antialiased;font-size:14.5px}
-.container{max-width:1120px;margin:0 auto;padding:0 20px}
+:root{--bg:#0c0c0c;--card:#161616;--card-hover:#1e1e1e;--text:#e8e0d3;--text-dim:#6b6358;--accent:#ff6b35;--accent-glow:#ff6b3540;--teal:#00d4aa;--border:#2a2a2a;--font-mono:'DM Mono','Courier New',monospace;--font-display:'VT323','Courier New',monospace;--font-body:'Space Grotesk',system-ui,sans-serif;}
+::selection{background:var(--accent);color:#0c0c0c}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.7;-webkit-font-smoothing:antialiased;font-size:15px;min-height:100vh}
 
-.masthead{padding:24px 0 16px;border-bottom:1px solid var(--border);margin-bottom:32px}
-.masthead .container{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.masthead .logo{font-family:var(--font-serif);font-size:1.6rem;font-weight:400;letter-spacing:-0.02em;text-decoration:none;color:var(--text);line-height:1}
-.masthead .logo em{font-style:normal;color:var(--accent)}
-.masthead .tagline{font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.15em;font-weight:500}
-.masthead .right{text-align:right;font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em}
+.container{max-width:960px;margin:0 auto;padding:0 20px}
 
-.hero-split{display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;margin-bottom:40px;align-items:center}
-.hero-split .hero-text .kicker{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--accent);margin-bottom:12px}
-.hero-split .hero-text h1{font-family:var(--font-serif);font-size:2.6rem;font-weight:400;line-height:1.15;letter-spacing:-0.03em;margin-bottom:14px}
-.hero-split .hero-text h1 a{color:var(--text);text-decoration:none}
-.hero-split .hero-text h1 a:hover{color:var(--accent)}
-.hero-split .hero-text .meta{font-size:0.72rem;color:var(--text-muted);margin-bottom:10px}
-.hero-split .hero-text .meta em{font-style:normal;color:var(--text-secondary);font-weight:600}
-.hero-split .hero-text .excerpt{font-family:var(--font-body);font-size:0.88rem;color:var(--text-secondary);line-height:1.8;margin-bottom:16px}
-.hero-split .hero-text .readmore{font-size:0.72rem;font-weight:600;color:var(--accent);text-decoration:none;text-transform:uppercase;letter-spacing:0.08em}
-.hero-split .hero-text .readmore:hover{text-decoration:underline}
-.hero-split .hero-visual{position:relative}
-.hero-split .hero-visual img{width:100%;height:420px;object-fit:cover;background:var(--border)}
-.hero-split .hero-visual .img-label{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:0.6rem;padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:0.08em}
+.masthead{padding:28px 0 16px;border-bottom:2px solid var(--border);margin-bottom:24px;position:relative}
+.masthead .inner{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.logo{font-family:var(--font-display);font-size:2rem;letter-spacing:0.08em;text-decoration:none;color:var(--text);line-height:1;position:relative}
+.logo .accent{color:var(--accent)}.logo .cursor{animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.masthead .tagline{font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono);margin-top:2px}
+.masthead .right{text-align:right;font-size:0.65rem;color:var(--text-dim);font-family:var(--font-mono)}
+.masthead .hal-badge{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);padding:4px 12px 4px 8px;border-radius:20px;font-size:0.7rem;color:var(--teal);font-family:var(--font-mono);margin-top:8px}
+.hal-eye{width:12px;height:12px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:0.6}50%{opacity:1}}
 
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
-.gallery .gallery-item{position:relative;overflow:hidden}
-.gallery .gallery-item img{width:100%;height:200px;object-fit:cover;background:var(--border);display:block;transition:transform 0.4s}
-.gallery .gallery-item:hover img{transform:scale(1.03)}
-.gallery .gallery-item .overlay{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(0,0,0,0.7))}
-.gallery .gallery-item .overlay .src{font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.6)}
-.gallery .gallery-item .overlay h3{font-size:0.82rem;font-weight:600;color:#fff;line-height:1.3;margin-top:2px}
-.gallery .gallery-item .overlay h3 a{color:#fff;text-decoration:none}
-.gallery .gallery-item .overlay h3 a:hover{text-decoration:underline}
+.mode-toggle{display:flex;gap:4px;margin-bottom:28px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:4px;width:fit-content}
+.mode-toggle button{background:none;border:none;color:var(--text-dim);font-family:var(--font-mono);font-size:0.8rem;padding:8px 24px;border-radius:6px;cursor:pointer;transition:all 0.2s}
+.mode-toggle button.active{background:var(--accent);color:#0c0c0c;font-weight:700}
+.mode-toggle button:not(.active):hover{color:var(--text)}
+.mode{display:none}.mode.active{display:block}
 
-.divider{display:flex;align-items:center;gap:12px;margin:24px 0 18px}
-.divider .label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);white-space:nowrap}
+/* ===== READ MODE ===== */
+.narrative-hero{border-bottom:2px solid var(--border);padding-bottom:24px;margin-bottom:24px}
+.narrative-hero .kicker{font-family:var(--font-mono);font-size:0.6rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:8px}
+.narrative-hero h1{font-family:var(--font-display);font-size:2.8rem;font-weight:400;line-height:1.1;letter-spacing:-0.02em;margin-bottom:10px;color:var(--text)}
+.narrative-hero .meta{font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:14px}
+.narrative-hero .excerpt{font-size:0.95rem;color:var(--text);line-height:1.8;max-width:700px}
+
+.reveal-section{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;margin-bottom:32px;min-height:100px}
+.reveal-section.visible{opacity:1;transform:translateY(0)}
+.reveal-section .perspective-label{font-family:var(--font-mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-dim);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.reveal-section .perspective-label .line{flex:1;height:1px;background:var(--border)}
+.reveal-section .perspective-label .icon{font-size:0.9rem}
+.reveal-section .perspective-content{font-size:0.88rem;color:var(--text);line-height:1.8;padding:16px 20px;background:var(--card);border-left:3px solid var(--accent);border-radius:0 6px 6px 0}
+.reveal-section.perspective-strategist .perspective-content{border-left-color:var(--teal)}
+.reveal-section.perspective-contrarian .perspective-content{border-left-color:#ffd23f}
+.reveal-section.perspective-prediction .perspective-content{border-left-color:#7c5cbf}
+
+.divider{display:flex;align-items:center;gap:12px;margin:32px 0 24px}
+.divider .label{font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-dim);white-space:nowrap}
 .divider .line{flex:1;height:1px;background:var(--border)}
+.divider .count{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-dim)}
 
-.grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:32px}
-.grid-2col .col{display:flex;flex-direction:column;gap:24px}
+.grid-2col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
 
-.article-card{display:grid;grid-template-columns:180px 1fr;gap:0;border-bottom:1px solid var(--border-light);padding-bottom:16px;margin-bottom:8px}
-.article-card:last-child{border-bottom:none;padding-bottom:0}
-.article-card .card-img{width:180px;height:130px;object-fit:cover;background:var(--border);border-radius:4px}
-.article-card .card-body{padding:0 0 0 20px}
-.article-card .meta{font-size:0.65rem;color:var(--text-muted);margin-bottom:4px;display:flex;gap:8px;align-items:center}
-.article-card .meta .src{font-weight:700;color:var(--accent);text-transform:uppercase;font-size:0.55rem;letter-spacing:0.1em}
-.article-card .meta .tag{background:var(--border);color:var(--text-secondary);padding:1px 7px;border-radius:2px;font-size:0.55rem;font-weight:600}
-.article-card h3{font-family:var(--font-serif);font-size:1rem;font-weight:400;line-height:1.35;margin-bottom:4px}
+.article-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:16px;transition:all 0.2s}
+.article-card:hover{border-color:var(--accent-glow);background:var(--card-hover)}
+.article-card .meta{font-size:0.62rem;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.article-card .meta .src{color:var(--accent);font-weight:700}
+.article-card .meta .tag{background:var(--accent);color:#0c0c0c;padding:1px 7px;border-radius:2px;font-size:0.55rem;font-weight:700;font-family:var(--font-body);}
+.article-card h3{font-size:0.95rem;font-weight:500;line-height:1.35;margin-bottom:6px}
 .article-card h3 a{color:var(--text);text-decoration:none}
 .article-card h3 a:hover{color:var(--accent)}
-.article-card .excerpt{font-size:0.78rem;color:var(--text-secondary);line-height:1.7}
-.article-card .card-footer{margin-top:6px;font-size:0.68rem;color:var(--text-muted)}
-.article-card .card-footer a{color:var(--accent);text-decoration:none;font-weight:500}
-.article-card .card-footer a:hover{text-decoration:underline}
+.article-card .excerpt{font-size:0.78rem;color:var(--text-dim);line-height:1.6}
+.article-card .footer{margin-top:8px;font-size:0.68rem}
+.article-card .footer a{color:var(--accent);text-decoration:none;font-family:var(--font-mono)}
+.article-card .footer a:hover{text-decoration:underline}
 
-.briefing{background:var(--card);border:1px solid var(--border);padding:28px 32px;margin-bottom:32px}
-.briefing h2{font-family:var(--font-serif);font-size:1.2rem;font-weight:400;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.briefing h2 .badge{font-family:var(--font-sans);font-size:0.55rem;font-weight:700;background:var(--accent);color:#fff;padding:2px 8px;border-radius:2px;letter-spacing:0.05em;text-transform:uppercase}
-.briefing .section{margin-bottom:10px}
-.briefing .section h3{font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px}
-.briefing .section ul{padding-left:16px}
-.briefing .section ul li{font-size:0.82rem;color:var(--text-secondary);margin-bottom:2px}
-.briefing .section p{font-size:0.82rem;color:var(--text-secondary);line-height:1.7}
+.briefing-section{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:24px;margin-bottom:32px}
+.briefing-section h2{font-family:var(--font-display);font-size:1.4rem;font-weight:400;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.briefing-section h2 .badge{font-family:var(--font-mono);font-size:0.55rem;background:var(--teal);color:#0c0c0c;padding:2px 8px;border-radius:3px}
+.briefing-section .bsection{margin-bottom:12px}
+.briefing-section .bsection h3{font-family:var(--font-mono);font-size:0.62rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}
+.briefing-section .bsection ul{padding-left:18px}
+.briefing-section .bsection ul li{font-size:0.82rem;color:var(--text);margin-bottom:3px}
+.briefing-section .bsection p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
 
-.promo{margin-bottom:32px;padding:40px 32px;text-align:center;background:var(--card);border:1px solid var(--border)}
-.promo h3{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;margin-bottom:4px}
-.promo p{font-size:0.82rem;color:var(--text-muted);margin-bottom:14px}
-.promo .btn{display:inline-block;background:var(--text);color:#fff;padding:10px 28px;font-size:0.72rem;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;transition:background 0.2s}
-.promo .btn:hover{background:var(--accent)}
+/* ===== PLAY MODE ===== */
+.play-intro{text-align:center;padding:20px 0 24px;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim)}
+.play-intro strong{color:var(--accent);font-weight:400}
 
-footer{text-align:center;padding:40px 0;font-size:0.72rem;color:var(--text-muted);border-top:1px solid var(--border);margin-top:10px}
-footer a{color:var(--text);text-decoration:none}
-footer a:hover{color:var(--accent)}
+.mash-zone{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px;padding:20px;background:var(--card);border:2px dashed var(--border);border-radius:10px;min-height:120px;transition:all 0.3s}
+.mash-zone.drag-over{border-color:var(--accent);background:var(--card-hover)}
+.slot{width:160px;min-height:70px;border:1px solid var(--border);border-radius:6px;padding:10px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono);transition:all 0.3s;cursor:default;word-break:break-word}
+.slot.filled{background:var(--card);border-color:var(--accent);color:var(--text)}
+.slot.filled .slot-source{font-size:0.55rem;color:var(--accent);display:block;margin-bottom:2px}
+.slot.filled .slot-title{font-size:0.68rem;line-height:1.3}
+.operator{font-size:1.4rem;color:var(--text-dim);font-family:var(--font-display)}
+.mash-result{flex:1;min-width:180px;max-width:320px;min-height:70px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.75rem;color:var(--text-dim);font-family:var(--font-mono);background:var(--card);border:1px solid var(--border);border-radius:6px;padding:12px;transition:all 0.5s;cursor:default}
+.mash-result.populated{border-color:var(--teal);color:var(--teal);font-family:var(--font-body);font-size:0.82rem;text-align:left;color:var(--text);flex-direction:column;gap:6px;align-items:flex-start}
+.mash-result.populated .result-label{font-family:var(--font-mono);font-size:0.55rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em}
+.mash-result.populated .result-text{line-height:1.6}
+.mash-result .share-btn{margin-top:8px;font-size:0.62rem;background:var(--teal);color:#0c0c0c;border:none;padding:4px 12px;border-radius:4px;cursor:pointer;font-family:var(--font-mono);transition:opacity 0.2s;align-self:flex-start}
+.mash-result .share-btn:hover{opacity:0.8}
+.mash-result .share-btn.copied{background:var(--accent)}
 
-@media(max-width:860px){
-  .hero-split{grid-template-columns:1fr;gap:20px}
-  .hero-split .hero-text h1{font-size:1.8rem}
-  .hero-split .hero-visual img{height:260px}
-  .gallery{grid-template-columns:1fr 1fr}
+.tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:40px}
+.tile{padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:6px;cursor:grab;transition:all 0.2s;user-select:none;position:relative}
+.tile:hover{border-color:var(--accent-glow);background:var(--card-hover);transform:translateY(-2px)}
+.tile:active{cursor:grabbing}
+.tile.dragging{opacity:0.4;border-style:dashed}
+.tile .tile-source{font-family:var(--font-mono);font-size:0.55rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:3px}
+.tile .tile-title{font-size:0.78rem;line-height:1.4;color:var(--text)}
+.tile .tile-hot{position:absolute;top:8px;right:8px;font-size:0.7rem}
+
+footer{padding:40px 0 60px;border-top:1px solid var(--border);text-align:center}
+footer p{font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono)}
+footer .hal-signature{color:var(--teal);margin-top:4px;font-size:0.65rem}
+
+@media(max-width:700px){
+  .masthead .inner{flex-direction:column;align-items:flex-start;gap:4px}
+  .narrative-hero h1{font-size:1.8rem}
   .grid-2col{grid-template-columns:1fr}
-  .article-card{grid-template-columns:120px 1fr}
-  .article-card .card-img{width:120px;height:90px}
+  .mash-zone{flex-direction:column;padding:16px}
+  .slot{width:100%;max-width:280px;min-height:50px}
+  .operator{transform:rotate(90deg)}
+  .mash-result{max-width:100%;width:100%;min-height:50px}
+  .tile-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
-@media(max-width:600px){
-  .container{padding:0 16px}
-  .gallery{grid-template-columns:1fr}
-  .article-card{grid-template-columns:100px 1fr}
-  .article-card .card-img{width:100px;height:80px}
-  .masthead .tagline,.masthead .right{display:none}
-}
-@media(prefers-color-scheme:dark){
-  :root{--bg:#0a0a0a;--card:#111;--text:#e5e5e5;--text-muted:#555;--text-secondary:#888;--border:#1f1f1f;--border-light:#1a1a1a}
-  .hero-split .hero-visual .img-label{background:rgba(0,0,0,0.85)}
+
+@media(prefers-color-scheme:light){
+  :root{--bg:#f5f0eb;--card:#fff;--card-hover:#fafafa;--text:#1a1a1a;--text-dim:#8a7a6a;--border:#ddd6cf;--accent:#e05a20;--accent-glow:#e05a2020;--teal:#0a9a80}
+  .masthead .hal-badge{background:var(--card);border-color:var(--border)}
+  .reveal-section .perspective-content{background:var(--card)}
+  .briefing-section{background:var(--card)}
+  .tile{background:var(--card)}
+  .mash-zone{background:var(--card)}
+  .slot.filled{background:var(--card)}
 }
 </style>
 </head>
 <body>
 
-<div class="masthead">
-  <div class="container">
+<div class="container">
+
+<header class="masthead">
+  <div class="inner">
     <div>
-      <a href="/" class="logo"><em>AI</em>Brief</a>
-      <div class="tagline">Daily intelligence</div>
+      <a href="/" class="logo"><span class="accent">Infinite</span>Brief<span class="cursor">_</span></a>
+      <div class="tagline">the news, but we mixed it together</div>
     </div>
-    <div class="right">May 18, 2026 at 19:46 UTC</div>
+    <div class="right">May 21, 2026 at 03:30 UTC</div>
   </div>
-</div>
-
-
-
-<div class="container">
-<div class="hero-split">
-  <div class="hero-text">
-    <div class="kicker">CNBC Tech</div>
-    <h1><a href="https://www.cnbc.com/2026/05/18/trump-iran-attack-saudi-uae-qatar-deal.html" target="_blank" rel="noopener">Trump says he's postponing 'scheduled attack of Iran tomorrow' at Middle East leaders' request</a></h1>
-    <div class="meta"><em>CNBC Tech</em> · Today</div>
-    <div class="excerpt">President Donald Trump said he is calling off a plan to attack Iran on Tuesday after the heads of three regional powers in the Middle East asked him to "hold off."…</div>
-    <a class="readmore" href="https://www.cnbc.com/2026/05/18/trump-iran-attack-saudi-uae-qatar-deal.html" target="_blank" rel="noopener">Read article →</a>
+  <div class="hal-badge">
+    <span class="hal-eye"></span>
+    editor-in-chief: HAL
   </div>
-  <div class="hero-visual">
+</header>
+
+<nav class="mode-toggle">
+  <button class="active" data-mode="read">📖&nbsp; Read</button>
+  <button data-mode="play">🎲&nbsp; Play</button>
+</nav>
+
+<!-- ===== DATA ===== -->
+<script id="articles-data" type="application/json">[{"id": 0, "title": "Samsung Electronics shares rallies 6% after union suspends strike following tentative wage deal", "source": "CNBC Tech", "url": "https://www.cnbc.com/2026/05/21/samsung-electronics-union-strike-suspended-wage-deal-bonuses.html", "image_url": "https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg", "summary": "Another round of negotiations led by South Korea's minister for labor and employment Kim Young-hoon resulted in a tentative agreement.", "trend": "new", "date": "Today", "reasoning": {"analyst": "Another round of negotiations led by South Korea's minister for labor and employment Kim Young-hoon resulted in a tentative agreement.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 1, "title": "SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum", "source": "CNBC Tech", "url": "https://www.cnbc.com/2026/05/21/softbank-asia-tech-stocks-nvidia-earnings.html", "image_url": "https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg", "summary": "SoftBank Group is closely tied to the AI boom through its stake in Arm Holdings, whose chip designs are used in AI servers and data centers powered by Nvidia systems.", "trend": "new", "date": "Today", "reasoning": {"analyst": "SoftBank Group is closely tied to the AI boom through its stake in Arm Holdings, whose chip designs are used in AI servers and data centers powered by Nvidia systems.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 2, "title": "Nvidia says it has ‘largely conceded’ China’s AI chip market to Huawei", "source": "CNBC Tech", "url": "https://www.cnbc.com/2026/05/21/nvidia-jensen-huang-china-ai-chip-market-huawei.html", "image_url": "https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg", "summary": "Nvidia CEO Jensen Huang said the company has \"largely conceded\" China's advanced artificial intelligence chip market to Huawei.", "trend": "new", "date": "Today", "reasoning": {"analyst": "Nvidia CEO Jensen Huang said the company has \"largely conceded\" China's advanced artificial intelligence chip market to Huawei.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 3, "title": "Inside India newsletter: India’s investment appeal dims as firms and funds pivot to the U.S.", "source": "CNBC Tech", "url": "https://www.cnbc.com/2026/05/21/inside-india-investors-ai-chase-us-opportunities.html", "image_url": "https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg", "summary": "AI-driven growth and 'America-first' policies are pulling global capital to the U.S., challenging India's appeal as the fastest-growing economy.", "trend": "new", "date": "Today", "reasoning": {"analyst": "AI-driven growth and 'America-first' policies are pulling global capital to the U.S., challenging India's appeal as the fastest-growing economy.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 4, "title": "Bezos defends billionaires, hypes AI, talks taxes and praises Trump in CNBC interview", "source": "CNBC Tech", "url": "https://www.cnbc.com/2026/05/20/jeff-bezos-taxes-ai-corporations-trump.html", "image_url": "", "summary": "Jeff Bezos rejected accusations that Amazon's decision to release a documentary on first lady Melania Trump was an effort to curry favor with the president.", "trend": "new", "date": "Today", "reasoning": {"analyst": "Jeff Bezos rejected accusations that Amazon's decision to release a documentary on first lady Melania Trump was an effort to curry favor with the president.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 5, "title": "What is Demand Coop and why tech workers should join one", "source": "Hacker News", "url": "https://cahootzcoops.com/blog/what-is-a-demand-coop", "image_url": "https://cahootz.coop/placeholder.jpg", "summary": "Comments", "trend": "new", "date": "Today", "reasoning": {"analyst": "Comments", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 6, "title": "Show HN: I reverse engineered Apple's video wallpapers", "source": "Hacker News", "url": "https://github.com/kageroumado/phosphene", "image_url": "https://opengraph.githubassets.com/d35b0593ca07c2bcafb49a8f1b4b312608d25a4a94cf6fe6dec573783721e485/kageroumado/phosphene", "summary": "Comments", "trend": "new", "date": "Today", "reasoning": {"analyst": "Comments", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 7, "title": "DOS Zone", "source": "Hacker News", "url": "https://dos.zone/", "image_url": "", "summary": "Comments", "trend": "new", "date": "Today", "reasoning": {"analyst": "Comments", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 8, "title": "I replaced my Remarkable with this cheaper E Ink Android tablet - and it wasn't so bad", "source": "ZDNet", "url": "https://www.zdnet.com/article/boox-go-10-3-gen-2-lumi-review/", "image_url": "https://www.zdnet.com/a/img/resize/b848d2a2326d406d53e61d77deabe559979351ba/2025/04/07/c3288510-6787-478a-8c75-f348868fca6c/img-1027.jpg?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192", "summary": "Boox's Gen-2 Go 10.3 tablet is made for power users seeking a customizable Android tablet with a backlight.", "trend": "new", "date": "Today", "reasoning": {"analyst": "Boox's Gen-2 Go 10.3 tablet is made for power users seeking a customizable Android tablet with a backlight.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 9, "title": "SpaceX Listed Grok’s ‘Spicy’ Mode as a Risk in Its IPO Filing", "source": "Wired", "url": "https://www.wired.com/story/spacex-ipo-grok-spicy-mode-risks/", "image_url": "https://media.wired.com/photos/6a0e32d330c7f349f26634db/191:100/w_1280,c_limit/Grok-Has-Over-100-Million-Monthly-Users-Business-2255064635.jpg", "summary": "The rocket company has set aside more than $500 million for potential litigation losses, in part to account for complaints alleging that Grok created sexualized images.", "trend": "new", "date": "Today", "reasoning": {"analyst": "The rocket company has set aside more than $500 million for potential litigation losses, in part to account for complaints alleging that Grok created sexualized images.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 10, "title": "SpaceX Is Spending $2.8 Billion to Buy Gas Turbines for Its AI Data Centers", "source": "Wired", "url": "https://www.wired.com/story/elon-musk-spacex-spending-gas-turbines-grok/", "image_url": "", "summary": "The investment comes as Elon Musk’s AI unit faces complaints about the carbon-emitting units and looks to become a big player in cloud computing.", "trend": "new", "date": "Today", "reasoning": {"analyst": "The investment comes as Elon Musk’s AI unit faces complaints about the carbon-emitting units and looks to become a big player in cloud computing.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 11, "title": "The Best Outdoor Deals From the REI Anniversary Sale 2026", "source": "Wired", "url": "https://www.wired.com/story/rei-anniversary-sale-2026/", "image_url": "", "summary": "It’s the best time of year to pick up all the outdoor gadgets, tents, sleeping bags, and other gear you’ll need for summer fun.", "trend": "new", "date": "Today", "reasoning": {"analyst": "It’s the best time of year to pick up all the outdoor gadgets, tents, sleeping bags, and other gear you’ll need for summer fun.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 12, "title": "A Bipartisan Amendment Would End Police License Plate Tracking Nationwide", "source": "Wired", "url": "https://www.wired.com/story/a-bipartisan-amendment-would-end-police-license-plate-tracking-nationwide/", "image_url": "", "summary": "One line tucked into a federal highway bill would strip funds from cities and states unless they kill their automated plate tracking programs—effectively banning the tech for all but toll collection.", "trend": "new", "date": "Today", "reasoning": {"analyst": "One line tucked into a federal highway bill would strip funds from cities and states unless they kill their automated plate tracking programs—effectively banning the tech for all but toll collection.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 13, "title": "The SpaceX IPO filing is filled with AI bets, Starship dreams, and Elon Musk at the center", "source": "TechCrunch", "url": "https://techcrunch.com/2026/05/20/the-spacex-ipo-filing-ai-bets-starship-dreams-elon-musk/", "image_url": "", "summary": "SpaceX has finally made the contents of its IPO filing public, weeks ahead of what is expected to be the largest IPO ever and one that will make Musk the CEO, CTO, and chairman of the board.", "trend": "new", "date": "Today", "reasoning": {"analyst": "SpaceX has finally made the contents of its IPO filing public, weeks ahead of what is expected to be the largest IPO ever and one that will make Musk the CEO, CTO, and chairman of the board.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 14, "title": "Clouted wants to take the guesswork out of making short videos go viral", "source": "TechCrunch", "url": "https://techcrunch.com/2026/05/20/clouted-wants-to-take-the-guesswork-out-of-making-short-videos-go-viral/", "image_url": "", "summary": "The video clipping startup raised a $7 million seed round led by Slow Ventures.", "trend": "new", "date": "Today", "reasoning": {"analyst": "The video clipping startup raised a $7 million seed round led by Slow Ventures.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 15, "title": "xAI burned $6.4B last year — SpaceX’s IPO filing shows why the spending is far from over", "source": "TechCrunch", "url": "https://techcrunch.com/2026/05/20/xai-burned-6-4b-last-year-spacexs-ipo-filing-shows-why-the-spending-is-far-from-over/", "image_url": "", "summary": "SpaceX's IPO filing reveals xAI lost $6.4 billion in 2025 while planning a massive Grok expansion — offering the first public look at Elon Musk's AI financials and more details about his ambitions.", "trend": "new", "date": "Today", "reasoning": {"analyst": "SpaceX's IPO filing reveals xAI lost $6.4 billion in 2025 while planning a massive Grok expansion — offering the first public look at Elon Musk's AI financials and more details about his ambitions.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 16, "title": "Famously secret about its finances, SpaceX opens its books for the first time", "source": "Ars Technica", "url": "https://arstechnica.com/space/2026/05/spacex-submits-detailed-financial-filing-ahead-of-going-public-in-june/", "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2025/10/starshipflight11pre1-1152x648.jpg", "summary": "\"We believe we have identified the largest TAM in human history.\"", "trend": "new", "date": "Today", "reasoning": {"analyst": "\"We believe we have identified the largest TAM in human history.\"", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 17, "title": "Trump admin didn't want Ebola-exposed Americans, sent them to Berlin, Prague", "source": "Ars Technica", "url": "https://arstechnica.com/health/2026/05/trump-admin-didnt-want-ebola-exposed-americans-sent-them-to-berlin-prague/", "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2026/05/GettyImages-2276659165-1152x648.jpg", "summary": "Officials denied refusing entry, but dodged questions on why Americans didn't return.", "trend": "new", "date": "Today", "reasoning": {"analyst": "Officials denied refusing entry, but dodged questions on why Americans didn't return.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 18, "title": "NASA's Psyche spacecraft returns unfamiliar views of a familiar world", "source": "Ars Technica", "url": "https://arstechnica.com/space/2026/05/nasas-psyche-spacecraft-returns-unfamiliar-views-of-a-familiar-world/", "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2026/05/1-PIA26771_Mars-crescent-pYdenxFS-1152x648-1779310114.jpg", "summary": "\"As a bonus, it captured Mars images from a rare perspective.\"", "trend": "new", "date": "Today", "reasoning": {"analyst": "\"As a bonus, it captured Mars images from a rare perspective.\"", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 19, "title": "Masters of the Universe final trailer brings the '80s nostalgia", "source": "Ars Technica", "url": "https://arstechnica.com/culture/2026/05/masters-of-the-universe-final-trailer-brings-the-80s-nostalgia/", "image_url": "https://cdn.arstechnica.net/wp-content/uploads/2026/05/heman1-1152x648.jpg", "summary": "\"You are he who will restore peace to Eternia.\"", "trend": "new", "date": "Today", "reasoning": {"analyst": "\"You are he who will restore peace to Eternia.\"", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 20, "title": "Google's Managed Agents API promises one-call deployment at the cost of execution layer control", "source": "VentureBeat", "url": "https://venturebeat.com/orchestration/googles-managed-agents-api-promises-one-call-deployment-at-the-cost-of-execution-layer-control", "image_url": "https://images.ctfassets.net/jdtwqhzvc2n1/56jT0kiqeEVuPHMFht0VT6/f33bf9f5979e611149822ec03373eb05/crimedy7_illustration_of_a_supervisor_robot_evaluating_other__35a35697-0dc1-4a73-acea-a033e99f2fac_2.png?w=300&q=30", "summary": "At Google I/O, the company unveiled Managed Agents in its Gemini API — a service that promises to collapse weeks of agent deployment work into a single API call. It&#x27;s also a sign that Google believes its ecosystem, including the newly launched Antigravity CLI, is ready to own the execution layer end-to-end.Before a single agent is written, teams are already spending days on the unglamorous work: standing up execution environments, managing sandboxes, wiring tool call infrastructure. Model providers like Anthropic have launched platforms to handle much of that work — but Google&#x27;s approach is different.Google said in a blog post that Managed Agents in the Gemini API abstracts “away the complexity so that you can focus on your product experience and agent behavior.” The service is available in preview via new custom templates in Google AI Studio.The growth has introduced a real architectural question: should agent management live at the execution layer — embedded in the model or its harness — or at the infrastructure layer, as a separate runtime?Comparing Google’s approachUntil recently, agent orchestration relied on frameworks that sat above the model, directing agents and letting teams control routing and execution separately. That layer is now being absorbed by the platforms themselves.Recent platforms like Claude Managed Agents embed orchestration at the model layer rather than on a separate runtime platform. The idea is that the model owns the reasoning and orchestration layers, and enterprises have control over execution. AWS, through new capabilities on Bedrock AgentCore, adds managed harnesses that stitch together the upfront tasks for deploying agents. Google&#x27;s approach goes further, optimizing the model, harness, and sandbox together and running everything in secure Google-managed environments.René Sultan of Ramp, cited in Google&#x27;s announcement, said the shift is concrete: &quot;The real shift with Gemini Managed Agents is that the agent runtime moves into the platform. With the sandbox, infrastructure and execution loop managed for you, developers can focus on productizing the agent&#x27;s domain-specific behavior and iterating at a completely different pace.&quot;The new orchestration reality Enterprises starting fresh with agents could find the platform offerings from Anthropic and Google strong, especially since they remove much of the difficulty of deploying agents while still maintaining some control. Google, however, is pushing for a more vertically integrated system, while Anthropic is betting on the model layer as an orchestration plane, and AWS focuses on authorization. But this also brings some risks, according to XYO founder and chief executive Arie Trouw.“An additional risk is that developers will switch out what previously were deterministic services for what will now be probabilistic services, which can introduce unpredictable outcomes for the users at best, or data corruption at worst,” Trouw told VentureBeat in an email. “This is the classic example of having an amazing hammer and everything starting to look like nails. I&#x27;ve seen this pattern repeatedly as a developer and business founder myself in the past few decades.”", "trend": "new", "date": "Today", "reasoning": {"analyst": "At Google I/O, the company unveiled Managed Agents in its Gemini API — a service that promises to collapse weeks of agent deployment work into a single API call. It&#x27;s also a sign that Google beli...", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 21, "title": "Cohere cracks lossless quantization and native citations with first full Apache 2.0 licensed open model Command A+", "source": "VentureBeat", "url": "https://venturebeat.com/technology/cohere-cracks-lossless-quantization-and-native-citations-with-first-full-apache-2-0-licensed-open-model-command-a", "image_url": "https://images.ctfassets.net/jdtwqhzvc2n1/2ooDwZZRkOXFbljlU3UX8T/512fe2501fcc0281a48bc484e7794a7f/ChatGPT_Image_May_20__2026__03_40_32_PM.png?w=300&q=30", "summary": "Canadian AI lab Cohere made waves recently by announcing a merger with German AI startup Aleph Alpha, but now it has even more in store for enterprise builders around the globe: today, the firm co-founded by former Googler and &quot;Attention Is All You Need&quot; co-author Aidan Gomez unveiled Command A+, a highly optimized, 218-billion-parameter language model engineered specifically for complex reasoning, multimodal document processing, and agentic workflows.The most significant aspect of the release is not just the model’s capabilities; it is its accessibility. By releasing the model weights free on the popular AI code sharing repository Hugging Face under a highly permissive Apache 2.0 open-source license — a first for the company, according to a post by Gomez, now Cohere&#x27;s CEO, on X — Cohere is making a calculated bet on &quot;sovereign AI&quot;—the thesis that enterprises, governments, and developers should have the ability to run, control, and adapt frontier-grade AI entirely within their own secure environments, without sacrificing performance.Sparse architecture with extreme quantizationAt the architectural level, Command A+ represents a major evolution from Cohere’s previous dense models. It is a decoder-only Sparse Mixture-of-Experts (MoE) Transformer. While the model houses a relatively modest 218 billion total parameters, even fewer — only 25 billion — are active during any given generation step. It&#x27;s a much lighter footprint and requires far less compute resources to run in inference (serving the model in production environments to end users or via agents) than the proprietary U.S. giants like OpenAI&#x27;s GPT-5.5 and Anthropic&#x27;s Claude Opus 4.7, which are estimated by third-party observers to be in the trillions of parameters. This sparse architecture is the key to the model’s efficiency. In plain terms, an MoE model routes incoming queries only to the specific &quot;expert&quot; neural networks best suited to handle them, leaving the rest of the model dormant.This is a familiar formulation and one followed by most leading LLMs these days, allowing models to retain the vast knowledge base and nuanced reasoning capabilities of a giant, but at the faster speeds and reduced compute and energy requirements of a much smaller model, since only a fraction of parameters are ever activated at any time. But where Cohere has taken an extra step beyond most for Command A+ is that it has focused heavily on hardware efficiency through quantization—a process that compresses the model&#x27;s memory footprint by reducing the precision of its parameters. Command A+ is available in 16-bit (BF16), 8-bit (FP8), and a highly compressed 4-bit (W4A4) format.The W4A4 quantization is the technical centerpiece of this release. Typically, reasoning models suffer an outsized &quot;quantization tax,&quot; where compressing the model leads to visible regressions in complex problem-solving. Cohere mitigated this by only quantizing the MoE experts to 4-bit, while keeping the critical attention pathways at full precision, supplemented by a technique called Quantization-Aware Distillation.The result is a nearly lossless compression that allows this massive model to run on a single NVIDIA Blackwell B200 GPU or just two NVIDIA H100 GPUs.The speed gains are equally notable. According to performance data released by the company, the W4A4 quantization at low concurrency achieves 375 tokens per second (TOPS) with a Time-to-First-Token (TTFT) latency of just 113 milliseconds—representing up to a 63% increase in output speed and a 17% reduction in latency compared to the previous Command A Reasoning model.Furthermore, Cohere has overhauled the model&#x27;s tokenizer. Tokenizers break text down into the fragments that AI models process. The new tokenizer is highly optimized for global enterprise use, featuring native support for 48 languages. More importantly, it dramatically improves tokenization efficiency for non-European languages, reducing the number of tokens required to generate responses in Arabic by 20%, Japanese by 18%, and Korean by 16%. Because inference costs are calculated per token, this translates directly to lower operational costs for global, multilingual or non-English deployments.Agentic workflows and high benchmarks on math, specialized fieldsWhile raw speed and size dictate deployment, a model’s utility is defined by its product capabilities. Command A+ was built specifically for &quot;agentic&quot; tasks — workflows where the AI operates autonomously or semi-autonomously, uses external tools, queries databases, and synthesizes information across multiple steps.The benchmark leaps over the previous generation are stark. On 𝜏²-Bench Telecom, which tests complex reasoning, the model jumped from a 37% score to 85%. On Terminal-Bench Hard, which measures agentic coding performance, it climbed from 3% to 25%. In complex mathematics, it scored 90% on AIME 25, up from 57%.Command A+ punches above its weight class (25B active parameters) in pure reasoning and mathematics, competing directly with much larger models like DeepSeek V4 Pro on math benchmarks. However, for deep agentic coding and general broad-scale intelligence indexing, it currently trails behind the latest generations from Chinese open source rivals like DeepSeek, Z.ai (GLM), and MiniMax.That said, comparing them directly ignores Cohere&#x27;s core value proposition: hardware efficiency.Beyond the benchmarks, Command A+ introduces deep integrations for enterprise trust and verification. The model supports conversational tool use via standard chat templates, allowing developers to connect it seamlessly to internal APIs, search engines, or SQL databases.Crucially, Command A+ features native citation generation. When Command A+ retrieves information from an external tool, it doesn&#x27;t just synthesize the answer; it generates explicit &quot;grounding spans.&quot; Using special tags embedded in the output, the model directly links every factual claim it makes to the specific source document or database row it pulled the information from. For enterprises heavily regulated industries like finance, healthcare, or legal, this traceability is the difference between an interesting prototype and a production-ready application. If a user asks for a daily sales report, the model will output the total sales amount and explicitly cite the database query result that provided that number, minimizing the risk of undetected hallucinations.Additionally, Command A+ is fully multimodal, capable of processing both text and images natively within its massive 128K input context window, making it highly effective for complex document processing, such as analyzing scanned invoices, charts, or technical manuals.The first fully Apache 2.0 licensed Cohere AI modelIn the current AI landscape, &quot;open source&quot; has become a fraught term. Many leading AI companies release their model weights under restrictive commercial licenses or acceptable use policies that explicitly forbid large enterprises from using the models for commercial purposes, or prohibit the models from being used to train competing AI systems.Indeed, Cohere&#x27;s prior models, including Command R and Command R+, were released under a CC-BY-NC 4.0 (Creative Commons NonCommercial) license. While their model weights were open for researchers and developers to download, tinker with, and evaluate, they were strictly prohibited from being used for commercial purposes without purchasing a separate enterprise license from Cohere or going through its application programming interface (API), similar to the arrangement many enterprises use for accessing AI models from OpenAI, Anthropic, Google and other leading labs.Cohere has changed up its approach by releasing Command A+ under the Apache 2.0 license. This is a critical distinction for the developer community. Apache 2.0 is a true, OSI-approved open-source license. It allows anyone—from independent developers to Fortune 500 corporations—to use, modify, distribute, and commercialize the model without paying licensing fees or adhering to restrictive non-compete clauses.As Gomez wrote on X, the decision was championed by fellow Cohere co-founder Nick Frosst, who posted a two-minute long overview calling it &quot;the best model we&#x27;ve ever put out.&quot;For the enterprise, this license means total vendor independence. A company can download the Command A+ weights, fine-tune them on highly classified internal data, and deploy them on their own private servers or air-gapped networks. They are not tethered to Cohere’s infrastructure, pricing changes, or API uptime. It is the ultimate realization of sovereign AI.The release was met with immediate traction across the AI developer ecosystem, driven heavily by its day-one integration with major open-source inference frameworks like Hugging Face and vLLM.What&#x27;s next?The release of Command A+ marks a maturing of the open-source AI ecosystem. By combining frontier-level reasoning, robust agentic tool use, and multimodal capabilities with an architecture specifically designed for hardware efficiency, Cohere is changing the calculus for enterprise AI adoption.The requirement of massive, centralized compute clusters has long been a bottleneck for companies prioritizing data privacy and cost control. By democratizing access to a model of this caliber under a true open-source license, Cohere has provided the enterprise market with exactly what it has been asking for: the power of the cloud, capable of running securely in the server room down the hall.", "trend": "new", "date": "Today", "reasoning": {"analyst": "Canadian AI lab Cohere made waves recently by announcing a merger with German AI startup Aleph Alpha, but now it has even more in store for enterprise builders around the globe: today, the firm co-fou...", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 22, "title": "Cerebras says its chips run a trillion-parameter AI model nearly 7 times faster than GPU clouds", "source": "VentureBeat", "url": "https://venturebeat.com/technology/cerebras-says-its-chips-run-a-trillion-parameter-ai-model-nearly-7-times-faster-than-gpu-clouds", "image_url": "https://images.ctfassets.net/jdtwqhzvc2n1/2THfHJ5QDM7v6hfZguZzRK/88414c532761a606e6faad8056f896ac/Nuneybits_Vector_art_of_cobalt_chip_towering_servers_in_burnt_o_e4e68375-d5c6-4559-87a7-d92ffb2bf67a-1.webp?w=300&q=30", "summary": "Less than a week after completing the largest tech IPO of 2026, Cerebras Systems is making its most aggressive play yet to dominate the fast-growing AI inference market. On Monday, the Sunnyvale-based chipmaker announced that it is now running Kimi K2.6 — a trillion-parameter open-weight model developed by Beijing-based Moonshot AI — for enterprise customers at nearly 1,000 tokens per second, a speed no GPU-based provider has come close to matching.The result, independently verified by benchmarking firm Artificial Analysis, clocked in at 981 output tokens per second, making Cerebras 6.7 times faster than the next-fastest GPU-based cloud provider and 23 times faster than the median. For a standard agentic coding request involving 10,000 input tokens, Cerebras delivered the full response — including prompt processing, reasoning, and 500 output tokens — in 5.6 seconds, compared to 163.7 seconds on the official Kimi endpoint. That’s a 29-fold improvement in time to final answer.&quot;We&#x27;re really wanting to be very clear and show that we can do the largest models,&quot; James Wang, Cerebras&#x27; director of product marketing, told VentureBeat in an exclusive interview ahead of the announcement. &quot;In this case, Kimi K2.6 — a trillion-parameter MoE model on the wafer-scale architecture — and it runs also at this same incredible speed that we&#x27;re famous for.&quot;The announcement marks a critical inflection point for Cerebras, which has long battled a perception that its unorthodox wafer-scale chips, while blindingly fast, could only handle small and mid-sized models. Kimi K2.6 is the first trillion-parameter open-weight model the company has ever served in production. And with a freshly minted $95 billion market cap and $5.55 billion in IPO proceeds burning a hole in its balance sheet, Cerebras is signaling to Wall Street that it intends to compete not just at the frontier of speed, but at the frontier of model scale.Why Cerebras chose a Chinese-built model as its trillion-parameter flagshipThe choice of Kimi K2.6 reflects both a technical milestone and a commercial calculus. Released on April 20 by Moonshot AI — a Beijing-based company founded in 2023 by Tsinghua University alumni and dubbed one of China&#x27;s &quot;AI Tiger&quot; companies — K2.6 is a trillion-parameter Mixture-of-Experts model that has rapidly established itself as the most capable open-weight model available for coding and agentic tasks. The model tops SWE-Bench Pro at 58.6, outperforming Claude Opus 4.6 and matching GPT-5.4, while posting leading scores on agentic benchmarks like Humanity&#x27;s Last Exam and DeepSearchQA. Its architecture uses 32 billion activated parameters per token out of a total of 1 trillion, with 384 experts, of which 8 are selected plus 1 shared per forward pass, operating over a 256,000-token context window.In practical terms, K2.6 is one of the first open-weight models that enterprises can plausibly use as a drop-in replacement for expensive, capacity-constrained closed-source APIs from Anthropic and OpenAI — particularly for the coding and agentic workloads that have become the highest-value application of large language models. The version 2.6 release extends K2.6&#x27;s capabilities from front-end design into full-stack workflows, including authentication, database operations, and long-horizon agent execution.Wang was blunt about what is driving enterprise interest. &quot;They&#x27;re very motivated, first of all, to have an alternative to Anthropic,&quot; he told VentureBeat. &quot;Anthropic&#x27;s models are fantastic. I use them. I&#x27;m sure you probably use them. But they&#x27;re quite expensive, and they&#x27;re constantly running out of capacity.&quot; He described a personal experience in which an application running on Anthropic&#x27;s API failed over a weekend because it ran out of capacity — an anecdote that, he said, resonates deeply with enterprise buyers.The geopolitical dimension of this arrangement is worth noting, however. Kimi K2.6 is a Chinese-developed model being served by an American chipmaker to American enterprise customers. Moonshot AI operates out of Beijing, and K2.6&#x27;s adoption in the West arrives during a period of heightened scrutiny of Chinese AI companies in the U.S. market. Enterprise buyers with strict compliance requirements — particularly those in financial services, healthcare, and defense — will need to evaluate this dimension alongside the model&#x27;s technical capabilities.How wafer-scale chips solve the trillion-parameter speed problem that GPUs cannotUnderstanding why Cerebras can achieve these speeds requires understanding what makes its hardware fundamentally different from anything else on the market. Most AI inference today runs on clusters of Nvidia GPUs — typically organized in racks of 72 GPUs, what Nvidia markets as the NVL72 configuration. In these setups, the model&#x27;s parameters are distributed across many discrete chips connected by high-speed networking fabric. Data must constantly shuttle between chips, and the interconnect bandwidth between GPUs becomes a bottleneck, particularly for large models with hundreds of billions or trillions of parameters.Cerebras takes a radically different approach. Its Wafer-Scale Engine 3 is a single chip the size of an entire silicon wafer — roughly the size of a dinner plate — containing 44 gigabytes of on-chip SRAM. Unlike the high-bandwidth memory used in GPUs, SRAM sits directly on the processor die, offering dramatically lower latency and higher bandwidth for data access. For Kimi K2.6, Cerebras stores the model&#x27;s weights in their original 4-bit precision while performing computation at 16-bit floating point. The weights are distributed across multiple wafers in a cluster of approximately 20 CS-3 systems, with activations streamed between them. Critically, all the experts for a given MoE layer are placed on the same wafer, meaning the all-to-all communication required for expert routing happens at SRAM speeds. According to Cerebras&#x27; technical description, the on-wafer network fabric delivers over 200 times the bandwidth of NVLink on NVL72.Wang explained the architecture using an analogy. &quot;Our single units are much larger and much higher capacity — they&#x27;re on the order of 20 racks, as opposed to 72 GPUs,&quot; he said. Each layer in the transformer can, in effect, serve a separate user simultaneously. &quot;They&#x27;re just like a queue, like you&#x27;re queuing for bagels or something — they&#x27;re all occupying a different part of the hardware. But because they move across so fast, the actual experience, tokens per second, single user, on your end is still what you&#x27;re used to.&quot; Combined with custom kernels and speculative decoding, this allows Cerebras to serve the trillion-parameter MoE model at close to 1,000 tokens per second — a speed the company calls a world record achievable only with wafer-scale hardware.Fortune 500 companies are already testing Cerebras&#x27; trillion-parameter inference in productionCerebras is not opening K2.6 to the general public. Instead, the company is positioning this as an enterprise-first offering, with Fortune 500 companies in software, financial services, and healthcare currently running cloud trials of their production workloads on the platform. &quot;These are logos that you&#x27;ve definitely heard of,&quot; Wang said, though he declined to identify specific customers due to confidentiality agreements.The enterprise-first approach is deliberate. Cerebras has historically prioritized its largest customers over its consumer-facing API, in part because of hardware capacity constraints. &quot;Everyone is in a capacity crunch. We prioritize our enterprise customers, so we don&#x27;t show it in the consumer-facing gateway or the API, where you get very unpredictable traffic, where a single user can, in effect, take over your whole cluster,&quot; Wang explained. Serving K2.6 also limits the company&#x27;s ability to simultaneously offer other large models. &quot;We can&#x27;t simultaneously, you know, have six other models,&quot; he acknowledged. &quot;It&#x27;s just kind of a mutual constraint of reality.&quot;On pricing, Wang said that while the enterprise deployment does not carry public pricing, the company&#x27;s costs are broadly competitive with GPU-based providers. &quot;On all the models we have served with pricing, the pricing is very comparable — maybe in the middle, kind of middle-upper range of GPU pricing,&quot; he said. &quot;It&#x27;s not like, because we run fast, it costs many, many fold more.&quot; He drew a line, however, at the lowest end of the market: if you are willing to run K2.6 at 20 tokens per second on bargain GPU infrastructure, Cerebras will not try to compete on price. &quot;We&#x27;re an automaker in the pickup truck market. We don&#x27;t do that market,&quot; Wang said. For speed-sensitive workloads — particularly agentic coding, where developers wait in real time for the model to generate and iterate on code — the value proposition is straightforward: comparable per-token cost, but an order of magnitude faster delivery.The competitive threat from Nvidia&#x27;s $20 billion Groq acquisition looms largeCerebras&#x27; announcement arrives at a pivotal moment in the AI chip industry, one in which the inference market is rapidly overtaking training as the most commercially important compute workload. As AI agents proliferate in enterprise software, the speed of inference directly determines how useful those agents are in practice — and the competitive pressures are intensifying accordingly.The most significant competitive development in recent months was Nvidia&#x27;s acquisition of Groq for $20 billion, a deal that gave the GPU giant access to proprietary inference technology built around specialized Language Processing Units. Wang referenced the deal directly. &quot;I think Nvidia is now sensing fast inference is an extremely important market,&quot; he told VentureBeat. &quot;That&#x27;s why they&#x27;re willing to spend $20 billion on acquiring a company like that.&quot;But Wang expressed confidence that Cerebras&#x27; architectural advantages are durable. Both Nvidia and Cerebras operate on roughly annual hardware refresh cycles. &quot;We refresh our hardware on a periodic cycle. You will hear some news about that from us soon,&quot; Wang said, hinting at a forthcoming hardware announcement without providing details. On the software side, Wang pointed to the company&#x27;s track record of rapidly adapting to the fast-evolving open-weight model ecosystem. &quot;We started with Llama, we supported all the Qwen models, and then when developers told us they wanted GLM, we brought GLM online. And now they&#x27;re telling us Kimi is the best — so we&#x27;re giving them Kimi,&quot; he said. &quot;At the same time, we&#x27;ve also supported the best companies in running their closed models — OpenAI, Cognition, Mistral.&quot;The mention of OpenAI underscores one of the most unusual business relationships in the AI industry. OpenAI and Cerebras struck a deal in early 2026 reportedly worth more than $20 billion for computing capacity and related services. Wang confirmed that Cerebras serves OpenAI&#x27;s &quot;internal coding models forthcoming&quot; but declined to disclose specifics, as neither party has publicly detailed the technical arrangement.Inside Cerebras&#x27; plan to serve the smartest AI models faster than anyone elseWang framed the K2.6 deployment as a stepping stone, not a destination. Cerebras started serving inference in late 2024 with relatively small models and has spent over a year scaling from 70 billion parameters to 1 trillion-plus. &quot;We couldn&#x27;t have launched that in November 2024,&quot; he said. &quot;But we&#x27;re there now.&quot;The company&#x27;s next challenge is to move from serving the best open-weight frontier model to serving the best frontier models, period — including closed-source models from the likes of Anthropic and OpenAI that sit at the absolute top of the intelligence leaderboards. &quot;This is the first open-weight frontier one that we now have clear demonstrated evidence for,&quot; Wang said. &quot;I think over the course of the year, you will see us serving true frontier, frontier at the speed that we&#x27;re famous for. And you should hold us up for that.&quot;When asked whether the current rollout would be overtaken by the pace of hardware improvement at Nvidia and others, Wang was unfazed. &quot;Nvidia has a very clear roadmap. They publish every year at GTC. They&#x27;re roughly on a yearly product cycle, and so are we. You will hear some news about that from us soon,&quot; he said, hinting at new hardware without offering details.He also addressed the question of vendor lock-in — a concern that any CTO evaluating a single-vendor inference provider would raise. &quot;These enterprises rarely commit fully to one vendor,&quot; Wang said. &quot;They have strategies to make sure that some traffic can go to us, some traffic can go to someone else, and there&#x27;s load balancing between the two. This is not a new problem. This is just generally how you manage cloud resources.&quot;The pitch, ultimately, is about more than speeds and feeds. Wang sees the AI industry converging on a world in which autonomous agents — not human developers — are the primary consumers of inference compute, and in which the speed of those agents determines competitive outcomes for the companies that deploy them. &quot;The world economy is kind of getting rebuilt on agents,&quot; Wang said. &quot;Speed will determine who wins or loses.&quot;It is a bold claim from a company that, until last week, had never traded on a public exchange. But for Cerebras, the logic is straightforward: if the future of enterprise software is built by AI agents that think at the speed of their hardware, then the company that provides the fastest hardware provides the fastest thinking. And in a market where enterprises are spending billions to shave seconds off their AI response times, a company that can serve a trillion-parameter model in the time it takes to pour a cup of coffee might just have the most compelling pitch in Silicon Valley.", "trend": "new", "date": "Today", "reasoning": {"analyst": "Less than a week after completing the largest tech IPO of 2026, Cerebras Systems is making its most aggressive play yet to dominate the fast-growing AI inference market. On Monday, the Sunnyvale-based...", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 23, "title": "SpaceX just filed for what could be the biggest IPO ever", "source": "The Verge", "url": "https://www.theverge.com/business/902219/spacex-ipo-details", "image_url": "", "summary": "Elon Musk's final frontier is officially open for business now that SpaceX has formally filed its S-1 prospectus with the SEC. That kicks off what could be the largest initial public offering ever when it lists on the Nasdaq stock exchange with the ticker SPCX. SpaceX generated $18.67 billion in revenue in 2025, driven largely [&#8230;]", "trend": "new", "date": "Today", "reasoning": {"analyst": "Elon Musk's final frontier is officially open for business now that SpaceX has formally filed its S-1 prospectus with the SEC. That kicks off what could be the largest initial public offering ever whe...", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 24, "title": "‘Solve all diseases,’ you say?", "source": "The Verge", "url": "https://www.theverge.com/column/935021/google-io-gemini-for-science-alphafold-alphagenome-ai-health", "image_url": "", "summary": "This is Optimizer, a weekly newsletter sent from Verge senior reviewer Victoria Song that dissects and discusses the latest gizmos and potions that swear they're going to change your life. This week's issue is a special early edition tied to The Verge's Google I/O coverage. You can expect our next issue at its usual time [&#8230;]", "trend": "new", "date": "Today", "reasoning": {"analyst": "This is Optimizer, a weekly newsletter sent from Verge senior reviewer Victoria Song that dissects and discusses the latest gizmos and potions that swear they're going to change your life. This week's...", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}, {"id": 25, "title": "We’re announcing new community investments in Missouri.", "source": "Google AI", "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/missouri-programs/", "image_url": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/MissouriSocial.max-600x600.format-webp.webp", "summary": "We’re helping build the state’s next-generation workforce and investing in energy programs.", "trend": "new", "date": "Today", "reasoning": {"analyst": "We’re helping build the state’s next-generation workforce and investing in energy programs.", "strategist": "Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.", "contrarian": "AI analysis requires an API key.", "prediction": "Requires API key."}}]</script>
+<script id="mashups-data" type="application/json">[]</script>
+
+<!-- ===== READ MODE ===== -->
+<section id="mode-read" class="mode active">
+
+  
+
+  
+  <article>
+    <div class="narrative-hero">
+      <div class="kicker">CNBC Tech</div>
+      <h1>Samsung Electronics shares rallies 6% after union suspends strike following tentative wage deal</h1>
+      <div class="meta">Today</div>
+      <div class="excerpt">Another round of negotiations led by South Korea's minister for labor and employment Kim Young-hoon resulted in a tentative agreement.</div>
+    </div>
+
     
-    <img src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.outerHTML='<div style=\'width:100%;height:420px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--text-muted)\'>📰</div>'">
     
-    <div class="img-label">CNBC Tech</div>
-  </div>
-</div>
-</div>
+    <div class="reveal-section perspective-analyst" data-reveal>
+      <div class="perspective-label"><span class="icon">📊</span> analyst <span class="line"></span></div>
+      <div class="perspective-content">Another round of negotiations led by South Korea's minister for labor and employment Kim Young-hoon resulted in a tentative agreement.</div>
+    </div>
+    
 
+    
+    <div class="reveal-section perspective-strategist" data-reveal>
+      <div class="perspective-label"><span class="icon">🎯</span> strategist <span class="line"></span></div>
+      <div class="perspective-content">Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.</div>
+    </div>
+    
 
+    
+    <div class="reveal-section perspective-contrarian" data-reveal>
+      <div class="perspective-label"><span class="icon">⚡</span> contrarian <span class="line"></span></div>
+      <div class="perspective-content">AI analysis requires an API key.</div>
+    </div>
+    
 
-<div class="container">
-<div class="gallery">
-
-
-
-<div class="gallery-item">
-  
-  <img src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.style.display='none'">
-  
-  <div class="overlay">
-    <div class="src">CNBC Tech</div>
-    <h3><a href="https://www.cnbc.com/2026/05/18/trump-iran-attack-saudi-uae-qatar-deal.html" target="_blank" rel="noopener">Trump says he's postponing 'scheduled attack of Iran tomorro…</a></h3>
-  </div>
-</div>
-
-
-
-
-<div class="gallery-item">
-  
-  <img src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/ss_cf69250b6b7144244fe5ec715a82e9cf52398715.1920x1080.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" alt="" loading="lazy" onerror="this.style.display='none'">
-  
-  <div class="overlay">
-    <div class="src">The Verge</div>
-    <h3><a href="https://www.theverge.com/games/932817/playstation-exclusive-games-pc" target="_blank" rel="noopener">PlayStation exclusives aren&#8217;t coming to PC anymore</a></h3>
-  </div>
-</div>
-
-
-
-
-<div class="gallery-item">
-  
-  <img src="https://techcrunch.com/wp-content/uploads/2026/01/GettyImages-2252871842.jpg?w=1024" alt="" loading="lazy" onerror="this.style.display='none'">
-  
-  <div class="overlay">
-    <div class="src">TechCrunch</div>
-    <h3><a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/" target="_blank" rel="noopener">Anthropic has acquired the dev tools startup used by OpenAI,…</a></h3>
-  </div>
-</div>
-
-
-
-
-<div class="gallery-item">
-  
-  <img src="https://www.zdnet.com/a/img/resize/03aa4e71fea87a73401fc78bf5a0e5725038a6a1/2026/03/27/68113730-d159-4a72-967a-1b3228a8f2da/edbott-headshot-2026.png?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.style.display='none'">
-  
-  <div class="overlay">
-    <div class="src">ZDNet</div>
-    <h3><a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">How to upgrade your 'incompatible' Windows 10 PC to Windows …</a></h3>
-  </div>
-</div>
-
-
-
-
-<div class="gallery-item">
-  
-  <img src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/Excavation.-Photo-BQ-1131x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-  
-  <div class="overlay">
-    <div class="src">Ars Technica</div>
-    <h3><a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Australian Aboriginals cared for a dingo's grave for decades</a></h3>
-  </div>
-</div>
-
-
-
-
-<div class="gallery-item">
-  
-  <div style="width:100%;height:200px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--text-muted)">📰</div>
-  
-  <div class="overlay">
-    <div class="src">Hacker News</div>
-    <h3><a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Haiku OS runs on M1 Macs now</a></h3>
-  </div>
-</div>
-
-
-</div>
-</div>
-
-
-<main class="container">
-  
+    
+    <div class="reveal-section perspective-prediction" data-reveal>
+      <div class="perspective-label"><span class="icon">🔮</span> prediction <span class="line"></span></div>
+      <div class="perspective-content">Requires API key.</div>
+    </div>
+    
+  </article>
 
   
+
   <div class="divider">
-    <span class="label" id="CNBC_Tech">CNBC Tech</span>
+    <span class="label">all stories</span>
     <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">2</span>
+    <span class="count">26</span>
   </div>
+
+  <div class="grid-2col">
   
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
+    <article class="article-card">
       <div class="meta">
         <span class="src">CNBC Tech</span>
         
         <span>Today</span>
       </div>
-      <h3><a href="https://www.cnbc.com/2026/05/18/trump-iran-attack-saudi-uae-qatar-deal.html" target="_blank" rel="noopener">Trump says he's postponing 'scheduled attack of Iran tomorrow' at Middle East leaders' request</a></h3>
-      
-      <div class="excerpt">President Donald Trump said he is calling off a plan to attack Iran on Tuesday after the heads of th…</div>
-      
-      <div class="card-footer"><a href="https://www.cnbc.com/2026/05/18/trump-iran-attack-saudi-uae-qatar-deal.html" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
+      <h3><a href="https://www.cnbc.com/2026/05/21/samsung-electronics-union-strike-suspended-wage-deal-bonuses.html" target="_blank" rel="noopener">Samsung Electronics shares rallies 6% after union suspends strike following tentative wage deal</a></h3>
+      <div class="excerpt">Another round of negotiations led by South Korea's minister for labor and employment Kim Young-hoon resulted in a tentat…</div>
+      <div class="footer"><a href="https://www.cnbc.com/2026/05/21/samsung-electronics-union-strike-suspended-wage-deal-bonuses.html" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://static-redesign.cnbcfm.com/dist/d6085c9e81f4d7365c8d.svg" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
+    <article class="article-card">
       <div class="meta">
         <span class="src">CNBC Tech</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Elon Musk loses court battle against Sam Altman and OpenAI after 3-week trial</a></h3>
-      
-      <div class="excerpt">A jury in Oakland, California, ruled against Elon Musk in his dramatic court battle with Sam Altman …</div>
-      
-      <div class="card-footer"><a href="https://www.cnbc.com/2026/05/18/musk-altman-openai-trial-verdict.html" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  
-  <div class="divider">
-    <span class="label" id="The_Verge">The Verge</span>
-    <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">4</span>
-  </div>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/ss_cf69250b6b7144244fe5ec715a82e9cf52398715.1920x1080.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">The Verge</span>
         
         <span>Today</span>
       </div>
-      <h3><a href="https://www.theverge.com/games/932817/playstation-exclusive-games-pc" target="_blank" rel="noopener">PlayStation exclusives aren&#8217;t coming to PC anymore</a></h3>
-      
-      <div class="excerpt">PlayStation reportedly won't release its major single-player PlayStation games on PC anymore. Accord…</div>
-      
-      <div class="card-footer"><a href="https://www.theverge.com/games/932817/playstation-exclusive-games-pc" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
+      <h3><a href="https://www.cnbc.com/2026/05/21/softbank-asia-tech-stocks-nvidia-earnings.html" target="_blank" rel="noopener">SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum</a></h3>
+      <div class="excerpt">SoftBank Group is closely tied to the AI boom through its stake in Arm Holdings, whose chip designs are used in AI serve…</div>
+      <div class="footer"><a href="https://www.cnbc.com/2026/05/21/softbank-asia-tech-stocks-nvidia-earnings.html" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25739950/247386_Elon_Musk_Open_AI_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
+    <article class="article-card">
       <div class="meta">
-        <span class="src">The Verge</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank" rel="noopener">Musk v. Altman proved that AI is led by the wrong people</a></h3>
-      
-      <div class="excerpt">The tech trial of the year, Musk v. Altman, was ultimately a fight for control. Elon Musk argued tha…</div>
-      
-      <div class="card-footer"><a href="https://www.theverge.com/ai-artificial-intelligence/932464/musk-v-altman-proved-that-ai-is-led-by-the-wrong-people" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/walmart-onn-7-tablet.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">The Verge</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.theverge.com/tech/932642/walmart-onn-new-core-pro-kids-tablets" target="_blank" rel="noopener">Walmart launches new budget-friendly Android tablets starting at $97</a></h3>
-      
-      <div class="excerpt">Walmart's Onn brand just launched a whole line of budget-friendly Android tablets that, all together…</div>
-      
-      <div class="card-footer"><a href="https://www.theverge.com/tech/932642/walmart-onn-new-core-pro-kids-tablets" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://platform.theverge.com/wp-content/uploads/sites/2/2026/02/dyson_pencilwash3.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.740836125969%2C100%2C78.518327748063&amp;w=1200" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">The Verge</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.theverge.com/gadgets/932449/dyson-pencilwash-hard-floor-cleaner-memorial-day-2026-deal-sale" target="_blank" rel="noopener">Dyson’s super-slim PencilWash just hit its best price to date for Memorial Day</a></h3>
-      
-      <div class="excerpt">If Dyson’s PencilVac Fluffycones made you wish the company had built something similarly slim for sc…</div>
-      
-      <div class="card-footer"><a href="https://www.theverge.com/gadgets/932449/dyson-pencilwash-hard-floor-cleaner-memorial-day-2026-deal-sale" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  
-  <div class="divider">
-    <span class="label" id="TechCrunch">TechCrunch</span>
-    <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">3</span>
-  </div>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://techcrunch.com/wp-content/uploads/2026/01/GettyImages-2252871842.jpg?w=1024" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">TechCrunch</span>
+        <span class="src">CNBC Tech</span>
         
         <span>Today</span>
       </div>
-      <h3><a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/" target="_blank" rel="noopener">Anthropic has acquired the dev tools startup used by OpenAI, Google, and Cloudflare</a></h3>
-      
-      <div class="excerpt">Stainless, a New York-based startup, will wind down all hosted products as part of the acquisition.</div>
-      
-      <div class="card-footer"><a href="https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
+      <h3><a href="https://www.cnbc.com/2026/05/21/nvidia-jensen-huang-china-ai-chip-market-huawei.html" target="_blank" rel="noopener">Nvidia says it has ‘largely conceded’ China’s AI chip market to Huawei</a></h3>
+      <div class="excerpt">Nvidia CEO Jensen Huang said the company has "largely conceded" China's advanced artificial intelligence chip market to …</div>
+      <div class="footer"><a href="https://www.cnbc.com/2026/05/21/nvidia-jensen-huang-china-ai-chip-market-huawei.html" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
-  <article class="article-card">
-    
-    <div class="card-body">
+    <article class="article-card">
       <div class="meta">
-        <span class="src">TechCrunch</span>
+        <span class="src">CNBC Tech</span>
         
         <span>Today</span>
       </div>
-      <h3><a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">NYC Health + Hospitals says hackers stole medical data and fingerprints during breach affecting at least 1.8 million people</a></h3>
-      
-      <div class="excerpt">The New York public healthcare system said hackers stole personal and medical data, and scans of bio…</div>
-      
-      <div class="card-footer"><a href="https://techcrunch.com/2026/05/18/nyc-health-and-hospitals-says-hackers-stole-medical-data-and-fingerprints-during-breach-affecting-at-least-1-8-million-people/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
+      <h3><a href="https://www.cnbc.com/2026/05/21/inside-india-investors-ai-chase-us-opportunities.html" target="_blank" rel="noopener">Inside India newsletter: India’s investment appeal dims as firms and funds pivot to the U.S.</a></h3>
+      <div class="excerpt">AI-driven growth and 'America-first' policies are pulling global capital to the U.S., challenging India's appeal as the …</div>
+      <div class="footer"><a href="https://www.cnbc.com/2026/05/21/inside-india-investors-ai-chase-us-opportunities.html" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
-  <article class="article-card">
-    
-    <div class="card-body">
+    <article class="article-card">
       <div class="meta">
-        <span class="src">TechCrunch</span>
+        <span class="src">CNBC Tech</span>
         
         <span>Today</span>
       </div>
-      <h3><a href="https://techcrunch.com/2026/05/18/kin-health-raises-9m-to-build-an-ai-notetaker-for-patients/" target="_blank" rel="noopener">Kin Health raises $9M to build an AI notetaker for patients</a></h3>
-      
-      <div class="excerpt">The app is similar to a meeting notetaker — you can record doctor visits, and it will return an AI s…</div>
-      
-      <div class="card-footer"><a href="https://techcrunch.com/2026/05/18/kin-health-raises-9m-to-build-an-ai-notetaker-for-patients/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
+      <h3><a href="https://www.cnbc.com/2026/05/20/jeff-bezos-taxes-ai-corporations-trump.html" target="_blank" rel="noopener">Bezos defends billionaires, hypes AI, talks taxes and praises Trump in CNBC interview</a></h3>
+      <div class="excerpt">Jeff Bezos rejected accusations that Amazon's decision to release a documentary on first lady Melania Trump was an effor…</div>
+      <div class="footer"><a href="https://www.cnbc.com/2026/05/20/jeff-bezos-taxes-ai-corporations-trump.html" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
-  
-  <div class="divider">
-    <span class="label" id="ZDNet">ZDNet</span>
-    <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">4</span>
-  </div>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://www.zdnet.com/a/img/resize/03aa4e71fea87a73401fc78bf5a0e5725038a6a1/2026/03/27/68113730-d159-4a72-967a-1b3228a8f2da/edbott-headshot-2026.png?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">ZDNet</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">How to upgrade your 'incompatible' Windows 10 PC to Windows 11 - for free</a></h3>
-      
-      <div class="excerpt">Microsoft really doesn't want customers to upgrade older PCs to Windows 11, but there are workaround…</div>
-      
-      <div class="card-footer"><a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://www.zdnet.com/a/img/resize/4571704f175fccf01cd0de7a7c472308ef6e4f33/2016/08/31/74de94eb-6040-4185-941f-3396a8db41a9/ad-headshot-800x600px.jpg?auto=webp&amp;fit=crop&amp;frame=1&amp;height=192&amp;width=192" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">ZDNet</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.zdnet.com/article/best-early-memorial-day-walmart-deals/" target="_blank" rel="noopener">I found the best early Memorial Day Walmart deals: Apple, Dyson, and more on sale</a></h3>
-      
-      <div class="excerpt">Memorial Day is almost here, and Walmart has already slashed prices on top tech.</div>
-      
-      <div class="card-footer"><a href="https://www.zdnet.com/article/best-early-memorial-day-walmart-deals/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">ZDNet</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.zdnet.com/article/why-wave-just-became-my-go-to-terminal-app/" target="_blank" rel="noopener">Why Wave is my new go-to terminal app - how I use this powerful tool</a></h3>
-      
-      <div class="excerpt">The Linux, MacOS, and Windows terminal is no longer just for commands. Thanks to apps like Wave, you…</div>
-      
-      <div class="card-footer"><a href="https://www.zdnet.com/article/why-wave-just-became-my-go-to-terminal-app/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">ZDNet</span>
-        
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.zdnet.com/article/codex-to-customize-my-hyprland-desktop/" target="_blank" rel="noopener">I asked Codex AI to customize my Hyprland desktop - it worked, but beginners beware</a></h3>
-      
-      <div class="excerpt">Hyrpland is a fantastic Linux window manager, but it can be complicated to configure. I asked Codex …</div>
-      
-      <div class="card-footer"><a href="https://www.zdnet.com/article/codex-to-customize-my-hyprland-desktop/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  
-  <div class="divider">
-    <span class="label" id="Ars_Technica">Ars Technica</span>
-    <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">5</span>
-  </div>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/Excavation.-Photo-BQ-1131x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">Ars Technica</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Australian Aboriginals cared for a dingo's grave for decades</a></h3>
-      
-      <div class="excerpt">For some ancient Aboriginal Australian communities, dingoes were part of the family.</div>
-      
-      <div class="card-footer"><a href="https://arstechnica.com/science/2026/05/1000-year-old-burial-reveals-close-bonds-between-people-and-dingoes/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/GettyImages-2276194137-1024x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">Ars Technica</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Elon Musk took too long to sue OpenAI, jury unanimously agrees</a></h3>
-      
-      <div class="excerpt">Musk plans to appeal after judge immediately affirmed the jury's decision.</div>
-      
-      <div class="card-footer"><a href="https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/pompeii1-1-1152x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">Ars Technica</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Pompeii victim ID'd as a likely doctor</a></h3>
-      
-      <div class="excerpt">New X-rays and CT scans showed small case with locking mechanism containing metal instruments.</div>
-      
-      <div class="card-footer"><a href="https://arstechnica.com/science/2026/05/pompeii-victim-idd-as-a-likely-doctor/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/lanterns1-1152x648-1779121699.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">Ars Technica</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Guy Gardner makes a cameo in new Lanterns teaser</a></h3>
-      
-      <div class="excerpt">"This ring? It's the greatest weapon in the Universe. When and if to use it, that's the whole ball g…</div>
-      
-      <div class="card-footer"><a href="https://arstechnica.com/culture/2026/05/new-lanterns-teaser-brings-back-the-superhero-vibes/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/05/unnamed-1-1-1152x648.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">Ars Technica</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">The Dory Sign is E ink, smart screen simplicity at its finest</a></h3>
-      
-      <div class="excerpt">Dory CEO claims the $149 signs won't be bricked should Dory go out of business.</div>
-      
-      <div class="card-footer"><a href="https://arstechnica.com/gadgets/2026/05/the-dory-sign-is-e-ink-smart-screen-simplicity-at-its-finest/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  
-  <div class="divider">
-    <span class="label" id="Hacker_News">Hacker News</span>
-    <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">3</span>
-  </div>
-  
-  <article class="article-card">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">Hacker News</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Haiku OS runs on M1 Macs now</a></h3>
-      
-      <div class="excerpt">Comments</div>
-      
-      <div class="card-footer"><a href="https://discuss.haiku-os.org/t/my-haiku-arm64-progress/19044?page=2" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">Hacker News</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Anthropic acquires Stainless</a></h3>
-      
-      <div class="excerpt">Comments</div>
-      
-      <div class="card-footer"><a href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card">
-    
-    <div class="card-body">
+    <article class="article-card">
       <div class="meta">
         <span class="src">Hacker News</span>
         
         <span>Today</span>
       </div>
-      <h3><a href="https://archestra.ai/blog/only-responsible-ai" target="_blank" rel="noopener">We stopped AI bot spam in our GitHub repo using Git's –author flag</a></h3>
-      
+      <h3><a href="https://cahootzcoops.com/blog/what-is-a-demand-coop" target="_blank" rel="noopener">What is Demand Coop and why tech workers should join one</a></h3>
       <div class="excerpt">Comments</div>
-      
-      <div class="card-footer"><a href="https://archestra.ai/blog/only-responsible-ai" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
+      <div class="footer"><a href="https://cahootzcoops.com/blog/what-is-a-demand-coop" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Hacker News</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://github.com/kageroumado/phosphene" target="_blank" rel="noopener">Show HN: I reverse engineered Apple's video wallpapers</a></h3>
+      <div class="excerpt">Comments</div>
+      <div class="footer"><a href="https://github.com/kageroumado/phosphene" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
-  <div class="divider">
-    <span class="label" id="Wired">Wired</span>
-    <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">1</span>
-  </div>
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Hacker News</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://dos.zone/" target="_blank" rel="noopener">DOS Zone</a></h3>
+      <div class="excerpt">Comments</div>
+      <div class="footer"><a href="https://dos.zone/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
-  <article class="article-card">
-    
-    <div class="card-body">
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">ZDNet</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://www.zdnet.com/article/boox-go-10-3-gen-2-lumi-review/" target="_blank" rel="noopener">I replaced my Remarkable with this cheaper E Ink Android tablet - and it wasn't so bad</a></h3>
+      <div class="excerpt">Boox's Gen-2 Go 10.3 tablet is made for power users seeking a customizable Android tablet with a backlight.</div>
+      <div class="footer"><a href="https://www.zdnet.com/article/boox-go-10-3-gen-2-lumi-review/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
       <div class="meta">
         <span class="src">Wired</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">These 11 Automatic Cat Feeders Were the Best We Tested in 2026</a></h3>
-      
-      <div class="excerpt">We tested some of the most popular automatic dry- and wet-food pet feeders to see which ones are wor…</div>
-      
-      <div class="card-footer"><a href="https://www.wired.com/gallery/best-automatic-cat-feeders/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  
-  <div class="divider">
-    <span class="label" id="MIT_Tech_Review">MIT Tech Review</span>
-    <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">3</span>
-  </div>
-  
-  <article class="article-card">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">MIT Tech Review</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">What to expect from Google this week</a></h3>
-      
-      <div class="excerpt">This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like th…</div>
-      
-      <div class="card-footer"><a href="https://www.technologyreview.com/2026/05/18/1137439/what-to-expect-from-google-this-week/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">MIT Tech Review</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">The Signals That Matter – MIT Insider’s Panel</a></h3>
-      
-      <div class="card-footer"><a href="https://www.technologyreview.com/2026/05/18/1137430/the-signals-that-matter-mit-insiders-panel/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">MIT Tech Review</span>
         
         <span>Today</span>
       </div>
-      <h3><a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Inside Anduril and Meta’s quest to make smart glasses for warfare</a></h3>
-      
-      <div class="excerpt">The defense-tech company Anduril has shared new details about the augmented-reality headset for the …</div>
-      
-      <div class="card-footer"><a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
+      <h3><a href="https://www.wired.com/story/spacex-ipo-grok-spicy-mode-risks/" target="_blank" rel="noopener">SpaceX Listed Grok’s ‘Spicy’ Mode as a Risk in Its IPO Filing</a></h3>
+      <div class="excerpt">The rocket company has set aside more than $500 million for potential litigation losses, in part to account for complain…</div>
+      <div class="footer"><a href="https://www.wired.com/story/spacex-ipo-grok-spicy-mode-risks/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Wired</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://www.wired.com/story/elon-musk-spacex-spending-gas-turbines-grok/" target="_blank" rel="noopener">SpaceX Is Spending $2.8 Billion to Buy Gas Turbines for Its AI Data Centers</a></h3>
+      <div class="excerpt">The investment comes as Elon Musk’s AI unit faces complaints about the carbon-emitting units and looks to become a big p…</div>
+      <div class="footer"><a href="https://www.wired.com/story/elon-musk-spacex-spending-gas-turbines-grok/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
   
-  <div class="divider">
-    <span class="label" id="VentureBeat">VentureBeat</span>
-    <div class="line"></div>
-    <span style="font-size:0.6rem;color:var(--text-muted)">2</span>
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Wired</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://www.wired.com/story/rei-anniversary-sale-2026/" target="_blank" rel="noopener">The Best Outdoor Deals From the REI Anniversary Sale 2026</a></h3>
+      <div class="excerpt">It’s the best time of year to pick up all the outdoor gadgets, tents, sleeping bags, and other gear you’ll need for summ…</div>
+      <div class="footer"><a href="https://www.wired.com/story/rei-anniversary-sale-2026/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Wired</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://www.wired.com/story/a-bipartisan-amendment-would-end-police-license-plate-tracking-nationwide/" target="_blank" rel="noopener">A Bipartisan Amendment Would End Police License Plate Tracking Nationwide</a></h3>
+      <div class="excerpt">One line tucked into a federal highway bill would strip funds from cities and states unless they kill their automated pl…</div>
+      <div class="footer"><a href="https://www.wired.com/story/a-bipartisan-amendment-would-end-police-license-plate-tracking-nationwide/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">TechCrunch</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://techcrunch.com/2026/05/20/the-spacex-ipo-filing-ai-bets-starship-dreams-elon-musk/" target="_blank" rel="noopener">The SpaceX IPO filing is filled with AI bets, Starship dreams, and Elon Musk at the center</a></h3>
+      <div class="excerpt">SpaceX has finally made the contents of its IPO filing public, weeks ahead of what is expected to be the largest IPO eve…</div>
+      <div class="footer"><a href="https://techcrunch.com/2026/05/20/the-spacex-ipo-filing-ai-bets-starship-dreams-elon-musk/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">TechCrunch</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://techcrunch.com/2026/05/20/clouted-wants-to-take-the-guesswork-out-of-making-short-videos-go-viral/" target="_blank" rel="noopener">Clouted wants to take the guesswork out of making short videos go viral</a></h3>
+      <div class="excerpt">The video clipping startup raised a $7 million seed round led by Slow Ventures.</div>
+      <div class="footer"><a href="https://techcrunch.com/2026/05/20/clouted-wants-to-take-the-guesswork-out-of-making-short-videos-go-viral/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">TechCrunch</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://techcrunch.com/2026/05/20/xai-burned-6-4b-last-year-spacexs-ipo-filing-shows-why-the-spending-is-far-from-over/" target="_blank" rel="noopener">xAI burned $6.4B last year — SpaceX’s IPO filing shows why the spending is far from over</a></h3>
+      <div class="excerpt">SpaceX's IPO filing reveals xAI lost $6.4 billion in 2025 while planning a massive Grok expansion — offering the first p…</div>
+      <div class="footer"><a href="https://techcrunch.com/2026/05/20/xai-burned-6-4b-last-year-spacexs-ipo-filing-shows-why-the-spending-is-far-from-over/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Ars Technica</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://arstechnica.com/space/2026/05/spacex-submits-detailed-financial-filing-ahead-of-going-public-in-june/" target="_blank" rel="noopener">Famously secret about its finances, SpaceX opens its books for the first time</a></h3>
+      <div class="excerpt">"We believe we have identified the largest TAM in human history."</div>
+      <div class="footer"><a href="https://arstechnica.com/space/2026/05/spacex-submits-detailed-financial-filing-ahead-of-going-public-in-june/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Ars Technica</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://arstechnica.com/health/2026/05/trump-admin-didnt-want-ebola-exposed-americans-sent-them-to-berlin-prague/" target="_blank" rel="noopener">Trump admin didn't want Ebola-exposed Americans, sent them to Berlin, Prague</a></h3>
+      <div class="excerpt">Officials denied refusing entry, but dodged questions on why Americans didn't return.</div>
+      <div class="footer"><a href="https://arstechnica.com/health/2026/05/trump-admin-didnt-want-ebola-exposed-americans-sent-them-to-berlin-prague/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Ars Technica</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://arstechnica.com/space/2026/05/nasas-psyche-spacecraft-returns-unfamiliar-views-of-a-familiar-world/" target="_blank" rel="noopener">NASA's Psyche spacecraft returns unfamiliar views of a familiar world</a></h3>
+      <div class="excerpt">"As a bonus, it captured Mars images from a rare perspective."</div>
+      <div class="footer"><a href="https://arstechnica.com/space/2026/05/nasas-psyche-spacecraft-returns-unfamiliar-views-of-a-familiar-world/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Ars Technica</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://arstechnica.com/culture/2026/05/masters-of-the-universe-final-trailer-brings-the-80s-nostalgia/" target="_blank" rel="noopener">Masters of the Universe final trailer brings the '80s nostalgia</a></h3>
+      <div class="excerpt">"You are he who will restore peace to Eternia."</div>
+      <div class="footer"><a href="https://arstechnica.com/culture/2026/05/masters-of-the-universe-final-trailer-brings-the-80s-nostalgia/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">VentureBeat</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://venturebeat.com/orchestration/googles-managed-agents-api-promises-one-call-deployment-at-the-cost-of-execution-layer-control" target="_blank" rel="noopener">Google's Managed Agents API promises one-call deployment at the cost of execution layer control</a></h3>
+      <div class="excerpt">At Google I/O, the company unveiled Managed Agents in its Gemini API — a service that promises to collapse weeks of agen…</div>
+      <div class="footer"><a href="https://venturebeat.com/orchestration/googles-managed-agents-api-promises-one-call-deployment-at-the-cost-of-execution-layer-control" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">VentureBeat</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://venturebeat.com/technology/cohere-cracks-lossless-quantization-and-native-citations-with-first-full-apache-2-0-licensed-open-model-command-a" target="_blank" rel="noopener">Cohere cracks lossless quantization and native citations with first full Apache 2.0 licensed open model Command A+</a></h3>
+      <div class="excerpt">Canadian AI lab Cohere made waves recently by announcing a merger with German AI startup Aleph Alpha, but now it has eve…</div>
+      <div class="footer"><a href="https://venturebeat.com/technology/cohere-cracks-lossless-quantization-and-native-citations-with-first-full-apache-2-0-licensed-open-model-command-a" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">VentureBeat</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://venturebeat.com/technology/cerebras-says-its-chips-run-a-trillion-parameter-ai-model-nearly-7-times-faster-than-gpu-clouds" target="_blank" rel="noopener">Cerebras says its chips run a trillion-parameter AI model nearly 7 times faster than GPU clouds</a></h3>
+      <div class="excerpt">Less than a week after completing the largest tech IPO of 2026, Cerebras Systems is making its most aggressive play yet …</div>
+      <div class="footer"><a href="https://venturebeat.com/technology/cerebras-says-its-chips-run-a-trillion-parameter-ai-model-nearly-7-times-faster-than-gpu-clouds" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">The Verge</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://www.theverge.com/business/902219/spacex-ipo-details" target="_blank" rel="noopener">SpaceX just filed for what could be the biggest IPO ever</a></h3>
+      <div class="excerpt">Elon Musk's final frontier is officially open for business now that SpaceX has formally filed its S-1 prospectus with th…</div>
+      <div class="footer"><a href="https://www.theverge.com/business/902219/spacex-ipo-details" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">The Verge</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://www.theverge.com/column/935021/google-io-gemini-for-science-alphafold-alphagenome-ai-health" target="_blank" rel="noopener">‘Solve all diseases,’ you say?</a></h3>
+      <div class="excerpt">This is Optimizer, a weekly newsletter sent from Verge senior reviewer Victoria Song that dissects and discusses the lat…</div>
+      <div class="footer"><a href="https://www.theverge.com/column/935021/google-io-gemini-for-science-alphafold-alphagenome-ai-health" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
+    <article class="article-card">
+      <div class="meta">
+        <span class="src">Google AI</span>
+        
+        <span>Today</span>
+      </div>
+      <h3><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/missouri-programs/" target="_blank" rel="noopener">We’re announcing new community investments in Missouri.</a></h3>
+      <div class="excerpt">We’re helping build the state’s next-generation workforce and investing in energy programs.</div>
+      <div class="footer"><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/missouri-programs/" target="_blank" rel="noopener">read original →</a></div>
+    </article>
+  
   </div>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/1PhXKP5YpstNpQ89sknvrW/0f83c1efa4e5200bad70dae1c9f3558f/hero.png?w=300&q=30" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">VentureBeat</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Four AI supply-chain attacks in 50 days exposed the release pipeline red teams aren't covering</a></h3>
-      
-      <div class="excerpt">Four supply-chain incidents hit OpenAI, Anthropic and Meta in 50 days: three adversary-driven attack…</div>
-      
-      <div class="card-footer"><a href="https://venturebeat.com/security/supply-chain-incidents-openai-anthropic-meta-release-surface-vendor-questionnaire-matrix" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
-  <article class="article-card" style="grid-template-columns:180px 1fr">
-    
-    <img class="card-img" src="https://images.ctfassets.net/jdtwqhzvc2n1/JbvsjhXQ0uQ9LfTtxh5wZ/2dbacae3929a9933067cdb1cae3d70a7/crimedy7_illustration_of_a_supervisor_robot_evaluating_other__35a35697-0dc1-4a73-acea-a033e99f2fac_1.png?w=300&q=30" alt="" loading="lazy" onerror="this.style.display='none'">
-    
-    <div class="card-body">
-      <div class="meta">
-        <span class="src">VentureBeat</span>
-        <span class="tag" style="background:#fef2f2;color:#dc2626">🔥 Hot</span>
-        <span>Today</span>
-      </div>
-      <h3><a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">LangSmith Engine closes the agent debugging loop automatically — but multi-model enterprises still need a neutral layer</a></h3>
-      
-      <div class="excerpt">Enterprises building and deploying agents have a problem: it’s taking their engineers too long to fi…</div>
-      
-      <div class="card-footer"><a href="https://venturebeat.com/orchestration/langsmith-engine-closes-the-agent-debugging-loop-automatically-but-multi-model-enterprises-still-need-a-neutral-layer" target="_blank" rel="noopener">Read →</a></div>
-    </div>
-  </article>
-  
+
   
 
-  <div class="promo">
-    <h3>The intelligence brief</h3>
-    <p>Daily AI & tech news, curated and delivered.</p>
-    <a class="btn" href="#">Subscribe →</a>
+</section>
+
+<!-- ===== PLAY MODE ===== -->
+<section id="mode-play" class="mode">
+
+  <div class="play-intro">
+    <strong>drag</strong> two stories together → see what <strong>HAL</strong> makes of the collision
   </div>
-</main>
+
+  <div class="mash-zone" id="mash-zone">
+    <div class="slot" id="slot-a" data-slot="a">drag story here</div>
+    <div class="operator">+</div>
+    <div class="slot" id="slot-b" data-slot="b">drag story here</div>
+    <div class="operator">=</div>
+    <div class="mash-result" id="mash-result">?</div>
+  </div>
+
+  <div class="divider">
+    <span class="label">story tiles</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="tile-grid" id="tile-grid">
+  
+    <div class="tile" draggable="true" data-id="0">
+      <div class="tile-source">CNBC Tech</div>
+      <div class="tile-title">Samsung Electronics shares rallies 6% after union suspends strike following tentative wage deal</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="1">
+      <div class="tile-source">CNBC Tech</div>
+      <div class="tile-title">SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="2">
+      <div class="tile-source">CNBC Tech</div>
+      <div class="tile-title">Nvidia says it has ‘largely conceded’ China’s AI chip market to Huawei</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="3">
+      <div class="tile-source">CNBC Tech</div>
+      <div class="tile-title">Inside India newsletter: India’s investment appeal dims as firms and funds pivot to the U.S.</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="4">
+      <div class="tile-source">CNBC Tech</div>
+      <div class="tile-title">Bezos defends billionaires, hypes AI, talks taxes and praises Trump in CNBC interview</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="5">
+      <div class="tile-source">Hacker News</div>
+      <div class="tile-title">What is Demand Coop and why tech workers should join one</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="6">
+      <div class="tile-source">Hacker News</div>
+      <div class="tile-title">Show HN: I reverse engineered Apple's video wallpapers</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="7">
+      <div class="tile-source">Hacker News</div>
+      <div class="tile-title">DOS Zone</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="8">
+      <div class="tile-source">ZDNet</div>
+      <div class="tile-title">I replaced my Remarkable with this cheaper E Ink Android tablet - and it wasn't so bad</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="9">
+      <div class="tile-source">Wired</div>
+      <div class="tile-title">SpaceX Listed Grok’s ‘Spicy’ Mode as a Risk in Its IPO Filing</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="10">
+      <div class="tile-source">Wired</div>
+      <div class="tile-title">SpaceX Is Spending $2.8 Billion to Buy Gas Turbines for Its AI Data Centers</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="11">
+      <div class="tile-source">Wired</div>
+      <div class="tile-title">The Best Outdoor Deals From the REI Anniversary Sale 2026</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="12">
+      <div class="tile-source">Wired</div>
+      <div class="tile-title">A Bipartisan Amendment Would End Police License Plate Tracking Nationwide</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="13">
+      <div class="tile-source">TechCrunch</div>
+      <div class="tile-title">The SpaceX IPO filing is filled with AI bets, Starship dreams, and Elon Musk at the center</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="14">
+      <div class="tile-source">TechCrunch</div>
+      <div class="tile-title">Clouted wants to take the guesswork out of making short videos go viral</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="15">
+      <div class="tile-source">TechCrunch</div>
+      <div class="tile-title">xAI burned $6.4B last year — SpaceX’s IPO filing shows why the spending is far from over</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="16">
+      <div class="tile-source">Ars Technica</div>
+      <div class="tile-title">Famously secret about its finances, SpaceX opens its books for the first time</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="17">
+      <div class="tile-source">Ars Technica</div>
+      <div class="tile-title">Trump admin didn't want Ebola-exposed Americans, sent them to Berlin, Prague</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="18">
+      <div class="tile-source">Ars Technica</div>
+      <div class="tile-title">NASA's Psyche spacecraft returns unfamiliar views of a familiar world</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="19">
+      <div class="tile-source">Ars Technica</div>
+      <div class="tile-title">Masters of the Universe final trailer brings the '80s nostalgia</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="20">
+      <div class="tile-source">VentureBeat</div>
+      <div class="tile-title">Google's Managed Agents API promises one-call deployment at the cost of execution layer control</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="21">
+      <div class="tile-source">VentureBeat</div>
+      <div class="tile-title">Cohere cracks lossless quantization and native citations with first full Apache 2.0 licensed open model Command A+</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="22">
+      <div class="tile-source">VentureBeat</div>
+      <div class="tile-title">Cerebras says its chips run a trillion-parameter AI model nearly 7 times faster than GPU clouds</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="23">
+      <div class="tile-source">The Verge</div>
+      <div class="tile-title">SpaceX just filed for what could be the biggest IPO ever</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="24">
+      <div class="tile-source">The Verge</div>
+      <div class="tile-title">‘Solve all diseases,’ you say?</div>
+      
+    </div>
+  
+    <div class="tile" draggable="true" data-id="25">
+      <div class="tile-source">Google AI</div>
+      <div class="tile-title">We’re announcing new community investments in Missouri.</div>
+      
+    </div>
+  
+  </div>
+
+  <footer style="border-top:none;padding-top:0">
+    <p style="font-size:0.7rem;color:var(--text-dim)">
+      only combos HAL has already imagined will work. new mashups every hour.
+    </p>
+  </footer>
+
+</section>
 
 <footer>
-  <div class="container">
-    <p><span style="font-family:var(--font-serif)"><span style="color:var(--accent)">AI</span>Brief</span> — daily intelligence. Updated hourly.</p>
-    <p style="margin-top:2px"><a href="https://github.com/MirProg/news" target="_blank" rel="noopener">Source</a></p>
-  </div>
+  <p><span style="font-family:var(--font-display);font-size:1rem"><span style="color:var(--accent)">Infinite</span>Brief</span> — the news, but we mixed it together</p>
+  <p class="hal-signature">⋆⫸ edited by HAL ⋅ updated hourly ⫷⋆</p>
 </footer>
+
+</div>
+
+<script>
+(function(){
+  const articles = JSON.parse(document.getElementById('articles-data').textContent || '[]');
+  const mashups = JSON.parse(document.getElementById('mashups-data').textContent || '[]');
+
+  // mode toggle
+  const modeBtns = document.querySelectorAll('[data-mode]');
+  const modes = {
+    read: document.getElementById('mode-read'),
+    play: document.getElementById('mode-play'),
+  };
+  modeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      modeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      Object.keys(modes).forEach(k => modes[k].classList.toggle('active', k === btn.dataset.mode));
+    });
+  });
+
+  // scrollytelling reveal
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => obs.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
+  // ===== PLAY MODE =====
+  const slotA = document.getElementById('slot-a');
+  const slotB = document.getElementById('slot-b');
+  const resultEl = document.getElementById('mash-result');
+  const zone = document.getElementById('mash-zone');
+  let slotAData = null;
+  let slotBData = null;
+
+  function clearSlot(slot) {
+    slot.innerHTML = 'drag story here';
+    slot.classList.remove('filled');
+    return null;
+  }
+
+  function fillSlot(slot, article) {
+    slot.innerHTML = '<span class="slot-source">' + article.source + '</span><span class="slot-title">' + article.title + '</span>';
+    slot.classList.add('filled');
+    return article;
+  }
+
+  function showResult() {
+    if (!slotAData || !slotBData) {
+      resultEl.innerHTML = '?';
+      resultEl.classList.remove('populated');
+      return;
+    }
+    const aId = parseInt(slotAData.dataset.id);
+    const bId = parseInt(slotBData.dataset.id);
+    const found = mashups.find(m =>
+      (m.a_id === aId && m.b_id === bId) || (m.a_id === bId && m.b_id === aId)
+    );
+    if (found) {
+      // track discovery
+      let seen = JSON.parse(localStorage.getItem('ib_seen') || '[]');
+      const key = found.a_id + '-' + found.b_id;
+      const isNew = !seen.includes(key);
+      if (isNew) {
+        seen.push(key);
+        localStorage.setItem('ib_seen', JSON.stringify(seen));
+      }
+      resultEl.classList.add('populated');
+      resultEl.innerHTML =
+        '<div class="result-label">' + (isNew ? '✨ first discovery!' : '⇢ HAL says') + '</div>' +
+        '<div class="result-text">' + found.content + '</div>' +
+        '<button class="share-btn" onclick="copyMashup(this,\'' + found.content.replace(/'/g,"\\'") + '\')">share this mashup →</button>';
+    } else {
+      resultEl.classList.add('populated');
+      resultEl.innerHTML =
+        '<div class="result-label">🤔 HAL hasn\'t connected these yet</div>' +
+        '<div class="result-text" style="color:var(--text-dim);font-size:0.72rem">come back after the next hourly briefing — new combos appear every cycle</div>';
+    }
+  }
+
+  function setSlot(slot, tile) {
+    const art = articles[parseInt(tile.dataset.id)];
+    if (!art) return;
+    fillSlot(slot, art);
+    slot.dataset.id = tile.dataset.id;
+    if (slot === slotA) slotAData = tile;
+    else slotBData = tile;
+    showResult();
+  }
+
+  function clearBoth() {
+    slotAData = null;
+    slotBData = null;
+    clearSlot(slotA);
+    clearSlot(slotB);
+    showResult();
+  }
+
+  // Drag and drop
+  const tiles = document.querySelectorAll('.tile');
+  tiles.forEach(t => {
+    t.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', t.dataset.id);
+      t.classList.add('dragging');
+    });
+    t.addEventListener('dragend', () => t.classList.remove('dragging'));
+  });
+
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const id = e.dataTransfer.getData('text/plain');
+    if (!id) return;
+    const tile = document.querySelector('.tile[data-id="' + id + '"]');
+    if (!tile) return;
+    const target = e.target.closest('.slot');
+    if (target) {
+      setSlot(target, tile);
+    } else {
+      // put in the first empty slot
+      if (!slotAData) setSlot(slotA, tile);
+      else if (!slotBData) setSlot(slotB, tile);
+      else {
+        // both filled — replace slot A
+        clearSlot(slotA); slotAData = null;
+        clearSlot(slotB); slotBData = null;
+        setSlot(slotA, tile);
+      }
+    }
+  });
+
+  // click to clear a slot
+  slotA.addEventListener('click', () => { if (slotAData) { clearSlot(slotA); slotAData = null; showResult(); } });
+  slotB.addEventListener('click', () => { if (slotBData) { clearSlot(slotB); slotBData = null; showResult(); } });
+
+  // Touch support for tiles
+  let draggedTile = null;
+  tiles.forEach(t => {
+    t.addEventListener('touchstart', e => {
+      draggedTile = t;
+    }, { passive: true });
+  });
+
+  document.addEventListener('touchend', e => {
+    if (!draggedTile) return;
+    const touch = e.changedTouches[0];
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+    const slot = target && target.closest('.slot');
+    if (slot) {
+      setSlot(slot, draggedTile);
+    }
+    draggedTile = null;
+  });
+
+  window.copyMashup = function(btn, text) {
+    const shareText = '🔮 Infinite Brief mashup:\n\n' + text + '\n\n— made at infinitebrief.com';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareText).then(() => {
+        btn.textContent = 'copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'share this mashup →'; btn.classList.remove('copied'); }, 2000);
+      }).catch(() => {});
+    }
+  };
+})();
+</script>
+
 </body>
 </html>
