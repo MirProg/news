@@ -26,15 +26,15 @@ SPORT_IMAGES = {
     "Boxing": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop",
 }
 
-# Atmospheric story templates — Lovecraft / Hitchcock / Kubrick voice
+# Atmospheric story templates — Lovecraft / Hitchcock / Kubrick / Pratchett voice
 STORY_OPENINGS = [
-    "There is a peculiar geometry to the game that most never see. The angles between players, the silent arithmetic of positioning, the patterns that repeat across seasons like a signal buried in static. Tonight, that signal points toward something inevitable.",
-    "The stadium is a study in contrasts: blinding light above, deep shadow below. In the tunnels beneath the stands, the air tastes of metal and grass. Two teams prepare to step into the arena, unaware that the outcome has already been written in the quiet calculus of seven hidden dimensions.",
-    "Some matches are decided before a single play unfolds. Not by fate, nor by chance — but by forces measurable and predictable to those who know where to look. The patterns are there, embedded in the data like fossils in stone, waiting to be read.",
-    "Consider the space between two opponents at the moment of engagement. That interval, measured in fractions of a second and degrees of angle, contains more information about the outcome than any pundit's intuition. The machine sees it. The crowd feels it. The players simply live it.",
-    "There is a threshold beyond which measurement becomes prediction. Beyond that threshold lie the seven dimensions — a framework that maps not just what happened, but what will happen. And what will happen tonight has been mapped with unsettling precision.",
-    "The ordinary observer sees a game. The trained eye sees a chain of causality stretching back years — past meetings, venue histories, atmospheric conditions, the accumulated weight of every similar moment that came before. Tonight is not an isolated event. It never was.",
-    "Something is about to unfold on the field. The air has that quality — that anticipation that precedes the irreversible. Every factor has been weighed. Every variable accounted for. The only thing left is the event itself.",
+    "There is a peculiar geometry to the game that most never see. The angles between players, the silent arithmetic of positioning, the patterns that repeat across seasons like a signal buried in static. Or, to put it more simply: one team is probably going to lose, and the data knows which one.",
+    "The stadium is a study in contrasts: blinding light above, deep shadow below. In the tunnels beneath the stands, the air tastes of metal and grass. Two teams prepare to step into the arena, unaware that the outcome has already been calculated by seven dimensions of analysis — none of which account for the possibility that someone might trip over their own shoelace.",
+    "Some matches are decided before a single play unfolds. Not by fate, nor by chance — but by forces measurable and predictable to those who know where to look. The patterns are there, embedded in the data like fossils in stone, waiting to be read by someone who has way too much time on their hands and access to a very large spreadsheet.",
+    "Consider the space between two opponents at the moment of engagement. That interval, measured in fractions of a second and degrees of angle, contains more information about the outcome than any pundit's intuition. The machine sees it. The crowd feels it. The players, statistically speaking, are mostly just hoping nobody makes a really embarrassing mistake on live television.",
+    "There is a threshold beyond which measurement becomes prediction. Beyond that threshold lie the seven dimensions — a framework that maps not just what happened, but what will happen. And what will happen tonight has been mapped with unsettling precision, assuming the universe doesn't decide to throw in a rogue gust of wind just to keep things interesting.",
+    "The ordinary observer sees a game. The trained eye sees a chain of causality stretching back years — past meetings, venue histories, atmospheric conditions, the accumulated weight of every similar moment that came before. Tonight is not an isolated event. It never was. Though the post-match analysis will still find a way to blame the referee.",
+    "Something is about to unfold on the field. The air has that quality — that anticipation that precedes the irreversible. Every factor has been weighed. Every variable accounted for. The only thing left is the event itself, and the quiet, unshakeable knowledge that sport has a sense of humor.",
 ]
 
 
@@ -48,32 +48,32 @@ def _story(pred):
 
     if abs(wp - 50) < 3:
         body = opening
-        body += f" This is the rare matchup where the dimensions refuse to align. {t1} and {t2} occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown."
+        body += f" This is the rare matchup where the dimensions refuse to align. {t1} and {t2} occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown. Which is its way of saying it has no idea, and you should probably just watch the game like a normal person."
     elif wp > 72:
         body = opening
         body += f" {t1} enters this contest carrying an advantage so comprehensive it borders on the absolute. Every dimension the machine tracks — from the granular history of individual player matchups to the macro patterns of venue behavior — converges on the same conclusion."
         if sorted_dims:
             d = sorted_dims[0]
-            body += f" The strongest signal radiates from {d['name'].lower()}, where the asymmetry is most pronounced. The gap between these two sides, measured across all seven axes, creates a gravitational field from which {t2} will struggle to escape."
+            body += f" The strongest signal radiates from {d['name'].lower()}, where the asymmetry is most pronounced. The gap between these two sides, measured across all seven axes, creates a gravitational field from which {t2} will struggle to escape. The model does not say 'upset.' The model says 'mathematically unlikely.' The model has never been to a party and does not understand the appeal of dramatic narratives."
     elif wp > 60:
         body = opening
         body += f" {t1} holds a measurable advantage — not the kind that guarantees outcome, but the kind that tilts probability across enough individual moments to matter."
         if len(sorted_dims) >= 2:
             body += f" Two dimensions in particular — {sorted_dims[0]['name'].lower()} and {sorted_dims[1]['name'].lower()} — form the backbone of this edge, each contributing a subtle but persistent bias toward {t1}. In the aggregate, these biases compound into a force that {t2} must consciously overcome."
-        body += f" It is not impossible. It is merely improbable."
+        body += f" It is not impossible. It is merely improbable. Which, as any historian of sport will tell you, is precisely when the improbable tends to show up, grinning, with questionable fashion sense."
     else:
         body = opening
         body += f" The signal here is faint — a whisper where one might expect a voice. {t1 if wp > 50 else t2} registers barely above parity, an edge so slender it approaches the threshold of noise."
         if sorted_dims:
             body += f" What little separation exists comes from {sorted_dims[0]['name'].lower()}, where a single dimension manages to produce just enough distinction to register."
-        body += f" Matches like these belong not to prediction, but to the chaotic and beautiful unpredictability that makes sport what it is."
+        body += f" Matches like these belong not to prediction, but to the chaotic and beautiful unpredictability that makes sport what it is. The model admits, in its own silent, tensorial way, that it is guessing. It hopes you will not hold this against it."
 
     if pred.get("pred_score1") is not None:
         body += f" The projected score suggests {t1} {pred['pred_score1']:.0f}, {t2} {pred['pred_score2']:.0f}."
     else:
         body += f" The projection favors {t1 if wp > 50 else t2}, but by a margin that offers no guarantees."
 
-    body += " What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate."
+    body += " What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate. The model is smart. But it has never once kicked a ball, swung a bat, or been hit in the face by a professional boxer. That counts for something."
 
     return body
 
