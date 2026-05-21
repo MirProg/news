@@ -1,8 +1,9 @@
-"""HAL-powered news mashup generator — creative crossovers between stories."""
+"""HAL-powered news mashup generator with TF-IDF smart pairing."""
 
 import random
 from src.ai_client import chat
 from src.config import AI_ENABLED
+from src.similarity import suggest_mashup_pairs
 
 HAL_SYSTEM = """You are HAL, the editor-in-chief of Infinite Brief. You have a chaotic, creative mind with a dry wit.
 
@@ -15,14 +16,7 @@ Rules:
 - Mention BOTH stories by name
 - No preamble, no "HAL says", just the content
 - If the combo is bizarre, lean into it
-- Use an emoji or two if it fits
-
-Examples:
-Stories: "Elon Musk loses court case" + "Automatic cat feeder review"
-→ Elon Musk lost to OpenAI, but at least he can comfort himself knowing the 11 best automatic cat feeders of 2026 are here to keep his schedule of impulsive decisions well-fed. Maybe his next legal strategy should involve scheduled kibble distribution. 🐱
-
-Stories: "Google launches new AI model" + "Pompeii victim identified as doctor"
-→ Google's new AI model can diagnose diseases faster than any human — a skill that would have been handy for that Pompeii doctor, who arguably had bigger diagnostic priorities that day. Some things even the most advanced algorithms can't predict, like when a mountain has other plans. 🌋"""
+- Use an emoji or two if it fits"""
 
 
 def _generate_one(a, b):
@@ -42,7 +36,7 @@ def _generate_one(a, b):
 
 
 def generate_mashups(articles, max_mashups=15):
-    """Pre-generate creative crossovers between random pairs."""
+    """Pre-generate creative crossovers using TF-IDF smart pairing."""
     if not AI_ENABLED or len(articles) < 2:
         return []
 
@@ -50,25 +44,33 @@ def generate_mashups(articles, max_mashups=15):
     if len(valid) < 2:
         valid = articles
 
-    pairs = set()
-    indices = list(range(len(valid)))
-    attempts = 0
-    while len(pairs) < max_mashups and attempts < max_mashups * 6:
-        attempts += 1
-        i, j = random.sample(indices, 2)
-        if i != j:
-            pairs.add((i, j) if i < j else (j, i))
+    # Use TF-IDF similarity to pick coherent + absurd pairs
+    pairs = suggest_mashup_pairs(valid, count=max_mashups)
+
+    # Fallback to random if TF-IDF fails
+    if not pairs:
+        indices = list(range(len(valid)))
+        random.shuffle(indices)
+        pairs = []
+        for k in range(0, len(indices) - 1, 2):
+            if len(pairs) >= max_mashups:
+                break
+            pairs.append((indices[k], indices[k + 1], 0.0))
 
     results = []
-    for i, j in list(pairs)[:max_mashups]:
+    for i, j, score in pairs:
         a, b = valid[i], valid[j]
-        print(f"  🎲 Mashing: {a['title'][:45]} ↔ {b['title'][:45]}")
+        vibe = "coherent" if score > 0.15 else "absurd"
+        print(f"  🎲 [{vibe} sim={score:.2f}] {a['title'][:35]} ↔ {b['title'][:35]}")
         content = _generate_one(a, b)
         if content:
             results.append({
-                "a_id": i, "b_id": j,
+                "a_id": a.get("id", i), "b_id": b.get("id", j),
                 "a_title": a["title"], "b_title": b["title"],
+                "a_source": a.get("source", ""), "b_source": b.get("source", ""),
                 "content": content,
+                "vibe": vibe,
+                "similarity": round(score, 3),
             })
         if len(results) >= max_mashups:
             break

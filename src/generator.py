@@ -1,13 +1,31 @@
 import os
 import json
 import re
+import math
 from datetime import datetime, timezone
-from collections import OrderedDict
+from collections import Counter
 from jinja2 import Environment, FileSystemLoader
 
 from src.config import SITE_NAME, SITE_URL, SITE_DESC
+from src.similarity import find_related, similarity_matrix
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+POSITIVE = set("""
+breakthrough impressive innovative remarkable milestone success growth surge
+record soar jump boost rally gain strong momentum optimistic promising
+pioneering breakthrough award win victory achieve launch partnership funding
+investment expand growth opportunity potential leader leading top best
+excellent outstanding incredible revolutionary transformative exciting bright
+""".split())
+
+NEGATIVE = set("""
+loss fail decline drop fall slump crisis risk threat danger breach
+violate exploit abuse leak hack attack lawsuit sue court battle dispute
+struggle problem issue concern worry cut layoff fire resign quit crisis
+collapse bankrupt debt deficit loss damage harm hurt pain suffer tragic
+deadly fatal worst terrible poor weak broken flawed争议 controversy
+""".split())
 
 def format_date(dt):
     if not dt:
@@ -58,8 +76,29 @@ def parse_briefing(raw):
         })
     return sections if sections else None
 
+def compute_mood(text):
+    if not text:
+        return "neutral"
+    words = re.findall(r"[a-z]+", text.lower())
+    if not words:
+        return "neutral"
+    pos = sum(1 for w in words if w in POSITIVE)
+    neg = sum(1 for w in words if w in NEGATIVE)
+    score = (pos - neg) / max(len(words) * 0.01, 1)
+    if score > 0.5:
+        return "positive"
+    if score < -0.5:
+        return "negative"
+    return "neutral"
+
+def compute_reading_time(text):
+    if not text:
+        return 1
+    words = len(re.findall(r"\w+", text))
+    return max(1, round(words / 200))
+
 def generate(articles, briefing_raw=None, mashups=None):
-    grouped = OrderedDict()
+    grouped = {}
     seen_titles = set()
     for i, a in enumerate(articles):
         key = a.get("source") or "General"
@@ -82,21 +121,39 @@ def generate(articles, briefing_raw=None, mashups=None):
     briefing = parse_briefing(briefing_raw)
 
     articles_out = []
+    keywords_bag = Counter()
     for i, a in enumerate(flat):
+        summary = a["summary"]
+        mood = compute_mood(summary)
         entry = {
             "id": i,
             "title": a["title"],
             "source": a.get("source", ""),
             "url": a.get("url", ""),
             "image_url": a.get("image_url", ""),
-            "summary": a["summary"],
+            "summary": summary,
             "trend": a.get("trend", ""),
             "date": a.get("date", ""),
+            "mood": mood,
+            "reading_time": compute_reading_time(summary),
+            "keywords": a.get("keywords", [])[:5],
         }
         reason = a.get("reasoning", {})
         if reason.get("analyst"):
             entry["reasoning"] = reason
         articles_out.append(entry)
+        for kw in entry["keywords"]:
+            if isinstance(kw, str):
+                keywords_bag[kw.lower()] += 1
+
+    # Keyword cloud: top 30 keywords
+    top_kw = [{"word": w, "count": c} for w, c in keywords_bag.most_common(30)]
+
+    # TF-IDF related articles
+    for entry in articles_out:
+        related = find_related(articles_out, entry["id"], top_n=3)
+        if related:
+            entry["related"] = related
 
     html = template.render(
         site_name=SITE_NAME,
@@ -106,6 +163,7 @@ def generate(articles, briefing_raw=None, mashups=None):
         articles=articles_out,
         articles_json=json.dumps(articles_out, ensure_ascii=False),
         mashups_json=json.dumps(mashups or [], ensure_ascii=False),
+        top_keywords=json.dumps(top_kw, ensure_ascii=False),
         briefing=briefing,
     )
 
@@ -114,10 +172,9 @@ def generate(articles, briefing_raw=None, mashups=None):
     with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(html)
 
+    moods = Counter(a["mood"] for a in articles_out)
     print(f"Generated {out_dir}\\index.html — {len(articles_out)} articles, {len(mashups or [])} mashups")
-    if briefing:
-        print(f"  HAL's briefing: {len(briefing)} sections")
+    print(f"  Mood: {dict(moods)} | Keywords: {len(top_kw)} unique")
 
-    # Also write root copy for GitHub Pages
     with open(os.path.join(HERE, "index.html"), "w", encoding="utf-8") as f:
         f.write(html)
