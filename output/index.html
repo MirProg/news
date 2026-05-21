@@ -3,496 +3,535 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Seven Dimensions — 21 May 2026</title>
+<title>Beyond the Game — May 21, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Cormorant+Garamond:ital@0,1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 :root {
-  --bg: #f6f4ef;
-  --card-bg: #ffffff;
-  --text: #1c1b18;
-  --text2: #5c5a54;
-  --text3: #9c9a94;
-  --border: #e4e2dc;
-  --red: #b83535;
+  --bg: #f4f2ed;
+  --card: #ffffff;
+  --text: #1a1a16;
+  --text2: #55534e;
+  --text3: #999792;
+  --red: #d42a2a;
   --font: 'Inter', -apple-system, sans-serif;
   --display: 'Playfair Display', Georgia, serif;
-  --body: 'Cormorant Garamond', Georgia, serif;
 }
 body {
   background: var(--bg); color: var(--text);
-  font-family: var(--body); font-size: 17px; line-height: 1.7;
+  font-family: var(--font); font-size: 15px; line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
-.container { max-width: 780px; margin: 0 auto; padding: 0 20px 40px; }
+.container { max-width: 100%; margin: 0 auto; }
 
-/* Header */
-.header {
-  padding: 20px 0; border-bottom: 1px solid var(--border);
-  margin-bottom: 20px; text-align: center;
+/* Top bar */
+.top {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 28px;
+  background: rgba(244,242,237,0.95);
+  border-bottom: 1px solid #ddd;
+  font-family: var(--font);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
-.header .logo { font-family: var(--display); font-size: 1.3rem; font-weight: 700; }
-.header .logo em { font-style: italic; color: var(--red); }
-.header .ts { font-size: 0.6rem; color: var(--text3); font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
-
-/* Nav */
-.nav {
-  display: flex; gap: 2px; flex-wrap: wrap; justify-content: center;
-  margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
-}
+.top .logo { font-weight: 800; font-size: 0.75rem; }
+.top .logo span { color: var(--red); }
+.top-nav { display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
 .nav-link {
-  font-family: var(--font); font-size: 0.6rem; font-weight: 500;
-  color: var(--text3); text-decoration: none; padding: 4px 12px;
-  border-radius: 3px; letter-spacing: 0.03em; text-transform: uppercase;
-  transition: all 0.15s;
+  color: #888; text-decoration: none; padding: 3px 10px;
+  font-size: 0.55rem; letter-spacing: 0.05em;
+  transition: color 0.15s;
 }
-.nav-link:hover { background: var(--red); color: #fff; }
+.nav-link:hover { color: var(--red); }
 
-/* Story card */
-.story-card {
-  display: flex; gap: 24px; margin-bottom: 24px;
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: 4px; overflow: hidden;
-  transition: box-shadow 0.2s;
-}
-.story-card:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
-.card-img {
-  width: 260px; min-height: 180px; flex-shrink: 0;
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex; align-items: flex-end;
   background-size: cover; background-position: center;
+  margin-bottom: 4px;
 }
-.card-content { padding: 18px 22px 18px 0; }
-.card-label {
-  font-family: var(--font); font-size: 0.5rem; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); margin-bottom: 4px;
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);
 }
-.card-title {
-  font-family: var(--display); font-size: 1.15rem; font-weight: 700;
-  line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.01em;
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 720px; padding: 60px 40px 80px; color: #fff;
 }
-.card-body p { font-size: 0.85rem; color: var(--text2); line-height: 1.65; }
+.hero-label {
+  font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--red); margin-bottom: 8px;
+}
+.hero-title {
+  font-family: var(--display); font-size: 2.6rem; font-weight: 900;
+  line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em;
+}
+.hero-body p { font-size: 0.9rem; line-height: 1.7; opacity: 0.9; max-width: 600px; }
 
-/* Hidden sections */
-.hidden { display: none; }
+/* Feature story */
+.feature {
+  display: flex; gap: 0; margin-bottom: 4px;
+  background: var(--card); min-height: 400px;
+}
+.feature-img { width: 50%; background-size: cover; background-position: center; }
+.feature-content {
+  width: 50%; padding: 36px 40px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.feature-label {
+  font-size: 0.55rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--red); margin-bottom: 6px;
+}
+.feature-title {
+  font-family: var(--display); font-size: 1.5rem; font-weight: 700;
+  line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.01em;
+}
+.feature-body p { font-size: 0.85rem; color: var(--text2); line-height: 1.7; }
+
+/* Compact stories */
+.compact {
+  display: flex; gap: 16px; padding: 16px 28px;
+  background: var(--card); margin-bottom: 2px; align-items: center;
+}
+.compact-img {
+  width: 80px; height: 80px; flex-shrink: 0;
+  background-size: cover; background-position: center; border-radius: 4px;
+}
+.compact-content { flex: 1; }
+.compact-label {
+  font-size: 0.5rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--red); margin-bottom: 2px;
+}
+.compact-title {
+  font-family: var(--display); font-size: 0.85rem; font-weight: 700;
+  line-height: 1.2; margin-bottom: 4px;
+}
+.compact-body p { font-size: 0.7rem; color: var(--text2); line-height: 1.5; }
 
 /* Footer */
 .footer {
-  border-top: 1px solid var(--border); padding: 20px 0; margin-top: 8px;
-  text-align: center; font-family: var(--font); font-size: 0.6rem; color: var(--text3);
+  padding: 24px 28px; text-align: center;
+  font-size: 0.6rem; color: var(--text3); line-height: 2;
+  border-top: 1px solid #ddd;
 }
 
-@media(max-width:640px) {
-  .story-card { flex-direction: column; }
-  .card-img { width: 100%; height: 180px; }
-  .card-content { padding: 14px 18px; }
+@media(max-width:700px) {
+  .feature { flex-direction: column; min-height: auto; }
+  .feature-img { width: 100%; height: 220px; }
+  .feature-content { width: 100%; padding: 20px 24px; }
+  .hero-title { font-size: 1.8rem; }
+  .hero-content { padding: 40px 20px 60px; }
+  .top { padding: 8px 14px; flex-direction: column; gap: 4px; }
+  .compact { padding: 12px 16px; }
 }
 </style>
 </head>
 <body>
 <div class="container">
 
-<div class="header">
-  <div class="logo">The Seven <em>Dimensions</em></div>
-  <div class="ts">21 May 2026</div>
+<div class="top">
+  <div class="logo">Beyond the <span>Game</span></div>
+  <div class="top-nav"><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a></div>
 </div>
 
-<nav class="nav" id="nav"><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a></nav>
 
+  <section class="hero" id="sRugby" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-label">Rugby Union · 47.0% accuracy</p>
+      <h1 class="hero-title">France vs New Zealand: HAL Makes a Call</h1>
+      <div class="hero-body"><p>The numbers say this is close. Very close. France has the slimmest of edges — the kind that could vanish on a single bounce, a single call, a single moment of brilliance or disaster.
 
-    <section class="story-card" id="sBoxing">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Professional Boxing · 53.0% accuracy</p>
-        <h2 class="card-title">Inoue vs Taylor: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>The data does not experience hope or fear. It processes information and arrives at probabilities. The fact that this is more reliable than human intuition is not a compliment to the data. Inoue and Taylor are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection favors Taylor, but comfortably within the margin of error that keeps sports interesting. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card" id="sMMA">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">MMA (UFC) · 46.0% accuracy</p>
-        <h2 class="card-title">Jones vs Volkanovski: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>Some matches are decided before they begin. Not by fate, and not by chance — but by patterns measurable to anyone willing to spend an unreasonable amount of time with spreadsheets. The data does not judge this lifestyle choice. Jones and Volkanovski are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection favors Jones, but comfortably within the margin of error that keeps sports interesting. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card" id="sEPL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">English Premier League · 37.0% accuracy</p>
-        <h2 class="card-title">Newcastle vs Man United: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>There is a peculiar geometry to the game that most never see. One of these teams is going to lose. The other one is going to win. The data has reached a conclusion, though it is not especially emotional about it. Newcastle and Man United are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection: Newcastle 2, Man United 2. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
+The only dimensi…</p></div>
+    </div>
+  </section>
+  <section class="feature" id="sCricket_T20">
+    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')"></div>
+    <div class="feature-content">
+      <p class="feature-label">T20 Cricket · 42.0% accuracy</p>
+      <h2 class="feature-title">CSK vs MI: HAL Makes a Call</h2>
+      <div class="feature-body"><p>The numbers say this is close. Very close. CSK has the slimmest of edges — the kind that could vanish on a single bounce, a single call, a single moment of brilliance or disaster.
 
+The only dimension providing any separation at all is head-to-head history, and even that is narrow.
 
-    <section class="story-card hidden" id="sNBA">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NBA Basketball · 57.0% accuracy</p>
-        <h2 class="card-title">Timberwolves vs Lakers: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>Beyond a certain threshold, measurement becomes prediction. The seven-dimensional framework tracks what is likely to happen next. It is reasonably confident about this. It has been wrong before, and it is aware of this fact. Timberwolves and Lakers are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection: Timberwolves 111, Lakers 111. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNFL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NFL Football · 49.0% accuracy</p>
-        <h2 class="card-title">Texans vs Saints: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>Some matches are decided before they begin. Not by fate, and not by chance — but by patterns measurable to anyone willing to spend an unreasonable amount of time with spreadsheets. The data does not judge this lifestyle choice. Texans and Saints are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection: Texans 22, Saints 22. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sMLB">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">MLB Baseball · 62.0% accuracy</p>
-        <h2 class="card-title">Diamondbacks vs Cardinals: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>Beneath the stadium, in corridors where the concrete never quite dries, two teams prepare. They are unaware that the outcome has been calculated across seven dimensions of analysis. They are also unaware that pigeons sometimes land on the field at inopportune moments. This has happened before. Diamondbacks and Cardinals are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection: Diamondbacks 4, Cardinals 4. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNHL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NHL Hockey · 75.0% accuracy</p>
-        <h2 class="card-title">Red Wings vs Bruins: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>The air before a match has a particular quality. Anticipation, perhaps, or the collective anxiety of everyone in the building realizing they are about to witness something that will be either brilliant or a complete disaster, with very little room in between. Red Wings and Bruins are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection: Red Wings 3, Bruins 3. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sTENNIS">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Tennis (ATP) · 67.0% accuracy</p>
-        <h2 class="card-title">Mannarino vs Hurkacz: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>There is a peculiar geometry to the game that most never see. One of these teams is going to lose. The other one is going to win. The data has reached a conclusion, though it is not especially emotional about it. Mannarino and Hurkacz are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection favors Mannarino, but comfortably within the margin of error that keeps sports interesting. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sRugby">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Rugby Union · 44.0% accuracy</p>
-        <h2 class="card-title">Samoa vs Japan: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>Every match exists within a web of causality — past meetings, venue tendencies, atmospheric pressure, the phase of the moon. The model accounts for most of these. The moon phase is not currently included, though the possibility is being researched. Samoa and Japan are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection: Samoa 27, Japan 27. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sF1">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Formula 1 · 0% accuracy</p>
-        <h2 class="card-title">Hamilton vs Piastri: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>Beneath the stadium, in corridors where the concrete never quite dries, two teams prepare. They are unaware that the outcome has been calculated across seven dimensions of analysis. They are also unaware that pigeons sometimes land on the field at inopportune moments. This has happened before. Hamilton and Piastri are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection favors Hamilton, but comfortably within the margin of error that keeps sports interesting. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sCricket_T20">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">T20 Cricket · 48.0% accuracy</p>
-        <h2 class="card-title">RR vs KKR: A Genuine Toss-Up</h2>
-        <div class="card-body"><p>The data does not experience hope or fear. It processes information and arrives at probabilities. The fact that this is more reliable than human intuition is not a compliment to the data. RR and KKR are so evenly matched that the model can only register uncertainty. It does not enjoy this. The most honest prediction it can offer is that someone will win, presumably by scoring more points than the other side, though the exact mechanism remains unclear. The projection: RR 172, KKR 172. The model is reasonably intelligent. It has never kicked a ball or been hit in the face by a professional boxer. These limitations should be considered.</p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sCricket_T20">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">T20 Cricket · 48.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Venue & Conditions Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sCricket_T20">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">T20 Cricket · 48.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in T20 Cricket</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sCricket_T20">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">T20 Cricket · 48.0% accuracy</p>
-        <h2 class="card-title">The T20 Cricket Season Through HAL's Eyes</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sEPL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">English Premier League · 37.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Venue & Conditions Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sEPL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">English Premier League · 37.0% accuracy</p>
-        <h2 class="card-title">Player Watch: Haaland in the Spotlight</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sEPL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">English Premier League · 37.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in English Premier League</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNBA">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NBA Basketball · 57.0% accuracy</p>
-        <h2 class="card-title">Player Watch: Jokic in the Spotlight</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNBA">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NBA Basketball · 57.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in NBA Basketball</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNBA">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NBA Basketball · 57.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Head-to-Head History Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNFL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NFL Football · 49.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Player Matchups Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNFL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NFL Football · 49.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in NFL Football</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNFL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NFL Football · 49.0% accuracy</p>
-        <h2 class="card-title">Player Watch: Jackson in the Spotlight</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sMLB">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">MLB Baseball · 62.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in MLB Baseball</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sMLB">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">MLB Baseball · 62.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Player Health Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sMLB">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">MLB Baseball · 62.0% accuracy</p>
-        <h2 class="card-title">The MLB Baseball Season Through HAL's Eyes</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNHL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NHL Hockey · 75.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in NHL Hockey</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNHL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NHL Hockey · 75.0% accuracy</p>
-        <h2 class="card-title">The NHL Hockey Season Through HAL's Eyes</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sNHL">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">NHL Hockey · 75.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Recent Form Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sTENNIS">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Tennis (ATP) · 67.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in Tennis (ATP)</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sTENNIS">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Tennis (ATP) · 67.0% accuracy</p>
-        <h2 class="card-title">The Tennis (ATP) Season Through HAL's Eyes</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sTENNIS">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Tennis (ATP) · 67.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Venue & Conditions Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sRugby">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Rugby Union · 44.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Recent Form Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sRugby">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Rugby Union · 44.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in Rugby Union</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sRugby">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Rugby Union · 44.0% accuracy</p>
-        <h2 class="card-title">Player Watch: Etchie in the Spotlight</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sF1">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Formula 1 · 0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in Formula 1</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sF1">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Formula 1 · 0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Player Health Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sF1">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Formula 1 · 0% accuracy</p>
-        <h2 class="card-title">Player Watch: Hamilton in the Spotlight</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sMMA">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">MMA (UFC) · 46.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Player Matchups Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sMMA">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">MMA (UFC) · 46.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in MMA (UFC)</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sMMA">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">MMA (UFC) · 46.0% accuracy</p>
-        <h2 class="card-title">Player Watch: Topuria in the Spotlight</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sBoxing">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Professional Boxing · 53.0% accuracy</p>
-        <h2 class="card-title">Player Watch: Crawford in the Spotlight</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sBoxing">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Professional Boxing · 53.0% accuracy</p>
-        <h2 class="card-title">How HAL's Multi-Dimensional Model Is Performing in Professional Boxing</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
-    <section class="story-card hidden" id="sBoxing">
-      <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&h=500&fit=crop')"></div>
-      <div class="card-content">
-        <p class="card-label">Professional Boxing · 53.0% accuracy</p>
-        <h2 class="card-title">Beyond the Score: Why Head-to-Head History Matters</h2>
-        <div class="card-body"><p></p></div>
-      </div>
-    </section>
+Games like this are why we love sports. The data shrugs. The human heart races. That gap is everything.
+
+Projected score: CSK 174 — MI 170.
+
+Now go watch what happens.</p></div>
+    </div>
+  </section>
+  <section class="feature" id="sMLB">
+    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop')"></div>
+    <div class="feature-content">
+      <p class="feature-label">MLB Baseball · 62.0% accuracy</p>
+      <h2 class="feature-title">Rangers vs Orioles: HAL Makes a Call</h2>
+      <div class="feature-body"><p>The numbers say this is close. Very close. Rangers has the slimmest of edges — the kind that could vanish on a single bounce, a single call, a single moment of brilliance or disaster.
+
+The only dimension providing any separation at all is head-to-head history, and even that is narrow.
+
+Games like this are why we love sports. The data shrugs. The human heart races. That gap is everything.
+
+Projected score: Rangers 4 — Orioles 4.
+
+Now go watch what happens.</p></div>
+    </div>
+  </section>
+  <section class="feature" id="sF1">
+    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
+    <div class="feature-content">
+      <p class="feature-label">Formula 1 · 0% accuracy</p>
+      <h2 class="feature-title">Bottas vs Zhou: A Genuine Toss-Up</h2>
+      <div class="feature-body"><p>This is the kind of matchup that keeps you up at night. Bottas and Zhou are so evenly matched that every dimension — from head-to-head history to player matchups, from venue conditions to recent form — cancels out into perfect, maddening equilibrium. This is not a prediction. This is an admission: nobody knows. And that is exactly why you have to watch.
+
+Now go watch what happens.</p></div>
+    </div>
+  </section>
+  <section class="feature" id="sMMA">
+    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
+    <div class="feature-content">
+      <p class="feature-label">MMA (UFC) · 51.0% accuracy</p>
+      <h2 class="feature-title">Volkanovski vs Edwards: A Genuine Toss-Up</h2>
+      <div class="feature-body"><p>This is the kind of matchup that keeps you up at night. Volkanovski and Edwards are so evenly matched that every dimension — from head-to-head history to player matchups, from venue conditions to recent form — cancels out into perfect, maddening equilibrium. This is not a prediction. This is an admission: nobody knows. And that is exactly why you have to watch.
+
+Now go watch what happens.</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sEPL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">English Premier League · 50.0% accuracy</p>
+      <h3 class="compact-title">Arsenal vs Bournemouth: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>This is the kind of matchup that keeps you up at night. Arsenal and Bournemouth are so evenly matched that every dimension — from head-to-head history…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNBA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NBA Basketball · 58.0% accuracy</p>
+      <h3 class="compact-title">Jazz vs Wizards: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>This is the kind of matchup that keeps you up at night. Jazz and Wizards are so evenly matched that every dimension — from head-to-head history to pla…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNFL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NFL Football · 58.0% accuracy</p>
+      <h3 class="compact-title">Chargers vs Cowboys: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>This is the kind of matchup that keeps you up at night. Chargers and Cowboys are so evenly matched that every dimension — from head-to-head history to…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNHL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NHL Hockey · 80.0% accuracy</p>
+      <h3 class="compact-title">Blues vs Capitals: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>This is the kind of matchup that keeps you up at night. Blues and Capitals are so evenly matched that every dimension — from head-to-head history to p…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sTENNIS">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Tennis (ATP) · 80.0% accuracy</p>
+      <h3 class="compact-title">Rune vs Tiafoe: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>This is the kind of matchup that keeps you up at night. Rune and Tiafoe are so evenly matched that every dimension — from head-to-head history to play…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sBoxing">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Professional Boxing · 61.0% accuracy</p>
+      <h3 class="compact-title">Spence vs Catterall: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>This is the kind of matchup that keeps you up at night. Spence and Catterall are so evenly matched that every dimension — from head-to-head history to…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sCricket_T20">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">T20 Cricket · 42.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Player Health Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sCricket_T20">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">T20 Cricket · 42.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in T20 Cricket</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sCricket_T20">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">T20 Cricket · 42.0% accuracy</p>
+      <h3 class="compact-title">The T20 Cricket Season Through HAL's Eyes</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sEPL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">English Premier League · 50.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Venue & Conditions Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sEPL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">English Premier League · 50.0% accuracy</p>
+      <h3 class="compact-title">Player Watch: Foden in the Spotlight</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sEPL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">English Premier League · 50.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in English Premier League</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNBA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NBA Basketball · 58.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in NBA Basketball</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNBA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NBA Basketball · 58.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Player Matchups Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNBA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NBA Basketball · 58.0% accuracy</p>
+      <h3 class="compact-title">Player Watch: Doncic in the Spotlight</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNFL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NFL Football · 58.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Venue & Conditions Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNFL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NFL Football · 58.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in NFL Football</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNFL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NFL Football · 58.0% accuracy</p>
+      <h3 class="compact-title">Player Watch: Burrow in the Spotlight</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sMLB">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">MLB Baseball · 62.0% accuracy</p>
+      <h3 class="compact-title">The MLB Baseball Season Through HAL's Eyes</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sMLB">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">MLB Baseball · 62.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in MLB Baseball</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sMLB">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">MLB Baseball · 62.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Recent Form Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNHL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NHL Hockey · 80.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in NHL Hockey</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNHL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NHL Hockey · 80.0% accuracy</p>
+      <h3 class="compact-title">The NHL Hockey Season Through HAL's Eyes</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sNHL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NHL Hockey · 80.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Player Health Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sTENNIS">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Tennis (ATP) · 80.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in Tennis (ATP)</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sTENNIS">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Tennis (ATP) · 80.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Player Matchups Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sTENNIS">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Tennis (ATP) · 80.0% accuracy</p>
+      <h3 class="compact-title">The Tennis (ATP) Season Through HAL's Eyes</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sRugby">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Rugby Union · 47.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Player Matchups Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sRugby">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Rugby Union · 47.0% accuracy</p>
+      <h3 class="compact-title">Player Watch: Dupont in the Spotlight</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sRugby">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Rugby Union · 47.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in Rugby Union</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sF1">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Formula 1 · 0% accuracy</p>
+      <h3 class="compact-title">Player Watch: Piastri in the Spotlight</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sF1">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Formula 1 · 0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in Formula 1</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sF1">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Formula 1 · 0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Venue & Conditions Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sMMA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">MMA (UFC) · 51.0% accuracy</p>
+      <h3 class="compact-title">Player Watch: Makhachev in the Spotlight</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sMMA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">MMA (UFC) · 51.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Venue & Conditions Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sMMA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">MMA (UFC) · 51.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in MMA (UFC)</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sBoxing">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Professional Boxing · 61.0% accuracy</p>
+      <h3 class="compact-title">Beyond the Score: Why Player Health Matters</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sBoxing">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Professional Boxing · 61.0% accuracy</p>
+      <h3 class="compact-title">How HAL's Multi-Dimensional Model Is Performing in Professional Boxing</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
+  <section class="compact" id="sBoxing">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Professional Boxing · 61.0% accuracy</p>
+      <h3 class="compact-title">Player Watch: Joshua in the Spotlight</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </section>
 
 <footer class="footer">
   Seven dimensions · Head-to-Head History · Player Matchups · Venue & Conditions · Recent Form ·
   Tournament Context · Sentiment · Player Health<br>
-  <span style="color:var(--red)">Published daily</span>
+  Published daily · PyTorch engine · 11 sports
 </footer>
 
 </div>
-
 <script>
 (function() {
-  var links = document.querySelectorAll('.nav-link');
-  var sections = document.querySelectorAll('.story-card');
-
-  function showSection(id) {
-    sections.forEach(function(s) {
-      if (s.id === id) {
-        s.classList.remove('hidden');
-      } else {
-        s.classList.add('hidden');
-      }
-    });
-  }
-
-  links.forEach(function(link) {
+  document.querySelectorAll('.nav-link').forEach(function(link) {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       var id = this.getAttribute('href').slice(1);
-      showSection(id);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Update URL hash without jump
-      history.pushState(null, '', '#' + id);
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
     });
   });
-
-  // Restore from URL hash on load
-  if (window.location.hash) {
-    var id = window.location.hash.slice(1);
-    if (id) showSection(id);
-  }
 })();
 </script>
 </body>
