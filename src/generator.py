@@ -1,5 +1,7 @@
 """
-Smithsonian-inspired design with thrilling narrative, aesthetic sports images.
+Dark, atmospheric story-driven layout — Lovecraft, Hitchcock, Kubrick.
+Only 2-3 featured stories on page, rest in header nav.
+No numbers overwhelming. Pure storytelling with aesthetic imagery.
 """
 
 import os, random
@@ -10,69 +12,68 @@ from src.world_sports import SPORTS
 
 sport_keys = ["Cricket_T20", "EPL", "NBA", "NFL", "MLB", "NHL", "TENNIS", "Rugby", "F1", "MMA", "Boxing"]
 
-SPORT_COLORS = {
-    "Cricket_T20": "#c0392b", "EPL": "#27ae60", "NBA": "#e74c3c", "NFL": "#2980b9",
-    "MLB": "#8e44ad", "NHL": "#16a085", "TENNIS": "#d4a017", "Rugby": "#c0392b",
-    "F1": "#d35400", "MMA": "#2c3e50", "Boxing": "#2c3e50",
-}
-
 SPORT_IMAGES = {
-    "Cricket_T20": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=900&h=500&fit=crop",
-    "EPL": "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=900&h=500&fit=crop",
-    "NBA": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=900&h=500&fit=crop",
-    "NFL": "https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=900&h=500&fit=crop",
-    "MLB": "https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=900&h=500&fit=crop",
-    "NHL": "https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=900&h=500&fit=crop",
-    "TENNIS": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=900&h=500&fit=crop",
-    "Rugby": "https://images.unsplash.com/photo-1511882150382-4210563a7220?w=900&h=500&fit=crop",
-    "F1": "https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=900&h=500&fit=crop",
-    "MMA": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=900&h=500&fit=crop",
-    "Boxing": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=900&h=500&fit=crop",
+    "Cricket_T20": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop",
+    "EPL": "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop",
+    "NBA": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop",
+    "NFL": "https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop",
+    "MLB": "https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop",
+    "NHL": "https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop",
+    "TENNIS": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop",
+    "Rugby": "https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop",
+    "F1": "https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop",
+    "MMA": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop",
+    "Boxing": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop",
 }
 
+# Atmospheric story templates — Lovecraft / Hitchcock / Kubrick voice
+STORY_OPENINGS = [
+    "There is a peculiar geometry to the game that most never see. The angles between players, the silent arithmetic of positioning, the patterns that repeat across seasons like a signal buried in static. Tonight, that signal points toward something inevitable.",
+    "The stadium is a study in contrasts: blinding light above, deep shadow below. In the tunnels beneath the stands, the air tastes of metal and grass. Two teams prepare to step into the arena, unaware that the outcome has already been written in the quiet calculus of seven hidden dimensions.",
+    "Some matches are decided before a single play unfolds. Not by fate, nor by chance — but by forces measurable and predictable to those who know where to look. The patterns are there, embedded in the data like fossils in stone, waiting to be read.",
+    "Consider the space between two opponents at the moment of engagement. That interval, measured in fractions of a second and degrees of angle, contains more information about the outcome than any pundit's intuition. The machine sees it. The crowd feels it. The players simply live it.",
+    "There is a threshold beyond which measurement becomes prediction. Beyond that threshold lie the seven dimensions — a framework that maps not just what happened, but what will happen. And what will happen tonight has been mapped with unsettling precision.",
+    "The ordinary observer sees a game. The trained eye sees a chain of causality stretching back years — past meetings, venue histories, atmospheric conditions, the accumulated weight of every similar moment that came before. Tonight is not an isolated event. It never was.",
+    "Something is about to unfold on the field. The air has that quality — that anticipation that precedes the irreversible. Every factor has been weighed. Every variable accounted for. The only thing left is the event itself.",
+]
 
-def _thrilling_narrative(pred):
-    """Write a thrilling, story-driven narrative — numbers woven into the story."""
+
+def _story(pred):
+    """Write an atmospheric, literary narrative — no percentages, no bullet points."""
     t1 = pred["team1"]; t2 = pred["team2"]; wp = pred["t1_win_pct"]
     dims = pred.get("dimensions", [])
     sorted_dims = sorted(dims, key=lambda d: -abs(d["value"] - 50))
 
-    opening_templates = [
-        f"The floodlights cut through the evening haze as {t1} and {t2} prepare to write the next chapter of their rivalry. Every meeting between these two carries weight — history, pride, the quiet desperation of athletes who know what's at stake.",
-        f"On paper, this matchup between {t1} and {t2} looks like a collision of styles. But the game isn't played on paper. It's played in the spaces between anticipation and reaction, where muscle memory meets the unexpected.",
-        f"There are matchups that analytics departments circle on the calendar months in advance. {t1} vs {t2} is one of them. Not just because of the standings, but because of what happens when these particular athletes share the same field.",
-        f"The stadium hums with a different energy tonight. {t1} and {t2} have met before — enough times that the handshakes before kickoff carry a hint of familiarity masking deeper tensions. This time, everything is different.",
-    ]
+    opening = random.choice(STORY_OPENINGS)
 
     if abs(wp - 50) < 3:
-        body = random.choice(opening_templates)
-        body += f" The numbers confirm what the gut already knows: this is a coin-flip. After analyzing seven distinct dimensions — from individual matchup histories to venue conditions, from recent form fluctuations to the pressure of the moment — the model registers a dead heat. {t1} checks in at {wp:.0f}%, {t2} at {100-wp:.0f}%. When the margin is this thin, the game becomes a cascade of single moments: a misstep in the 73rd minute, a gust of wind at the wrong instant, a referee's decision that tilts everything."
-    elif wp > 70:
-        body = random.choice(opening_templates)
-        body += f" The model is unambiguous: {t1} holds a {wp:.0f}% probability of victory, and the reasons run deeper than simple optimism."
+        body = opening
+        body += f" This is the rare matchup where the dimensions refuse to align. {t1} and {t2} occupy opposite poles of every measurable axis, yet the composite reads as a perfect equilibrium — a balance so precise it feels deliberate, as though the universe itself conspired to create uncertainty. The model, for all its resolution, can only offer a single honest word: unknown."
+    elif wp > 72:
+        body = opening
+        body += f" {t1} enters this contest carrying an advantage so comprehensive it borders on the absolute. Every dimension the machine tracks — from the granular history of individual player matchups to the macro patterns of venue behavior — converges on the same conclusion."
         if sorted_dims:
-            strong = sorted_dims[0]
-            body += f" The strongest signal comes from {strong['name'].lower()}, which tilts decisively in {t1}'s favor. Across seven analytical dimensions, {t1} shows structural advantages that compound rather than cancel out."
-        body += f" This isn't a prediction of inevitability — sport is too human for that — but it is a statement of probability weighted by evidence. {t2} would need to overcome not just their opponent, but the accumulated weight of every factor measured."
+            d = sorted_dims[0]
+            body += f" The strongest signal radiates from {d['name'].lower()}, where the asymmetry is most pronounced. The gap between these two sides, measured across all seven axes, creates a gravitational field from which {t2} will struggle to escape."
     elif wp > 60:
-        body = random.choice(opening_templates)
-        body += f" The model gives {t1} a {wp:.0f}% edge — a meaningful but not insurmountable advantage."
+        body = opening
+        body += f" {t1} holds a measurable advantage — not the kind that guarantees outcome, but the kind that tilts probability across enough individual moments to matter."
         if len(sorted_dims) >= 2:
-            body += f" The two most influential factors, {sorted_dims[0]['name'].lower()} and {sorted_dims[1]['name'].lower()}, both trend in {t1}'s direction, creating a compound effect that accounts for roughly two-thirds of the gap. But the remaining dimensions are closer to parity, and in sport, parity is dangerous."
-        body += f" In roughly three out of ten simulations, {t2} finds a path to victory — often through the very unpredictability that makes sport worth watching."
+            body += f" Two dimensions in particular — {sorted_dims[0]['name'].lower()} and {sorted_dims[1]['name'].lower()} — form the backbone of this edge, each contributing a subtle but persistent bias toward {t1}. In the aggregate, these biases compound into a force that {t2} must consciously overcome."
+        body += f" It is not impossible. It is merely improbable."
     else:
-        body = random.choice(opening_templates)
-        body += f" The model registers a slight lean toward {t1 if wp > 50 else t2} at {max(wp, 100-wp):.0f}%, but this is the territory where prediction meets its limits."
+        body = opening
+        body += f" The signal here is faint — a whisper where one might expect a voice. {t1 if wp > 50 else t2} registers barely above parity, an edge so slender it approaches the threshold of noise."
         if sorted_dims:
-            body += f" The narrow edge comes primarily from {sorted_dims[0]['name'].lower()}, where a marginal advantage accumulates into just enough signal to separate the two sides. But the noise is loud here."
-        body += f" This is the kind of match that reminds you why we watch: no algorithm, no matter how many dimensions it tracks, can fully account for the human element that decides these contests."
+            body += f" What little separation exists comes from {sorted_dims[0]['name'].lower()}, where a single dimension manages to produce just enough distinction to register."
+        body += f" Matches like these belong not to prediction, but to the chaotic and beautiful unpredictability that makes sport what it is."
 
     if pred.get("pred_score1") is not None:
-        body += f" The projected scoreline — {t1} {pred['pred_score1']:.0f}, {t2} {pred['pred_score2']:.0f} — tells only part of the story."
+        body += f" The projected score suggests {t1} {pred['pred_score1']:.0f}, {t2} {pred['pred_score2']:.0f}."
     else:
-        body += f" The projected outcome favors {t1 if wp > 50 else t2}, but the margin of victory remains uncertain."
+        body += f" The projection favors {t1 if wp > 50 else t2}, but by a margin that offers no guarantees."
 
-    body += f" What happens between the first whistle and the last will be determined not by statistics, but by the choices athletes make when the moment demands something extraordinary."
+    body += " What unfolds between the opening whistle and the final moment will be determined not by data, but by the thousand infinitesimal choices that data can only describe, never dictate."
 
     return body
 
@@ -82,11 +83,11 @@ def _dim_bars(pred):
     if not dims:
         return ""
     bars = "".join(
-        '<div class="dim"><span class="dim-l">{}</span><div class="dim-t"><div class="dim-f" style="width:{}%"></div></div><span class="dim-r">{:.0f}</span></div>'.format(
-            d["name"], d["value"], d["value"])
+        '<div class="dim"><span class="dim-l">{}</span><div class="dim-t"><div class="dim-f" style="width:{}%"></div></div></div>'.format(
+            d["name"], d["value"])
         for d in dims
     )
-    return f'<div class="dims"><h4 class="dim-h">The Seven Factors</h4>{bars}</div>'
+    return f'<div class="dims">{bars}</div>'
 
 
 def generate_world_news(engine, takes, backtest_results):
@@ -94,262 +95,311 @@ def generate_world_news(engine, takes, backtest_results):
     for t in takes:
         by_sport.setdefault(t["sport"], []).append(t)
 
-    timestamp = datetime.utcnow().strftime("%B %d, %Y")
+    timestamp = datetime.utcnow().strftime("%d %B %Y")
     total_stories = len(takes)
 
-    # Hero: pick highest-confidence prediction as main event
-    hero_sport = None
-    hero_take = None
-    hero_conf = 0
+    # Pick top 3 most confident predictions for featured stories
+    featured = []
     for key in sport_keys:
         if key not in engine.predictors:
             continue
         for t in by_sport.get(key, []):
             pred = t.get("prediction", {})
             conf = abs(pred.get("t1_win_pct", 50) - 50) if pred else 0
-            if conf > hero_conf:
-                hero_conf = conf
-                hero_take = t
-                hero_sport = key
+            featured.append((conf, key, t))
+    featured.sort(key=lambda x: -x[0])
 
-    hero_html = ""
-    if hero_take and hero_sport:
-        pred = hero_take.get("prediction", {})
-        acc = backtest_results.get(hero_sport, {}).get("accuracy", "?")
-        img = SPORT_IMAGES.get(hero_sport, "")
-        narrative = _thrilling_narrative(pred) if pred else ""
-        hero_html = f"""
-    <div class="hero">
-      <div class="hero-img" style="background-image:url('{img}')"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-text">
-        <p class="hero-cat" style="color:{SPORT_COLORS.get(hero_sport, '#fff')}">{SPORTS[hero_sport]['name']}</p>
-        <h1 class="hero-title">{hero_take['title']}</h1>
-        <p class="hero-body">{narrative[:280]}...</p>
-        <p class="hero-meta">Main event &middot; Backtest accuracy: {acc}% &middot; 7-dimensional analysis</p>
-      </div>
-    </div>"""
+    # Build navigation and full sections
+    nav_items = ""
+    hidden_sections = ""
 
-    # Navigation + sections
-    nav_links = ""
-    sections = ""
+    for i, (conf, key, t) in enumerate(featured):
+        if i >= 3:
+            break
+
+        pred = t.get("prediction", {})
+        img = SPORT_IMAGES.get(key, "")
+        body = _story(pred) if pred else ""
+        dims = _dim_bars(pred) if pred else ""
+        spec = SPORTS[key]
+
+        story_html = f"""
+      <section class="featured" id="sport-{key}" style="--img:url('{img}')">
+        <div class="featured-bg"></div>
+        <div class="featured-content">
+          <p class="featured-label">{spec['name']}</p>
+          <h2 class="featured-title">{t['title']}</h2>
+          <div class="featured-body"><p>{body}</p></div>
+          {dims}
+        </div>
+      </section>"""
+
+        # Put first featured story on page, rest in hidden sections
+        if i == 0:
+            featured_main = story_html
+        else:
+            hidden_sections += story_html
+            nav_items += f'<a class="nav-link" href="#sport-{key}" data-key="{key}">{spec["name"]}</a>'
+
+    # Remaining sports go in hidden sections too
     for key in sport_keys:
         if key not in engine.predictors:
             continue
+        # Check if already featured
+        already = any(f[1] == key for f in featured[:3])
+        if already:
+            continue
+
         sport_takes = by_sport.get(key, [])
-        bt = backtest_results.get(key, {})
-        color = SPORT_COLORS.get(key, "#333")
+        if not sport_takes:
+            continue
+
         img = SPORT_IMAGES.get(key, "")
+        spec = SPORTS[key]
+        t = sport_takes[0]
+        pred = t.get("prediction", {})
+        body = _story(pred) if pred else ""
+        dims = _dim_bars(pred) if pred else ""
 
-        cards = ""
-        for t in sport_takes:
-            pred = t.get("prediction", {})
-            body_html = _thrilling_narrative(pred) if pred else t["body"].replace("\n", "<br>")[:300]
-            dims_html = _dim_bars(pred) if pred else ""
-
-            cards += f"""
-          <article class="story">
-            <h2 class="story-title"><a href="#">{t['title']}</a></h2>
-            <p class="story-body">{body_html}</p>
-            {dims_html}
-          </article>"""
-
-        sections += f"""
-      <section class="sport-section" id="{key}">
-        <div class="section-head">
-          <h2 class="section-name" style="border-left-color:{color}">{SPORTS[key]['name']}</h2>
-          <span class="section-acc">{bt.get('accuracy', '?')}% accuracy &middot; {len(sport_takes)} stories</span>
+        hidden_sections += f"""
+      <section class="featured" id="sport-{key}" style="--img:url('{img}')">
+        <div class="featured-bg"></div>
+        <div class="featured-content">
+          <p class="featured-label">{spec['name']}</p>
+          <h2 class="featured-title">{t['title']}</h2>
+          <div class="featured-body"><p>{body}</p></div>
+          {dims}
         </div>
-        <div class="section-img" style="background-image:url('{img}')"></div>
-        <div class="story-list">{cards}</div>
       </section>"""
 
-        nav_links += f'<a class="nav-link" href="#{key}" style="--nav-c:{color}">{SPORTS[key]["name"]}</a>'
-
-    overview = "".join(
-        f'<div class="ov-item" style="--ov-c:{SPORT_COLORS.get(k, "#666")}"><span class="ov-name">{SPORTS[k]["name"]}</span><span class="ov-acc">{backtest_results.get(k, {}).get("accuracy", "?")}%</span></div>'
-        for k in sport_keys if k in backtest_results
-    )
+        nav_items += f'<a class="nav-link" href="#sport-{key}" data-key="{key}">{spec["name"]}</a>'
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Sports Predictions — {timestamp}</title>
+<title>The Seven Dimensions — {timestamp}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 * {{ margin:0; padding:0; box-sizing:border-box; }}
+
+:root {{
+  --bg: #0c0c0b;
+  --bg2: #141412;
+  --text: #e8e6e0;
+  --text2: #9a9690;
+  --text3: #5a5854;
+  --border: #22211e;
+  --red: #9a2a2a;
+  --red-dim: rgba(154,42,42,0.15);
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-ui: 'Inter', -apple-system, sans-serif;
+}}
+
 body {{
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 16px; line-height: 1.6;
-  color: #222; background: #fafafa;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }}
-a {{ color: inherit; text-decoration: none; }}
-.container {{ max-width: 960px; margin: 0 auto; padding: 0 20px 40px; }}
 
-/* Top bar */
+.container {{ max-width: 100%; margin: 0 auto; }}
+
+/* ═══ Top Navigation ═══ */
 .top-bar {{
-  background: #222; color: #fff; padding: 8px 0;
-  font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
-  text-align: center;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 28px;
+  background: linear-gradient(to bottom, rgba(12,12,11,0.98) 60%, transparent);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }}
-
-/* Masthead */
-.masthead {{
-  border-bottom: 1px solid #ddd; padding: 18px 0 14px; margin-bottom: 28px;
-  display: flex; justify-content: space-between; align-items: flex-end;
+.top-bar .logo {{
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
 }}
-.masthead .logo {{ font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 700; }}
-.masthead .logo em {{ font-style: italic; color: #c0392b; }}
-.masthead .ts {{ font-size: 0.7rem; color: #999; text-align: right; }}
-
-/* Sport nav */
-.sport-nav {{
-  display: flex; gap: 4px; flex-wrap: wrap;
-  padding-bottom: 18px; margin-bottom: 28px; border-bottom: 1px solid #eee;
+.top-bar .logo em {{ font-style: italic; color: var(--red); }}
+.top-bar .nav-wrap {{
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}}
+.top-bar .sep {{
+  color: var(--text3);
+  margin: 0 6px;
+  font-family: var(--font-ui);
+  font-size: 0.5rem;
 }}
 .nav-link {{
-  font-size: 0.7rem; font-weight: 500; color: #666; letter-spacing: 0.02em;
-  padding: 4px 12px; border-radius: 3px; transition: all 0.15s;
+  color: var(--text3);
+  padding: 3px 8px;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
 }}
-.nav-link:hover {{ background: var(--nav-c, #eee); color: #fff; }}
+.nav-link:hover {{ color: var(--text); }}
+.nav-link.active {{ color: var(--red); }}
 
-/* Overview */
-.overview {{
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 6px; margin-bottom: 28px;
-}}
-.ov-item {{
-  background: #fff; border: 1px solid #eee; border-radius: 4px;
-  padding: 8px 4px; text-align: center; font-size: 0.6rem;
-  border-top: 3px solid var(--ov-c, #ddd);
-}}
-.ov-name {{ color: #888; display: block; margin-bottom: 2px; }}
-.ov-acc {{ font-weight: 700; font-size: 0.8rem; }}
-
-/* Hero */
-.hero {{
+/* ═══ Featured Story — Full Bleed ═══ */
+.featured {{
   position: relative;
-  height: 420px;
-  border-radius: 6px;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
   overflow: hidden;
-  margin-bottom: 32px;
+  border-bottom: 1px solid var(--border);
 }}
-.hero-img {{
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  filter: brightness(0.5);
-  transition: filter 0.5s;
+.featured-bg {{
+  position: absolute;
+  inset: 0;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.35) saturate(0.7);
+  transition: transform 0.8s ease, filter 0.8s ease;
 }}
-.hero:hover .hero-img {{ filter: brightness(0.4); }}
-.hero-overlay {{
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+.featured:hover .featured-bg {{
+  transform: scale(1.02);
+  filter: brightness(0.4) saturate(0.8);
 }}
-.hero-text {{
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 30px;
-  color: #fff;
+.featured::after {{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12,12,11,0.92) 0%, rgba(12,12,11,0.2) 50%, rgba(12,12,11,0.4) 100%);
+  pointer-events: none;
 }}
-.hero-cat {{ font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }}
-.hero-title {{
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.8rem; font-weight: 700; line-height: 1.2;
-  margin-bottom: 8px; max-width: 700px;
+.featured-content {{
+  position: relative; z-index: 2;
+  max-width: 720px;
+  padding: 60px 40px 80px;
 }}
-.hero-body {{ font-size: 0.85rem; line-height: 1.6; opacity: 0.85; max-width: 650px; }}
-.hero-meta {{ font-size: 0.65rem; opacity: 0.6; margin-top: 8px; font-family: 'Inter', monospace; }}
-
-/* Sport section */
-.sport-section {{ margin-bottom: 32px; }}
-.section-head {{
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #eee;
+.featured-label {{
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
 }}
-.section-name {{
-  font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem;
-  font-weight: 700; padding-left: 10px; border-left: 3px solid #333;
+.featured-title {{
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
 }}
-.section-acc {{ font-size: 0.65rem; color: #aaa; }}
-.section-img {{
-  width: 100%; height: 200px;
-  background-size: cover; background-position: center;
-  border-radius: 4px; margin-bottom: 12px;
-  filter: brightness(0.75);
+.featured-body p {{
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--text2);
+  max-width: 620px;
 }}
-
-/* Story list */
-.story-list {{ display: flex; flex-direction: column; gap: 0; }}
-.story {{
-  padding: 14px 0; border-bottom: 1px solid #f0f0f0;
-}}
-.story:last-child {{ border-bottom: none; }}
-.story-title {{ font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }}
-.story-title a:hover {{ color: #c0392b; }}
-.story-body {{ font-size: 0.78rem; color: #555; line-height: 1.7; }}
+.featured-body p + p {{ margin-top: 12px; }}
 
 /* Dims */
-.dims {{ margin-top: 8px; padding-top: 6px; border-top: 1px solid #f0f0f0; display: flex; flex-wrap: wrap; gap: 2px 20px; }}
-.dim-h {{ width: 100%; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #bbb; margin-bottom: 2px; }}
-.dim {{ display: inline-flex; align-items: center; gap: 5px; font-size: 0.6rem; }}
-.dim-l {{ color: #999; width: 70px; }}
-.dim-t {{ width: 60px; height: 4px; background: #eee; border-radius: 2px; overflow: hidden; }}
-.dim-f {{ height: 100%; background: #c0392b; border-radius: 2px; }}
-.dim-r {{ color: #999; font-family: monospace; width: 20px; text-align: right; }}
-
-/* Footer */
-.footer {{
-  border-top: 1px solid #ddd; padding: 20px 0; margin-top: 12px;
-  text-align: center; font-size: 0.65rem; color: #aaa; line-height: 2;
+.dims {{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 4px 20px;
+  max-width: 600px;
+}}
+.dim {{ display: flex; align-items: center; gap: 8px; padding: 2px 0; }}
+.dim-l {{
+  font-family: var(--font-ui);
+  font-size: 0.5rem;
+  letter-spacing: 0.05em;
+  color: var(--text3);
+  width: 70px;
+  flex-shrink: 0;
+}}
+.dim-t {{
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  overflow: hidden;
+}}
+.dim-f {{
+  height: 100%;
+  background: var(--red);
+  transition: width 1s ease;
 }}
 
-@media(max-width:600px) {{
-  .masthead {{ flex-direction: column; align-items: flex-start; gap: 4px; }}
-  .overview {{ grid-template-columns: repeat(4, 1fr); }}
-  .hero {{ height: 300px; }}
-  .hero-title {{ font-size: 1.3rem; }}
-  .section-img {{ height: 140px; }}
-  .dims {{ flex-direction: column; gap: 1px; }}
+/* ═══ Footer ═══ */
+.footer {{
+  padding: 24px 40px 32px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  color: var(--text3);
+  letter-spacing: 0.06em;
+  line-height: 2;
+  border-top: 1px solid var(--border);
+}}
+
+/* ═══ Responsive ═══ */
+@media(max-width:700px) {{
+  .top-bar {{ padding: 10px 16px; flex-direction: column; gap: 6px; }}
+  .top-bar .nav-wrap {{ justify-content: center; }}
+  .featured-content {{ padding: 40px 20px 60px; }}
+  .featured-title {{ font-size: 1.5rem; }}
+  .featured-body p {{ font-size: 0.85rem; }}
+  .dims {{ grid-template-columns: 1fr 1fr; }}
 }}
 </style>
 </head>
 <body>
 
-<div class="top-bar">Multi-Dimensional Sports Prediction Engine &middot; 7 Factors &middot; 11 Sports</div>
+<div class="top-bar">
+  <span class="logo">The Seven <em>Dimensions</em></span>
+  <div class="nav-wrap">
+    <span class="sep">&#8212;</span>
+    {nav_items}
+    <span class="sep">&#8212;</span>
+    <span class="nav-link" style="color:var(--text3);cursor:default;">{timestamp}</span>
+  </div>
+</div>
 
 <div class="container">
 
-<header class="masthead">
-  <div class="logo">World Sports <em>Predictions</em></div>
-  <div class="ts">{timestamp}<br>{total_stories} stories across {len(sport_keys)} sports</div>
-</header>
+{featured_main}
 
-<nav class="sport-nav">{nav_links}</nav>
-
-{hero_html}
-
-<div class="overview">{overview}</div>
-
-{sections}
+{hidden_sections}
 
 <footer class="footer">
-  Predictions based on 7 dimensions: Head-to-Head History (18%), Player Matchups (22%), Venue &amp; Conditions (15%),
-  Recent Form (15%), Tournament Context (10%), Sentiment (10%), Player Health (10%)
-  <br>Data: synthetic historical models &middot; PyTorch Monte Carlo engine &middot; Published daily
+  Seven dimensions &middot; Head-to-Head History &middot; Player Matchups &middot; Venue &amp; Conditions &middot; Recent Form<br>
+  Tournament Context &middot; Sentiment &middot; Player Health<br>
+  <span style="color:var(--text3)">Published daily &middot; PyTorch engine &middot; {total_stories} stories</span>
 </footer>
 
 </div>
+
 <script>
-document.querySelectorAll('.nav-link').forEach(a => {{
-  a.addEventListener('click', e => {{
-    e.preventDefault();
-    const el = document.querySelector(a.getAttribute('href'));
-    if (el) el.scrollIntoView({{ behavior:'smooth', block:'start' }});
+(function() {{
+  // Smooth scroll for nav links
+  document.querySelectorAll('.nav-link[href^="#"]').forEach(function(a) {{
+    a.addEventListener('click', function(e) {{
+      e.preventDefault();
+      var el = document.getElementById(this.getAttribute('href').slice(1));
+      if (el) el.scrollIntoView({{ behavior:'smooth', block:'start' }});
+    }});
   }});
-}});
+}})();
 </script>
 </body>
 </html>"""
