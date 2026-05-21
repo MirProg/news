@@ -323,6 +323,15 @@ footer .github-link:hover{color:var(--accent)}
   </div>
   {% endif %}
 
+  {% if topic_groups %}
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px" id="topic-nav">
+    <button class="topic-btn active" data-topic="all" style="font-size:0.68rem;padding:4px 12px;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text-secondary);cursor:pointer;font-family:var(--font-sans);transition:all 0.15s">All</button>
+    {% for tg in topic_groups %}
+    <button class="topic-btn" data-topic="{{ tg.label }}" style="font-size:0.68rem;padding:4px 12px;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text-secondary);cursor:pointer;font-family:var(--font-sans);transition:all 0.15s">{{ tg.label }} <span style="color:var(--text-muted);font-size:0.6rem">({{ tg.count }})</span></button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
   <div class="divider">
     <span class="label">All stories</span>
     <div class="line"></div>
@@ -343,6 +352,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="meta">
           <span class="src">{{ a.source }}</span>
           {% if a.trend == 'hot' %}<span class="tag">🔥 Hot</span>{% endif %}
+          {% if a.topic_label and a.topic_label != 'General' %}<span class="tag" style="background:var(--bg-alt);color:var(--text-secondary);border:1px solid var(--border);padding:1px 6px;font-weight:400">{{ a.topic_label }}</span>{% endif %}
           <span>{{ a.date }}</span>
           <span class="mood-dot-sm" style="background:{% if a.mood == 'positive' %}var(--mood-pos){% elif a.mood == 'negative' %}var(--mood-neg){% else %}var(--mood-neu){% endif %}"></span>
         </div>
@@ -615,6 +625,27 @@ footer .github-link:hover{color:var(--accent)}
     if (t2) { slotBData = t2; fillSlot(slotB, t2); }
   }
   document.getElementById('random-mash-btn').addEventListener('click', randomMash);
+
+  // Topic filter
+  document.querySelectorAll('.topic-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.topic-btn').forEach(b => {
+        b.style.background = 'var(--card)';
+        b.style.color = 'var(--text-secondary)';
+        b.style.borderColor = 'var(--border)';
+      });
+      this.style.background = 'var(--accent)';
+      this.style.color = '#fff';
+      this.style.borderColor = 'var(--accent)';
+      const topic = this.dataset.topic;
+      document.querySelectorAll('.article-card').forEach(card => {
+        if (topic === 'all') { card.style.display = ''; return; }
+        const badge = card.querySelector('.meta .tag:not(.hot-tag)');
+        card.style.display = (badge && badge.textContent.trim() === topic) ? '' : 'none';
+      });
+      if (searchInput) searchInput.placeholder = topic === 'all' ? 'Search stories...' : 'Search in ' + topic + '...';
+    });
+  });
 
   // Source filter (click source badge to filter)
   let activeSource = null;

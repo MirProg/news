@@ -8,6 +8,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from src.config import SITE_NAME, SITE_URL, SITE_DESC
 from src.similarity import find_related, similarity_matrix
+from src.topics import cluster_articles
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -120,6 +121,13 @@ def generate(articles, briefing_raw=None, mashups=None):
     updated = datetime.now(timezone.utc).strftime("%B %d, %Y at %H:%M UTC")
     briefing = parse_briefing(briefing_raw)
 
+    # Topic clustering using sklearn
+    cluster_articles(flat)
+    cluster_groups = {}
+    for a in flat:
+        tid = a.get("topic_id", 0)
+        cluster_groups.setdefault(tid, []).append(a)
+
     articles_out = []
     keywords_bag = Counter()
     for i, a in enumerate(flat):
@@ -137,6 +145,8 @@ def generate(articles, briefing_raw=None, mashups=None):
             "mood": mood,
             "reading_time": compute_reading_time(summary),
             "keywords": a.get("keywords", [])[:5],
+            "topic_label": a.get("topic_label", "General"),
+            "topic_id": a.get("topic_id", 0),
         }
         reason = a.get("reasoning", {})
         if reason.get("analyst"):
@@ -155,6 +165,15 @@ def generate(articles, briefing_raw=None, mashups=None):
         if related:
             entry["related"] = related
 
+    # Topic groups for navigation
+    topic_groups = []
+    seen_topics = set()
+    for a in articles_out:
+        tl = a.get("topic_label", "General")
+        if tl not in seen_topics:
+            seen_topics.add(tl)
+            topic_groups.append({"label": tl, "count": sum(1 for x in articles_out if x.get("topic_label") == tl)})
+
     html = template.render(
         site_name=SITE_NAME,
         site_url=SITE_URL,
@@ -162,6 +181,7 @@ def generate(articles, briefing_raw=None, mashups=None):
         updated=updated,
         articles=articles_out,
         articles_json=json.dumps(articles_out, ensure_ascii=False),
+        topic_groups=topic_groups,
         mashups_json=json.dumps(mashups or [], ensure_ascii=False),
         top_keywords=json.dumps(top_kw, ensure_ascii=False),
         briefing=briefing,
