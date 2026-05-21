@@ -138,6 +138,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 .article-card .excerpt{font-size:0.76rem;color:var(--text-secondary);line-height:1.55;flex:1}
 .article-card .footer{margin-top:6px;font-size:0.65rem;display:flex;justify-content:space-between;align-items:center}
 .article-card .footer a{color:var(--accent);text-decoration:none;font-weight:500;transition:color 0.15s}
+.bookmark-btn{background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:0.7rem;padding:0 2px;transition:color 0.15s}
+.bookmark-btn:hover,.bookmark-btn.saved{color:var(--accent)}
 .article-card .footer a:hover{color:var(--accent-dark);text-decoration:underline}
 .article-card .footer .read-time{color:var(--text-muted);font-family:var(--font-mono);font-size:0.6rem}
 .article-card .kw-strip{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px;padding-top:8px;border-top:1px solid var(--border-light)}
@@ -233,6 +235,7 @@ footer .github-link:hover{color:var(--accent)}
     <div class="right">
       <span class="hal-badge"><span class="hal-eye"></span> HAL</span>
       <span>{{ updated }}</span>
+      <button class="theme-btn" id="surpriseBtn" aria-label="Surprise me" style="font-weight:500;letter-spacing:0.02em">🎲 Surprise</button>
       <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">☀️</button>
     </div>
   </div>
@@ -335,6 +338,7 @@ footer .github-link:hover{color:var(--accent)}
   {% if topic_groups %}
   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px" id="topic-nav">
     <button class="topic-btn active" data-topic="all" style="font-size:0.68rem;padding:4px 12px;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text-secondary);cursor:pointer;font-family:var(--font-sans);transition:all 0.15s">All</button>
+    <button class="topic-btn" data-topic="saved" style="font-size:0.68rem;padding:4px 12px;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text-secondary);cursor:pointer;font-family:var(--font-sans);transition:all 0.15s">★ Saved</button>
     {% for tg in topic_groups %}
     <button class="topic-btn" data-topic="{{ tg.label }}" style="font-size:0.68rem;padding:4px 12px;border:1px solid var(--border);border-radius:20px;background:var(--card);color:var(--text-secondary);cursor:pointer;font-family:var(--font-sans);transition:all 0.15s">{{ tg.label }} <span style="color:var(--text-muted);font-size:0.6rem">({{ tg.count }})</span></button>
     {% endfor %}
@@ -370,6 +374,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="{{ a.url }}" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">{{ a.reading_time }} min</span>
+          <button class="bookmark-btn" data-id="{{ a.id }}" data-title="{{ a.title }}" data-url="{{ a.url }}" aria-label="Save">☆</button>
           <button class="share-btn" data-url="{{ a.url }}" data-title="{{ a.title }}" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         {% if a.keywords %}
@@ -536,6 +541,39 @@ footer .github-link:hover{color:var(--accent)}
         }).catch(() => {});
       }
     });
+  });
+
+  // Bookmark system (localStorage)
+  function getBookmarks() {
+    try { return JSON.parse(localStorage.getItem('savedArticles') || '[]'); } catch(e) { return []; }
+  }
+  function saveBookmarks(ids) { localStorage.setItem('savedArticles', JSON.stringify(ids)); }
+  function updateBookmarkUI() {
+    const ids = getBookmarks();
+    document.querySelectorAll('.bookmark-btn').forEach(btn => {
+      btn.classList.toggle('saved', ids.includes(btn.dataset.id));
+      btn.textContent = ids.includes(btn.dataset.id) ? '★' : '☆';
+    });
+  }
+  document.querySelectorAll('.bookmark-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const id = this.dataset.id;
+      let ids = getBookmarks();
+      if (ids.includes(id)) { ids = ids.filter(x => x !== id); }
+      else { ids.push(id); }
+      saveBookmarks(ids);
+      updateBookmarkUI();
+    });
+  });
+  updateBookmarkUI();
+
+  // Surprise Me
+  document.getElementById('surpriseBtn')?.addEventListener('click', function() {
+    if (articles.length) {
+      const pick = articles[Math.floor(Math.random() * articles.length)];
+      window.open(pick.url, '_blank');
+    }
   });
 
   // Keyboard shortcuts (with help toggle)
@@ -706,12 +744,18 @@ footer .github-link:hover{color:var(--accent)}
       this.style.color = '#fff';
       this.style.borderColor = 'var(--accent)';
       const topic = this.dataset.topic;
+      const savedIds = topic === 'saved' ? JSON.parse(localStorage.getItem('savedArticles') || '[]') : [];
       document.querySelectorAll('.article-card').forEach(card => {
         if (topic === 'all') { card.style.display = ''; return; }
+        if (topic === 'saved') {
+          const id = card.querySelector('.bookmark-btn')?.dataset.id;
+          card.style.display = id && savedIds.includes(id) ? '' : 'none';
+          return;
+        }
         const badge = card.querySelector('.meta .tag:not(.hot-tag)');
         card.style.display = (badge && badge.textContent.trim() === topic) ? '' : 'none';
       });
-      if (searchInput) searchInput.placeholder = topic === 'all' ? 'Search stories...' : 'Search in ' + topic + '...';
+      if (searchInput) searchInput.placeholder = topic === 'all' ? 'Search stories...' : 'Search in ' + (topic === 'saved' ? 'saved' : topic) + '...';
     });
   });
 
