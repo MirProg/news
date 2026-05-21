@@ -16,10 +16,13 @@ SPORTS = {
     "NBA": {"name": "NBA Basketball",           "scoring": "normal",    "unit": "points", "mean": 111,  "std": 14,   "min": 70, "max": 150,"draws": False, "team_size": 5,  "periods": 4, "period_name": "quarters"},
     "NFL": {"name": "NFL Football",             "scoring": "normal",    "unit": "points", "mean": 22,   "std": 7,    "min": 0,  "max": 56, "draws": False, "team_size": 11, "periods": 4, "period_name": "quarters"},
     "MLB": {"name": "MLB Baseball",             "scoring": "poisson",   "unit": "runs",   "mean": 4.5,  "std": 0,    "min": 0,  "max": 25, "draws": False, "team_size": 9,  "periods": 9, "period_name": "innings"},
-    "NHL": {"name": "NHL Hockey",                "scoring": "poisson",   "unit": "goals",  "mean": 3.0,  "std": 0,    "min": 0,  "max": 12, "draws": False, "team_size": 6,  "periods": 3, "period_name": "periods"},
-    "TENNIS": {"name": "Tennis (ATP)",           "scoring": "sets",     "unit": "sets",   "mean": 2.0,  "std": 0.5,  "min": 0,  "max": 3,  "draws": False, "players": 2,   "format": "best_of_3"},
-    "Cricket_T20": {"name": "T20 Cricket",       "scoring": "poisson",  "unit": "runs",   "mean": 172,  "std": 28,   "min": 50, "max": 280,"draws": False, "team_size": 11, "overs": 20},
-    "F1": {"name": "Formula 1",                  "scoring": "ranking",  "unit": "pos",    "mean": 0,    "std": 0,    "drivers": 20, "races": 24, "points_system": "modern"},
+    "NHL": {"name": "NHL Hockey",               "scoring": "poisson",   "unit": "goals",  "mean": 3.0,  "std": 0,    "min": 0,  "max": 12, "draws": False, "team_size": 6,  "periods": 3, "period_name": "periods"},
+    "TENNIS": {"name": "Tennis (ATP)",          "scoring": "sets",     "unit": "sets",   "mean": 2.0,  "std": 0.5,  "min": 0,  "max": 3,  "draws": False, "players": 2,   "format": "best_of_3"},
+    "Cricket_T20": {"name": "T20 Cricket",      "scoring": "poisson",  "unit": "runs",   "mean": 172,  "std": 28,   "min": 50, "max": 280,"draws": False, "team_size": 11, "overs": 20},
+    "F1": {"name": "Formula 1",                "scoring": "ranking",  "unit": "pos",    "mean": 0,    "std": 0,    "drivers": 20, "races": 24, "points_system": "modern"},
+    "Rugby": {"name": "Rugby Union",           "scoring": "normal",   "unit": "points", "mean": 27,   "std": 12,   "min": 0,  "max": 70, "draws": True, "team_size": 15, "periods": 2, "period_name": "halves"},
+    "MMA": {"name": "MMA (UFC)",               "scoring": "fight",    "unit": "rounds", "mean": 2.5,  "std": 1.2,  "min": 1,  "max": 5,  "draws": False, "fighters": 2, "finish_rate": 0.45},
+    "Boxing": {"name": "Professional Boxing",  "scoring": "fight",    "unit": "rounds", "mean": 8.0,  "std": 3.0,  "min": 1,  "max": 12, "draws": False, "fighters": 2, "finish_rate": 0.35},
 }
 
 # ╔══════════════════════════════════════════════════════════════════════╗
@@ -265,6 +268,17 @@ SPORT_TEAMS = {
                "Hurkacz", "Ruud", "Fritz", "Tsitsipas", "Rune", "Humbert",
                "De Minaur", "Dimitrov", "Shelton", "Paul", "Tiafoe", "Auger-Aliassime",
                "Musetti", "Fils", "Draper", "Bublik", "Mannarino", "Monfils"],
+    "Rugby": ["New Zealand", "South Africa", "Ireland", "France", "England", "Australia",
+              "Argentina", "Scotland", "Wales", "Fiji", "Italy", "Japan", "Samoa", "Tonga"],
+    "F1": ["Verstappen", "Hamilton", "Leclerc", "Norris", "Piastri", "Russell",
+           "Sainz", "Perez", "Alonso", "Stroll", "Gasly", "Ocon", "Tsunoda",
+           "Ricciardo", "Hulkenberg", "Magnussen", "Bottas", "Zhou", "Albon", "Sargeant"],
+    "MMA": ["Jones", "Makhachev", "Pereira", "O'Malley", "Edwards", "Topuria",
+            "Volkanovski", "Adesanya", "Poirier", "Gaethje", "Oliveira", "Muhammad",
+            "Aspinall", "Ankalaev", "Blanchfield", "Shevchenko", "Grasso", "Moreno"],
+    "Boxing": ["Fury", "Usyk", "Joshua", "Wilder", "Canelo", "Bivol", "Beterbiev",
+               "Crawford", "Spence", "Davis", "Haney", "Garcia", "Lomachenko",
+               "Inoue", "Fulton", "Nakatani", "Taylor", "Catterall"],
 }
 
 VENUE_PROFILES = {
@@ -275,6 +289,14 @@ VENUE_PROFILES = {
     "NFL": [("Arrowhead", 0.65), ("Lambeau", 0.60), ("SoFi", 0.55), ("AT&T Stadium", 0.56)],
     "Cricket_T20": [("Wankhede", 0.55), ("Chepauk", 0.58), ("Eden Gardens", 0.56),
                     ("Chinnaswamy", 0.52), ("Narendra Modi", 0.54)],
+    "Rugby": [("Eden Park", 0.65), ("Twickenham", 0.60), ("Ellis Park", 0.62),
+              ("Aviva Stadium", 0.61), ("Stade de France", 0.58), ("Suncorp", 0.55)],
+    "F1": [("Monaco", 0.50), ("Silverstone", 0.50), ("Monza", 0.50), ("Spa", 0.50),
+           ("Suzuka", 0.50), ("Interlagos", 0.50), ("Yas Marina", 0.50), ("Albert Park", 0.50)],
+    "MMA": [("UFC Apex", 0.52), ("T-Mobile Arena", 0.54), ("O2 Arena", 0.53),
+            ("Marina Bay", 0.51), ("MSG", 0.55)],
+    "Boxing": [("MSG", 0.55), ("O2 Arena", 0.53), ("T-Mobile Arena", 0.54),
+               ("Kingdom Arena", 0.52), ("Wembley", 0.56), ("Yankee Stadium", 0.54)],
 }
 
 PLAYER_POOLS = {
@@ -283,7 +305,15 @@ PLAYER_POOLS = {
     "NBA": ["Jokic", "Giannis", "Doncic", "SGA", "Tatum", "Curry", "LeBron", "Durant",
             "Embiid", "AD", "Edwards", "Brunson", "Mitchell", "Booker", "Butler"],
     "NFL": ["Mahomes", "Allen", "Jackson", "Burrow", "McCaffrey", "Hill", "Jefferson",
-            "Chase", "Kelce", "Bosa", "Watt", "Parsons", "Garrett", "Hutchinson"],
+             "Chase", "Kelce", "Bosa", "Watt", "Parsons", "Garrett", "Hutchinson"],
+    "Rugby": ["Barrett", "Savea", "Etchie", "Kolisi", "Dupont", "Sexton", "Smith",
+              "Cole", "Itoje", "Faletau", "Hogg", "Russell", "Ntamack", "Ramos"],
+    "F1": ["Verstappen", "Hamilton", "Leclerc", "Norris", "Piastri", "Russell",
+           "Sainz", "Perez", "Alonso", "Gasly"],
+    "MMA": ["Jones", "Makhachev", "Pereira", "O'Malley", "Topuria", "Edwards",
+            "Volkanovski", "Adesanya", "Poirier", "Gaethje"],
+    "Boxing": ["Fury", "Usyk", "Joshua", "Canelo", "Crawford", "Davis",
+               "Inoue", "Haney", "Garcia", "Lomachenko"],
 }
 
 
@@ -301,13 +331,74 @@ def build_synthetic_sport(sport_key, seed=42, n_seasons=5):
 
     spec = data.spec
 
-    # Generate synthetic matches
+    # F1 is ranking-based, not head-to-head
+    if sport_key == "F1":
+        for season in range(1, n_seasons + 1):
+            n_races = max(8, min(24, spec.get("races", 20)))
+            for race_idx in range(n_races):
+                drivers = data.teams.copy()
+                rng.shuffle(drivers)
+                # Assign finishing positions with skill bias
+                skills = {d: rng.gauss(100, 10) for d in drivers}
+                # Add random noise
+                race_perf = {d: skills[d] + rng.gauss(0, 15) for d in drivers}
+                sorted_drivers = sorted(race_perf, key=race_perf.get, reverse=True)
+                for pos, driver in enumerate(sorted_drivers, 1):
+                    fm = (len(sorted_drivers) - pos) / len(sorted_drivers) * 2 - 1
+                    data.dims["form"].set_form(driver, fm)
+                    data.dims["sentiment"].set(driver, rng.gauss(0, 0.25))
+                data.history.append({
+                    "season": season, "race": race_idx + 1,
+                    "classification": [(d, p) for p, d in enumerate(sorted_drivers, 1)],
+                })
+                # Treat as "matches" for game count
+                for i in range(min(3, len(sorted_drivers) // 2)):
+                    t1, t2 = sorted_drivers[i], sorted_drivers[-(i + 1)]
+                    winner = t1
+                    data.dims["h2h"].record(t1, t2, len(sorted_drivers) - i, i + 1, winner)
+        return data
+
+    # MMA/Boxing: fight sports
+    if sport_key in ("MMA", "Boxing"):
+        for season in range(1, n_seasons + 1):
+            n_fights = max(20, len(data.teams) * 3)
+            for _ in range(n_fights):
+                t1, t2 = rng.sample(data.teams, 2)
+                # Fighter skills
+                s1, s2 = rng.gauss(0, 0.4), rng.gauss(0, 0.4)
+                skill_gap = s1 - s2
+                finish = rng.random() < spec.get("finish_rate", 0.4)
+                if finish:
+                    winner = t1 if skill_gap + rng.gauss(0, 0.3) > 0 else t2
+                    rounds = rng.randint(1, max(1, spec.get("rounds", 12) - 3))
+                else:
+                    # Decision
+                    scores = [rng.gauss(10, 1) + skill_gap * 2 for _ in range(3)]
+                    winner = t1 if sum(scores) / len(scores) > 10 else t2
+                    rounds = spec.get("mean", 10)
+                data.dims["h2h"].record(t1, t2, int(s1 * 100), int(s2 * 100), winner)
+                data.dims["form"].set_form(t1, s1)
+                data.dims["form"].set_form(t2, s2)
+                data.dims["health"].set(t1, rng.gauss(0, 0.2))
+                data.dims["health"].set(t2, rng.gauss(0, 0.2))
+                data.dims["sentiment"].set(t1, rng.gauss(0, 0.25))
+                data.dims["sentiment"].set(t2, rng.gauss(0, 0.25))
+                data.history.append({
+                    "season": season, "team1": t1, "team2": t2,
+                    "winner": winner, "rounds": rounds, "finish": finish,
+                })
+
+        # Player matchups
+        if data.players["all"]:
+            data.dims["matchup"].generate_synthetic(data.players["all"][:10], data.players["all"][:10])
+        return data
+
+    # Standard team sports (EPL, NBA, NFL, MLB, NHL, Cricket, Rugby)
     for season in range(1, n_seasons + 1):
-        n_matches = len(data.teams) * (spec.get("periods", 2) if sport_key != "Cricket_T20" else 14) // 2
+        n_matches = len(data.teams) * (spec.get("periods", 2) if sport_key not in ("Cricket_T20", "Rugby") else 14) // 2
         n_matches = max(20, min(n_matches, 200))
         for _ in range(n_matches):
             t1, t2 = rng.sample(data.teams, 2)
-            # Score based on sport
             if spec["scoring"] == "poisson":
                 s1 = max(spec["min"], int(rng.gauss(spec["mean"] * 1.1, spec["mean"] * 0.3)))
                 s2 = max(spec["min"], int(rng.gauss(spec["mean"] * 0.95, spec["mean"] * 0.3)))
@@ -317,7 +408,6 @@ def build_synthetic_sport(sport_key, seed=42, n_seasons=5):
             else:
                 s1, s2 = rng.randint(0, 3), rng.randint(0, 2)
 
-            # Handle draws
             if s1 == s2 and not spec.get("draws", False):
                 s1 += 1
 
@@ -326,10 +416,8 @@ def build_synthetic_sport(sport_key, seed=42, n_seasons=5):
             else:
                 winner = t1 if s1 > s2 else t2
 
-            # Record in dimensions
             data.dims["h2h"].record(t1, t2, s1, s2, winner)
 
-            # Generate synthetic player form
             for p in data.players["all"][:3]:
                 data.dims["form"].set_form(p, rng.gauss(0, 0.3))
                 data.dims["health"].set(p, rng.gauss(0, 0.2))
@@ -468,7 +556,8 @@ class DeepSportPredictor:
         """Test prediction accuracy on historical data using leave-one-out style."""
         correct = 0
         total = 0
-        for m in self.data.history[-n_matches:]:
+        history = [m for m in self.data.history[-n_matches:] if "team1" in m]
+        for m in history:
             pred = self.predict(m["team1"], m["team2"], stage="league")
             predicted_winner = m["team1"] if pred["t1_win_pct"] >= 50 else "draw" if m.get("winner") == "draw" else m["team2"]
             if predicted_winner == m["winner"] or (m["winner"] == "draw" and pred["t1_win_pct"] == 50):
@@ -570,7 +659,7 @@ class WorldSportsEngine:
 
     def build_all(self, seed=42):
         """Build synthetic data + predictors for every supported sport."""
-        for key in ["Cricket_T20", "EPL", "NBA", "NFL", "MLB", "NHL", "TENNIS"]:
+        for key in ["Cricket_T20", "EPL", "NBA", "NFL", "MLB", "NHL", "TENNIS", "Rugby", "F1", "MMA", "Boxing"]:
             print(f"  Building {SPORTS[key]['name']}...")
             data = build_synthetic_sport(key, seed=seed + hash(key) % 100)
             self.sports[key] = data
@@ -603,8 +692,10 @@ def run_world_sports():
 
     print("\nRunning backtests...")
     bts = engine.run_backtest_all()
-    for key, bt in bts.items():
-        print(f"  {SPORTS[key]['name']}: {bt['accuracy']}% ({bt['correct']}/{bt['total']})")
+    for key in sorted(bts.keys(), key=lambda k: -bts[k]['accuracy']):
+        bt = bts[key]
+        acc = bt.get('accuracy', 0)
+        print(f"  {SPORTS[key]['name']:<30} {acc}% ({bt['correct']}/{bt['total']})")
 
     print("\nGenerating news takes...")
     takes = engine.generate_all_takes()
