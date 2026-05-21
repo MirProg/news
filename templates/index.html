@@ -14,6 +14,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#fff;--bg-alt:#f8f8f8;--card:#fff;--card-hover:#fafafa;--text:#181818;--text-secondary:#6b6b6b;--text-muted:#a8a8a8;--accent:#1a5cff;--accent-subtle:#eef3ff;--accent-dark:#0044cc;--border:#e8e8e8;--border-light:#f0f0f0;--shadow:0 1px 3px rgba(0,0,0,0.04);--shadow-hover:0 8px 24px rgba(0,0,0,0.06);--radius:8px;--radius-sm:6px;--font-display:'Prata',Georgia,serif;--font-sans:'Inter',-apple-system,system-ui,sans-serif;--font-mono:'DM Mono','SF Mono',monospace;--mood-pos:#00aa6a;--mood-neg:#e05050;--mood-neu:#a8a8a8}
+html[data-theme="dark"]{--bg:#0a0a0a;--bg-alt:#111;--card:#161616;--card-hover:#1e1e1e;--text:#e5e5e5;--text-secondary:#888;--text-muted:#555;--accent:#4a8aff;--accent-subtle:#0d1a33;--accent-dark:#7aadff;--border:#1f1f1f;--border-light:#1a1a1a;--shadow:0 1px 3px rgba(0,0,0,0.2);--shadow-hover:0 8px 24px rgba(0,0,0,0.3)}
 ::selection{background:var(--accent);color:#fff}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh}
@@ -26,6 +27,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 .logo .accent{color:var(--accent)}
 .masthead .tagline{font-size:0.72rem;color:var(--text-muted);font-family:var(--font-mono);margin-top:2px}
 .masthead .right{display:flex;align-items:center;gap:12px;font-size:0.72rem;color:var(--text-secondary);flex-wrap:wrap}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:2px 10px;font-size:0.7rem;color:var(--text-secondary);cursor:pointer;font-family:var(--font-sans);transition:all 0.2s;line-height:1.5}
+.theme-btn:hover{background:var(--card-hover);color:var(--text)}
 .hal-badge{display:inline-flex;align-items:center;gap:5px;background:var(--accent-subtle);color:var(--accent);padding:4px 10px;border-radius:20px;font-size:0.65rem;font-weight:500;font-family:var(--font-mono);transition:all 0.2s}
 .hal-badge:hover{background:var(--accent);color:#fff}
 .hal-eye{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 2s ease-in-out infinite}
@@ -206,10 +209,7 @@ footer .github-link:hover{color:var(--accent)}
   .masthead .tagline{display:none}
 }
 
-@media(prefers-color-scheme:dark){
-  :root{--bg:#0a0a0a;--bg-alt:#111;--card:#161616;--card-hover:#1e1e1e;--text:#e5e5e5;--text-secondary:#888;--text-muted:#555;--accent:#4a8aff;--accent-subtle:#0d1a33;--accent-dark:#7aadff;--border:#1f1f1f;--border-light:#1a1a1a;--shadow:0 1px 3px rgba(0,0,0,0.2);--shadow-hover:0 8px 24px rgba(0,0,0,0.3)}
-  .hero-visual .img-label{background:rgba(0,0,0,0.85)}
-}
+
 </style>
 </head>
 <body>
@@ -225,6 +225,7 @@ footer .github-link:hover{color:var(--accent)}
     <div class="right">
       <span class="hal-badge"><span class="hal-eye"></span> HAL</span>
       <span>{{ updated }}</span>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">☀️</button>
     </div>
   </div>
 </header>
@@ -444,6 +445,29 @@ footer .github-link:hover{color:var(--accent)}
 
 <script>
 (function(){
+  // Theme toggle with localStorage
+  (function initTheme(){
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+    const btn = document.getElementById('themeToggle');
+    if (saved === 'dark' || (!saved && prefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      if (btn) btn.textContent = '\u{1F319}';
+    }
+    if (btn) btn.addEventListener('click', function() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        this.textContent = '\u2600\uFE0F';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        this.textContent = '\u{1F319}';
+      }
+    });
+  })();
+
   const articles = JSON.parse(document.getElementById('articles-data').textContent || '[]');
   const mashups = JSON.parse(document.getElementById('mashups-data').textContent || '[]');
   const keywords = JSON.parse(document.getElementById('keywords-data').textContent || '[]');
