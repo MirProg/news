@@ -42,6 +42,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 .mode{display:none;animation:fadeIn 0.3s ease}.mode.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
+/* Reading progress bar */
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:999;width:0;transition:width 0.1s linear}
+
 /* Mood bar */
 .mood-bar{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .mood-item{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--text-secondary)}
@@ -68,8 +71,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 
 .reveal-section{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;margin-bottom:16px}
 .reveal-section.visible{opacity:1;transform:translateY(0)}
-.reveal-section .perspective-label{font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.reveal-section .perspective-label{font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.reveal-section .perspective-label:hover{color:var(--text)}
 .reveal-section .perspective-label .line{flex:1;height:1px;background:var(--border)}
+.reveal-section .perspective-label .toggle-icon{font-size:0.5rem;color:var(--text-muted);transition:transform 0.2s}
+.reveal-section.collapsed .perspective-label .toggle-icon{transform:rotate(-90deg)}
+.reveal-section.collapsed .perspective-content{display:none}
 .reveal-section .perspective-content{font-size:0.88rem;color:var(--text-secondary);line-height:1.7;padding:16px 20px;background:var(--bg-alt);border-radius:var(--radius);border-left:3px solid var(--accent)}
 .reveal-section.perspective-strategist .perspective-content{border-left-color:#00aa6a}
 .reveal-section.perspective-contrarian .perspective-content{border-left-color:#f5a623}
@@ -213,6 +220,7 @@ footer .github-link:hover{color:var(--accent)}
 </style>
 </head>
 <body>
+<div class="progress-bar" id="progressBar"></div>
 
 <div class="container">
 
@@ -283,7 +291,7 @@ footer .github-link:hover{color:var(--accent)}
   {% for label, icon, cls in [('Analyst', '📊', 'analyst'), ('Strategist', '🎯', 'strategist'), ('Contrarian', '⚡', 'contrarian'), ('Prediction', '🔮', 'prediction')] %}
   {% if reason.get(label|lower) %}
   <div class="reveal-section perspective-{{ cls }}" data-reveal>
-    <div class="perspective-label"><span>{{ icon }} {{ label }}</span><span class="line"></span></div>
+    <div class="perspective-label"><span>{{ icon }} {{ label }}</span><span class="toggle-icon">▼</span><span class="line"></span></div>
     <div class="perspective-content">{{ reason[label|lower] }}</div>
   </div>
   {% endif %}
@@ -362,6 +370,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="{{ a.url }}" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">{{ a.reading_time }} min</span>
+          <button class="share-btn" data-url="{{ a.url }}" data-title="{{ a.title }}" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         {% if a.keywords %}
         <div class="kw-strip">{% for kw in a.keywords[:3] %}<span class="kw">{{ kw }}</span>{% endfor %}</div>
@@ -487,12 +496,47 @@ footer .github-link:hover{color:var(--accent)}
   });
 
   // Scroll-to-top button
+  // Reading progress bar
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = docHeight > 0 ? Math.min(scrollTop / docHeight * 100, 100) + '%' : '0';
+    }, { passive: true });
+  }
+
   const scrollBtn = document.getElementById('scroll-top');
   if (scrollBtn) {
     window.addEventListener('scroll', () => {
       scrollBtn.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
   }
+
+  // Collapsible perspective sections
+  document.querySelectorAll('.reveal-section .perspective-label').forEach(label => {
+    label.addEventListener('click', function() {
+      this.closest('.reveal-section').classList.toggle('collapsed');
+    });
+  });
+
+  // Share buttons
+  document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const url = this.dataset.url;
+      const title = this.dataset.title;
+      if (navigator.share) {
+        navigator.share({ title, url }).catch(() => {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          const orig = this.textContent;
+          this.textContent = '✓';
+          setTimeout(() => this.textContent = orig, 1500);
+        }).catch(() => {});
+      }
+    });
+  });
 
   // Keyboard shortcuts (with help toggle)
   let shortcutsVisible = false;

@@ -42,6 +42,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 .mode{display:none;animation:fadeIn 0.3s ease}.mode.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
+/* Reading progress bar */
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);z-index:999;width:0;transition:width 0.1s linear}
+
 /* Mood bar */
 .mood-bar{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap}
 .mood-item{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--text-secondary)}
@@ -68,8 +71,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-si
 
 .reveal-section{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;margin-bottom:16px}
 .reveal-section.visible{opacity:1;transform:translateY(0)}
-.reveal-section .perspective-label{font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.reveal-section .perspective-label{font-size:0.6rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.reveal-section .perspective-label:hover{color:var(--text)}
 .reveal-section .perspective-label .line{flex:1;height:1px;background:var(--border)}
+.reveal-section .perspective-label .toggle-icon{font-size:0.5rem;color:var(--text-muted);transition:transform 0.2s}
+.reveal-section.collapsed .perspective-label .toggle-icon{transform:rotate(-90deg)}
+.reveal-section.collapsed .perspective-content{display:none}
 .reveal-section .perspective-content{font-size:0.88rem;color:var(--text-secondary);line-height:1.7;padding:16px 20px;background:var(--bg-alt);border-radius:var(--radius);border-left:3px solid var(--accent)}
 .reveal-section.perspective-strategist .perspective-content{border-left-color:#00aa6a}
 .reveal-section.perspective-contrarian .perspective-content{border-left-color:#f5a623}
@@ -213,6 +220,7 @@ footer .github-link:hover{color:var(--accent)}
 </style>
 </head>
 <body>
+<div class="progress-bar" id="progressBar"></div>
 
 <div class="container">
 
@@ -224,7 +232,7 @@ footer .github-link:hover{color:var(--accent)}
     </div>
     <div class="right">
       <span class="hal-badge"><span class="hal-eye"></span> HAL</span>
-      <span>May 21, 2026 at 03:53 UTC</span>
+      <span>May 21, 2026 at 03:55 UTC</span>
       <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">☀️</button>
     </div>
   </div>
@@ -281,28 +289,28 @@ footer .github-link:hover{color:var(--accent)}
   
   
   <div class="reveal-section perspective-analyst" data-reveal>
-    <div class="perspective-label"><span>📊 Analyst</span><span class="line"></span></div>
+    <div class="perspective-label"><span>📊 Analyst</span><span class="toggle-icon">▼</span><span class="line"></span></div>
     <div class="perspective-content">The SpaceX IPO is here, and it's more than just an historic public offering that could make Elon Musk the world's first trillionaire. It also reveals more ways in which Elon Musk's companies interact ...</div>
   </div>
   
   
   
   <div class="reveal-section perspective-strategist" data-reveal>
-    <div class="perspective-label"><span>🎯 Strategist</span><span class="line"></span></div>
+    <div class="perspective-label"><span>🎯 Strategist</span><span class="toggle-icon">▼</span><span class="line"></span></div>
     <div class="perspective-content">Set DEEPSEEK_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY for AI analysis.</div>
   </div>
   
   
   
   <div class="reveal-section perspective-contrarian" data-reveal>
-    <div class="perspective-label"><span>⚡ Contrarian</span><span class="line"></span></div>
+    <div class="perspective-label"><span>⚡ Contrarian</span><span class="toggle-icon">▼</span><span class="line"></span></div>
     <div class="perspective-content">AI analysis requires an API key.</div>
   </div>
   
   
   
   <div class="reveal-section perspective-prediction" data-reveal>
-    <div class="perspective-label"><span>🔮 Prediction</span><span class="line"></span></div>
+    <div class="perspective-label"><span>🔮 Prediction</span><span class="toggle-icon">▼</span><span class="line"></span></div>
     <div class="perspective-content">Requires API key.</div>
   </div>
   
@@ -384,6 +392,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.theverge.com/science/935102/spacex-ipo-elon-musk-tesla-cybertruck-xai-risk-factor" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.theverge.com/science/935102/spacex-ipo-elon-musk-tesla-cybertruck-xai-risk-factor" data-title="In SpaceX’s IPO, Elon Musk is a risk factor" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">elon</span><span class="kw">musk</span><span class="kw">elon musk</span></div>
@@ -414,6 +423,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.theverge.com/business/902219/spacex-ipo-details" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.theverge.com/business/902219/spacex-ipo-details" data-title="SpaceX just filed for what could be the biggest IPO ever" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">spacex</span><span class="kw">filed</span><span class="kw">could</span></div>
@@ -444,6 +454,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.theverge.com/column/935021/google-io-gemini-for-science-alphafold-alphagenome-ai-health" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.theverge.com/column/935021/google-io-gemini-for-science-alphafold-alphagenome-ai-health" data-title="‘Solve all diseases,’ you say?" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">verge</span><span class="kw">issue</span><span class="kw">solve</span></div>
@@ -476,6 +487,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.cnbc.com/2026/05/21/samsung-electronics-union-strike-suspended-wage-deal-bonuses.html" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.cnbc.com/2026/05/21/samsung-electronics-union-strike-suspended-wage-deal-bonuses.html" data-title="Samsung Electronics shares rallies 6% after union suspends strike following tentative wage deal" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">tentative</span><span class="kw">samsung</span><span class="kw">electronics</span></div>
@@ -508,6 +520,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.cnbc.com/2026/05/21/softbank-asia-tech-stocks-nvidia-earnings.html" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.cnbc.com/2026/05/21/softbank-asia-tech-stocks-nvidia-earnings.html" data-title="SoftBank Group shares soar 20% as Nvidia earnings signal strong AI momentum" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">softbank</span><span class="kw">group</span><span class="kw">nvidia</span></div>
@@ -540,6 +553,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.cnbc.com/2026/05/21/nvidia-jensen-huang-china-ai-chip-market-huawei.html" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.cnbc.com/2026/05/21/nvidia-jensen-huang-china-ai-chip-market-huawei.html" data-title="Nvidia says it has ‘largely conceded’ China’s AI chip market to Huawei" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">nvidia</span><span class="kw">largely</span><span class="kw">conceded</span></div>
@@ -572,6 +586,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.cnbc.com/2026/05/21/inside-india-investors-ai-chase-us-opportunities.html" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.cnbc.com/2026/05/21/inside-india-investors-ai-chase-us-opportunities.html" data-title="Inside India newsletter: India’s investment appeal dims as firms and funds pivot to the U.S." aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">india</span><span class="kw">appeal</span><span class="kw">inside</span></div>
@@ -602,6 +617,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.cnbc.com/2026/05/20/jeff-bezos-taxes-ai-corporations-trump.html" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.cnbc.com/2026/05/20/jeff-bezos-taxes-ai-corporations-trump.html" data-title="Bezos defends billionaires, hypes AI, talks taxes and praises Trump in CNBC interview" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">bezos</span><span class="kw">trump</span><span class="kw">defends</span></div>
@@ -634,6 +650,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.zdnet.com/article/boox-go-10-3-gen-2-lumi-review/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.zdnet.com/article/boox-go-10-3-gen-2-lumi-review/" data-title="I replaced my Remarkable with this cheaper E Ink Android tablet - and it wasn't so bad" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">tablet</span><span class="kw">android</span><span class="kw">android tablet</span></div>
@@ -664,6 +681,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://gwern.net/doc/design/typography/1980-knuth.pdf" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://gwern.net/doc/design/typography/1980-knuth.pdf" data-title="The Letter S, by Donald Knuth (1980) [pdf]" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">letter</span><span class="kw">donald</span><span class="kw">knuth</span></div>
@@ -694,6 +712,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://github.com/kageroumado/phosphene" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://github.com/kageroumado/phosphene" data-title="Show HN: I reverse engineered Apple's video wallpapers" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">show</span><span class="kw">reverse</span><span class="kw">engineered</span></div>
@@ -724,6 +743,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://dos.zone/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://dos.zone/" data-title="DOS Zone" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">dos</span><span class="kw">zone</span><span class="kw">comments</span></div>
@@ -754,6 +774,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.wired.com/story/elon-musk-spacex-spending-gas-turbines-grok/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.wired.com/story/elon-musk-spacex-spending-gas-turbines-grok/" data-title="SpaceX Is Spending $2.8 Billion to Buy Gas Turbines for Its AI Data Centers" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">spacex</span><span class="kw">spending</span><span class="kw">billion</span></div>
@@ -784,6 +805,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.wired.com/story/rei-anniversary-sale-2026/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.wired.com/story/rei-anniversary-sale-2026/" data-title="The Best Outdoor Deals From the REI Anniversary Sale 2026" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">best</span><span class="kw">outdoor</span><span class="kw">deals</span></div>
@@ -814,6 +836,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://www.wired.com/story/a-bipartisan-amendment-would-end-police-license-plate-tracking-nationwide/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://www.wired.com/story/a-bipartisan-amendment-would-end-police-license-plate-tracking-nationwide/" data-title="A Bipartisan Amendment Would End Police License Plate Tracking Nationwide" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">would</span><span class="kw">plate</span><span class="kw">tracking</span></div>
@@ -846,6 +869,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://arstechnica.com/space/2026/05/spacex-submits-detailed-financial-filing-ahead-of-going-public-in-june/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://arstechnica.com/space/2026/05/spacex-submits-detailed-financial-filing-ahead-of-going-public-in-june/" data-title="Famously secret about its finances, SpaceX opens its books for the first time" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">famously</span><span class="kw">secret</span><span class="kw">finances</span></div>
@@ -878,6 +902,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://arstechnica.com/health/2026/05/trump-admin-didnt-want-ebola-exposed-americans-sent-them-to-berlin-prague/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://arstechnica.com/health/2026/05/trump-admin-didnt-want-ebola-exposed-americans-sent-them-to-berlin-prague/" data-title="Trump admin didn't want Ebola-exposed Americans, sent them to Berlin, Prague" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">americans</span><span class="kw">trump</span><span class="kw">admin</span></div>
@@ -910,6 +935,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://arstechnica.com/space/2026/05/nasas-psyche-spacecraft-returns-unfamiliar-views-of-a-familiar-world/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://arstechnica.com/space/2026/05/nasas-psyche-spacecraft-returns-unfamiliar-views-of-a-familiar-world/" data-title="NASA's Psyche spacecraft returns unfamiliar views of a familiar world" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">nasa</span><span class="kw">psyche</span><span class="kw">spacecraft</span></div>
@@ -942,6 +968,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://arstechnica.com/culture/2026/05/masters-of-the-universe-final-trailer-brings-the-80s-nostalgia/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://arstechnica.com/culture/2026/05/masters-of-the-universe-final-trailer-brings-the-80s-nostalgia/" data-title="Masters of the Universe final trailer brings the '80s nostalgia" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">masters</span><span class="kw">universe</span><span class="kw">final</span></div>
@@ -972,6 +999,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://techcrunch.com/2026/05/20/clouted-wants-to-take-the-guesswork-out-of-making-short-videos-go-viral/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://techcrunch.com/2026/05/20/clouted-wants-to-take-the-guesswork-out-of-making-short-videos-go-viral/" data-title="Clouted wants to take the guesswork out of making short videos go viral" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">clouted</span><span class="kw">wants</span><span class="kw">take</span></div>
@@ -1002,6 +1030,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://techcrunch.com/2026/05/20/xai-burned-6-4b-last-year-spacexs-ipo-filing-shows-why-the-spending-is-far-from-over/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://techcrunch.com/2026/05/20/xai-burned-6-4b-last-year-spacexs-ipo-filing-shows-why-the-spending-is-far-from-over/" data-title="xAI burned $6.4B last year — SpaceX’s IPO filing shows why the spending is far from over" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">xai</span><span class="kw">spacex</span><span class="kw">ipo</span></div>
@@ -1034,6 +1063,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://venturebeat.com/orchestration/googles-managed-agents-api-promises-one-call-deployment-at-the-cost-of-execution-layer-control" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">3 min</span>
+          <button class="share-btn" data-url="https://venturebeat.com/orchestration/googles-managed-agents-api-promises-one-call-deployment-at-the-cost-of-execution-layer-control" data-title="Google's Managed Agents API promises one-call deployment at the cost of execution layer control" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">google</span><span class="kw">agents</span><span class="kw">managed</span></div>
@@ -1066,6 +1096,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://venturebeat.com/technology/cohere-cracks-lossless-quantization-and-native-citations-with-first-full-apache-2-0-licensed-open-model-command-a" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">8 min</span>
+          <button class="share-btn" data-url="https://venturebeat.com/technology/cohere-cracks-lossless-quantization-and-native-citations-with-first-full-apache-2-0-licensed-open-model-command-a" data-title="Cohere cracks lossless quantization and native citations with first full Apache 2.0 licensed open model Command A+" aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">model</span><span class="kw">cohere</span><span class="kw">command</span></div>
@@ -1098,6 +1129,7 @@ footer .github-link:hover{color:var(--accent)}
         <div class="footer">
           <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/missouri-programs/" target="_blank" rel="noopener">Read →</a>
           <span class="read-time">1 min</span>
+          <button class="share-btn" data-url="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/missouri-programs/" data-title="We’re announcing new community investments in Missouri." aria-label="Share" style="background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.7rem;padding:0 4px;margin-left:auto;transition:color 0.15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">↗</button>
         </div>
         
         <div class="kw-strip"><span class="kw">announcing</span><span class="kw">new</span><span class="kw">community</span></div>
@@ -1359,12 +1391,47 @@ footer .github-link:hover{color:var(--accent)}
   });
 
   // Scroll-to-top button
+  // Reading progress bar
+  const progressBar = document.getElementById('progressBar');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = docHeight > 0 ? Math.min(scrollTop / docHeight * 100, 100) + '%' : '0';
+    }, { passive: true });
+  }
+
   const scrollBtn = document.getElementById('scroll-top');
   if (scrollBtn) {
     window.addEventListener('scroll', () => {
       scrollBtn.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
   }
+
+  // Collapsible perspective sections
+  document.querySelectorAll('.reveal-section .perspective-label').forEach(label => {
+    label.addEventListener('click', function() {
+      this.closest('.reveal-section').classList.toggle('collapsed');
+    });
+  });
+
+  // Share buttons
+  document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const url = this.dataset.url;
+      const title = this.dataset.title;
+      if (navigator.share) {
+        navigator.share({ title, url }).catch(() => {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          const orig = this.textContent;
+          this.textContent = '✓';
+          setTimeout(() => this.textContent = orig, 1500);
+        }).catch(() => {});
+      }
+    });
+  });
 
   // Keyboard shortcuts (with help toggle)
   let shortcutsVisible = false;
