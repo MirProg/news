@@ -1,7 +1,39 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Database
+*.db
+*.db-wal
+*.db-shm
+
+# Generated content
+imageCache/
+logs/
+backend/public/audio/*.mp3
+
+# Next.js
+frontend/.next/
+frontend/out/
+
+# Python
 __pycache__/
 *.pyc
-.env
-venv/
 .venv/
-data/
-.github/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build
+dist/
+build/

@@ -1,0 +1,29 @@
+{
+  "name": "oracle-sports-engine",
+  "version": "1.0.0",
+  "description": "Oracle Sports — AI Content Generation Engine",
+  "type": "module",
+  "scripts": {
+    "daemon": "node daemon.js",
+    "aftermath": "node aftermathDaemon.js",
+    "test-writer": "node writer.js --test"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "axios": "^1.7.9",
+    "better-sqlite3": "^11.7.0",
+    "cheerio": "^1.0.0",
+    "chromadb": "^1.9.2",
+    "dotenv": "^16.4.7",
+    "fuse.js": "^7.0.0",
+    "jsdom": "^25.0.1",
+    "marked": "^15.0.4",
+    "node-cron": "^3.0.3",
+    "openai": "^4.77.0",
+    "p-queue": "^8.0.1",
+    "rss-parser": "^3.13.0",
+    "sharp": "^0.33.5",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  }
+}

@@ -11,17 +11,57 @@ from src.world_sports import SPORTS
 sport_keys = ["Cricket_T20", "EPL", "NBA", "NFL", "MLB", "NHL", "TENNIS", "Rugby", "F1", "MMA", "Boxing"]
 
 SPORT_IMAGES = {
-    "Cricket_T20": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop",
-    "EPL": "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop",
-    "NBA": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop",
-    "NFL": "https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop",
-    "MLB": "https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop",
-    "NHL": "https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop",
-    "TENNIS": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop",
-    "Rugby": "https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop",
-    "F1": "https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop",
-    "MMA": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop",
-    "Boxing": "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop",
+    "Cricket_T20": [
+        "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1200&h=700&fit=crop",
+    ],
+    "EPL": [
+        "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200&h=700&fit=crop",
+    ],
+    "NBA": [
+        "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=1200&h=700&fit=crop",
+    ],
+    "NFL": [
+        "https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1552332386-f8e00a1a2ed1?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1507226983735-a838615193b0?w=1200&h=700&fit=crop",
+    ],
+    "MLB": [
+        "https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1518541395164-3f0b36f65f3c?w=1200&h=700&fit=crop",
+    ],
+    "NHL": [
+        "https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1511227499331-25c621db940e?w=1200&h=700&fit=crop",
+    ],
+    "TENNIS": [
+        "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1531313849054-7c2732a2ab5b?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1622279457486-28f470ae0d4a?w=1200&h=700&fit=crop",
+    ],
+    "Rugby": [
+        "https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1200&h=700&fit=crop",
+    ],
+    "F1": [
+        "https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1582653291997-079a1c04e1a1?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?w=1200&h=700&fit=crop",
+    ],
+    "MMA": [
+        "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1200&h=700&fit=crop",
+    ],
+    "Boxing": [
+        "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop",
+        "https://images.unsplash.com/photo-1461896836934-bd45ba8fcf9b?w=1200&h=700&fit=crop",
+    ],
 }
 
 
@@ -72,30 +112,53 @@ def _story(pred):
     opening = random.choice(OPENINGS)
     lines = [opening]
 
+    tossup_bodies = [
+        f"These two sides could play a hundred times and split the results down the middle. Every metric, every angle, every past encounter points to a single conclusion: nobody knows. The last meeting went down to the wire. The one before that was decided in stoppage time. This is the kind of fixture where you do not look away, not even for a second.",
+        f"The numbers say {wp:.0f}% either way. That is not indecision — it is honesty. {t1} and {t2} match up so evenly that the outcome will be decided by something beyond data. A deflection. A decision. A moment of brilliance that no model could have predicted. Those moments define sport.",
+        f"Here is what makes this matchup impossible to call: {t1} dominates in transition while {t2} controls the half-court game. Their strengths cancel out, their weaknesses never quite align, and the result is a statistical deadlock. Games like this rarely go to the favorite. They go to whoever wants it more in the final five minutes.",
+        f"The model spent thousands of iterations on this fixture and produced a shrug. When the data refuses to pick a side, it means the game will be decided by intangibles — effort, adjustments, composure under pressure. {t1} has the talent. {t2} has the belief. Neither advantage is enough on its own.",
+        f"Dead even across every dimension. Form is identical. Head-to-head history is a wash. Even the venue barely tilts the needle. This is the kind of game where the opening kickoff feels fraudulent — how can something so unpredictable start with something so routine?",
+    ]
+    lock_bodies = [
+        f"{t1} at {wp:.0f}% is not a prediction — it is a formality. The gap between these sides has widened with every passing week. {t2} would need a perfect game to stay competitive. Perfection is rare in sport. Rarer still when the opponent is this dominant.",
+        f"The model does not do hyperbole. When it says {wp:.0f}%, it means {t1} wins that many simulations out of a hundred. The other {100-wp:.0f} simulations involve {t2} playing flawlessly and {t1} having an anomalous off night. That is not a strategy. That is a hope.",
+        f"Some games are contests. This one is a coronation. {t1} enters with advantages in form, fitness, and matchup history. {t2} enters with hope. Hope is a wonderful thing. It just does not show up in the box score.",
+        f"Every dimension the model tracks points to {t1}. The offense is sharper. The defense is tighter. The transition game is faster. {t2} can try to slow the tempo, shorten the game, keep it close. That works for a while. It rarely works for four quarters.",
+        f"There is a reason the projection is this lopsided: {t1} has been here before, against this opponent, and they have the mental edge of knowing exactly what works. {t2} has the motivation of being counted out. Motivation matters. Just not enough to close a {wp:.0f}% gap.",
+    ]
+    edge_bodies = [
+        f"{t1} has a clear edge — {wp:.0f}% in the projection — but clear is not the same as certain. The model sees {t1} controlling the key phases of play, dictating tempo, forcing {t2} into uncomfortable positions. Yet {t2} has the weapons to flip the script if they find the right matchup.",
+        f"The math likes {t1} at {wp:.0f}%. The math is not always right, but it is right more often than gut feeling. {t2} can win this game — they have the talent and the system — but they will need to execute at a level they have not consistently reached this season.",
+        f"This is the kind of game where the edge is real but fragile. {t1} at {wp:.0f}% has the better numbers across the board. But sports are not played on spreadsheets. One good run, one hot streak, one moment where the math stops mattering — that is all {t2} needs.",
+        f"The projection favors {t1} at {wp:.0f}%, and the reasons are specific: they win the turnover battle, they convert in transition, they defend the areas {t2} likes to attack. The blueprint for a {t1} victory is clear. The blueprint for a {t2} upset requires them to defy their own tendencies.",
+        f"There is a gap here, measured at {wp:.0f}%. It is big enough to matter but small enough to disappear if {t1} gets careless. Carelessness happens more than you think. The model accounts for it. That is why this number is {wp:.0f}% and not higher.",
+    ]
+    lean_bodies = [
+        f"Slight lean toward {t1 if wp > 50 else t2} at {wp:.0f}%. The margins are razor-thin — a deflection, a decision, a moment of individual genius could flip everything. This is the kind of game that reminds you why sport matters. Not because of certainty. Because of the beautiful, agonizing uncertainty of not knowing.",
+        f"{t1 if wp > 50 else t2} goes in as the narrowest of favorites — the kind of favorite that feels more like a coin toss dressed up in statistics. The only separation comes in one or two dimensions where a slight imbalance exists. But 'slight' is doing a lot of work in that sentence.",
+        f"The model sees a {wp:.0f}% edge for {t1 if wp > 50 else t2}. That is barely a whisper above a coin flip. Games like these are won in the details — who wins the fifty-fifty balls, who makes the extra pass, who blinks first in the closing minutes.",
+        f"A {wp:.0f}% lean is the model's way of saying 'I guess?' {t1 if wp > 50 else t2} has the faintest advantage in one or two dimensions, but the margin is so small that home crowd noise could negate it. This is the kind of game where you watch with your hand over your mouth.",
+        f"The edge is so small ({wp:.0f}%) that it barely qualifies as an edge. These games usually come down to which team makes fewer mistakes in the final stretch. {t1 if wp > 50 else t2} has the discipline edge. The other side has the desperation edge. Discipline usually wins. Usually.",
+    ]
+
     if abs(wp - 50) < 3:
-        lines.append(f"These two sides could play a hundred times and split the results down the middle. Every metric, every angle, every past encounter points to a single conclusion: nobody knows. The last meeting went down to the wire. The one before that was decided in stoppage time. This is the kind of fixture where you do not look away, not even for a second.")
+        lines.append(random.choice(tossup_bodies))
         if sorted_dims:
             lines.append(f"If there is a weakness to be found, it might live in the {sorted_dims[0]['name'].lower().replace('&', 'and')}, where one side has shown the faintest crack. But faint cracks have a way of disappearing when the lights are brightest.")
-
     elif wp > 72:
-        lines.append(f"{t1} walks onto the pitch with the kind of swagger that comes from knowing they have answers for everything {t2} can throw at them. The last outing was a statement — controlled, composed, relentless. They dismantled {t2}'s game plan piece by piece, and the memory of that night still lingers.")
+        lines.append(random.choice(lock_bodies))
         if sorted_dims:
             lines.append(f"The key battleground is the {sorted_dims[0]['name'].lower().replace('&', 'and')}, where {t1} holds a decisive edge. This is where games are won, where opposition attacks go to die, where {t2} will need to find something they simply did not have last time.")
-        lines.append(f"Can {t2} turn it around? Of course. That is why we watch. But the mountain is steep, and the climbing gear is at home.")
-
     elif wp > 60:
-        lines.append(f"{t1} has the edge, and it is not hard to see why. They move with purpose, defend with structure, attack with intent. Against {t2}, they have found ways to impose their style — not always decisively, but often enough to matter.")
+        lines.append(random.choice(edge_bodies))
         if len(sorted_dims) >= 2:
             d1 = sorted_dims[0]['name'].lower().replace('&', 'and')
             d2 = sorted_dims[1]['name'].lower().replace('&', 'and')
             lines.append(f"The foundations of this advantage rest on two pillars: {d1} and {d2}. In both areas, {t1} has shown consistent superiority. Not overwhelming. Just enough.")
-        lines.append(f"{t2} has the tools to disrupt this. They have players capable of individual brilliance, of turning a game on its head in a single moment. But they will need to be at their absolute best — and even then, it might not be enough.")
-
     else:
-        lines.append(f"{t1 if wp > 50 else t2} goes in as the narrowest of favorites — the kind of favorite that feels more like a coin toss dressed up in statistics. The margins are razor-thin. A deflection here, a decision there, a moment of individual genius or collective error — any of it could decide the outcome.")
+        lines.append(random.choice(lean_bodies))
         if sorted_dims:
             lines.append(f"The only real separation comes in the {sorted_dims[0]['name'].lower().replace('&', 'and')}, where a slight imbalance suggests one side might have the faintest edge. But 'might' is doing a lot of work in that sentence.")
-        lines.append(f"This is the kind of game that reminds you why sport matters. It is not about certainty. It is about the beautiful, agonizing uncertainty of not knowing what happens next.")
 
     if pred.get("pred_score1") is not None:
         lines.append(f"If you need a number to hold onto: {t1} {pred['pred_score1']:.0f}, {t2} {pred['pred_score2']:.0f}. But numbers are just numbers. The game is the game.")
@@ -103,7 +166,7 @@ def _story(pred):
     return "\n\n".join(lines)
 
 
-def generate_world_news(engine, takes, backtest_results):
+def generate_world_news(engine, takes, backtest_results, analytics=None):
     by_sport = {}
     for t in takes:
         by_sport.setdefault(t["sport"], []).append(t)
@@ -122,11 +185,13 @@ def generate_world_news(engine, takes, backtest_results):
 
     nav_items = ""
     all_sections = ""
+    feed_items = ""
     seen_nav = set()
 
     for i, (conf, key, t) in enumerate(scored):
         pred = t.get("prediction", {})
-        img = SPORT_IMAGES.get(key, "")
+        choices = SPORT_IMAGES.get(key, [])
+        img = random.choice(choices) if choices else ""
         body = _story(pred) if pred else ""
         spec = SPORTS[key]
         sect_id = f"s{key}"
@@ -171,16 +236,50 @@ def generate_world_news(engine, takes, backtest_results):
     </div>
   </section>"""
         else:
-            # Compact list items
-            all_sections += f"""
-  <section class="compact" id="{sect_id}">
+            # Article feed items
+            feed_items += f"""
+  <article class="compact" id="{sect_id}">
     <div class="compact-img" style="background-image:url('{img}')"></div>
     <div class="compact-content">
       <p class="compact-label">{label}</p>
       <h3 class="compact-title">{title}</h3>
-      <div class="compact-body"><p>{body[:150]}…</p></div>
+      <div class="compact-body"><p>{body[:200]}…</p></div>
     </div>
-  </section>"""
+  </article>"""
+
+    # ─── Book Analytics HTML ─────────────────────
+    analytics_html = ""
+    if analytics:
+        sp_links = "".join(
+            f'<span class="al-sport">{SPORTS[k]["name"]}</span>'
+            for k in sport_keys if k in analytics and analytics[k].get("page_rank")
+        )
+        analytics_html = f"""
+    <div class="analytics-lab">
+      <div class="al-inner">
+        <h2 class="al-head">Book Lab</h2>
+        <p class="al-sub">AI, Optimization &amp; Data Sciences in Sports</p>
+        <div class="al-grid">
+          <div class="al-card">
+            <h3>Pythagorean Weibull MoM</h3>
+            <p>Independent Weibull distributions for runs scored/allowed, solved via Method of Moments. Win probability via 2D numerical integration. <em>Ch.13</em></p>
+          </div>
+          <div class="al-card">
+            <h3>PageRank Rankings</h3>
+            <p>Eigenvector centrality on win/loss networks. Quality-over-quantity: beating a strong opponent counts more than beating a weak one. <em>Ch.12</em></p>
+          </div>
+          <div class="al-card">
+            <h3>K-Means Player Clusters</h3>
+            <p>Unsupervised learning on player stats, games played, and form metrics. PEI efficiency ratio separates stars from rotation players. <em>Ch.11</em></p>
+          </div>
+          <div class="al-card">
+            <h3>TRIMP Consistency</h3>
+            <p>Game-to-game output variability measured via coefficient of variation. Higher consistency = more predictable team performance. <em>Ch.11</em></p>
+          </div>
+        </div>
+        <p class="al-sports">Available for: {sp_links}</p>
+      </div>
+    </div>"""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -213,23 +312,27 @@ body {{
 .top {{
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 28px;
-  background: rgba(244,242,237,0.95);
-  border-bottom: 1px solid #ddd;
+  padding: 12px 28px;
+  background: #1a1a16;
+  border-bottom: 1px solid #2a2a26;
   font-family: var(--font);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }}
-.top .logo {{ font-weight: 800; font-size: 0.75rem; }}
+.top .logo {{ font-weight: 800; font-size: 0.8rem; color: #fff; }}
 .top .logo span {{ color: var(--red); }}
-.top-nav {{ display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }}
+.top-nav {{ display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }}
 .nav-link {{
-  color: #888; text-decoration: none; padding: 3px 10px;
+  color: #666; text-decoration: none; padding: 4px 10px;
   font-size: 0.55rem; letter-spacing: 0.05em;
-  transition: color 0.15s;
+  transition: color 0.15s, background 0.15s;
+  border-radius: 2px;
 }}
-.nav-link:hover {{ color: var(--red); }}
+.nav-link:hover {{ color: #ddd; background: rgba(255,255,255,0.05); }}
+
+.feature {{ cursor: pointer; transition: opacity 0.2s; }}
+.feature:hover {{ opacity: 0.95; }}
 
 /* Hero */
 .hero {{
@@ -238,6 +341,7 @@ body {{
   display: flex; align-items: flex-end;
   background-size: cover; background-position: center;
   margin-bottom: 4px;
+  background-color: #1a1a16;
 }}
 .hero-overlay {{
   position: absolute; inset: 0;
@@ -277,25 +381,55 @@ body {{
 }}
 .feature-body p {{ font-size: 0.85rem; color: var(--text2); line-height: 1.7; }}
 
-/* Compact stories */
+/* Article feed (compact stories) */
+.feed {{ max-width: 900px; margin: 0 auto; padding: 24px 28px; }}
+.feed-head {{
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--text3); margin-bottom: 16px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--text);
+}}
 .compact {{
-  display: flex; gap: 16px; padding: 16px 28px;
-  background: var(--card); margin-bottom: 2px; align-items: center;
+  display: flex; gap: 20px; padding: 20px 0;
+  align-items: flex-start; cursor: pointer;
+  border-bottom: 1px solid #e8e6e0;
+  transition: opacity 0.15s;
 }}
+.compact:hover {{ opacity: 0.8; }}
 .compact-img {{
-  width: 80px; height: 80px; flex-shrink: 0;
-  background-size: cover; background-position: center; border-radius: 4px;
+  width: 160px; height: 110px; flex-shrink: 0;
+  background-size: cover; background-position: center; border-radius: 2px;
+  background-color: #eae6df;
 }}
-.compact-content {{ flex: 1; }}
+.compact-content {{ flex: 1; min-width: 0; }}
 .compact-label {{
   font-size: 0.5rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--red); margin-bottom: 2px;
+  letter-spacing: 0.1em; color: var(--red); margin-bottom: 4px;
 }}
 .compact-title {{
-  font-family: var(--display); font-size: 0.85rem; font-weight: 700;
-  line-height: 1.2; margin-bottom: 4px;
+  font-family: var(--display); font-size: 1rem; font-weight: 700;
+  line-height: 1.25; margin-bottom: 6px;
 }}
-.compact-body p {{ font-size: 0.7rem; color: var(--text2); line-height: 1.5; }}
+.compact-body p {{ font-size: 0.8rem; color: var(--text2); line-height: 1.6; }}
+
+/* Book Analytics */
+.analytics-lab {{
+  background: #1a1a16; color: #c0c4cc; padding: 48px 28px;
+}}
+.al-inner {{ max-width: 900px; margin: 0 auto; }}
+.al-head {{
+  font-family: var(--display); font-size: 1.2rem; font-weight: 700;
+  color: #fff; margin-bottom: 4px;
+}}
+.al-sub {{ font-size: 0.65rem; color: #6b7494; margin-bottom: 24px; }}
+.al-grid {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }}
+.al-card {{
+  background: #22221e; padding: 18px; border-radius: 2px;
+}}
+.al-card h3 {{ font-size: 0.7rem; font-weight: 700; color: #8aabff; margin-bottom: 6px; }}
+.al-card p {{ font-size: 0.65rem; color: #8a8e9e; line-height: 1.6; }}
+.al-card em {{ color: #6b7494; font-style: italic; }}
+.al-sports {{ font-size: 0.6rem; color: #5c6278; margin-top: 16px; }}
+.al-sport {{ display: inline-block; margin: 2px 4px; padding: 2px 8px; background: #22221e; border-radius: 2px; }}
 
 /* Footer */
 .footer {{
@@ -311,7 +445,9 @@ body {{
   .hero-title {{ font-size: 1.8rem; }}
   .hero-content {{ padding: 40px 20px 60px; }}
   .top {{ padding: 8px 14px; flex-direction: column; gap: 4px; }}
-  .compact {{ padding: 12px 16px; }}
+  .compact {{ flex-direction: column; gap: 10px; }}
+  .compact-img {{ width: 100%; height: 180px; }}
+  .feed {{ padding: 16px; }}
 }}
 </style>
 </head>
@@ -325,10 +461,14 @@ body {{
 
 {all_sections}
 
+{f'<div class="feed"><p class="feed-head">More Stories</p>{feed_items}</div>' if feed_items else ''}
+
+{analytics_html if analytics else ''}
+
 <footer class="footer">
-  Seven dimensions · Head-to-Head History · Player Matchups · Venue & Conditions · Recent Form ·
-  Tournament Context · Sentiment · Player Health<br>
-  Published daily · PyTorch engine · 11 sports
+  <strong>Beyond the Game</strong> &middot; Predictions by <strong>HAL 9000</strong><br>
+  Seven dimensions &middot; Head-to-Head History &middot; Player Matchups &middot; Venue & Conditions &middot; Recent Form &middot; Tournament Context &middot; Sentiment &middot; Player Health<br>
+  {len(scored)} stories across {len(seen_nav)} sports &middot; Published daily
 </footer>
 
 </div>

@@ -1,0 +1,60 @@
+module.exports = {
+  apps: [
+    {
+      name: 'oracle-backend',
+      script: './backend/server.js',
+      cwd: __dirname,
+      env: {
+        NODE_ENV: 'production',
+        PORT: 4000,
+      },
+      watch: false,
+      max_memory_restart: '500M',
+      error_file: './logs/backend-error.log',
+      out_file: './logs/backend-out.log',
+      time: true,
+    },
+    {
+      name: 'oracle-daemon',
+      script: './engine/daemon.js',
+      cwd: __dirname,
+      env: {
+        NODE_ENV: 'production',
+      },
+      watch: false,
+      max_memory_restart: '1G',
+      error_file: './logs/daemon-error.log',
+      out_file: './logs/daemon-out.log',
+      time: true,
+      cron_restart: '0 */6 * * *',
+    },
+    {
+      name: 'oracle-aftermath',
+      script: './engine/aftermathDaemon.js',
+      cwd: __dirname,
+      env: {
+        NODE_ENV: 'production',
+      },
+      watch: false,
+      max_memory_restart: '500M',
+      error_file: './logs/aftermath-error.log',
+      out_file: './logs/aftermath-out.log',
+      time: true,
+    },
+    {
+      name: 'oracle-frontend',
+      script: 'npm',
+      args: 'run start',
+      cwd: './frontend',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 3000,
+      },
+      watch: false,
+      max_memory_restart: '500M',
+      error_file: './logs/frontend-error.log',
+      out_file: './logs/frontend-out.log',
+      time: true,
+    },
+  ],
+};

@@ -35,8 +35,10 @@ def main():
     print("\n[3/3] Generating news site...")
     takes = engine.generate_all_takes()
 
+    analytics = engine.analytics
+
     from src.generator import generate_world_news
-    out_path = generate_world_news(engine, takes, bts)
+    out_path = generate_world_news(engine, takes, bts, analytics=analytics)
 
     print(f"\n  Published: {out_path}")
     print(f"  {len(takes)} editorial takes across {len(engine.predictors)} sports")

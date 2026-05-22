@@ -1,0 +1,14 @@
+{
+  "name": "oracle-sports",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Oracle Sports - AI-Powered Sports Predictions",
+  "type": "module",
+  "scripts": {
+    "migrate": "node db/migrate.js",
+    "setup": "powershell -ExecutionPolicy Bypass -File setup.ps1"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0"
+  }
+}

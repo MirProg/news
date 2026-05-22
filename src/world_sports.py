@@ -733,6 +733,15 @@ class WorldSportsEngine:
             self.sports[key] = data
             self.predictors[key] = DeepSportPredictor(key, data)
 
+    @property
+    def analytics(self):
+        """Run book analytics on-demand (lazy)."""
+        if not hasattr(self, '_analytics_cache'):
+            from src.analytics import run_all_analytics
+            print("  Running book analytics (Pythagorean MoM, PageRank, K-means, TRIMP)...")
+            self._analytics_cache = run_all_analytics(self)
+        return self._analytics_cache
+
     def generate_all_takes(self):
         """Generate news takes for all sports."""
         all_takes = []

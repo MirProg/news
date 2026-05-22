@@ -29,23 +29,27 @@ body {
 .top {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 28px;
-  background: rgba(244,242,237,0.95);
-  border-bottom: 1px solid #ddd;
+  padding: 12px 28px;
+  background: #1a1a16;
+  border-bottom: 1px solid #2a2a26;
   font-family: var(--font);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.top .logo { font-weight: 800; font-size: 0.75rem; }
+.top .logo { font-weight: 800; font-size: 0.8rem; color: #fff; }
 .top .logo span { color: var(--red); }
-.top-nav { display: flex; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
+.top-nav { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
 .nav-link {
-  color: #888; text-decoration: none; padding: 3px 10px;
+  color: #666; text-decoration: none; padding: 4px 10px;
   font-size: 0.55rem; letter-spacing: 0.05em;
-  transition: color 0.15s;
+  transition: color 0.15s, background 0.15s;
+  border-radius: 2px;
 }
-.nav-link:hover { color: var(--red); }
+.nav-link:hover { color: #ddd; background: rgba(255,255,255,0.05); }
+
+.feature { cursor: pointer; transition: opacity 0.2s; }
+.feature:hover { opacity: 0.95; }
 
 /* Hero */
 .hero {
@@ -54,6 +58,7 @@ body {
   display: flex; align-items: flex-end;
   background-size: cover; background-position: center;
   margin-bottom: 4px;
+  background-color: #1a1a16;
 }
 .hero-overlay {
   position: absolute; inset: 0;
@@ -93,25 +98,55 @@ body {
 }
 .feature-body p { font-size: 0.85rem; color: var(--text2); line-height: 1.7; }
 
-/* Compact stories */
+/* Article feed (compact stories) */
+.feed { max-width: 900px; margin: 0 auto; padding: 24px 28px; }
+.feed-head {
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--text3); margin-bottom: 16px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--text);
+}
 .compact {
-  display: flex; gap: 16px; padding: 16px 28px;
-  background: var(--card); margin-bottom: 2px; align-items: center;
+  display: flex; gap: 20px; padding: 20px 0;
+  align-items: flex-start; cursor: pointer;
+  border-bottom: 1px solid #e8e6e0;
+  transition: opacity 0.15s;
 }
+.compact:hover { opacity: 0.8; }
 .compact-img {
-  width: 80px; height: 80px; flex-shrink: 0;
-  background-size: cover; background-position: center; border-radius: 4px;
+  width: 160px; height: 110px; flex-shrink: 0;
+  background-size: cover; background-position: center; border-radius: 2px;
+  background-color: #eae6df;
 }
-.compact-content { flex: 1; }
+.compact-content { flex: 1; min-width: 0; }
 .compact-label {
   font-size: 0.5rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--red); margin-bottom: 2px;
+  letter-spacing: 0.1em; color: var(--red); margin-bottom: 4px;
 }
 .compact-title {
-  font-family: var(--display); font-size: 0.85rem; font-weight: 700;
-  line-height: 1.2; margin-bottom: 4px;
+  font-family: var(--display); font-size: 1rem; font-weight: 700;
+  line-height: 1.25; margin-bottom: 6px;
 }
-.compact-body p { font-size: 0.7rem; color: var(--text2); line-height: 1.5; }
+.compact-body p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
+
+/* Book Analytics */
+.analytics-lab {
+  background: #1a1a16; color: #c0c4cc; padding: 48px 28px;
+}
+.al-inner { max-width: 900px; margin: 0 auto; }
+.al-head {
+  font-family: var(--display); font-size: 1.2rem; font-weight: 700;
+  color: #fff; margin-bottom: 4px;
+}
+.al-sub { font-size: 0.65rem; color: #6b7494; margin-bottom: 24px; }
+.al-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.al-card {
+  background: #22221e; padding: 18px; border-radius: 2px;
+}
+.al-card h3 { font-size: 0.7rem; font-weight: 700; color: #8aabff; margin-bottom: 6px; }
+.al-card p { font-size: 0.65rem; color: #8a8e9e; line-height: 1.6; }
+.al-card em { color: #6b7494; font-style: italic; }
+.al-sports { font-size: 0.6rem; color: #5c6278; margin-top: 16px; }
+.al-sport { display: inline-block; margin: 2px 4px; padding: 2px 8px; background: #22221e; border-radius: 2px; }
 
 /* Footer */
 .footer {
@@ -127,7 +162,9 @@ body {
   .hero-title { font-size: 1.8rem; }
   .hero-content { padding: 40px 20px 60px; }
   .top { padding: 8px 14px; flex-direction: column; gap: 4px; }
-  .compact { padding: 12px 16px; }
+  .compact { flex-direction: column; gap: 10px; }
+  .compact-img { width: 100%; height: 180px; }
+  .feed { padding: 16px; }
 }
 </style>
 </head>
@@ -136,395 +173,434 @@ body {
 
 <div class="top">
   <div class="logo">Beyond the <span>Game</span></div>
-  <div class="top-nav"><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a></div>
+  <div class="top-nav"><a class="nav-link" href="#sF1" data-key="sF1">Formula 1</a><a class="nav-link" href="#sRugby" data-key="sRugby">Rugby Union</a><a class="nav-link" href="#sMLB" data-key="sMLB">MLB Baseball</a><a class="nav-link" href="#sMMA" data-key="sMMA">MMA (UFC)</a><a class="nav-link" href="#sCricket_T20" data-key="sCricket_T20">T20 Cricket</a><a class="nav-link" href="#sEPL" data-key="sEPL">English Premier League</a><a class="nav-link" href="#sNBA" data-key="sNBA">NBA Basketball</a><a class="nav-link" href="#sNFL" data-key="sNFL">NFL Football</a><a class="nav-link" href="#sNHL" data-key="sNHL">NHL Hockey</a><a class="nav-link" href="#sTENNIS" data-key="sTENNIS">Tennis (ATP)</a><a class="nav-link" href="#sBoxing" data-key="sBoxing">Professional Boxing</a></div>
 </div>
 
 
-  <section class="hero" id="sCricket_T20" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')">
+  <section class="hero" id="sF1" style="background-image:url('https://images.unsplash.com/photo-1582653291997-079a1c04e1a1?w=1200&h=700&fit=crop')">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-label">T20 Cricket · 42.9% accuracy</p>
-      <h1 class="hero-title">RCB vs LSG</h1>
-      <div class="hero-body"><p>There is a stillness before the storm. The warm-up ends. The crowd finds its voice. On the field, twenty-two figures wait for permission to become heroes or villains.
+      <p class="hero-label">Formula 1 · 0% accuracy</p>
+      <h1 class="hero-title">Leclerc vs Albon</h1>
+      <div class="hero-body"><p>There is a reason they play the game instead of letting a computer decide. Some things cannot be calculated. The rest is heart, nerve, and the will to do something extraordinary.
 
-LSG goes in as the narrowest of favorites — the kind of favorite that feels more like a coin toss dressed up in statistics. The margins are razor-thin. A deflection here, a decision there, a moment of individual genius or collective error — any of it could decide the outcome.
+Slight lean toward Albon at 44%. The margins are razor-thin — a deflection, a decision, a moment of individual genius could flip everything. This is the kind of game that reminds you why sport matters. Not because of certainty. Because of the beautiful, agonizing uncertainty of not knowing.
+
+The only real separation comes in the head-to-head history, where a slight imbalance suggests one side might have the faintest edge. But 'might' is doing a lot of work in that sentence.</p></div>
+    </div>
+  </section>
+  <section class="feature" id="sRugby">
+    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1200&h=700&fit=crop')"></div>
+    <div class="feature-content">
+      <p class="feature-label">Rugby Union · 42.9% accuracy</p>
+      <h2 class="feature-title">Ireland vs Tonga: A Genuine Toss-Up</h2>
+      <div class="feature-body"><p>There are matches you watch. And there are matches you remember where you were. This one has the feel of the latter.
+
+Ireland goes in as the narrowest of favorites — the kind of favorite that feels more like a coin toss dressed up in statistics. The only separation comes in one or two dimensions where a slight imbalance exists. But 'slight' is doing a lot of work in that sentence.
 
 The only real separation comes in the head-to-head history, where a slight imbalance suggests one side might have the faintest edge. But 'might' is doing a lot of work in that sentence.
 
-This is the kind of game that reminds you why sport matters. It is not about certainty. It is about the beautiful, agonizing uncertainty of not knowing what happens next.
+If you need a number to hold onto: Ireland 27, Tonga 27. But numbers are just numbers. The game is the game.</p></div>
+    </div>
+  </section>
+  <section class="feature" id="sMLB">
+    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1518541395164-3f0b36f65f3c?w=1200&h=700&fit=crop')"></div>
+    <div class="feature-content">
+      <p class="feature-label">MLB Baseball · 57.0% accuracy</p>
+      <h2 class="feature-title">Braves vs Padres: A Genuine Toss-Up</h2>
+      <div class="feature-body"><p>They have played this fixture a dozen times. Every meeting tells a slightly different story, but the chapters are beginning to form a coherent narrative.
 
-If you need a number to hold onto: RCB 172, LSG 172. But numbers are just numbers. The game is the game.</p></div>
+These two sides could play a hundred times and split the results down the middle. Every metric, every angle, every past encounter points to a single conclusion: nobody knows. The last meeting went down to the wire. The one before that was decided in stoppage time. This is the kind of fixture where you do not look away, not even for a second.
+
+If there is a weakness to be found, it might live in the head-to-head history, where one side has shown the faintest crack. But faint cracks have a way of disappearing when the lights are brightest.
+
+If you need a number to hold onto: Braves 4, Padres 4. But numbers are just numbers. The game is the game.</p></div>
     </div>
   </section>
   <section class="feature" id="sMMA">
-    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
+    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1200&h=700&fit=crop')"></div>
     <div class="feature-content">
-      <p class="feature-label">MMA (UFC) · 50.0% accuracy</p>
-      <h2 class="feature-title">Pereira vs Poirier: A Genuine Toss-Up</h2>
-      <div class="feature-body"><p>The best rivalries are built on respect and resentment in equal measure. These two have plenty of both.
+      <p class="feature-label">MMA (UFC) · 53.7% accuracy</p>
+      <h2 class="feature-title">Grasso vs Shevchenko: A Genuine Toss-Up</h2>
+      <div class="feature-body"><p>The dressing room before a big game is a place of strange silences and louder-than-usual jokes. Every player copes differently. But they all feel the same weight.
 
-These two sides could play a hundred times and split the results down the middle. Every metric, every angle, every past encounter points to a single conclusion: nobody knows. The last meeting went down to the wire. The one before that was decided in stoppage time. This is the kind of fixture where you do not look away, not even for a second.
-
-If there is a weakness to be found, it might live in the head-to-head history, where one side has shown the faintest crack. But faint cracks have a way of disappearing when the lights are brightest.</p></div>
-    </div>
-  </section>
-  <section class="feature" id="sF1">
-    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
-    <div class="feature-content">
-      <p class="feature-label">Formula 1 · 0% accuracy</p>
-      <h2 class="feature-title">Magnussen vs Piastri: A Genuine Toss-Up</h2>
-      <div class="feature-body"><p>The beauty of sport is that the ball does not remember last week's result. Every game is a fresh start, a clean slate, a new chance to write something worth remembering.
-
-These two sides could play a hundred times and split the results down the middle. Every metric, every angle, every past encounter points to a single conclusion: nobody knows. The last meeting went down to the wire. The one before that was decided in stoppage time. This is the kind of fixture where you do not look away, not even for a second.
+Here is what makes this matchup impossible to call: Grasso dominates in transition while Shevchenko controls the half-court game. Their strengths cancel out, their weaknesses never quite align, and the result is a statistical deadlock. Games like this rarely go to the favorite. They go to whoever wants it more in the final five minutes.
 
 If there is a weakness to be found, it might live in the recent form (last 5), where one side has shown the faintest crack. But faint cracks have a way of disappearing when the lights are brightest.</p></div>
     </div>
   </section>
-  <section class="feature" id="sBoxing">
-    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
+  <section class="feature" id="sCricket_T20">
+    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')"></div>
     <div class="feature-content">
-      <p class="feature-label">Professional Boxing · 66.7% accuracy</p>
-      <h2 class="feature-title">Usyk vs Canelo: A Genuine Toss-Up</h2>
-      <div class="feature-body"><p>There is a stillness before the storm. The warm-up ends. The crowd finds its voice. On the field, twenty-two figures wait for permission to become heroes or villains.
+      <p class="feature-label">T20 Cricket · 52.9% accuracy</p>
+      <h2 class="feature-title">CSK vs MI: A Genuine Toss-Up</h2>
+      <div class="feature-body"><p>The best games are not played on paper. They are played in the space between expectation and reality, where the unexpected lives and thrives.
 
-These two sides could play a hundred times and split the results down the middle. Every metric, every angle, every past encounter points to a single conclusion: nobody knows. The last meeting went down to the wire. The one before that was decided in stoppage time. This is the kind of fixture where you do not look away, not even for a second.
-
-If there is a weakness to be found, it might live in the recent form (last 5), where one side has shown the faintest crack. But faint cracks have a way of disappearing when the lights are brightest.</p></div>
-    </div>
-  </section>
-  <section class="feature" id="sEPL">
-    <div class="feature-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
-    <div class="feature-content">
-      <p class="feature-label">English Premier League · 85.0% accuracy</p>
-      <h2 class="feature-title">Nott'm Forest vs Leicester: A Genuine Toss-Up</h2>
-      <div class="feature-body"><p>The beauty of sport is its refusal to follow a script. The underdog wins. The favorite crumbles. The ball takes a deflection that changes everything. Tonight could be that night.
-
-These two sides could play a hundred times and split the results down the middle. Every metric, every angle, every past encounter points to a single conclusion: nobody knows. The last meeting went down to the wire. The one before that was decided in stoppage time. This is the kind of fixture where you do not look away, not even for a second.
+The model spent thousands of iterations on this fixture and produced a shrug. When the data refuses to pick a side, it means the game will be decided by intangibles — effort, adjustments, composure under pressure. CSK has the talent. MI has the belief. Neither advantage is enough on its own.
 
 If there is a weakness to be found, it might live in the venue and conditions, where one side has shown the faintest crack. But faint cracks have a way of disappearing when the lights are brightest.
 
-If you need a number to hold onto: Nott'm Forest 2, Leicester 2. But numbers are just numbers. The game is the game.</p></div>
+If you need a number to hold onto: CSK 172, MI 172. But numbers are just numbers. The game is the game.</p></div>
     </div>
   </section>
-  <section class="compact" id="sNBA">
+
+<div class="feed"><p class="feed-head">More Stories</p>
+  <article class="compact" id="sEPL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">English Premier League · 85.0% accuracy</p>
+      <h3 class="compact-title">Bournemouth vs Liverpool: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>Forget the standings. Forget the form guide. Some matches exist outside the context of a season — they are self-contained stories with their own gravity.
+
+These two sides could play a hundred times an…</p></div>
+    </div>
+  </article>
+  <article class="compact" id="sNBA">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NBA Basketball · 70.0% accuracy</p>
-      <h3 class="compact-title">Warriors vs Timberwolves: A Genuine Toss-Up</h3>
-      <div class="compact-body"><p>Every rivalry has a heartbeat. Some are steady. Others, like this one, are arrhythmic — unpredictable, dangerous, impossible to chart.
+      <p class="compact-label">NBA Basketball · 65.0% accuracy</p>
+      <h3 class="compact-title">Kings vs Warriors: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>Forget the standings. Forget the form guide. Some matches exist outside the context of a season — they are self-contained stories with their own gravity.
 
-These two side…</p></div>
+Dead even across every dimension. Form is ide…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNFL">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sNFL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1552332386-f8e00a1a2ed1?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NFL Football · 53.1% accuracy</p>
-      <h3 class="compact-title">Dolphins vs 49ers: A Genuine Toss-Up</h3>
-      <div class="compact-body"><p>There is a difference between wanting to win and expecting to win. One of these sides has crossed that threshold. The other is still searching for the…</p></div>
+      <p class="compact-label">NFL Football · 51.6% accuracy</p>
+      <h3 class="compact-title">Ravens vs Vikings: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>Victory has a thousand fathers, but defeat is an orphan. Tonight's loser will walk off alone, replaying the one moment that slipped away.
+
+The model spent thousands of iterations on this fixture and p…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sMLB">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop')"></div>
-    <div class="compact-content">
-      <p class="compact-label">MLB Baseball · 62.0% accuracy</p>
-      <h3 class="compact-title">Orioles vs Cardinals: A Genuine Toss-Up</h3>
-      <div class="compact-body"><p>They have played this fixture a dozen times. Every meeting tells a slightly different story, but the chapters are beginning to form a coherent narrati…</p></div>
-    </div>
-  </section>
-  <section class="compact" id="sNHL">
+  </article>
+  <article class="compact" id="sNHL">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NHL Hockey · 80.4% accuracy</p>
-      <h3 class="compact-title">Sabres vs Kraken: A Genuine Toss-Up</h3>
-      <div class="compact-body"><p>In the stands, they wear scarves and wave flags and scream until their voices crack. They believe. And sometimes — just sometimes — belief is enough t…</p></div>
+      <p class="compact-label">NHL Hockey · 63.0% accuracy</p>
+      <h3 class="compact-title">Lightning vs Blues: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>Every rivalry has a heartbeat. Some are steady. Others, like this one, are arrhythmic — unpredictable, dangerous, impossible to chart.
+
+Dead even across every dimension. Form is identical. Head-to-hea…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sTENNIS">
+  </article>
+  <article class="compact" id="sTENNIS">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">Tennis (ATP) · 75.0% accuracy</p>
-      <h3 class="compact-title">Hurkacz vs Shelton: A Genuine Toss-Up</h3>
-      <div class="compact-body"><p>There is a difference between wanting to win and expecting to win. One of these sides has crossed that threshold. The other is still searching for the…</p></div>
+      <p class="compact-label">Tennis (ATP) · 83.3% accuracy</p>
+      <h3 class="compact-title">Zverev vs Paul: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>They say form is temporary, class is permanent. Tonight, these two sides test that theory under the brightest lights.
+
+The numbers say 50% either way. That is not indecision — it is honesty. Zverev an…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sRugby">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sBoxing">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1461896836934-bd45ba8fcf9b?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">Rugby Union · 48.0% accuracy</p>
-      <h3 class="compact-title">South Africa vs New Zealand: A Genuine Toss-Up</h3>
-      <div class="compact-body"><p>There is a poetry to the way a team moves when everything clicks. Each player anticipates the other, the ball becomes an extension of will. It is rare…</p></div>
+      <p class="compact-label">Professional Boxing · 64.8% accuracy</p>
+      <h3 class="compact-title">Fury vs Usyk: A Genuine Toss-Up</h3>
+      <div class="compact-body"><p>There is a difference between wanting to win and expecting to win. One of these sides has crossed that threshold. The other is still searching for the door.
+
+The model spent thousands of iterations on…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sCricket_T20">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sCricket_T20">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">T20 Cricket · 42.9% accuracy</p>
+      <p class="compact-label">T20 Cricket · 52.9% accuracy</p>
       <h3 class="compact-title">T20 Cricket</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sCricket_T20">
+  </article>
+  <article class="compact" id="sCricket_T20">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">T20 Cricket · 42.9% accuracy</p>
+      <p class="compact-label">T20 Cricket · 52.9% accuracy</p>
       <h3 class="compact-title">The T20 Cricket Season</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sCricket_T20">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sCricket_T20">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">T20 Cricket · 42.9% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Team News Sentiment</h3>
+      <p class="compact-label">T20 Cricket · 52.9% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Tournament Context</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sEPL">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
-    <div class="compact-content">
-      <p class="compact-label">English Premier League · 85.0% accuracy</p>
-      <h3 class="compact-title">English Premier League</h3>
-      <div class="compact-body"><p>…</p></div>
-    </div>
-  </section>
-  <section class="compact" id="sEPL">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sEPL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
       <p class="compact-label">English Premier League · 85.0% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Head-to-Head History</h3>
+      <h3 class="compact-title">The Hidden Factor: Venue & Conditions</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sEPL">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sEPL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
       <p class="compact-label">English Premier League · 85.0% accuracy</p>
       <h3 class="compact-title">Spotlight on Rice</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNBA">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sEPL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NBA Basketball · 70.0% accuracy</p>
-      <h3 class="compact-title">NBA Basketball</h3>
+      <p class="compact-label">English Premier League · 85.0% accuracy</p>
+      <h3 class="compact-title">English Premier League</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNBA">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sNBA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NBA Basketball · 70.0% accuracy</p>
+      <p class="compact-label">NBA Basketball · 65.0% accuracy</p>
       <h3 class="compact-title">The Hidden Factor: Player Matchups</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNBA">
+  </article>
+  <article class="compact" id="sNBA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">NBA Basketball · 65.0% accuracy</p>
+      <h3 class="compact-title">NBA Basketball</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </article>
+  <article class="compact" id="sNBA">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NBA Basketball · 70.0% accuracy</p>
-      <h3 class="compact-title">Spotlight on Giannis</h3>
+      <p class="compact-label">NBA Basketball · 65.0% accuracy</p>
+      <h3 class="compact-title">Spotlight on SGA</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNFL">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sNFL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1552332386-f8e00a1a2ed1?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NFL Football · 53.1% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Recent Form</h3>
+      <p class="compact-label">NFL Football · 51.6% accuracy</p>
+      <h3 class="compact-title">Spotlight on Burrow</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNFL">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sNFL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1507226983735-a838615193b0?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NFL Football · 53.1% accuracy</p>
+      <p class="compact-label">NFL Football · 51.6% accuracy</p>
       <h3 class="compact-title">NFL Football</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNFL">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1566577739112-5180d4bf9391?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sNFL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1552332386-f8e00a1a2ed1?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NFL Football · 53.1% accuracy</p>
-      <h3 class="compact-title">Spotlight on Allen</h3>
+      <p class="compact-label">NFL Football · 51.6% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Player Health</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sMLB">
+  </article>
+  <article class="compact" id="sMLB">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">MLB Baseball · 62.0% accuracy</p>
+      <p class="compact-label">MLB Baseball · 57.0% accuracy</p>
       <h3 class="compact-title">MLB Baseball</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sMLB">
+  </article>
+  <article class="compact" id="sMLB">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">MLB Baseball · 62.0% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Team News Sentiment</h3>
+      <p class="compact-label">MLB Baseball · 57.0% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Player Matchups</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sMLB">
+  </article>
+  <article class="compact" id="sMLB">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1562077772-1fd6ddb2ed5a?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">MLB Baseball · 62.0% accuracy</p>
+      <p class="compact-label">MLB Baseball · 57.0% accuracy</p>
       <h3 class="compact-title">The MLB Baseball Season</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNHL">
+  </article>
+  <article class="compact" id="sNHL">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NHL Hockey · 80.4% accuracy</p>
+      <p class="compact-label">NHL Hockey · 63.0% accuracy</p>
       <h3 class="compact-title">NHL Hockey</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sNHL">
+  </article>
+  <article class="compact" id="sNHL">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">NHL Hockey · 80.4% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Recent Form</h3>
-      <div class="compact-body"><p>…</p></div>
-    </div>
-  </section>
-  <section class="compact" id="sNHL">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1515703407324-5d7532e6918f?w=1200&h=700&fit=crop')"></div>
-    <div class="compact-content">
-      <p class="compact-label">NHL Hockey · 80.4% accuracy</p>
+      <p class="compact-label">NHL Hockey · 63.0% accuracy</p>
       <h3 class="compact-title">The NHL Hockey Season</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sTENNIS">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sNHL">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1511227499331-25c621db940e?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">Tennis (ATP) · 75.0% accuracy</p>
-      <h3 class="compact-title">The Tennis (ATP) Season</h3>
+      <p class="compact-label">NHL Hockey · 63.0% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Player Matchups</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sTENNIS">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sTENNIS">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1531313849054-7c2732a2ab5b?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">Tennis (ATP) · 75.0% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Recent Form</h3>
+      <p class="compact-label">Tennis (ATP) · 83.3% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Player Health</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sTENNIS">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sTENNIS">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1622279457486-28f470ae0d4a?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">Tennis (ATP) · 75.0% accuracy</p>
+      <p class="compact-label">Tennis (ATP) · 83.3% accuracy</p>
       <h3 class="compact-title">Tennis (ATP)</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sRugby">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sTENNIS">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">Rugby Union · 48.0% accuracy</p>
+      <p class="compact-label">Tennis (ATP) · 83.3% accuracy</p>
+      <h3 class="compact-title">The Tennis (ATP) Season</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </article>
+  <article class="compact" id="sRugby">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Rugby Union · 42.9% accuracy</p>
+      <h3 class="compact-title">Spotlight on Barrett</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </article>
+  <article class="compact" id="sRugby">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Rugby Union · 42.9% accuracy</p>
       <h3 class="compact-title">Rugby Union</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sRugby">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sRugby">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">Rugby Union · 48.0% accuracy</p>
-      <h3 class="compact-title">Spotlight on Savea</h3>
+      <p class="compact-label">Rugby Union · 42.9% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Venue & Conditions</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sRugby">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1511882150382-4210563a7220?w=1200&h=700&fit=crop')"></div>
-    <div class="compact-content">
-      <p class="compact-label">Rugby Union · 48.0% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Tournament Context</h3>
-      <div class="compact-body"><p>…</p></div>
-    </div>
-  </section>
-  <section class="compact" id="sF1">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
-    <div class="compact-content">
-      <p class="compact-label">Formula 1 · 0% accuracy</p>
-      <h3 class="compact-title">Spotlight on Norris</h3>
-      <div class="compact-body"><p>…</p></div>
-    </div>
-  </section>
-  <section class="compact" id="sF1">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
-    <div class="compact-content">
-      <p class="compact-label">Formula 1 · 0% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Head-to-Head History</h3>
-      <div class="compact-body"><p>…</p></div>
-    </div>
-  </section>
-  <section class="compact" id="sF1">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sF1">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
       <p class="compact-label">Formula 1 · 0% accuracy</p>
       <h3 class="compact-title">Formula 1</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sMMA">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sF1">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">MMA (UFC) · 50.0% accuracy</p>
-      <h3 class="compact-title">MMA (UFC)</h3>
+      <p class="compact-label">Formula 1 · 0% accuracy</p>
+      <h3 class="compact-title">Spotlight on Verstappen</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sMMA">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
+  </article>
+  <article class="compact" id="sF1">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1630673240362-ed9f2121eb1a?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">MMA (UFC) · 50.0% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Player Health</h3>
+      <p class="compact-label">Formula 1 · 0% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Player Matchups</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sMMA">
+  </article>
+  <article class="compact" id="sMMA">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">MMA (UFC) · 50.0% accuracy</p>
+      <p class="compact-label">MMA (UFC) · 53.7% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Team News Sentiment</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </article>
+  <article class="compact" id="sMMA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">MMA (UFC) · 53.7% accuracy</p>
       <h3 class="compact-title">Spotlight on O'Malley</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sBoxing">
+  </article>
+  <article class="compact" id="sMMA">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">MMA (UFC) · 53.7% accuracy</p>
+      <h3 class="compact-title">MMA (UFC)</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </article>
+  <article class="compact" id="sBoxing">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1461896836934-bd45ba8fcf9b?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Professional Boxing · 64.8% accuracy</p>
+      <h3 class="compact-title">Spotlight on Usyk</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </article>
+  <article class="compact" id="sBoxing">
     <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
     <div class="compact-content">
-      <p class="compact-label">Professional Boxing · 66.7% accuracy</p>
+      <p class="compact-label">Professional Boxing · 64.8% accuracy</p>
+      <h3 class="compact-title">The Hidden Factor: Player Matchups</h3>
+      <div class="compact-body"><p>…</p></div>
+    </div>
+  </article>
+  <article class="compact" id="sBoxing">
+    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
+    <div class="compact-content">
+      <p class="compact-label">Professional Boxing · 64.8% accuracy</p>
       <h3 class="compact-title">Professional Boxing</h3>
       <div class="compact-body"><p>…</p></div>
     </div>
-  </section>
-  <section class="compact" id="sBoxing">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
-    <div class="compact-content">
-      <p class="compact-label">Professional Boxing · 66.7% accuracy</p>
-      <h3 class="compact-title">Spotlight on Joshua</h3>
-      <div class="compact-body"><p>…</p></div>
+  </article></div>
+
+
+    <div class="analytics-lab">
+      <div class="al-inner">
+        <h2 class="al-head">Book Lab</h2>
+        <p class="al-sub">AI, Optimization &amp; Data Sciences in Sports</p>
+        <div class="al-grid">
+          <div class="al-card">
+            <h3>Pythagorean Weibull MoM</h3>
+            <p>Independent Weibull distributions for runs scored/allowed, solved via Method of Moments. Win probability via 2D numerical integration. <em>Ch.13</em></p>
+          </div>
+          <div class="al-card">
+            <h3>PageRank Rankings</h3>
+            <p>Eigenvector centrality on win/loss networks. Quality-over-quantity: beating a strong opponent counts more than beating a weak one. <em>Ch.12</em></p>
+          </div>
+          <div class="al-card">
+            <h3>K-Means Player Clusters</h3>
+            <p>Unsupervised learning on player stats, games played, and form metrics. PEI efficiency ratio separates stars from rotation players. <em>Ch.11</em></p>
+          </div>
+          <div class="al-card">
+            <h3>TRIMP Consistency</h3>
+            <p>Game-to-game output variability measured via coefficient of variation. Higher consistency = more predictable team performance. <em>Ch.11</em></p>
+          </div>
+        </div>
+        <p class="al-sports">Available for: <span class="al-sport">T20 Cricket</span><span class="al-sport">English Premier League</span><span class="al-sport">NBA Basketball</span><span class="al-sport">NFL Football</span><span class="al-sport">MLB Baseball</span><span class="al-sport">NHL Hockey</span><span class="al-sport">Tennis (ATP)</span><span class="al-sport">Rugby Union</span><span class="al-sport">Formula 1</span><span class="al-sport">MMA (UFC)</span><span class="al-sport">Professional Boxing</span></p>
+      </div>
     </div>
-  </section>
-  <section class="compact" id="sBoxing">
-    <div class="compact-img" style="background-image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=1200&h=700&fit=crop')"></div>
-    <div class="compact-content">
-      <p class="compact-label">Professional Boxing · 66.7% accuracy</p>
-      <h3 class="compact-title">The Hidden Factor: Recent Form</h3>
-      <div class="compact-body"><p>…</p></div>
-    </div>
-  </section>
 
 <footer class="footer">
-  Seven dimensions · Head-to-Head History · Player Matchups · Venue & Conditions · Recent Form ·
-  Tournament Context · Sentiment · Player Health<br>
-  Published daily · PyTorch engine · 11 sports
+  <strong>Beyond the Game</strong> &middot; Predictions by <strong>HAL 9000</strong><br>
+  Seven dimensions &middot; Head-to-Head History &middot; Player Matchups &middot; Venue & Conditions &middot; Recent Form &middot; Tournament Context &middot; Sentiment &middot; Player Health<br>
+  44 stories across 11 sports &middot; Published daily
 </footer>
 
 </div>
